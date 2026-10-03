@@ -10,6 +10,8 @@ import RegistroPrompt from "@/components/RegistroPrompt";
 import { AuthProvider } from "@/contexts/AuthContext";
 import AuthModal from "@/components/AuthModal";
 import { BASE_URL, SITE_NAME, TWITTER_HANDLE, organizationSchema, websiteSchema } from "@/lib/seo";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", weight: ["400", "600", "700", "900"] });
@@ -87,6 +89,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CookieBanner />
           <RegistroPrompt />
         </AuthProvider>
+        <VercelAnalytics />
+        <SpeedInsights />
       </body>
     </html>
   );

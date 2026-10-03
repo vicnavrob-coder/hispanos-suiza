@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Sobre nosotros",
-  description: "Quiénes somos y por qué creamos HispanosEnSuiza.",
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Sobre nosotros — Hispanohablantes que viven en Suiza",
+  description: "HispanosEnSuiza es un proyecto creado por hispanohablantes que viven en Suiza. Información real, verificada y en español sobre cómo vivir, trabajar y prosperar en Suiza.",
+  path: "/sobre-nosotros",
+  keywords: ["hispanohablantes suiza", "comunidad hispana suiza", "españoles suiza", "latinoamericanos suiza"],
+});
 
 export default function SobreNosotrosPage() {
   return (

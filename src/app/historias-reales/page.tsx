@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Historias reales",
-  description: "Experiencias reales de españoles y latinoamericanos que viven en Suiza.",
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Historias reales — Experiencias sin filtros de hispanohablantes en Suiza",
+  description: "Historias reales de españoles y latinoamericanos que viven en Suiza. Lo que nadie te cuenta: errores, sorpresas, consejos prácticos de quienes ya lo vivieron.",
+  path: "/historias-reales",
+  keywords: ["historias reales suiza", "experiencias españoles suiza", "vivir en suiza testimonios", "comunidad hispana suiza"],
+});
 
 const historias = [
   {
