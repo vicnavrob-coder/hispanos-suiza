@@ -55,6 +55,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setShowModal(false);
         pendingCallback?.();
         setPendingCallback(null);
+        // Capturar en Brevo (fire-and-forget, no bloquea la UX)
+        fetch("/api/auth/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, nombre, pais, provider: "email" }),
+        }).catch(() => {});
       }
       return result;
     },
@@ -85,6 +91,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setShowModal(false);
         pendingCallback?.();
         setPendingCallback(null);
+        // Capturar en Brevo (fire-and-forget)
+        fetch("/api/auth/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: profile.email, nombre: profile.name, pais: "", provider: "google" }),
+        }).catch(() => {});
       }
       return result;
     },
