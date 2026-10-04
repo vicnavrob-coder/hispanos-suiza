@@ -114,6 +114,8 @@ Responde ÚNICAMENTE con un objeto JSON válido con esta estructura exacta:
   ]
 }
 
+IMPORTANTE: La primera pregunta del array faq debe ser la pregunta más importante del artículo con una respuesta directa y concisa de 2-3 frases (optimizada para featured snippet de Google).
+
 El campo "contenido" debe ser HTML válido en una sola línea (sin saltos de línea literales, usa \\n si necesitas).
 El campo "tiempoLectura" es un número entero (minutos).
 El campo "faq" debe tener entre 3 y 5 preguntas frecuentes sobre el tema.`;

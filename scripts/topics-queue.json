@@ -118,5 +118,405 @@
     "categoria": "seguros",
     "palabrasClave": ["seguro hogar suiza", "seguro accidentes suiza", "hausratsversicherung", "seguro responsabilidad civil suiza", "seguros suiza hispanohablante"],
     "prioridad": 15
+  },
+  {
+    "slug": "vivir-en-winterthur-espanoles-hispanohablantes",
+    "titulo": "Vivir en Winterthur: la ciudad industrial de Suiza más asequible que Zúrich",
+    "descripcion": "Winterthur es la segunda ciudad del cantón de Zúrich y mucho más barata que la capital. Alquileres, trabajo, transporte y comunidad hispanohablante en Winterthur.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["vivir en winterthur", "winterthur españoles", "winterthur alquiler", "mudarse winterthur suiza"],
+    "prioridad": 16
+  },
+  {
+    "slug": "vivir-en-friburgo-suiza-hispanohablantes",
+    "titulo": "Vivir en Friburgo (Fribourg): la ciudad bilingüe alemán-francés de Suiza",
+    "descripcion": "Friburgo es única en Suiza: mitad alemana, mitad francesa. Universidad famosa, alquileres más bajos que Berna y una calidad de vida excelente para hispanohablantes.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["vivir en friburgo suiza", "fribourg bilingüe", "friburgo hispanohablantes", "mudarse friburgo suiza"],
+    "prioridad": 17
+  },
+  {
+    "slug": "vivir-en-st-gallen-espanoles-hispanohablantes",
+    "titulo": "Vivir en St. Gallen: el centro textil y financiero del noreste suizo",
+    "descripcion": "St. Gallen tiene una universidad de negocios de primer nivel, alquileres asequibles y conexión directa a Zúrich en 1 hora. Lo que necesitas saber antes de mudarte.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["vivir en st gallen", "san galo suiza españoles", "st gallen trabajo", "mudarse st gallen suiza"],
+    "prioridad": 18
+  },
+  {
+    "slug": "vivir-en-neuchatel-espanoles-hispanohablantes",
+    "titulo": "Vivir en Neuchâtel: la ciudad universitaria francófona junto al lago",
+    "descripcion": "Neuchâtel combina precios más bajos que Ginebra o Lausana con una vida universitaria activa y acceso rápido a Berna. Guía para hispanohablantes.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["vivir en neuchatel", "neuchatel hispanohablantes", "neuchatel alquiler", "mudarse neuchatel suiza"],
+    "prioridad": 19
+  },
+  {
+    "slug": "homologar-titulo-universitario-suiza-espanoles",
+    "titulo": "Cómo homologar tu título universitario en Suiza si eres español o latinoamericano",
+    "descripcion": "El proceso para que tu carrera sea reconocida en Suiza: qué organismos gestionan la homologación, cuánto tarda, qué profesiones lo exigen y cómo evitar errores.",
+    "categoria": "emigrar",
+    "palabrasClave": ["homologar titulo suiza", "reconocimiento titulo suiza", "convalidar carrera suiza", "homologacion universitaria suiza"],
+    "prioridad": 20
+  },
+  {
+    "slug": "cuenta-bancaria-suiza-sin-trabajo-antes-llegar",
+    "titulo": "Cómo abrir una cuenta bancaria en Suiza sin trabajo o antes de llegar",
+    "descripcion": "Es posible abrir una cuenta suiza antes de tener contrato. Te explicamos qué bancos lo permiten, qué documentación necesitas y cómo hacerlo desde España o Latinoamérica.",
+    "categoria": "banca",
+    "palabrasClave": ["cuenta bancaria suiza sin trabajo", "abrir cuenta suiza antes llegar", "cuenta suiza extranjero", "banco suiza sin contrato"],
+    "prioridad": 21
+  },
+  {
+    "slug": "transferencias-internacionales-suiza-espana-mejores-opciones",
+    "titulo": "Transferencias internacionales entre Suiza y España: las opciones más baratas",
+    "descripcion": "Wise, Revolut, Neon o transferencia bancaria clásica: comparativa de comisiones, tipos de cambio y tiempos para mover dinero entre Suiza y España o Latinoamérica.",
+    "categoria": "banca",
+    "palabrasClave": ["transferencias suiza españa", "enviar dinero suiza españa", "wise suiza", "mejor forma transferir dinero suiza"],
+    "prioridad": 22
+  },
+  {
+    "slug": "salario-ingeniero-suiza-2026",
+    "titulo": "Salario de ingeniero en Suiza en 2026: cuánto gana por sector y cantón",
+    "descripcion": "Ingeniería mecánica, civil, informática o química: los sueldos reales de ingenieros en Suiza, con diferencias por cantón, empresa y nivel de experiencia.",
+    "categoria": "trabajo",
+    "palabrasClave": ["salario ingeniero suiza", "sueldo ingeniero suiza", "ingeniero suiza salario 2026", "trabajo ingeniero suiza"],
+    "prioridad": 23
+  },
+  {
+    "slug": "trabajar-enfermera-suiza-espanola-requisitos",
+    "titulo": "Trabajar como enfermera en Suiza siendo española: requisitos y salario real",
+    "descripcion": "Suiza tiene una demanda crónica de enfermeras. Cómo homologar el título, qué idioma necesitas, cuánto cobras y en qué hospitales hay más oportunidades para españolas.",
+    "categoria": "trabajo",
+    "palabrasClave": ["enfermera suiza española", "trabajar enfermería suiza", "salario enfermera suiza", "enfermera suiza requisitos"],
+    "prioridad": 24
+  },
+  {
+    "slug": "trabajo-hosteleria-suiza-hispanoamericanos",
+    "titulo": "Trabajo en hostelería en Suiza: cómo entrar, salarios y temporadas",
+    "descripcion": "El sector hotelero y de restauración en Suiza busca hispanohablantes activamente. Salarios, temporadas de esquí e invierno, y las cadenas que más contratan extranjeros.",
+    "categoria": "trabajo",
+    "palabrasClave": ["trabajo hosteleria suiza", "hostelería suiza español", "temporada ski suiza trabajo", "hotel restaurante suiza hispanohablante"],
+    "prioridad": 25
+  },
+  {
+    "slug": "programador-desarrollador-suiza-salario-trabajo",
+    "titulo": "Programador en Suiza: salarios, empresas tech y cómo conseguir trabajo",
+    "descripcion": "Suiza es uno de los mejores países para desarrolladores. Salarios de 100.000–160.000 CHF, empresas tech en Zúrich y Zug, y cómo posicionarte desde España.",
+    "categoria": "trabajo",
+    "palabrasClave": ["programador suiza salario", "desarrollador software suiza", "trabajo IT suiza español", "tech suiza sueldo"],
+    "prioridad": 26
+  },
+  {
+    "slug": "arquitecto-suiza-trabajo-homologacion-salario",
+    "titulo": "Trabajar como arquitecto en Suiza: homologación, salarios y mercado laboral",
+    "descripcion": "Para ejercer como arquitecto en Suiza necesitas inscribirte en el registro cantonal. Proceso de homologación del título español, salarios reales y las firmas que contratan.",
+    "categoria": "trabajo",
+    "palabrasClave": ["arquitecto suiza trabajo", "arquitecto español suiza", "homologar arquitectura suiza", "salario arquitecto suiza"],
+    "prioridad": 27
+  },
+  {
+    "slug": "impuesto-riqueza-suiza-como-funciona",
+    "titulo": "El impuesto sobre el patrimonio en Suiza: cómo funciona y cuánto pagas",
+    "descripcion": "Suiza tiene impuesto sobre el patrimonio (Vermögenssteuer) pero los tipos son muy bajos. Cómo se calcula, qué activos incluye, exenciones y diferencias por cantón.",
+    "categoria": "emigrar",
+    "palabrasClave": ["impuesto patrimonio suiza", "impuesto riqueza suiza", "vermogenssteuer suiza", "patrimonio suiza expatriado"],
+    "prioridad": 28
+  },
+  {
+    "slug": "deducir-gastos-declaracion-impuestos-suiza",
+    "titulo": "Qué gastos puedes deducir en la declaración de impuestos suiza",
+    "descripcion": "Transporte al trabajo, alquiler, formación, Pilar 3a, cuidado de hijos: la lista completa de deducciones fiscales disponibles en Suiza para empleados por cuenta ajena.",
+    "categoria": "emigrar",
+    "palabrasClave": ["deducciones fiscales suiza", "deducir gastos suiza", "declaración renta suiza", "steuererklarung deducciones"],
+    "prioridad": 29
+  },
+  {
+    "slug": "declaracion-impuestos-frontalero-suiza-espana",
+    "titulo": "Impuestos del trabajador frontalero entre España y Suiza: guía completa",
+    "descripcion": "Si vives en España y trabajas en Suiza (o al revés), estás sujeto a reglas fiscales especiales. Dónde declaras, convenio de doble imposición y cómo evitar pagar dos veces.",
+    "categoria": "emigrar",
+    "palabrasClave": ["frontalero suiza impuestos", "trabajador frontalero suiza españa", "doble imposicion suiza españa", "grenzganger impuestos"],
+    "prioridad": 30
+  },
+  {
+    "slug": "supermercados-suiza-ahorro-comparativa",
+    "titulo": "Supermercados en Suiza: cuál es más barato y cómo ahorrar en la compra",
+    "descripcion": "Migros, Coop, Aldi, Lidl o Denner: comparativa real de precios en supermercados suizos. Trucos para recortar hasta un 30% en el gasto de alimentación mensual.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["supermercados suiza baratos", "migros coop precios", "ahorro compra suiza", "lidl aldi suiza"],
+    "prioridad": 31
+  },
+  {
+    "slug": "abono-transporte-publico-suiza-general-abonnement",
+    "titulo": "El abono de transporte público en Suiza: GA, Halbtax y opciones para expatriados",
+    "descripcion": "El General-Abonnement (GA) te da acceso ilimitado a trenes, autobuses y barcos en toda Suiza. Cuánto cuesta, si vale la pena y alternativas como el Halbtax.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["abono transporte suiza", "general abonnement suiza", "halbtax suiza", "transporte publico suiza expatriado"],
+    "prioridad": 32
+  },
+  {
+    "slug": "guarderias-suiza-coste-sistema-opciones",
+    "titulo": "Guarderías en Suiza: cuánto cuestan, cómo funcionan y cómo conseguir plaza",
+    "descripcion": "El coste de guardería en Suiza puede llegar a 2.500 CHF al mes. Cómo funciona el sistema de cuidado infantil, subvenciones cantonales y alternativas más asequibles.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["guardería suiza coste", "kita suiza precio", "cuidado infantil suiza", "guardería suiza hispana", "plaza guardería suiza"],
+    "prioridad": 33
+  },
+  {
+    "slug": "mascotas-suiza-reglas-traer-perro-gato",
+    "titulo": "Traer tu perro o gato a Suiza: reglas, vacunas y chip obligatorio",
+    "descripcion": "Suiza es un país amante de los animales pero con regulación estricta. Vacuna antirrábica, chip, registro y seguro de responsabilidad: lo que necesitas para traer tu mascota.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["mascotas suiza reglas", "traer perro suiza", "traer gato suiza", "chip mascotas suiza", "viajar perro suiza"],
+    "prioridad": 34
+  },
+  {
+    "slug": "zurich-vs-ginebra-vivir-comparativa",
+    "titulo": "Zúrich vs Ginebra: ¿cuál es mejor para vivir como hispanohablante?",
+    "descripcion": "Zúrich tiene más empresas tech y finanzas; Ginebra, organismos internacionales y francés. Comparativa honesta de coste de vida, salarios, idioma y comunidad hispana.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["zurich vs ginebra vivir", "mejor ciudad suiza vivir", "zurich o ginebra expatriado", "comparativa ciudades suiza"],
+    "prioridad": 35
+  },
+  {
+    "slug": "suiza-vs-alemania-emigrar-comparativa",
+    "titulo": "Suiza vs Alemania para emigrar: salarios, burocracia y calidad de vida",
+    "descripcion": "Alemania es más accesible pero Suiza paga más. Comparativa directa de salarios, proceso de mudanza, idioma, acceso a empleo y calidad de vida para españoles.",
+    "categoria": "emigrar",
+    "palabrasClave": ["suiza vs alemania emigrar", "emigrar suiza o alemania", "alemania o suiza mejor", "diferencias suiza alemania expatriado"],
+    "prioridad": 36
+  },
+  {
+    "slug": "cantones-mas-baratos-suiza-vivir",
+    "titulo": "Los cantones más baratos de Suiza para vivir: ranking real con datos",
+    "descripcion": "No todos los cantones suizos son igual de caros. Ranking de cantones más asequibles por alquiler, impuestos y coste de vida, con datos actualizados para 2026.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["cantones baratos suiza", "canton mas barato suiza", "vivir barato suiza", "canton economico suiza"],
+    "prioridad": 37
+  },
+  {
+    "slug": "jubilarse-suiza-siendo-espanol-avs-pension",
+    "titulo": "Jubilarse en Suiza siendo español: AVS, pensión española y lo que debes planificar",
+    "descripcion": "Si te jubilas en Suiza puedes cobrar la pensión suiza (AVS) y la española de forma simultánea. Cómo se coordinan, cuánto cobrarías y los pasos para planificarlo.",
+    "categoria": "emigrar",
+    "palabrasClave": ["jubilarse suiza español", "jubilacion suiza expatriado", "pension española viviendo suiza", "avs suiza jubilacion"],
+    "prioridad": 38
+  },
+  {
+    "slug": "avs-suiza-como-funciona-hispanohablantes",
+    "titulo": "El AVS en Suiza: cómo funciona la pensión pública suiza para expatriados",
+    "descripcion": "El AVS (Alters- und Hinterlassenenversicherung) es el primer pilar del sistema de pensiones suizo. Cuánto cotizas, cuánto cobrarás y qué pasa si vuelves a España.",
+    "categoria": "emigrar",
+    "palabrasClave": ["avs suiza expatriado", "pension publica suiza", "cotizacion avs suiza", "primer pilar suiza pension"],
+    "prioridad": 39
+  },
+  {
+    "slug": "pension-espanola-viviendo-suiza-cobrar",
+    "titulo": "¿Puedo cobrar la pensión española viviendo en Suiza? Guía práctica",
+    "descripcion": "El convenio de Seguridad Social entre España y Suiza permite cobrar la pensión española desde Suiza. Cómo solicitarla, qué banco usar y si tributa en ambos países.",
+    "categoria": "emigrar",
+    "palabrasClave": ["cobrar pension espanola suiza", "pension espana desde suiza", "jubilacion espana suiza", "convenio seguridad social suiza espana"],
+    "prioridad": 40
+  },
+  {
+    "slug": "seguro-desempleo-suiza-como-funciona-rae",
+    "titulo": "El seguro de desempleo en Suiza: cómo funciona y cuánto cobras si pierdes el trabajo",
+    "descripcion": "En Suiza el paro (RAE/ALV) cubre hasta el 80% del salario durante 400 días. Requisitos, cómo solicitarlo, qué pasa si eres extranjero y las obligaciones durante el cobro.",
+    "categoria": "trabajo",
+    "palabrasClave": ["seguro desempleo suiza", "paro suiza extranjero", "rae suiza expatriado", "cobrar desempleo suiza"],
+    "prioridad": 41
+  },
+  {
+    "slug": "alquilar-piso-suiza-como-funciona-proceso",
+    "titulo": "Cómo alquilar un piso en Suiza: proceso, fianza y lo que diferencia al mercado suizo",
+    "descripcion": "El mercado de alquiler en Suiza es competitivo y tiene reglas propias. Fianza de 3 meses, dossier de candidatura, protocolo de entrega y derechos del inquilino.",
+    "categoria": "vivienda",
+    "palabrasClave": ["alquilar piso suiza", "arrendar apartamento suiza", "como alquilar suiza", "mercado alquiler suiza"],
+    "prioridad": 42
+  },
+  {
+    "slug": "deposito-fianza-alquiler-suiza-mietkaution",
+    "titulo": "La fianza de alquiler en Suiza (Mietkaution): cómo funciona y cómo recuperarla",
+    "descripcion": "La fianza de alquiler en Suiza equivale a 3 meses y se deposita en una cuenta bloqueada. Cómo liberarla, qué puede descontarse y cómo defender tus derechos como inquilino.",
+    "categoria": "vivienda",
+    "palabrasClave": ["fianza alquiler suiza", "mietkaution suiza", "deposito alquiler suiza", "recuperar fianza suiza"],
+    "prioridad": 43
+  },
+  {
+    "slug": "comprar-piso-suiza-extranjero-requisitos",
+    "titulo": "¿Puede un extranjero comprar piso en Suiza? Restricciones y requisitos reales",
+    "descripcion": "La Ley Lex Koller restringe la compra de inmuebles por extranjeros no residentes en Suiza. Qué permite, qué prohíbe y cómo pueden comprar los residentes con permiso B o C.",
+    "categoria": "vivienda",
+    "palabrasClave": ["comprar piso suiza extranjero", "lex koller suiza", "inmuebles suiza extranjero", "hipoteca suiza expatriado"],
+    "prioridad": 44
+  },
+  {
+    "slug": "seguro-accidentes-laboral-suiza-lamal-uvg",
+    "titulo": "Seguro de accidentes laborales en Suiza (UVG/LAA): lo que cubre tu empresa",
+    "descripcion": "En Suiza, el seguro de accidentes laborales lo paga tu empresa. Qué cubre la UVG, qué pasa si tienes un accidente fuera del trabajo y cómo complementarlo.",
+    "categoria": "seguros",
+    "palabrasClave": ["seguro accidentes laborales suiza", "uvg suiza", "laa suiza accidente", "accidente trabajo suiza"],
+    "prioridad": 45
+  },
+  {
+    "slug": "seguro-vida-suiza-cuando-necesario",
+    "titulo": "Seguro de vida en Suiza: cuándo lo necesitas y las mejores opciones",
+    "descripcion": "El seguro de vida no es obligatorio en Suiza pero sí muy recomendable si tienes hipoteca o familia. Comparativa de tipos, precios y proveedores recomendados para expatriados.",
+    "categoria": "seguros",
+    "palabrasClave": ["seguro vida suiza", "lebensversicherung suiza", "seguro vida expatriado suiza", "seguro fallecimiento suiza"],
+    "prioridad": 46
+  },
+  {
+    "slug": "pilar-2-suiza-pension-laboral-como-funciona",
+    "titulo": "El Pilar 2 en Suiza (BVG): la pensión laboral que muchos expatriados pierden al marcharse",
+    "descripcion": "El segundo pilar suizo es una pensión obligatoria gestionada por tu empresa. Qué pasa con ese dinero si vuelves a España, cómo rescatarlo y cuánto acumulas.",
+    "categoria": "banca",
+    "palabrasClave": ["pilar 2 suiza", "bvg suiza expatriado", "pensión laboral suiza", "segundo pilar suiza rescate"],
+    "prioridad": 47
+  },
+  {
+    "slug": "tarjeta-credito-debito-suiza-mejores-opciones",
+    "titulo": "Las mejores tarjetas de crédito y débito en Suiza para hispanohablantes",
+    "descripcion": "Neon, Revolut, Wise o tarjetas bancarias tradicionales: cuál conviene según tu uso, qué comisiones tienen y cómo evitar cargos al pagar en euros desde Suiza.",
+    "categoria": "banca",
+    "palabrasClave": ["tarjeta credito suiza", "tarjeta debito suiza", "neon suiza", "mejor tarjeta suiza expatriado"],
+    "prioridad": 48
+  },
+  {
+    "slug": "neobanco-suiza-neon-yuh-wise-comparativa",
+    "titulo": "Neobanco en Suiza: Neon, Yuh o Revolut — comparativa para expatriados",
+    "descripcion": "Los neobancos están revolucionando la banca en Suiza. Comparativa de Neon, Yuh, Revolut y Wise: comisiones, funcionalidades, requisitos para abrirlos y experiencia real.",
+    "categoria": "banca",
+    "palabrasClave": ["neobanco suiza", "neon suiza opiniones", "yuh suiza", "banco digital suiza expatriado"],
+    "prioridad": 49
+  },
+  {
+    "slug": "salario-minimo-suiza-canton-diferencias",
+    "titulo": "Salario mínimo en Suiza: cantones con mínimo legal y cuánto es en 2026",
+    "descripcion": "Suiza no tiene un salario mínimo nacional único, pero varios cantones (Ginebra, Neuchâtel, Basilea) lo han fijado por ley. Cuánto es y en qué sectores aplica.",
+    "categoria": "trabajo",
+    "palabrasClave": ["salario minimo suiza", "sueldo minimo suiza canton", "salario minimo ginebra", "minimo legal suiza 2026"],
+    "prioridad": 50
+  },
+  {
+    "slug": "negociar-salario-suiza-consejos-expatriado",
+    "titulo": "Cómo negociar el salario en Suiza: lo que funciona y los errores más comunes",
+    "descripcion": "Negociar el sueldo en Suiza es habitual y esperado. Cuándo hacerlo, qué argumentos usar, cuánto puedes pedir según el sector y cómo reaccionar a una oferta baja.",
+    "categoria": "trabajo",
+    "palabrasClave": ["negociar salario suiza", "sueldo suiza negociacion", "como pedir aumento suiza", "oferta salarial suiza"],
+    "prioridad": 51
+  },
+  {
+    "slug": "buscar-trabajo-suiza-desde-espana-estrategia",
+    "titulo": "Cómo buscar trabajo en Suiza desde España: plataformas y estrategia paso a paso",
+    "descripcion": "Jobs.ch, LinkedIn, Indeed y los portales cantonales son los principales canales. Cómo adaptar tu perfil, cuándo postular y si merece la pena ir sin trabajo a Suiza.",
+    "categoria": "trabajo",
+    "palabrasClave": ["buscar trabajo suiza desde espana", "portales empleo suiza", "jobs.ch", "encontrar trabajo suiza antes llegar"],
+    "prioridad": 52
+  },
+  {
+    "slug": "contrato-trabajo-suiza-tipos-derechos",
+    "titulo": "Contratos de trabajo en Suiza: tipos, derechos y lo que debes revisar antes de firmar",
+    "descripcion": "En Suiza los contratos pueden ser indefinidos, temporales o de prueba. Qué cláusulas son habituales, cuáles son ilegales y qué derechos laborales tienes como extranjero.",
+    "categoria": "trabajo",
+    "palabrasClave": ["contrato trabajo suiza", "derechos laborales suiza", "contrato temporal suiza", "periodo prueba suiza"],
+    "prioridad": 53
+  },
+  {
+    "slug": "registrarse-municipio-suiza-anmeldung-proceso",
+    "titulo": "Registro municipal en Suiza (Anmeldung): cómo hacerlo y qué documentos necesitas",
+    "descripcion": "El registro municipal es obligatorio en los 14 días siguientes a tu llegada a Suiza. Qué documentos llevar, cuánto cuesta y qué pasa si no lo haces a tiempo.",
+    "categoria": "emigrar",
+    "palabrasClave": ["registro municipal suiza", "anmeldung suiza", "empadronarse suiza", "inscripcion municipal suiza llegada"],
+    "prioridad": 54
+  },
+  {
+    "slug": "numero-ahv-avs-suiza-como-obtenerlo",
+    "titulo": "Número AHV/AVS en Suiza: qué es, para qué sirve y cómo conseguirlo",
+    "descripcion": "El número AHV (Suiza alemana) o AVS (Suiza francesa) es tu número de seguridad social suizo. Cómo solicitarlo, cuándo lo recibes y por qué es imprescindible para trabajar.",
+    "categoria": "emigrar",
+    "palabrasClave": ["numero ahv suiza", "avs suiza numero", "seguridad social suiza", "numero seguro suiza extranjero"],
+    "prioridad": 55
+  },
+  {
+    "slug": "idioma-aleman-nivel-necesario-trabajar-suiza",
+    "titulo": "¿Qué nivel de alemán necesitas realmente para trabajar en Suiza?",
+    "descripcion": "No es lo mismo trabajar en una multinacional de Zúrich que en una empresa local de Berna. Niveles reales exigidos por sector, qué certificados reconocen y cómo alcanzarlos rápido.",
+    "categoria": "trabajo",
+    "palabrasClave": ["nivel aleman trabajar suiza", "aleman b1 b2 suiza", "certificado aleman suiza", "goethe zertifikat suiza trabajo"],
+    "prioridad": 56
+  },
+  {
+    "slug": "cursos-aleman-suiza-opciones-costes",
+    "titulo": "Cursos de alemán en Suiza: opciones, precios y cuáles merecen la pena",
+    "descripcion": "Migros Klubschule, escuelas de idiomas, apps o clases particulares: comparativa real de opciones para aprender alemán en Suiza con precios actualizados 2026.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["cursos aleman suiza", "aprender aleman suiza", "migros klubschule", "escuela idiomas suiza precio"],
+    "prioridad": 57
+  },
+  {
+    "slug": "vivir-en-thun-suiza-hispanohablantes",
+    "titulo": "Vivir en Thun: la puerta de entrada a los Alpes berneses",
+    "descripcion": "Thun está a 30 minutos de Berna y a los pies de los Alpes. Alquileres asequibles, lago espectacular y una comunidad tranquila para familias hispanohablantes.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["vivir en thun suiza", "thun hispanohablantes", "thun berna alquiler", "mudarse thun suiza"],
+    "prioridad": 58
+  },
+  {
+    "slug": "como-funciona-sistema-educativo-suizo",
+    "titulo": "Cómo funciona el sistema educativo suizo: etapas, idiomas y escolarización de hijos",
+    "descripcion": "El sistema educativo en Suiza varía por cantón pero sigue una estructura común. Etapas obligatorias, bachillerato suizo (Matura), FP y cómo escolarizar a tus hijos recién llegados.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["sistema educativo suiza", "escuela suiza hijo expatriado", "escolarizar niños suiza", "matura suiza bachillerato"],
+    "prioridad": 59
+  },
+  {
+    "slug": "luz-electricidad-suiza-como-contratar-precio",
+    "titulo": "Electricidad en Suiza: cómo contratar el suministro, precios y consumo medio",
+    "descripcion": "Contratar la electricidad en Suiza es obligación del inquilino en muchos cantones. Cómo hacerlo, cuánto pagas de media al mes y cómo reducir el consumo.",
+    "categoria": "vivienda",
+    "palabrasClave": ["electricidad suiza contrato", "luz suiza precio", "suministro electrico suiza", "factura luz suiza"],
+    "prioridad": 60
+  },
+  {
+    "slug": "coworking-espacios-trabajo-suiza-freelance",
+    "titulo": "Espacios de coworking en Suiza: opciones y precios para autónomos y freelance",
+    "descripcion": "El coworking está en auge en las ciudades suizas. Comparativa de espacios en Zúrich, Ginebra, Berna y Basilea para autónomos y nómadas digitales hispanohablantes.",
+    "categoria": "trabajo",
+    "palabrasClave": ["coworking suiza", "espacios trabajo suiza freelance", "oficina compartida suiza", "nomada digital suiza"],
+    "prioridad": 61
+  },
+  {
+    "slug": "vivir-campo-suiza-zonas-rurales-ventajas",
+    "titulo": "Vivir en el campo en Suiza: zonas rurales, alquileres más baratos y calidad de vida",
+    "descripcion": "Huir de Zúrich o Ginebra al campo suizo puede ahorrarte 500–1.000 CHF al mes en alquiler. Zonas recomendadas, conexión a ciudades y lo que pierdes y ganas.",
+    "categoria": "vivienda",
+    "palabrasClave": ["vivir campo suiza", "suiza rural alquiler barato", "pueblo suiza vivir", "suiza fuera ciudad expatriado"],
+    "prioridad": 62
+  },
+  {
+    "slug": "impuesto-fuente-suiza-quellensteuer-como-funciona",
+    "titulo": "El impuesto en la fuente en Suiza (Quellensteuer): quién lo paga y cómo funciona",
+    "descripcion": "Si eres extranjero sin permiso C, tu empresa retiene directamente los impuestos del salario. Cómo se calcula, si puedes pedir correcciones y cuándo pasas a declarar normalmente.",
+    "categoria": "emigrar",
+    "palabrasClave": ["quellensteuer suiza", "impuesto fuente suiza", "retencion impuesto suiza extranjero", "impot source suiza"],
+    "prioridad": 63
+  },
+  {
+    "slug": "vacaciones-bajas-laborales-suiza-derechos",
+    "titulo": "Vacaciones y bajas laborales en Suiza: cuántos días tienes y cuáles son tus derechos",
+    "descripcion": "En Suiza la ley garantiza 20 días de vacaciones pagadas al año, pero muchas empresas dan más. Bajas por enfermedad, maternidad, paternidad y lo que cubre el seguro.",
+    "categoria": "trabajo",
+    "palabrasClave": ["vacaciones suiza días", "baja laboral suiza", "baja maternidad suiza", "derechos vacaciones suiza"],
+    "prioridad": 64
+  },
+  {
+    "slug": "comunidad-hispanohablante-suiza-asociaciones-grupos",
+    "titulo": "Comunidad hispanohablante en Suiza: asociaciones, grupos y cómo conectar",
+    "descripcion": "Encontrar tu tribu en Suiza no es difícil si sabes dónde buscar. Asociaciones de españoles, grupos de WhatsApp, eventos y meetups para hispanohablantes en las principales ciudades.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["comunidad española suiza", "hispanohablantes suiza grupos", "asociacion espanoles suiza", "españoles suiza contactos"],
+    "prioridad": 65
   }
 ]

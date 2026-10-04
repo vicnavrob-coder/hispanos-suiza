@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { allPosts as posts, categorias } from "@/lib/posts";
+import { ciudades } from "@/lib/ciudades";
 import { BASE_URL } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -19,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/aviso-legal`,        lastModified: now, changeFrequency: "yearly",  priority: 0.2 },
     { url: `${BASE_URL}/cookies`,            lastModified: now, changeFrequency: "yearly",  priority: 0.2 },
     { url: `${BASE_URL}/afiliados`,          lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
+    { url: `${BASE_URL}/ciudades`,           lastModified: now, changeFrequency: "monthly", priority: 0.8 },
   ];
 
   // Herramientas (alto valor SEO — keywords de intención de uso)
@@ -44,5 +46,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...toolPages, ...postPages, ...categoriaPages];
+  // Páginas hub de ciudades
+  const ciudadPages: MetadataRoute.Sitemap = ciudades.map((c) => ({
+    url: `${BASE_URL}/ciudades/${c.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...toolPages, ...postPages, ...categoriaPages, ...ciudadPages];
 }

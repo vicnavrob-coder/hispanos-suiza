@@ -7,6 +7,7 @@ import { useAuth } from "@/contexts/AuthContext";
 const NAV_LINKS = [
   { href: "/trabajo",      label: "Trabajo" },
   { href: "/vivienda",     label: "Vivienda" },
+  { href: "/ciudades",     label: "Ciudades" },
   { href: "/seguros",      label: "Seguros" },
   { href: "/herramientas", label: "Herramientas" },
   { href: "/blog",         label: "Blog" },
@@ -15,6 +16,7 @@ const NAV_LINKS = [
 const MOBILE_LINKS = [
   { href: "/trabajo",          label: "💼 Trabajo" },
   { href: "/vivienda",         label: "🏠 Vivienda" },
+  { href: "/ciudades",         label: "🏙️ Ciudades" },
   { href: "/seguros",          label: "🛡️ Seguros" },
   { href: "/herramientas",     label: "🔧 Herramientas" },
   { href: "/blog",             label: "📝 Blog" },

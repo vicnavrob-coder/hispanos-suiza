@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPost, allPosts as posts, allPosts, categorias } from "@/lib/posts";
 import { BASE_URL, buildMetadata, articleSchema, breadcrumbSchema, faqSchema } from "@/lib/seo";
+import RespuestaRapida from "@/components/RespuestaRapida";
 
 type Props = PageProps<"/blog/[slug]">;
 
@@ -98,6 +99,14 @@ export default async function PostPage({ params }: Props) {
               <span>✍️ {post.autor ?? "Equipo HispanosEnSuiza"}</span>
             </div>
           </div>
+
+          {/* Respuesta rápida — featured snippet */}
+          {post.faq?.[0] && (
+            <RespuestaRapida
+              pregunta={post.faq[0].pregunta}
+              respuesta={post.faq[0].respuesta}
+            />
+          )}
 
           {/* Contenido */}
           {post.contenido ? (
