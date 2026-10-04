@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/"],
       },
     ],
-    sitemap: "https://www.hispanosensuiza.com/sitemap.xml",
-    host: "https://www.hispanosensuiza.com",
+    sitemap: "https://hispanosensuiza.ch/sitemap.xml",
+    host: "https://hispanosensuiza.ch",
   };
 }
