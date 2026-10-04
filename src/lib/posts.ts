@@ -1019,13 +1019,7 @@ export const posts: Post[] = [
   },
 
 // ── Posts auto-generados (se actualiza automáticamente cada semana) ────────────
-let postsAuto: Post[] = [];
-try {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  postsAuto = require("./posts-auto").postsAuto ?? [];
-} catch {
-  // El archivo no existe aún — se creará en la primera ejecución del script
-}
+import { postsAuto } from "./posts-auto";
 
 // ── Índice completo (manuales + auto) ─────────────────────────────────────────
 export const allPosts: Post[] = [...posts, ...postsAuto];
