@@ -1,3 +1,5 @@
+import { postsAuto } from "./posts-auto";
+
 export type FaqItem = { pregunta: string; respuesta: string };
 
 export type Post = {
@@ -25,7 +27,7 @@ export const categorias = [
   { slug: "vida-diaria",label: "Vida diaria",        icono: "☕" },
 ];
 
-export const posts: Post[] = [
+const postsManual: Post[] = [
   // ─────────────────────────────────────────────────────────
   // 1. GUÍA EMIGRAR — artículo principal
   // ─────────────────────────────────────────────────────────
@@ -665,7 +667,6 @@ export const posts: Post[] = [
 <p>Y si quieres comparar el poder adquisitivo entre dos ciudades suizas — por ejemplo si te ofrecen trabajo en Zúrich pero vives más barato en Winterthur — usa el <a href="/herramientas/comparador-ciudades">comparador de ciudades</a>.</p>
     `
   },
-];
 
   // ─────────────────────────────────────────────────────────
   // 9. CV SUIZO
@@ -1017,12 +1018,10 @@ export const posts: Post[] = [
 <p>El secreto es la constancia, no la intensidad. 30 minutos diarios durante 2 años dan mejores resultados que un mes intensivo y luego nada.</p>
     `
   },
-
-// ── Posts auto-generados (se actualiza automáticamente cada semana) ────────────
-import { postsAuto } from "./posts-auto";
+];
 
 // ── Índice completo (manuales + auto) ─────────────────────────────────────────
-export const allPosts: Post[] = [...posts, ...postsAuto];
+export const allPosts: Post[] = [...postsManual, ...postsAuto];
 
 export function getPost(slug: string): Post | undefined {
   return allPosts.find(p => p.slug === slug);

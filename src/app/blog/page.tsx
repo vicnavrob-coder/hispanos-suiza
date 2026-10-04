@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ArticleCard from "@/components/ArticleCard";
-import { posts, categorias } from "@/lib/posts";
+import { allPosts as posts, categorias } from "@/lib/posts";
 import Link from "next/link";
 import { BASE_URL, buildMetadata, breadcrumbSchema, itemListSchema } from "@/lib/seo";
 

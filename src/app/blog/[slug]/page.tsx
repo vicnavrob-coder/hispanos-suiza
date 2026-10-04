@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getPost, posts, categorias } from "@/lib/posts";
+import { getPost, allPosts as posts, categorias } from "@/lib/posts";
 import { BASE_URL, buildMetadata, articleSchema, breadcrumbSchema, faqSchema } from "@/lib/seo";
 
 type Props = PageProps<"/blog/[slug]">;

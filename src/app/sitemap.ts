@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { posts, categorias } from "@/lib/posts";
+import { allPosts as posts, categorias } from "@/lib/posts";
 import { BASE_URL } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
