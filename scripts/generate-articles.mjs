@@ -252,6 +252,27 @@ console.log(`\n✅ Escrito: src/lib/posts-auto.ts (${newPosts.length} artículos
 writeFileSync(DONE_FILE, JSON.stringify(newDone, null, 2), "utf8");
 console.log(`✅ Actualizado: scripts/topics-done.json`);
 
+// ── Enviar a IndexNow (Bing / DuckDuckGo / Yahoo) ─────────────────────────────
+const INDEXNOW_KEY = "93e450c5f126c54d558cb653f05991e6";
+const BASE_URL = "https://hispanosensuiza.ch";
+const newUrls = newPosts.map(p => `${BASE_URL}/blog/${p.slug}`);
+
+try {
+  const resp = await fetch("https://api.indexnow.org/indexnow", {
+    method: "POST",
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    body: JSON.stringify({
+      host: "hispanosensuiza.ch",
+      key: INDEXNOW_KEY,
+      keyLocation: `${BASE_URL}/${INDEXNOW_KEY}.txt`,
+      urlList: newUrls,
+    }),
+  });
+  console.log(`\n🔍 IndexNow: ${resp.status} — ${newUrls.join(", ")}`);
+} catch (e) {
+  console.warn("  ⚠️ IndexNow falló:", e.message);
+}
+
 // ── Resumen ───────────────────────────────────────────────────────────────────
 console.log(`\n📊 Resumen:`);
 console.log(`  Artículos generados: ${newPosts.length}`);

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getPost, allPosts as posts, categorias } from "@/lib/posts";
+import { getPost, allPosts as posts, allPosts, categorias } from "@/lib/posts";
 import { BASE_URL, buildMetadata, articleSchema, breadcrumbSchema, faqSchema } from "@/lib/seo";
 
 type Props = PageProps<"/blog/[slug]">;
@@ -34,6 +34,9 @@ export default async function PostPage({ params }: Props) {
   if (!post) notFound();
 
   const cat = categorias.find((c) => c.slug === post.categoria);
+  const relacionados = allPosts
+    .filter((p) => p.slug !== post.slug && p.categoria === post.categoria)
+    .slice(0, 3);
   const fecha = new Date(post.fecha).toLocaleDateString("es-ES", {
     day: "numeric", month: "long", year: "numeric",
   });
@@ -189,6 +192,26 @@ export default async function PostPage({ params }: Props) {
               Ver herramientas →
             </Link>
           </div>
+
+          {/* Artículos relacionados */}
+          {relacionados.length > 0 && (
+            <div className="bg-white border border-gray-100 rounded-2xl p-5 mt-6">
+              <h3 className="font-bold text-gray-800 mb-3 text-sm">Artículos relacionados</h3>
+              <ul className="space-y-3">
+                {relacionados.map((r) => (
+                  <li key={r.slug}>
+                    <Link
+                      href={`/blog/${r.slug}`}
+                      className="text-sm text-gray-700 hover:text-red-700 leading-snug block transition-colors"
+                    >
+                      {r.titulo}
+                    </Link>
+                    <span className="text-xs text-gray-400">{r.tiempoLectura} min</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </aside>
       </div>
     </div>
