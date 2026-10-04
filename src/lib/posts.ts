@@ -667,6 +667,357 @@ export const posts: Post[] = [
   },
 ];
 
+  // ─────────────────────────────────────────────────────────
+  // 9. CV SUIZO
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "cv-suizo-como-adaptar-curriculum-espanol",
+    titulo: "CV suizo: cómo adaptar tu currículum español o latinoamericano al mercado laboral suizo",
+    descripcion: "Las diferencias clave entre un CV español y uno suizo, qué errores evitar, qué secciones incluir y cómo presentarlo para destacar en el mercado laboral suizo.",
+    categoria: "trabajo",
+    fecha: "2026-10-05",
+    tiempoLectura: 7,
+    imagen: "/images/cv-suiza.jpg",
+    destacado: false,
+    palabrasClave: ["cv suizo", "curriculum vitae suiza", "adaptar cv suiza", "curriculum suiza español", "como hacer cv suiza", "carta motivacion suiza"],
+    faq: [
+      { pregunta: "¿Hay que incluir foto en el CV suizo?", respuesta: "Sí, en Suiza la foto en el CV es habitual y esperada. Debe ser una foto profesional, fondo neutro, ropa formal. Al contrario de lo que ocurre en EE.UU. o Reino Unido, no incluir foto puede parecer extraño." },
+      { pregunta: "¿En qué idioma escribo el CV para Suiza?", respuesta: "En el idioma del cantón donde está la empresa: alemán para Zúrich, Berna, Basilea; francés para Ginebra, Lausana, Neuchâtel; italiano para Lugano y el Ticino. En multinacionales el inglés es aceptado. Un CV en español será descartado automáticamente." },
+      { pregunta: "¿Cuántas páginas debe tener un CV suizo?", respuesta: "Máximo 2 páginas para perfiles con experiencia. Recién graduados: 1 página. Si tienes más de 15 años de experiencia, se tolera llegar a 3. La concisión es muy valorada en Suiza." },
+      { pregunta: "¿Hay que incluir referencias en el CV suizo?", respuesta: "Sí, a diferencia del CV español donde se pone 'referencias a petición', en Suiza se incluyen 2-3 referencias reales con nombre, cargo, empresa y teléfono o email directamente en el CV." },
+    ],
+    contenido: `
+<h2>Por qué tu CV español no funciona en Suiza</h2>
+<p>Si mandas tu CV español a empresas suizas sin adaptarlo, lo más probable es que no llegues a la fase de entrevista. No porque tu perfil sea malo — sino porque el formato y las expectativas son completamente distintos.</p>
+<p>En Suiza la primera revisión de un CV dura entre 30 y 60 segundos. Si no se ajusta al formato esperado, pasa directamente a la pila de rechazados. Aquí van las diferencias clave.</p>
+
+<h2>Las 7 diferencias principales entre el CV español y el suizo</h2>
+<ol>
+  <li><strong>Foto profesional:</strong> En Suiza se incluye siempre. Fondo neutro, ropa formal, expresión neutra o ligeramente sonriente. Tamaño pasaporte, esquina superior derecha o izquierda.</li>
+  <li><strong>Idioma:</strong> El idioma del CV debe coincidir con el del cantón donde está la empresa. Alemán en Zúrich, francés en Ginebra, italiano en Lugano. Inglés solo en multinacionales o tech internacional.</li>
+  <li><strong>Máximo 2 páginas:</strong> Los CVs de 4-5 páginas son comunes en España. En Suiza 2 páginas es el máximo estricto para la mayoría de perfiles.</li>
+  <li><strong>Referencias reales en el CV:</strong> No "disponibles a petición" — incluye 2-3 referencias con nombre completo, cargo, empresa y contacto directo.</li>
+  <li><strong>Datos personales completos:</strong> Fecha de nacimiento, estado civil y nacionalidad se incluyen en Suiza. En España se evitan por motivos legales, pero en Suiza son habituales.</li>
+  <li><strong>Sin objetivos genéricos:</strong> La sección "Objetivo profesional" tan común en CVs latinoamericanos es innecesaria. Se sustituye por un perfil profesional de 3-4 líneas muy concreto.</li>
+  <li><strong>Idiomas con nivel CEFR:</strong> Indica siempre el nivel oficial (A1-C2). No escribas "nivel medio" o "avanzado" — las empresas suizas esperan la escala europea.</li>
+</ol>
+
+<h2>Estructura del CV suizo: sección por sección</h2>
+
+<h3>1. Datos personales</h3>
+<p>Nombre completo, dirección en Suiza (o indicar "en proceso de relocalización"), teléfono, email, LinkedIn. Añade fecha de nacimiento, nacionalidad y permiso de residencia si ya lo tienes.</p>
+
+<h3>2. Perfil profesional (3-5 líneas)</h3>
+<p>Un resumen concreto de quién eres profesionalmente y qué aportas. Sin frases genéricas como "persona proactiva y orientada a resultados". Ejemplo real: "Ingeniero mecánico con 8 años en la industria farmacéutica, especializado en validación de equipos GMP. Bilingüe alemán-español, experiencia en entornos regulados FDA/EMA."</p>
+
+<h3>3. Experiencia profesional (orden cronológico inverso)</h3>
+<p>Empresa, cargo, fechas (mes/año - mes/año), ubicación. Para cada puesto: 3-5 logros concretos con cifras cuando sea posible. No listas de tareas genéricas — resultados medibles.</p>
+
+<h3>4. Formación</h3>
+<p>Título, institución, país, año. Si tu título es de fuera de Suiza, menciona si está en proceso de reconocimiento oficial (especialmente relevante para medicina, enfermería, abogacía).</p>
+
+<h3>5. Idiomas</h3>
+<p>Lista todos los idiomas con nivel CEFR. No olvides incluir el español como lengua materna — en Suiza, el español es un activo, especialmente en banca privada, comercio internacional y organizaciones internacionales.</p>
+
+<h3>6. Habilidades técnicas</h3>
+<p>Herramientas, software, certificaciones. Conciso y relevante para el puesto.</p>
+
+<h3>7. Referencias</h3>
+<p>2-3 referencias reales. Nombre, cargo, empresa, email y/o teléfono. Avisa a las personas antes de incluirlas.</p>
+
+<h2>La carta de motivación: tan importante como el CV</h2>
+<p>En Suiza la carta de motivación (Motivationsschreiben / lettre de motivation) no es opcional. Una carta genérica o copiada descarta tu candidatura igual que un CV mal formateado.</p>
+<p>Una buena carta de motivación para el mercado suizo debe:</p>
+<ul>
+  <li>Tener máximo 1 página</li>
+  <li>Estar personalizada para esa empresa y ese puesto específico (menciona la empresa por nombre, lo que te atrae de ella)</li>
+  <li>Explicar por qué tú eres la mejor opción para ESE puesto concreto</li>
+  <li>Mostrar que conoces la empresa, su sector y sus valores</li>
+  <li>Estar escrita en el idioma del cantón</li>
+</ul>
+
+<h2>Errores más comunes de hispanohablantes en el CV suizo</h2>
+<ul>
+  <li>✗ CV en español (descarte inmediato)</li>
+  <li>✗ Sin foto o foto informal</li>
+  <li>✗ Más de 2 páginas con experiencia media</li>
+  <li>✗ Referencias "a petición"</li>
+  <li>✗ Objetivos profesionales genéricos al inicio</li>
+  <li>✗ Tareas en lugar de logros con cifras</li>
+  <li>✗ No mencionar el permiso de residencia o estado migratorio</li>
+</ul>
+
+<h2>Busca trabajo en Suiza con nuestro buscador</h2>
+<p>Una vez que tu CV esté adaptado, usa nuestro <a href="/trabajo/buscador">buscador de trabajo en Suiza</a> para encontrar ofertas actualizadas en tu sector y ciudad. Filtra por área de trabajo y ciudad suiza directamente desde nuestra plataforma.</p>
+    `
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // 10. VIVIR EN ZÚRICH
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "vivir-en-zurich-espanoles-hispanohablantes",
+    titulo: "Vivir en Zúrich siendo español o latinoamericano: barrios, costes y trabajo en 2026",
+    descripcion: "Todo lo que necesitas saber antes de mudarte a Zúrich: barrios donde vivir, coste real de vida, sectores con más trabajo y cómo se vive el día a día.",
+    categoria: "vida-diaria",
+    fecha: "2026-10-06",
+    tiempoLectura: 8,
+    imagen: "/images/zurich.jpg",
+    destacado: false,
+    palabrasClave: ["vivir en zurich", "zurich españoles", "vivir en zurich español", "mudarse zurich", "trabajar en zurich", "zurich hispanohablantes"],
+    faq: [
+      { pregunta: "¿Cuánto cuesta vivir en Zúrich para una persona sola?", respuesta: "Una persona sola en Zúrich necesita entre 3.200 y 4.500 CHF/mes: alquiler de habitación o estudio (1.500-2.200 CHF), seguro médico (420-500 CHF), comida (500-700 CHF), transporte (100 CHF) y ocio (300-500 CHF)." },
+      { pregunta: "¿Cuáles son los mejores barrios para vivir en Zúrich para extranjeros?", respuesta: "Los más populares entre hispanohablantes son Kreis 4 y 5 (dinámicos y asequibles), Oerlikon (moderno, bien comunicado, más barato) y Altstetten (barrio familiar, tranquilo, buen transporte)." },
+      { pregunta: "¿Es difícil encontrar trabajo en Zúrich siendo español?", respuesta: "En sectores como IT, banca y consultoría la demanda es alta y el inglés es suficiente para empezar. Aprender alemán acelera enormemente la integración laboral y social." },
+    ],
+    contenido: `
+<h2>Por qué Zúrich es el destino número uno de hispanohablantes en Suiza</h2>
+<p>Zúrich concentra más del 40% de los puestos de trabajo bien remunerados de Suiza. Es el mayor centro financiero de Europa continental, el hub tecnológico más importante del continente después de Londres y el hogar de las sedes europeas de Google, Disney, IBM y decenas de multinacionales.</p>
+<p>Para hispanohablantes cualificados — especialmente en IT, banca, ingeniería y sanidad — Zúrich es la ciudad con mayor concentración de oportunidades. El precio de esa oportunidad es el coste de vida más alto del país.</p>
+
+<h2>Barrios de Zúrich: dónde viven los hispanohablantes</h2>
+<p>Zúrich está dividida en 12 Kreise (distritos). Los más populares entre recién llegados hispanohablantes:</p>
+<ul>
+  <li><strong>Kreis 4 y 5 (Langstrasse/Industriequartier):</strong> Los barrios más cosmopolitas y con más vida nocturna. Muchos jóvenes profesionales y expatriados. Alquileres algo más bajos que el centro. Muy bien conectados al centro.</li>
+  <li><strong>Kreis 3 (Wiedikon/Sihlfeld):</strong> Popular entre familias hispanohablantes. Tranquilo, verde, buen transporte. Mezcla de suizos y comunidad internacional.</li>
+  <li><strong>Oerlikon (Kreis 11):</strong> El barrio de moda para jóvenes profesionales. Nuevo desarrollo urbano, buenas conexiones, precios más asequibles que el centro. Amazon y otras tech tienen oficinas aquí.</li>
+  <li><strong>Altstetten (Kreis 9):</strong> El barrio más asequible de la ciudad con buenas comunicaciones. Popular entre familias y trabajadores industriales.</li>
+  <li><strong>Zürich West:</strong> Zona regenerada con lofts y estudios modernos. Popular entre creativos y trabajadores del sector tech.</li>
+</ul>
+<p>Consejo: muchos hispanohablantes viven fuera de Zúrich ciudad — en Winterthur (30 min en tren), Schaffhausen, Baden o incluso en el cantón de Zug — y viajan al trabajo. El ahorro en alquiler puede ser de 400-600 CHF/mes.</p>
+
+<h2>Coste de vida real en Zúrich 2026</h2>
+<p>Estos son datos reales reportados por la comunidad hispanohablante, no estimaciones turísticas:</p>
+<ul>
+  <li><strong>Alquiler estudio zona periférica:</strong> 1.600 – 2.000 CHF/mes</li>
+  <li><strong>Alquiler piso 2 hab. compartido (tu parte):</strong> 900 – 1.300 CHF/mes</li>
+  <li><strong>Seguro médico (KVG básico):</strong> 420 – 500 CHF/mes</li>
+  <li><strong>Abono transporte ZVV zona 110:</strong> 100 CHF/mes</li>
+  <li><strong>Supermercado (Migros/Aldi):</strong> 350 – 500 CHF/mes</li>
+  <li><strong>Comer fuera 1x semana:</strong> 120 – 200 CHF/mes</li>
+  <li><strong>Móvil + internet:</strong> 50 – 80 CHF/mes</li>
+</ul>
+<p><strong>Total mínimo razonable:</strong> 3.000 – 3.800 CHF/mes sin coche.</p>
+<p>¿Cuánto te quedaría en mano de tu salario en Zúrich? Usa nuestra <a href="/herramientas/salario-neto">calculadora de salario neto</a> para saberlo en función de tu sueldo bruto.</p>
+
+<h2>Trabajo en Zúrich: sectores y salarios</h2>
+<p>Los sectores con más demanda para hispanohablantes en Zúrich:</p>
+<ul>
+  <li><strong>Tecnología:</strong> Google Zurich, UBS Tech, Credit Suisse, centenares de startups. El inglés es suficiente para muchos puestos tech. Salarios: 90.000 – 150.000 CHF/año.</li>
+  <li><strong>Banca y finanzas:</strong> UBS, Julius Bär, Vontobel, Pictet. Se valora el inglés y el alemán. Salarios: 95.000 – 180.000 CHF/año.</li>
+  <li><strong>Consultoría:</strong> McKinsey, BCG, Accenture, Deloitte. Inglés imprescindible, alemán muy valorado.</li>
+  <li><strong>Sanidad:</strong> UniversitätsSpital Zürich, Triemli. Alemán B2 mínimo obligatorio.</li>
+  <li><strong>Hostelería de lujo:</strong> hoteles 5 estrellas junto al lago.</li>
+</ul>
+
+<h2>Integración: el alemán en Zúrich</h2>
+<p>El idioma oficial es el alemán — pero con un matiz importante: en la calle se habla Schweizerdeutsch (dialecto suizo alemán), mientras que en el trabajo, el correo y la administración se usa Hochdeutsch (alemán estándar).</p>
+<p>Para sobrevivir en Zúrich con inglés es posible en el sector tech internacional. Pero para integrarte socialmente, entender facturas y comunicarte con el casero o la Gemeinde, necesitas alemán. Empieza con A2-B1 y el dialecto suizo lo irás entendiendo por inmersión.</p>
+<p>Kurse (cursos) recomendados: Migros Klubschule (muy popular, moderado en precio), Goethe-Institut Zürich, o cursos online con DW (Deutsche Welle, gratuito).</p>
+
+<h2>La comunidad hispanohablante en Zúrich</h2>
+<p>Zúrich tiene una comunidad hispanohablante activa. Grupos en Facebook como "Españoles en Zúrich" o "Latinoamericanos en Zúrich" tienen miles de miembros y son muy útiles para encontrar piso, hacer contactos o simplemente resolver dudas prácticas.</p>
+<p>También hay eventos regulares: cenas, salidas al lago, grupos de español para suizos que quieren practicar (muy útil para hacer amigos locales).</p>
+    `
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // 11. VIVIR EN GINEBRA
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "vivir-en-ginebra-espanoles-hispanohablantes",
+    titulo: "Vivir en Ginebra siendo español o latinoamericano: guía completa 2026",
+    descripcion: "Ginebra, la ciudad internacional por excelencia. Barrios, costes reales, organizaciones internacionales, banca privada y cómo integrarse.",
+    categoria: "vida-diaria",
+    fecha: "2026-10-07",
+    tiempoLectura: 7,
+    imagen: "/images/ginebra.jpg",
+    destacado: false,
+    palabrasClave: ["vivir en ginebra", "ginebra españoles", "vivir en ginebra español", "mudarse ginebra", "trabajar ginebra", "organizaciones internacionales ginebra"],
+    faq: [
+      { pregunta: "¿Cuánto cuesta vivir en Ginebra al mes?", respuesta: "Una persona sola necesita entre 3.300 y 4.600 CHF/mes. El seguro médico es el más caro de Suiza (480-560 CHF/mes) y los alquileres son similares a Zúrich. Sin embargo, los salarios en Ginebra también están entre los más altos." },
+      { pregunta: "¿Qué idioma se habla en Ginebra?", respuesta: "El francés es el idioma oficial y de uso cotidiano. Es imprescindible para trabajar en la mayoría de sectores. El inglés funciona bien en organizaciones internacionales, ONU y sector bancario privado internacional." },
+      { pregunta: "¿Es más fácil encontrar trabajo en Ginebra siendo latinoamericano?", respuesta: "Ginebra tiene ventajas especiales: las organizaciones internacionales (ONU, OMS, Cruz Roja) contratan de todo el mundo, y el sector diplomático no aplica las mismas restricciones que el mercado privado." },
+    ],
+    contenido: `
+<h2>Ginebra: la ciudad más internacional de Suiza</h2>
+<p>Ginebra no es una ciudad suiza más — es una ciudad global. Alberga la sede europea de la ONU, la OMS, la Cruz Roja Internacional, el CERN, la OMC y más de 200 organizaciones internacionales y ONGs. Más del 40% de su población es extranjera.</p>
+<p>Para hispanohablantes, Ginebra tiene ventajas únicas: el francés es la lengua oficial (mucho más accesible que el alemán para un hispanohablante), y el ambiente internacional hace que la integración sea más fácil que en ciudades de habla alemana.</p>
+
+<h2>Francés en Ginebra: la buena noticia para hispanohablantes</h2>
+<p>Un hispanohablante puede aprender francés funcional en 3-6 meses — la proximidad lingüística con el español es enorme. A nivel A2-B1 ya puedes manejarte en el día a día. Este es el mayor argumento a favor de Ginebra frente a Zúrich para muchos latinoamericanos y españoles.</p>
+<p>Para el trabajo, el nivel necesario depende del sector: en organizaciones internacionales el inglés es frecuentemente suficiente; en banca local, hostelería o comercio necesitas francés B2 o superior.</p>
+
+<h2>Barrios de Ginebra para vivir</h2>
+<ul>
+  <li><strong>Carouge:</strong> El barrio más querido por expatriados latinos. Ambiente mediterráneo, terrazas, mercado, comunidad italiana y española muy activa. Alquileres algo más bajos que el centro. Altamente recomendado.</li>
+  <li><strong>Plainpalais:</strong> Barrio universitario, joven, dinámico. Mercado al aire libre, bares, galerías. Popular entre jóvenes profesionales.</li>
+  <li><strong>Eaux-Vives:</strong> Junto al lago, tranquilo y bien comunicado. Precio medio-alto.</li>
+  <li><strong>Meyrin:</strong> Zona donde está el CERN. Muy internacional. Alquileres más accesibles que el centro de la ciudad.</li>
+  <li><strong>Fuera de Ginebra (Francia):</strong> Muchos trabajadores en Ginebra viven en Francia (Ferney-Voltaire, Saint-Genis, Annemasse) y cruzan la frontera cada día. Los alquileres pueden ser 50% más baratos. Requiere tramitar el estatuto de trabajador fronterizo.</li>
+</ul>
+
+<h2>Coste de vida en Ginebra 2026</h2>
+<ul>
+  <li><strong>Alquiler estudio zona periférica:</strong> 1.600 – 2.100 CHF/mes</li>
+  <li><strong>Seguro médico KVG:</strong> 480 – 560 CHF/mes (el más caro de Suiza)</li>
+  <li><strong>Transporte (TPG abono mensual):</strong> 70 CHF/mes</li>
+  <li><strong>Supermercado:</strong> 400 – 550 CHF/mes</li>
+  <li><strong>Ocio y varios:</strong> 300 – 500 CHF/mes</li>
+</ul>
+<p><strong>Total mínimo:</strong> 3.100 – 4.000 CHF/mes. El seguro médico es el mayor diferencial respecto a otras ciudades suizas.</p>
+
+<h2>Trabajo en Ginebra: las oportunidades reales</h2>
+<ul>
+  <li><strong>Organizaciones internacionales:</strong> ONU, OMS, ACNUR, Cruz Roja, OMC, CERN. Contratan de todo el mundo, incluyendo latinoamericanos. Los procesos son largos pero las condiciones son excelentes.</li>
+  <li><strong>Banca privada:</strong> Pictet, Lombard Odier, Mirabaud, UBP. Gestión de patrimonio internacional. El español es una ventaja real para clientes latinoamericanos de alta renta.</li>
+  <li><strong>Trading de materias primas:</strong> Ginebra es el mayor centro mundial de trading de commodities. Empresas como Trafigura, Gunvor, Vitol tienen sus sedes aquí.</li>
+  <li><strong>Hostelería de lujo:</strong> hoteles como el Beau-Rivage, Kempinski, Four Seasons. El francés e inglés son imprescindibles.</li>
+</ul>
+
+<h2>Salario mínimo y poder adquisitivo</h2>
+<p>Ginebra tiene el salario mínimo cantonal más alto de Suiza: 24 CHF/hora (aproximadamente 4.000 CHF/mes para jornada completa). Los salarios medios en banca privada o en organizaciones internacionales superan holgadamente los 8.000 CHF/mes brutos.</p>
+<p>Para comparar el poder adquisitivo real entre Ginebra y otras ciudades suizas, usa nuestra <a href="/herramientas/comparador-ciudades">herramienta de comparación de ciudades</a>.</p>
+    `
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // 12. VIVIR EN LUGANO
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "vivir-en-lugano-espanoles-hispanohablantes",
+    titulo: "Vivir en Lugano: la ciudad suiza más latina, con lago y clima mediterráneo",
+    descripcion: "Lugano es la ciudad de habla italiana de Suiza — la más fácil de integrar para hispanohablantes. Barrios, trabajo, coste de vida y comunidad hispana.",
+    categoria: "vida-diaria",
+    fecha: "2026-10-08",
+    tiempoLectura: 6,
+    imagen: "/images/lugano.jpg",
+    destacado: false,
+    palabrasClave: ["vivir en lugano", "lugano hispanohablantes", "lugano españoles", "vivir lugano suiza", "mudarse lugano", "lugano ticino trabajo"],
+    faq: [
+      { pregunta: "¿Qué idioma se habla en Lugano?", respuesta: "En Lugano y el cantón Ticino se habla italiano. Para un hispanohablante, el italiano es el idioma más fácil de aprender de Suiza — 6-9 meses para comunicarse con fluidez. El inglés funciona en el sector bancario y las multinacionales." },
+      { pregunta: "¿Cuánto cuesta vivir en Lugano?", respuesta: "Lugano es cara como toda Suiza, pero un 15-25% más asequible que Zúrich o Ginebra. Un estudio en zona periférica cuesta entre 1.100 y 1.700 CHF/mes. El seguro médico es moderado: 330-400 CHF/mes." },
+      { pregunta: "¿Qué trabajo hay en Lugano para hispanohablantes?", respuesta: "Los sectores principales son banca privada, tecnología financiera (fintech), turismo y hostelería, y empresas relacionadas con el comercio italiano-suizo. El italiano es necesario para la mayoría de puestos." },
+    ],
+    contenido: `
+<h2>Lugano: la Suiza mediterránea que enamora a los hispanohablantes</h2>
+<p>Lugano es única en Suiza. Es la única gran ciudad de habla italiana del país, está junto a un lago con aguas turquesas y rodeada de montañas, y tiene un clima que parece el norte de Italia más que Suiza. 280 días de sol al año, palmeras junto al lago y una comunidad italiana y latina muy presente.</p>
+<p>Para hispanohablantes, Lugano tiene una ventaja enorme: el italiano — la lengua local — es la lengua más cercana al español. Con un nivel B1 de español ya puedes entender el 60-70% del italiano desde el primer día, y con 6-9 meses de práctica hablar con fluidez.</p>
+
+<h2>El idioma: por qué Lugano es la opción más fácil lingüísticamente</h2>
+<p>Este es el argumento definitivo de Lugano para muchos hispanohablantes que no quieren enfrentarse al alemán (Zúrich) ni al francés (Ginebra). El italiano y el español comparten raíz latina, vocabulario y estructuras gramaticales similares.</p>
+<p>Proceso típico de un hispanohablante en Lugano:</p>
+<ul>
+  <li><strong>Mes 1-2:</strong> Entiende conversaciones básicas, puede hacer compras y trámites simples</li>
+  <li><strong>Mes 3-6:</strong> Puede trabajar en entornos donde se acepta el italiano básico</li>
+  <li><strong>Mes 6-12:</strong> Habla con fluidez, acento latino que los locales encuentran simpático</li>
+</ul>
+
+<h2>Barrios de Lugano</h2>
+<ul>
+  <li><strong>Centro (Città):</strong> El corazón comercial y financiero. Bancos, boutiques, restaurantes junto al lago. Alquileres más altos: 1.600-2.200 CHF para estudio.</li>
+  <li><strong>Massagno:</strong> Barrio residencial junto al centro, más tranquilo y asequible. Popular entre familias. 1.200-1.600 CHF/estudio.</li>
+  <li><strong>Pregassona:</strong> Zona norte de Lugano, moderna, bien conectada. Alquileres algo más bajos. Comunidad hispanohablante activa.</li>
+  <li><strong>Bioggio / Manno:</strong> Zona tecnológica al oeste. Aquí están muchas empresas de tecnología y finanzas. Alquileres accesibles, ideal si trabajas en ese sector.</li>
+  <li><strong>Lugano-Paradiso:</strong> Junto al lago, ambiente turístico. Precioso pero caro y no ideal para vivir a largo plazo.</li>
+</ul>
+
+<h2>Coste de vida en Lugano 2026</h2>
+<ul>
+  <li><strong>Alquiler estudio zona periférica:</strong> 1.100 – 1.600 CHF/mes</li>
+  <li><strong>Seguro médico KVG:</strong> 330 – 400 CHF/mes (moderado)</li>
+  <li><strong>Transporte (TILO/bus):</strong> 80 CHF/mes</li>
+  <li><strong>Supermercado:</strong> 350 – 500 CHF/mes</li>
+  <li><strong>Ocio y varios:</strong> 250 – 400 CHF/mes</li>
+</ul>
+<p><strong>Total mínimo:</strong> 2.400 – 3.200 CHF/mes. Uno de los menores costes de las ciudades principales suizas.</p>
+
+<h2>Trabajo en Lugano: sectores principales</h2>
+<ul>
+  <li><strong>Banca y finanzas:</strong> BSI, Banca del Ceresio, Banque Cramer, Julius Bär Lugano. El sector financiero es el principal empleador de perfiles cualificados. El italiano es obligatorio; el inglés y el español son un plus.</li>
+  <li><strong>Tecnología (polo tecnológico Bioggio-Manno):</strong> Lugano tiene un creciente ecosistema tech, con empresas como Lugano Business Center y muchas startups fintech.</li>
+  <li><strong>Universidad de la Svizzera italiana (USI):</strong> universidad y politécnico que generan empleos en investigación, educación y administración.</li>
+  <li><strong>Turismo y hostelería:</strong> hoteles de lujo junto al lago, restaurantes, actividades al aire libre.</li>
+</ul>
+
+<h2>La comunidad hispanohablante en Lugano</h2>
+<p>Lugano tiene la mayor concentración proporcional de hispanohablantes de Suiza — especialmente colombianos, argentinos, venezolanos y ecuatorianos que llevan décadas en el Ticino. La comunidad es activa y acogedora con los recién llegados.</p>
+<p>Grupos como "Hispanos en Lugano" en Facebook tienen miles de miembros y son el mejor canal para encontrar piso, trabajo informal o simplemente adaptarse más rápido.</p>
+    `
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // 13. APRENDER ALEMÁN EN SUIZA
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "aprender-aleman-suiza-hispanohablantes-guia",
+    titulo: "Aprender alemán en Suiza siendo hispanohablante: Hochdeutsch vs Schweizerdeutsch, cursos y tiempo real",
+    descripcion: "La guía honesta sobre aprender alemán en Suiza: por qué el dialecto suizo no es el alemán que estudias, cuánto tiempo lleva y qué cursos son los mejores.",
+    categoria: "vida-diaria",
+    fecha: "2026-10-09",
+    tiempoLectura: 7,
+    imagen: "/images/aleman-suiza.jpg",
+    destacado: false,
+    palabrasClave: ["aprender aleman suiza", "schweizerdeutsch", "hochdeutsch suiza", "cursos aleman zurich", "aleman hispanohablante suiza", "aprender aleman berna basilea"],
+    faq: [
+      { pregunta: "¿Es el alemán suizo muy diferente al alemán estándar?", respuesta: "Sí, mucho más de lo que la gente cree. El Schweizerdeutsch (alemán suizo) es un dialecto que varía por cantón, se usa en la calle y no tiene forma escrita estándar. En el trabajo y la administración se usa Hochdeutsch (alemán estándar). Lo que estudias en academias es Hochdeutsch, que sí funciona para trabajo y trámites." },
+      { pregunta: "¿Cuánto tiempo se tarda en aprender alemán siendo hispanohablante?", respuesta: "Para alcanzar B2 (nivel laboral) desde cero: entre 18 y 30 meses estudiando regularmente. Para A2 básico (sobrevivir en el día a día): 6-9 meses. El Schweizerdeutsch se aprende por inmersión y puede tardar 1-2 años adicionales para entenderlo con fluidez." },
+      { pregunta: "¿Dónde estudiar alemán en Suiza sin gastarse una fortuna?", respuesta: "Las mejores opciones económicas son: Deutsche Welle online (gratuito, A1-C1), Autonome Schule Zürich (precios reducidos), Caritas (gratuito para residentes con bajo ingreso), y el intercambio de idiomas (Tandem) con suizos que quieren aprender español." },
+    ],
+    contenido: `
+<h2>El shock del alemán suizo: lo que nadie te avisa</h2>
+<p>Llegas a Zúrich con tu A2 de alemán que tanto te costó estudiar. Abres la boca en el supermercado y el cajero te responde algo que no se parece en nada a lo que aprendiste. Eso es el Schweizerdeutsch — y es una de las primeras sorpresas reales de vivir en la Suiza alemana.</p>
+<p>Entender la diferencia entre el alemán que estudias y el alemán que hablan los suizos en la calle es esencial antes de empezar cualquier curso.</p>
+
+<h2>Hochdeutsch vs Schweizerdeutsch: la diferencia clave</h2>
+<p>En Suiza conviven dos variedades del alemán con funciones completamente distintas:</p>
+<ul>
+  <li><strong>Hochdeutsch (alemán estándar):</strong> Es el alemán escrito, el de los textos oficiales, el correo del trabajo, las facturas, los contratos, los libros. Lo usan los medios de comunicación y en contextos formales. Es lo que estudias en academias de idiomas y lo que te enseña Duolingo o la DW. <em>Este es el alemán que necesitas para trabajar.</em></li>
+  <li><strong>Schweizerdeutsch (dialecto suizo):</strong> Es el alemán hablado en la calle, en casa, entre amigos, en la TV local, en el supermercado. No tiene forma escrita estándar — cada cantón tiene su variante (Züritüütsch, Berndüütsch, Baseldüütsch...). Los suizos lo usan para todo lo informal. <em>No lo aprenderás en ningún curso: solo por inmersión.</em></li>
+</ul>
+<blockquote>"Después de 2 años en Suiza y un B2 de alemán, aún hay días que no entiendo nada de lo que dicen en el tren. Pero en el trabajo me comunico perfectamente." — Rodrigo, Lima → Zúrich</blockquote>
+
+<h2>¿Qué nivel necesitas según tu situación?</h2>
+<ul>
+  <li><strong>Para trabajar en IT/tech internacional o banca privada:</strong> El inglés puede ser suficiente. El alemán A2-B1 es un plus que acelera la integración.</li>
+  <li><strong>Para trabajar en sanidad, comercio, administración o cualquier trabajo cara al público:</strong> Alemán B2 obligatorio. Sin él, pocas empresas suizas te contratan.</li>
+  <li><strong>Para alquilar piso y comunicarte con el casero:</strong> A2-B1 funciona.</li>
+  <li><strong>Para entender el Schweizerdeutsch oral:</strong> 1-2 años de inmersión después de tener B1-B2 de Hochdeutsch.</li>
+</ul>
+
+<h2>Los mejores cursos de alemán en Suiza para hispanohablantes</h2>
+
+<h3>Opciones gratuitas o muy económicas</h3>
+<ul>
+  <li><strong>Deutsche Welle (DW) online:</strong> La mejor opción gratuita. Cursos de A1 a C1, buena calidad pedagógica, ejercicios, podcast. Ideal para empezar antes de llegar. <em>dwelle.com/learn-german</em></li>
+  <li><strong>Autonome Schule Zürich:</strong> Cursos de alemán a precios sociales para inmigrantes. Sin fines de lucro. Excelente para recién llegados con recursos limitados.</li>
+  <li><strong>Caritas:</strong> En muchos cantones ofrece cursos gratuitos o muy baratos de integración lingüística para residentes con permiso de residencia.</li>
+  <li><strong>Tandem / intercambio de idiomas:</strong> Busca suizos que quieran aprender español (hay muchos). Una hora de alemán por una hora de español. Cero coste y contactos locales. Plataformas: Tandem app, meetup.com, grupos de Facebook locales.</li>
+</ul>
+
+<h3>Opciones de precio medio</h3>
+<ul>
+  <li><strong>Migros Klubschule:</strong> La escuela de idiomas más popular de Suiza. Cursos de todos los niveles, horarios flexibles, instructores nativos. Precio: 300-500 CHF por nivel (unas 40 horas). Muy buena calidad-precio.</li>
+  <li><strong>Volkshochschule (VHS):</strong> Escuela pública de adultos, presencia en todas las ciudades. Precios moderados, cursos intensivos y regulares.</li>
+</ul>
+
+<h3>Opciones intensivas o premium</h3>
+<ul>
+  <li><strong>Goethe-Institut:</strong> Referencia mundial. Cursos en Zúrich, Berna y otras ciudades. Más caro (800-1.500 CHF por nivel) pero con certificación internacional reconocida.</li>
+  <li><strong>Berlitz, Inlingua:</strong> Escuelas privadas con profesores nativos y horarios flexibles. Para quien necesita resultados rápidos y tiene presupuesto.</li>
+</ul>
+
+<h2>El plan de aprendizaje más eficiente para hispanohablantes</h2>
+<ol>
+  <li><strong>Meses 1-3 (desde casa, antes de llegar):</strong> DW online A1 completo + app Babbel o Duolingo como complemento. 30-45 min/día.</li>
+  <li><strong>Meses 4-9 (en Suiza, A2):</strong> Migros Klubschule o VHS A2 + buscar tandem con suizo/a. Empieza a entender el Schweizerdeutsch por contexto.</li>
+  <li><strong>Meses 10-18 (B1):</strong> Curso regular B1 + empezar a escuchar podcasts suizos (SRF), noticias, series suizas.</li>
+  <li><strong>Meses 18-30 (B2):</strong> Curso B2 + trabajo o prácticas en entorno alemanoparlante. Con B2 ya puedes trabajar en la mayoría de sectores.</li>
+</ol>
+<p>El secreto es la constancia, no la intensidad. 30 minutos diarios durante 2 años dan mejores resultados que un mes intensivo y luego nada.</p>
+    `
+  },
+
 export function getPost(slug: string): Post | undefined {
   return posts.find(p => p.slug === slug);
 }
