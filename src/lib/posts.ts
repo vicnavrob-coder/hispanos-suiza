@@ -1018,14 +1018,29 @@ export const posts: Post[] = [
     `
   },
 
+// ── Posts auto-generados (se actualiza automáticamente cada semana) ────────────
+let postsAuto: Post[] = [];
+try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  postsAuto = require("./posts-auto").postsAuto ?? [];
+} catch {
+  // El archivo no existe aún — se creará en la primera ejecución del script
+}
+
+// ── Índice completo (manuales + auto) ─────────────────────────────────────────
+export const allPosts: Post[] = [...posts, ...postsAuto];
+
 export function getPost(slug: string): Post | undefined {
-  return posts.find(p => p.slug === slug);
+  return allPosts.find(p => p.slug === slug);
 }
 
 export function getPostsByCategoria(categoria: string): Post[] {
-  return posts.filter(p => p.categoria === categoria);
+  return allPosts.filter(p => p.categoria === categoria);
 }
 
 export function getDestacados(): Post[] {
-  return posts.filter(p => p.destacado);
+  return allPosts.filter(p => p.destacado);
 }
+
+// Compatibilidad con código existente que importa `posts` directamente
+export { allPosts as posts };

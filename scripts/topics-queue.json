@@ -1,0 +1,122 @@
+[
+  {
+    "slug": "vivir-en-basilea-espanoles-hispanohablantes",
+    "titulo": "Vivir en Basilea: la ciudad farmacéutica de Suiza para españoles y latinoamericanos",
+    "descripcion": "Basilea es la capital mundial de la industria farmacéutica (Novartis, Roche) y tiene alquileres más asequibles que Zúrich. Barrios, trabajo, coste de vida y comunidad hispana.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["vivir en basilea", "basilea españoles", "basilea latinoamericanos", "trabajar basilea", "novartis roche basilea", "mudarse basilea suiza"],
+    "prioridad": 1
+  },
+  {
+    "slug": "vivir-en-berna-espanoles-hispanohablantes",
+    "titulo": "Vivir en Berna: la capital federal de Suiza, tranquila y asequible",
+    "descripcion": "Berna es la capital de Suiza y una de las ciudades más equilibradas para vivir. Menos presión que Zúrich, alquileres razonables y mucho empleo en el sector público federal.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["vivir en berna", "berna españoles", "berna hispanohablantes", "trabajar berna", "capital suiza berna", "mudarse berna"],
+    "prioridad": 2
+  },
+  {
+    "slug": "permiso-residencia-suiza-tipos-tramites",
+    "titulo": "Permisos de residencia en Suiza: tipos L, B, C y G — cómo tramitarlos en 2026",
+    "descripcion": "Guía completa sobre los permisos de residencia suizos: diferencias entre permiso L, B, C y G, cómo solicitarlos, tiempos de tramitación y qué pasa si te cambian de empresa.",
+    "categoria": "emigrar",
+    "palabrasClave": ["permiso residencia suiza", "permiso b suiza", "permiso c suiza", "permiso l suiza", "tramitar permiso suiza", "tarjeta residencia suiza"],
+    "prioridad": 3
+  },
+  {
+    "slug": "coste-vida-suiza-vs-espana-comparativa",
+    "titulo": "Coste de vida en Suiza vs España en 2026: ¿compensa el salto?",
+    "descripcion": "Comparativa honesta entre vivir en España y vivir en Suiza: salarios, alquileres, impuestos, ocio y poder adquisitivo real. Con datos de quienes han hecho el salto.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["coste vida suiza vs espana", "suiza vs españa salarios", "merece la pena emigrar suiza", "suiza mas caro espana", "poder adquisitivo suiza"],
+    "prioridad": 4
+  },
+  {
+    "slug": "carta-motivacion-suiza-ejemplos-como-escribir",
+    "titulo": "Carta de motivación para Suiza: cómo escribirla y ejemplos reales que funcionan",
+    "descripcion": "La carta de motivación es tan importante como el CV en Suiza. Te explicamos la estructura exacta, qué escribir y qué evitar, con ejemplos reales en español, alemán y francés.",
+    "categoria": "trabajo",
+    "palabrasClave": ["carta motivacion suiza", "carta presentacion suiza", "motivationsschreiben suiza", "lettre motivation suisse", "como escribir carta motivacion suiza"],
+    "prioridad": 5
+  },
+  {
+    "slug": "vivir-en-lausana-espanoles-hispanohablantes",
+    "titulo": "Vivir en Lausana: la ciudad universitaria francoparlante con vistas al lago Lemán",
+    "descripcion": "Lausana acoge la EPFL y la UNIL, dos de las mejores universidades de Europa. Ciudad joven, dinámica, francoparlante y con más variedad cultural que Ginebra.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["vivir en lausana", "lausana españoles", "lausana hispanohablantes", "trabajar lausana", "epfl lausana", "mudarse lausana suiza"],
+    "prioridad": 6
+  },
+  {
+    "slug": "pilar-3a-suiza-guia-hispanohablantes",
+    "titulo": "Pilar 3a en Suiza: la deducción fiscal que pocos hispanohablantes conocen",
+    "descripcion": "El Pilar 3a es el plan de pensiones privado suizo que te permite ahorrar hasta 7.056 CHF al año con deducción fiscal directa. Cómo funciona, dónde contratar y cuánto ahorras.",
+    "categoria": "banca",
+    "palabrasClave": ["pilar 3a suiza", "pension privada suiza", "ahorro fiscal suiza", "saeule 3a", "plan pensiones suiza expatriado"],
+    "prioridad": 7
+  },
+  {
+    "slug": "conducir-suiza-carnet-espanol-canje",
+    "titulo": "Conducir en Suiza con carnet español: canje, normas y lo que debes saber",
+    "descripcion": "Tienes 12 meses desde tu llegada para canjear el carnet español por el suizo. El proceso, los costes, las normas de circulación distintas a España y las multas que sorprenden a los recién llegados.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["carnet conducir suiza español", "canje carnet suiza", "conducir suiza extranjero", "permiso conduccion suiza", "licencia conducir suiza"],
+    "prioridad": 8
+  },
+  {
+    "slug": "vivir-en-zug-espanoles-hispanohablantes",
+    "titulo": "Vivir en Zug: el cantón con los impuestos más bajos de Suiza",
+    "descripcion": "Zug es el paraíso fiscal suizo donde viven muchos ejecutivos y profesionales de alto salario. Pequeña, segura, junto al lago y con impuestos que pueden suponer 10.000 CHF menos al año.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["vivir en zug", "zug impuestos", "canton zug hispanohablantes", "trabajar zug suiza", "zug vs zurich impuestos"],
+    "prioridad": 9
+  },
+  {
+    "slug": "escuelas-internacionales-suiza-hijos-expatriados",
+    "titulo": "Colegios e escuelas internacionales en Suiza para hijos de expatriados",
+    "descripcion": "Opciones de escolarización para familias hispanohablantes en Suiza: escuelas internacionales (IB), escuelas españolas, sistema público suizo y lo que cuesta cada opción.",
+    "categoria": "vida-diaria",
+    "palabrasClave": ["escuela internacional suiza", "colegio español suiza", "escolarizar hijos suiza", "sistema educativo suiza expatriado", "IB suiza"],
+    "prioridad": 10
+  },
+  {
+    "slug": "abrir-empresa-autonomo-suiza-espanoles",
+    "titulo": "Cómo hacerse autónomo o abrir una empresa en Suiza siendo extranjero",
+    "descripcion": "El proceso para registrarse como autónomo (Einzelunternehmen) o crear una GmbH/Sàrl en Suiza. Costes, impuestos, el seguro médico de autónomos y lo que muchos no calculan.",
+    "categoria": "trabajo",
+    "palabrasClave": ["autonomo suiza extranjero", "abrir empresa suiza", "freelance suiza español", "gmbh suiza", "Einzelunternehmen suiza"],
+    "prioridad": 11
+  },
+  {
+    "slug": "sistema-sanitario-suiza-como-funciona",
+    "titulo": "Cómo funciona el sistema sanitario suizo: médicos, hospitales y urgencias",
+    "descripcion": "El sistema de salud suizo es excelente pero funciona diferente al español. Cómo pedir cita, qué hace el médico de cabecera, cómo funcionan las urgencias y cuánto pagas de bolsillo.",
+    "categoria": "seguros",
+    "palabrasClave": ["sistema sanitario suiza", "médico suiza extranjero", "cómo funciona salud suiza", "urgencias suiza", "médico de cabecera suiza"],
+    "prioridad": 12
+  },
+  {
+    "slug": "trabajar-suiza-sin-saber-aleman-sectores",
+    "titulo": "¿Se puede trabajar en Suiza sin saber alemán? Sectores y empleos reales",
+    "descripcion": "La respuesta honesta: depende del sector. Te explicamos en qué trabajos puedes entrar solo con inglés o español, y en cuáles el alemán o francés es imprescindible.",
+    "categoria": "trabajo",
+    "palabrasClave": ["trabajar suiza sin aleman", "trabajo suiza en español", "trabajo suiza inglés", "trabajo suiza sin idioma", "suiza sin hablar alemán"],
+    "prioridad": 13
+  },
+  {
+    "slug": "reagrupacion-familiar-suiza-tramites",
+    "titulo": "Reagrupación familiar en Suiza: cómo traer a tu familia si ya tienes permiso",
+    "descripcion": "Los requisitos para traer a tu pareja e hijos a Suiza una vez que tienes trabajo y residencia. Ingresos mínimos exigidos, documentación y tiempos de tramitación.",
+    "categoria": "emigrar",
+    "palabrasClave": ["reagrupación familiar suiza", "traer familia suiza", "permiso familia suiza", "reunificación familiar suiza"],
+    "prioridad": 14
+  },
+  {
+    "slug": "seguro-hogar-accidentes-suiza-hispanohablantes",
+    "titulo": "Seguros del hogar y de accidentes en Suiza: cuáles son obligatorios y cuáles merece la pena contratar",
+    "descripcion": "En Suiza hay seguros que son obligatorios por ley y otros que muchos hispanohablantes desconocen pero son casi imprescindibles. Guía completa con precios reales.",
+    "categoria": "seguros",
+    "palabrasClave": ["seguro hogar suiza", "seguro accidentes suiza", "hausratsversicherung", "seguro responsabilidad civil suiza", "seguros suiza hispanohablante"],
+    "prioridad": 15
+  }
+]

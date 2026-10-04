@@ -1,0 +1,82 @@
+name: Auto-generate SEO content
+
+on:
+  # Cada lunes a las 8:00 UTC (9:00 CET / 10:00 CEST)
+  schedule:
+    - cron: "0 8 * * 1"
+
+  # Permite ejecutarlo manualmente desde GitHub Actions
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "Número de artículos a generar (1-5)"
+        required: false
+        default: "2"
+      dry_run:
+        description: "Dry run (no escribe ni hace push)"
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Anthropic SDK
+        run: npm install @anthropic-ai/sdk
+
+      - name: Generate articles
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          COUNT="${{ github.event.inputs.count || '2' }}"
+          DRY="${{ github.event.inputs.dry_run || 'false' }}"
+          if [ "$DRY" = "true" ]; then
+            node scripts/generate-articles.mjs --count=$COUNT --dry-run
+          else
+            node scripts/generate-articles.mjs --count=$COUNT
+          fi
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push new articles
+        if: steps.changes.outputs.changed == 'true' && github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name "HispanosEnSuiza Bot"
+          git config user.email "bot@hispanosensuiza.ch"
+          git add src/lib/posts-auto.ts scripts/topics-done.json
+          DATE=$(date +"%Y-%m-%d")
+          COUNT=$(git diff --cached --numstat | wc -l)
+          git commit -m "SEO auto: nuevos artículos generados $DATE"
+          git push origin main
+
+      - name: Summary
+        run: |
+          echo "### Resultado de generación de contenido" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f scripts/topics-done.json ]; then
+            TOTAL=$(cat scripts/topics-done.json | python3 -c "import json,sys; print(len(json.load(sys.stdin)))")
+            echo "- **Total artículos auto-generados:** $TOTAL" >> $GITHUB_STEP_SUMMARY
+          fi
+          PENDING=$(cat scripts/topics-queue.json | python3 -c "import json,sys; q=json.load(sys.stdin); d=json.load(open('scripts/topics-done.json')) if __import__('os').path.exists('scripts/topics-done.json') else []; done={x['slug'] for x in d}; print(len([t for t in q if t['slug'] not in done]))")
+          echo "- **Temas pendientes en cola:** $PENDING" >> $GITHUB_STEP_SUMMARY
