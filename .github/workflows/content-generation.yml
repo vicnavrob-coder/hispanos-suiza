@@ -9,9 +9,9 @@ on:
   workflow_dispatch:
     inputs:
       count:
-        description: "Número de artículos a generar (1-5)"
+        description: "Número de artículos a generar (1-10)"
         required: false
-        default: "2"
+        default: "5"
       dry_run:
         description: "Dry run (no escribe ni hace push)"
         required: false
