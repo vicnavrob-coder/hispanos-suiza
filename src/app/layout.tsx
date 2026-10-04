@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
   },
 };
 
