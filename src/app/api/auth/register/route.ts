@@ -16,12 +16,25 @@ export async function POST(req: NextRequest) {
     const brevoKey = process.env.BREVO_API_KEY;
 
     if (!brevoKey) {
-      // Sin clave configurada — solo log. No bloquear el registro.
       console.log(`[registro] ${email} | ${nombre} | ${pais || "—"} | ${provider || "email"}`);
       return NextResponse.json({ ok: true, saved: false });
     }
 
-    // Añadir contacto a Brevo con lista "HispanosEnSuiza Registros"
+    const listId = process.env.BREVO_LIST_ID ? parseInt(process.env.BREVO_LIST_ID) : null;
+
+    const contactBody: Record<string, unknown> = {
+      email,
+      attributes: {
+        NOMBRE: nombre,
+        PAIS: pais || "",
+        PROVIDER: provider || "email",
+        SITIO: "hispanosensuiza.ch",
+        REGISTRO: new Date().toISOString().split("T")[0],
+      },
+      updateEnabled: true,
+    };
+    if (listId) contactBody.listIds = [listId];
+
     const resp = await fetch("https://api.brevo.com/v3/contacts", {
       method: "POST",
       headers: {
@@ -29,18 +42,7 @@ export async function POST(req: NextRequest) {
         "Content-Type": "application/json",
         "Accept": "application/json",
       },
-      body: JSON.stringify({
-        email,
-        attributes: {
-          NOMBRE: nombre,
-          PAIS: pais || "",
-          PROVIDER: provider || "email",
-          SITIO: "hispanosensuiza.ch",
-          REGISTRO: new Date().toISOString().split("T")[0],
-        },
-        listIds: [2],          // Lista por defecto en Brevo (ID 2 = "Mis contactos")
-        updateEnabled: true,   // Si ya existe, actualizar en vez de error
-      }),
+      body: JSON.stringify(contactBody),
     });
 
     if (resp.status === 201 || resp.status === 204) {
