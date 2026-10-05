@@ -10,21 +10,33 @@ import { useAuth } from "@/contexts/AuthContext";
 const fmt = (n: number) =>
   new Intl.NumberFormat("de-CH", { style: "currency", currency: "CHF", maximumFractionDigits: 0 }).format(n);
 
-const ACCENT = "#1d4ed8";
+const ACCENT      = "#1d4ed8";
 const ACCENT_DARK = "#1e3a8a";
 
 const CIUDAD_EMOJIS: Record<string, string> = {
-  "Zürich":     "🏔️",
-  "Geneva":     "🌊",
-  "Basel":      "🏛️",
-  "Bern":       "🐻",
-  "Lausanne":   "🎓",
-  "Lugano":     "☀️",
-  "Winterthur": "🌿",
-  "St. Gallen": "📚",
-  "Lucerne":    "🌉",
-  "Zug":        "💼",
+  "Toda Suiza":  "🇨🇭",
+  "Zürich":      "🏔️",
+  "Geneva":      "🌊",
+  "Basel":       "🏛️",
+  "Bern":        "🐻",
+  "Lausanne":    "🎓",
+  "Lugano":      "☀️",
+  "Winterthur":  "🌿",
+  "St. Gallen":  "📚",
+  "Lucerne":     "🌉",
+  "Zug":         "💼",
 };
+
+// Precios máximos para el filtro (según tipo)
+const PRICE_STEPS: Record<string, number[]> = {
+  "estudio":        [1500, 1800, 2000, 2200, 2500, 3000],
+  "1-habitacion":   [1800, 2000, 2500, 3000, 3500, 4000],
+  "2-habitaciones": [2200, 2800, 3200, 3800, 4500, 5500],
+  "wg-habitacion":  [700,  900,  1100, 1300, 1500, 2000],
+  "3-habitaciones": [2800, 3500, 4000, 4500, 5000, 6000],
+};
+
+const DEFAULT_PRICE_IDX = 4; // penúltimo valor por defecto
 
 const CONSEJOS = [
   { icono: "📄", titulo: "Documentación necesaria", cuerpo: "Pasaporte/DNI, contrato de trabajo, últimas nóminas y permiso de residencia. Sin estos papeles la mayoría de propietarios no te responderán." },
@@ -36,16 +48,19 @@ const CONSEJOS = [
 ];
 
 export default function ViviendaPage() {
-  const [tipo, setTipo] = useState<TipoVivienda | null>(null);
-  const [ciudad, setCiudad] = useState("Zürich");
+  const [tipo, setTipo]         = useState<TipoVivienda | null>(null);
+  const [ciudad, setCiudad]     = useState("Toda Suiza");
+  const [priceIdx, setPriceIdx] = useState(DEFAULT_PRICE_IDX);
   const [listings, setListings] = useState<ViviendaItem[]>([]);
   const [portales, setPortales] = useState<PortalInfo[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [buscado, setBuscado] = useState(false);
-  const [error, setError] = useState("");
-  const { user, openModal } = useAuth();
+  const [loading, setLoading]   = useState(false);
+  const [buscado, setBuscado]   = useState(false);
+  const [error, setError]       = useState("");
+  const { user, openModal }     = useAuth();
 
   const esWG = tipo?.slug === "wg-habitacion";
+  const priceSteps = tipo ? (PRICE_STEPS[tipo.slug] ?? []) : [];
+  const selectedPriceMax = priceSteps[priceIdx] ?? undefined;
 
   async function buscar() {
     if (!tipo) return;
@@ -56,9 +71,13 @@ export default function ViviendaPage() {
     setError("");
 
     try {
-      const res = await fetch(
-        `/api/vivienda?city=${encodeURIComponent(ciudad)}&tipo=${encodeURIComponent(tipo.slug)}`
-      );
+      const params = new URLSearchParams({
+        city: ciudad,
+        tipo: tipo.slug,
+      });
+      if (selectedPriceMax) params.set("priceMax", String(selectedPriceMax));
+
+      const res  = await fetch(`/api/vivienda?${params}`);
       const data = await res.json();
       setListings(data.listings ?? []);
       setPortales(data.portales ?? []);
@@ -90,11 +109,11 @@ export default function ViviendaPage() {
                 Buscador de vivienda en Suiza
               </h1>
               <p className="text-gray-500 text-sm max-w-xl">
-                Accede a los mejores portales inmobiliarios suizos con tu búsqueda ya aplicada.
+                Pisos reales de flatfox.ch + acceso directo a los mejores portales suizos.
               </p>
             </div>
             <div className="flex gap-5 text-center flex-shrink-0">
-              {[{ n: "5", l: "tipos" }, { n: "6+", l: "portales" }, { n: "10", l: "ciudades" }].map((s) => (
+              {[{ n: "5", l: "tipos" }, { n: "flatfox", l: "en tiempo real" }, { n: "6+", l: "portales" }].map((s) => (
                 <div key={s.l}>
                   <div className="text-xl font-bold text-gray-900">{s.n}</div>
                   <div className="text-xs text-gray-500">{s.l}</div>
@@ -107,11 +126,11 @@ export default function ViviendaPage() {
 
       {/* ── PASOS ────────────────────────────────────────────── */}
       <section className="bg-gray-50 border-b border-gray-200">
-        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center gap-0 overflow-x-auto">
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center gap-0 overflow-x-auto">
           {[
             { n: "1", label: "Tipo de alojamiento", done: !!tipo },
-            { n: "2", label: "Ciudad", done: !!tipo },
-            { n: "3", label: "Ver pisos", done: buscado },
+            { n: "2", label: "Ciudad",               done: true },
+            { n: "3", label: "Ver pisos",            done: buscado },
           ].map((paso, i) => (
             <div key={paso.n} className="flex items-center flex-shrink-0">
               <div className="flex items-center gap-2">
@@ -145,7 +164,7 @@ export default function ViviendaPage() {
               {TIPOS_VIVIENDA.map((t) => (
                 <button
                   key={t.slug}
-                  onClick={() => { setTipo(t); setBuscado(false); }}
+                  onClick={() => { setTipo(t); setPriceIdx(DEFAULT_PRICE_IDX); setBuscado(false); }}
                   className={`flex items-start gap-3 p-4 rounded-xl border text-left transition-all ${
                     tipo?.slug === t.slug
                       ? "border-blue-600 bg-blue-50 shadow-sm"
@@ -163,18 +182,45 @@ export default function ViviendaPage() {
             </div>
           </div>
 
+          {/* Info tipo + filtro precio */}
           {tipo && (
-            <div className="rounded-xl p-4 mb-5 border border-blue-100 bg-blue-50/60 flex items-start gap-3">
-              <span className="text-2xl flex-shrink-0">{tipo.icono}</span>
-              <div>
-                <p className="text-sm text-gray-700 leading-relaxed">{tipo.description}</p>
-                <div className="flex gap-2 mt-2 flex-wrap">
-                  <span className="bg-white border border-blue-100 text-blue-700 font-bold text-xs px-3 py-1 rounded-lg">
-                    {fmt(tipo.precioMin)} – {fmt(tipo.precioMax)}/mes en {ciudad}
-                  </span>
-                  {esWG && <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">✓ Ideal para recién llegados</span>}
+            <div className="rounded-xl p-4 mb-5 border border-blue-100 bg-blue-50/60">
+              <div className="flex items-start gap-3 mb-3">
+                <span className="text-2xl flex-shrink-0">{tipo.icono}</span>
+                <div className="flex-1">
+                  <p className="text-sm text-gray-700 leading-relaxed">{tipo.description}</p>
+                  <div className="flex gap-2 mt-2 flex-wrap">
+                    <span className="bg-white border border-blue-100 text-blue-700 font-bold text-xs px-3 py-1 rounded-lg">
+                      {fmt(tipo.precioMin)} – {fmt(tipo.precioMax)}/mes
+                    </span>
+                    {esWG && <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">✓ Ideal para recién llegados</span>}
+                  </div>
                 </div>
               </div>
+
+              {/* Filtro precio máximo */}
+              {priceSteps.length > 0 && (
+                <div>
+                  <div className="text-xs font-semibold text-gray-600 mb-2">
+                    Precio máximo: <span className="text-blue-700">{fmt(selectedPriceMax ?? priceSteps[priceIdx])}/mes</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {priceSteps.map((price, idx) => (
+                      <button
+                        key={price}
+                        onClick={() => { setPriceIdx(idx); setBuscado(false); }}
+                        className={`text-xs px-3 py-1 rounded-full border font-medium transition-all ${
+                          priceIdx === idx
+                            ? "border-blue-600 bg-blue-600 text-white"
+                            : "border-gray-200 text-gray-600 bg-white hover:border-blue-300 hover:text-blue-700"
+                        }`}
+                      >
+                        hasta {fmt(price)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
@@ -192,7 +238,7 @@ export default function ViviendaPage() {
                   className={`px-3 py-1.5 rounded-full border text-sm font-medium transition-all ${
                     ciudad === c ? "text-white border-transparent" : "border-gray-200 text-gray-600 hover:border-blue-300 hover:text-blue-700 bg-white"
                   }`}
-                  style={ciudad === c ? { background: ACCENT } : {}}
+                  style={ciudad === c ? { background: c === "Toda Suiza" ? "#059669" : ACCENT } : {}}
                 >
                   {CIUDAD_EMOJIS[c] ?? ""} {c}
                 </button>
@@ -214,16 +260,19 @@ export default function ViviendaPage() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
                 </svg>
-                <span>Buscando portales disponibles…</span>
+                <span>Buscando en flatfox.ch…</span>
               </>
             ) : tipo && !user ? (
               <>
                 <span>🔒</span>
-                <span>Regístrate gratis para ver portales</span>
+                <span>Regístrate gratis para ver pisos</span>
               </>
             ) : tipo ? (
               <>
-                <span>Buscar {tipo.label} en {ciudad}</span>
+                <span>
+                  Buscar {tipo.label} en {ciudad}
+                  {selectedPriceMax ? ` hasta ${fmt(selectedPriceMax)}` : ""}
+                </span>
                 <span className="text-lg">→</span>
               </>
             ) : (
@@ -239,10 +288,16 @@ export default function ViviendaPage() {
             {/* Barra resumen */}
             <div className="flex items-center gap-3 py-3 border-b border-gray-100">
               <span className="text-2xl">{tipo?.icono}</span>
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <span className="font-bold text-gray-800">{tipo?.label}</span>
                 <span className="text-gray-400 mx-2">·</span>
                 <span className="text-gray-600">{ciudad}</span>
+                {selectedPriceMax && (
+                  <>
+                    <span className="text-gray-400 mx-2">·</span>
+                    <span className="text-gray-500 text-sm">hasta {fmt(selectedPriceMax)}/mes</span>
+                  </>
+                )}
                 {listings.length > 0 && (
                   <>
                     <span className="text-gray-400 mx-2">·</span>
@@ -252,7 +307,7 @@ export default function ViviendaPage() {
               </div>
               <button
                 onClick={() => { setBuscado(false); setTipo(null); setListings([]); }}
-                className="text-xs text-gray-400 hover:text-blue-600 border border-gray-200 rounded-full px-3 py-1"
+                className="text-xs text-gray-400 hover:text-blue-600 border border-gray-200 rounded-full px-3 py-1 flex-shrink-0"
               >
                 Nueva búsqueda
               </button>
@@ -295,7 +350,6 @@ export default function ViviendaPage() {
                           {item.title}
                         </h3>
 
-                        {/* Datos */}
                         <div className="flex flex-wrap gap-2 mb-3">
                           {item.price && (
                             <span className="text-xs bg-blue-50 text-blue-700 font-bold px-2 py-0.5 rounded-full">
@@ -315,8 +369,8 @@ export default function ViviendaPage() {
                         </div>
 
                         <div className="flex items-center justify-between text-xs text-gray-400 pt-2 border-t border-gray-50">
-                          <span className="flex items-center gap-1">📍 {item.location}</span>
-                          <span className="text-blue-500 font-medium group-hover:underline">Ver anuncio →</span>
+                          <span className="flex items-center gap-1 truncate">📍 {item.location}</span>
+                          <span className="text-blue-500 font-medium group-hover:underline flex-shrink-0 ml-2">Ver →</span>
                         </div>
                       </div>
                     </a>
@@ -326,11 +380,11 @@ export default function ViviendaPage() {
             ) : error ? (
               <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 text-center">
                 <p className="text-amber-800 font-semibold mb-1">⚠ {error}</p>
-                <p className="text-amber-700 text-sm">Usa los portales de abajo para buscar directamente.</p>
+                <p className="text-amber-700 text-sm">Los portales de abajo se abren con tu búsqueda ya aplicada.</p>
               </div>
             ) : null}
 
-            {/* Portales — principales cuando no hay listings, complementarios si los hay */}
+            {/* Portales */}
             <section>
               <div className="flex items-center gap-3 mb-2">
                 <div className={`w-1 h-6 rounded-full ${listings.length === 0 ? "bg-blue-500" : "bg-gray-300"}`} />
@@ -341,9 +395,9 @@ export default function ViviendaPage() {
                 </h2>
               </div>
               <p className="text-gray-500 text-sm mb-4 ml-4">
-                Los portales se abren con tu búsqueda ya aplicada.
+                {esWG ? "Pisos compartidos y habitaciones con tu búsqueda ya aplicada." : "Los portales se abren con tu ciudad ya aplicada."}
               </p>
-              <div className={`grid gap-3 ${listings.length === 0 ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "grid-cols-2 sm:grid-cols-3"}`}>
+              <div className={`grid gap-3 ${listings.length === 0 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-2 sm:grid-cols-3"}`}>
                 {portales.map((p) => (
                   <a
                     key={p.nombre}
@@ -366,7 +420,7 @@ export default function ViviendaPage() {
                           className="text-xs font-semibold px-3 py-1 rounded-full flex-shrink-0 transition-colors"
                           style={{ background: "#eff6ff", color: ACCENT }}
                         >
-                          Abrir portal →
+                          Abrir →
                         </span>
                       ) : (
                         <span className="text-gray-300 group-hover:text-blue-400 flex-shrink-0">→</span>
@@ -391,7 +445,7 @@ export default function ViviendaPage() {
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-gray-400 mt-3">* Precios orientativos para {ciudad}. Varían según zona y estado del piso.</p>
+              <p className="text-xs text-gray-400 mt-3">* Precios orientativos. Varían según zona y estado del piso.</p>
             </section>
 
             {/* Consejos */}
@@ -413,13 +467,13 @@ export default function ViviendaPage() {
               </div>
             </section>
 
-            {/* CTAs cruzados */}
+            {/* CTAs */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Link href="/trabajo" className="group bg-white border border-gray-100 rounded-2xl p-5 hover:shadow-md hover:border-red-100 transition-all flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center text-xl flex-shrink-0 bg-red-50">💼</div>
                 <div className="flex-1">
                   <div className="font-bold text-gray-800 group-hover:text-red-700">Buscar trabajo</div>
-                  <div className="text-sm text-gray-500">Ofertas reales de jobs.ch.</div>
+                  <div className="text-sm text-gray-500">Ofertas reales de jobs.ch y LinkedIn.</div>
                 </div>
                 <span className="text-gray-300 group-hover:text-red-400">→</span>
               </Link>
