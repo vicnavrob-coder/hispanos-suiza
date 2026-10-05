@@ -36,12 +36,17 @@ const FRANQUICIA_AHORRO: Record<number, string | null> = {
   2500: "~38%",
 };
 
+// Ciudades sin "Toda Suiza" (los cantones tienen factores individuales)
+const CIUDADES_CANTON = CIUDADES_SUIZA.filter((c) => c !== "Toda Suiza");
+
 export default function SegurosPage() {
   const [grupoEdad, setGrupoEdad] = useState<GrupoEdad | null>(null);
-  const [canton, setCanton] = useState("Zürich");
+  const [canton, setCanton] = useState("Toda Suiza");
   const [franquicia, setFranquicia] = useState<number>(300);
   const [calculado, setCalculado] = useState(false);
   const { user, openModal } = useAuth();
+
+  const todaSuiza = canton === "Toda Suiza";
 
   function calcular() {
     if (!grupoEdad) return;
@@ -57,8 +62,16 @@ export default function SegurosPage() {
       ? Math.round(grupoEdad.primaRef * (CANTON_FACTOR[canton] ?? 1) * (FRANQUICIA_FACTOR[franquicia] ?? 1))
       : 0;
 
-  const primaHMO = Math.round(primaEstimada * 0.8);
+  const primaHMO    = Math.round(primaEstimada * 0.8);
   const primaTelmed = Math.round(primaEstimada * 0.75);
+
+  // Tabla comparativa por cantón (solo cuando "Toda Suiza" está seleccionado)
+  const tablaCantonales = grupoEdad
+    ? CIUDADES_CANTON.map((c) => {
+        const est = Math.round(grupoEdad.primaRef * (CANTON_FACTOR[c] ?? 1) * (FRANQUICIA_FACTOR[franquicia] ?? 1));
+        return { canton: c, estandar: est, hmo: Math.round(est * 0.8), telmed: Math.round(est * 0.75) };
+      }).sort((a, b) => a.estandar - b.estandar)
+    : [];
 
   const notaFranquicia = SEGUROS_FRANQUICIAS.find((f) => f.chf === franquicia)?.nota;
 
@@ -180,7 +193,8 @@ export default function SegurosPage() {
                 Cantón de residencia
               </label>
               <div className="flex flex-wrap gap-1.5">
-                {CIUDADES_SUIZA.map((c) => (
+                {/* "Toda Suiza" primero, luego el resto */}
+                {["Toda Suiza", ...CIUDADES_CANTON].map((c) => (
                   <button
                     key={c}
                     onClick={() => { setCanton(c); setCalculado(false); }}
@@ -189,9 +203,9 @@ export default function SegurosPage() {
                         ? "text-white border-transparent"
                         : "border-gray-200 text-gray-600 hover:border-purple-300 hover:text-purple-700 bg-white"
                     }`}
-                    style={canton === c ? { background: ACCENT } : {}}
+                    style={canton === c ? { background: c === "Toda Suiza" ? "#059669" : ACCENT } : {}}
                   >
-                    {c}
+                    {c === "Toda Suiza" ? "🇨🇭 Toda Suiza" : c}
                   </button>
                 ))}
               </div>
@@ -252,7 +266,11 @@ export default function SegurosPage() {
               </>
             ) : grupoEdad ? (
               <>
-                <span>Calcular prima para {grupoEdad.label} en {canton}</span>
+                <span>
+                  {todaSuiza
+                    ? `Comparar primas para ${grupoEdad.label} en todos los cantones`
+                    : `Calcular prima para ${grupoEdad.label} en ${canton}`}
+                </span>
                 <span className="text-lg">→</span>
               </>
             ) : (
@@ -271,7 +289,7 @@ export default function SegurosPage() {
               <div>
                 <span className="font-bold text-gray-800">{grupoEdad.label}</span>
                 <span className="text-gray-400 mx-2">·</span>
-                <span className="text-gray-600">{canton}</span>
+                <span className="text-gray-600">{todaSuiza ? "🇨🇭 Todos los cantones" : canton}</span>
                 <span className="text-gray-400 mx-2">·</span>
                 <span className="text-gray-600">Franquicia {franquicia} CHF</span>
               </div>
@@ -283,61 +301,109 @@ export default function SegurosPage() {
               </button>
             </div>
 
-            {/* Prima estimada */}
-            <section>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-1 h-6 rounded-full" style={{ background: ACCENT }} />
-                <h2 className="text-lg font-bold text-gray-800">Prima mensual estimada</h2>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {/* Estándar */}
-                <div className="bg-white rounded-2xl border-2 border-purple-200 shadow-sm overflow-hidden">
-                  <div className="bg-purple-50 px-5 pt-5 pb-3 text-center">
-                    <div className="text-xs font-bold text-purple-500 uppercase tracking-widest mb-2">Modelo Estándar</div>
-                    <div className="text-5xl font-black text-purple-700 leading-none">{fmt(primaEstimada)}</div>
-                    <div className="text-xs text-gray-400 mt-1">por mes</div>
+            {/* Prima estimada — cantón único */}
+            {!todaSuiza && (
+              <section>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-1 h-6 rounded-full" style={{ background: ACCENT }} />
+                  <h2 className="text-lg font-bold text-gray-800">Prima mensual estimada</h2>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {/* Estándar */}
+                  <div className="bg-white rounded-2xl border-2 border-purple-200 shadow-sm overflow-hidden">
+                    <div className="bg-purple-50 px-5 pt-5 pb-3 text-center">
+                      <div className="text-xs font-bold text-purple-500 uppercase tracking-widest mb-2">Modelo Estándar</div>
+                      <div className="text-5xl font-black text-purple-700 leading-none">{fmt(primaEstimada)}</div>
+                      <div className="text-xs text-gray-400 mt-1">por mes</div>
+                    </div>
+                    <div className="px-5 py-3 text-center">
+                      <div className="text-xs text-gray-500">Libertad total de médico</div>
+                    </div>
                   </div>
-                  <div className="px-5 py-3 text-center">
-                    <div className="text-xs text-gray-500">Libertad total de médico</div>
+                  {/* HMO */}
+                  <div className="bg-white rounded-2xl border-2 border-green-200 shadow-sm overflow-hidden relative">
+                    <div className="absolute -top-0 left-0 right-0 flex justify-center">
+                      <span className="bg-green-600 text-white text-xs font-bold px-3 py-0.5 rounded-b-full">Recomendado</span>
+                    </div>
+                    <div className="bg-green-50 px-5 pt-7 pb-3 text-center">
+                      <div className="text-xs font-bold text-green-600 uppercase tracking-widest mb-2">Modelo HMO</div>
+                      <div className="text-5xl font-black text-green-700 leading-none">{fmt(primaHMO)}</div>
+                      <div className="text-xs text-green-600 font-semibold mt-1">~20% menos</div>
+                    </div>
+                    <div className="px-5 py-3 text-center">
+                      <div className="text-xs text-gray-500">Centro médico fijo asignado</div>
+                    </div>
+                  </div>
+                  {/* Telmed */}
+                  <div className="bg-white rounded-2xl border-2 border-green-200 shadow-sm overflow-hidden relative">
+                    <div className="absolute -top-0 left-0 right-0 flex justify-center">
+                      <span className="bg-green-700 text-white text-xs font-bold px-3 py-0.5 rounded-b-full">Mayor ahorro</span>
+                    </div>
+                    <div className="bg-green-50 px-5 pt-7 pb-3 text-center">
+                      <div className="text-xs font-bold text-green-700 uppercase tracking-widest mb-2">Modelo Telmed</div>
+                      <div className="text-5xl font-black text-green-700 leading-none">{fmt(primaTelmed)}</div>
+                      <div className="text-xs text-green-600 font-semibold mt-1">~25% menos</div>
+                    </div>
+                    <div className="px-5 py-3 text-center">
+                      <div className="text-xs text-gray-500">Llamada previa obligatoria</div>
+                    </div>
                   </div>
                 </div>
-                {/* HMO */}
-                <div className="bg-white rounded-2xl border-2 border-green-200 shadow-sm overflow-hidden relative">
-                  <div className="absolute -top-0 left-0 right-0 flex justify-center">
-                    <span className="bg-green-600 text-white text-xs font-bold px-3 py-0.5 rounded-b-full">Recomendado</span>
-                  </div>
-                  <div className="bg-green-50 px-5 pt-7 pb-3 text-center">
-                    <div className="text-xs font-bold text-green-600 uppercase tracking-widest mb-2">Modelo HMO</div>
-                    <div className="text-5xl font-black text-green-700 leading-none">{fmt(primaHMO)}</div>
-                    <div className="text-xs text-green-600 font-semibold mt-1">~20% menos</div>
-                  </div>
-                  <div className="px-5 py-3 text-center">
-                    <div className="text-xs text-gray-500">Centro médico fijo asignado</div>
-                  </div>
+                <p className="text-xs text-gray-400 mt-3">
+                  * Estimación calculada según datos medios 2026 para {canton}. Usa{" "}
+                  <a href="https://www.priminfo.admin.ch/de/praemien" target="_blank" rel="noopener noreferrer" className="underline text-purple-600">
+                    priminfo.admin.ch
+                  </a>{" "}
+                  para precios exactos por aseguradora.
+                </p>
+              </section>
+            )}
+
+            {/* Tabla comparativa por cantón — solo "Toda Suiza" */}
+            {todaSuiza && (
+              <section>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-1 h-6 rounded-full" style={{ background: ACCENT }} />
+                  <h2 className="text-lg font-bold text-gray-800">Prima mensual por cantón</h2>
+                  <span className="text-xs bg-green-100 text-green-700 font-semibold px-2 py-0.5 rounded-full">de más barato a más caro</span>
                 </div>
-                {/* Telmed */}
-                <div className="bg-white rounded-2xl border-2 border-green-200 shadow-sm overflow-hidden relative">
-                  <div className="absolute -top-0 left-0 right-0 flex justify-center">
-                    <span className="bg-green-700 text-white text-xs font-bold px-3 py-0.5 rounded-b-full">Mayor ahorro</span>
+                <p className="text-gray-500 text-sm mb-4 ml-4">
+                  El cantón donde vives determina tu prima. Las diferencias pueden ser de hasta un 40%.
+                </p>
+                <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+                  {/* Cabecera */}
+                  <div className="grid grid-cols-4 bg-gray-50 text-xs font-bold text-gray-500 px-4 py-2.5 border-b border-gray-100">
+                    <div>Cantón</div>
+                    <div className="text-right">Estándar</div>
+                    <div className="text-right text-green-600">HMO</div>
+                    <div className="text-right text-green-700">Telmed</div>
                   </div>
-                  <div className="bg-green-50 px-5 pt-7 pb-3 text-center">
-                    <div className="text-xs font-bold text-green-700 uppercase tracking-widest mb-2">Modelo Telmed</div>
-                    <div className="text-5xl font-black text-green-700 leading-none">{fmt(primaTelmed)}</div>
-                    <div className="text-xs text-green-600 font-semibold mt-1">~25% menos</div>
-                  </div>
-                  <div className="px-5 py-3 text-center">
-                    <div className="text-xs text-gray-500">Llamada previa obligatoria</div>
-                  </div>
+                  {tablaCantonales.map((row, i) => (
+                    <div
+                      key={row.canton}
+                      className={`grid grid-cols-4 px-4 py-3 text-sm border-b border-gray-50 last:border-0 cursor-pointer hover:bg-purple-50/40 transition-colors ${i === 0 ? "bg-green-50" : ""}`}
+                      onClick={() => { setCanton(row.canton); setCalculado(false); }}
+                    >
+                      <div className="font-medium text-gray-800 flex items-center gap-1.5">
+                        {i === 0 && <span className="text-green-600 text-xs font-bold">↓más barato</span>}
+                        {i === tablaCantonales.length - 1 && <span className="text-red-500 text-xs font-bold">↑más caro</span>}
+                        {i !== 0 && i !== tablaCantonales.length - 1 && row.canton}
+                        {(i === 0 || i === tablaCantonales.length - 1) && <span className="text-gray-500">{row.canton}</span>}
+                      </div>
+                      <div className="text-right font-bold text-purple-700">{fmt(row.estandar)}</div>
+                      <div className="text-right font-bold text-green-700">{fmt(row.hmo)}</div>
+                      <div className="text-right font-bold text-green-800">{fmt(row.telmed)}</div>
+                    </div>
+                  ))}
                 </div>
-              </div>
-              <p className="text-xs text-gray-400 mt-3">
-                * Estimación calculada según datos medios 2026 para {canton}. Usa{" "}
-                <a href="https://www.priminfo.admin.ch/de/praemien" target="_blank" rel="noopener noreferrer" className="underline text-purple-600">
-                  priminfo.admin.ch
-                </a>{" "}
-                para precios exactos por aseguradora.
-              </p>
-            </section>
+                <p className="text-xs text-gray-400 mt-3">
+                  * Toca un cantón para ver su detalle. Estimaciones 2026 con franquicia {franquicia} CHF.{" "}
+                  <a href="https://www.priminfo.admin.ch/de/praemien" target="_blank" rel="noopener noreferrer" className="underline text-purple-600">
+                    Precios exactos en priminfo.admin.ch →
+                  </a>
+                </p>
+              </section>
+            )}
 
             {/* Aseguradoras */}
             <section>
