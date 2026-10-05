@@ -3,6 +3,10 @@ name: Deploy to Vercel
 on:
   push:
     branches: [main]
+  workflow_run:
+    workflows: ["Auto-generate SEO content"]
+    types: [completed]
+    branches: [main]
 
 jobs:
   deploy:
