@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { allPosts as posts, categorias } from "@/lib/posts";
 import { ciudades } from "@/lib/ciudades";
+import { cantones } from "@/lib/planes";
 import { BASE_URL } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -54,5 +55,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...toolPages, ...postPages, ...categoriaPages, ...ciudadPages];
+  // Planes: índice + cantones + actividades individuales
+  const planesPages: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/planes`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    ...cantones.map((c) => ({
+      url: `${BASE_URL}/planes/${c.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...cantones.flatMap((c) =>
+      c.actividades.map((a) => ({
+        url: `${BASE_URL}/planes/${c.slug}/${a.slug}`,
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: a.destacado ? 0.8 : 0.7,
+      }))
+    ),
+  ];
+
+  return [...staticPages, ...toolPages, ...postPages, ...categoriaPages, ...ciudadPages, ...planesPages];
 }
