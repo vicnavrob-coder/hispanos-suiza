@@ -137,7 +137,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
               HispanosEnSuiza
             </div>
             <div style={{ color: "#6B7280", fontSize: 13, fontFamily: "system-ui, sans-serif" }}>
-              hispanosensuiza.com
+              hispanosensuiza.ch
             </div>
           </div>
         </div>
