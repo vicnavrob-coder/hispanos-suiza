@@ -102,17 +102,18 @@ export const JOB_CATEGORIES: JobCategory[] = [
 ];
 
 export const CIUDADES_SUIZA = [
+  "Toda Suiza",
   "Zürich", "Geneva", "Basel", "Bern", "Lausanne",
   "Lugano", "Winterthur", "St. Gallen", "Lucerne", "Zug",
 ];
 
 export const PORTALES_EMPLEO_BUSQUEDA = [
-  { nombre: "jobs.ch",      url: "https://www.jobs.ch/de/stellenangebote/?term={term}&location={city}",                   tipo: "general",  logo: "🔍" },
-  { nombre: "jobup.ch",     url: "https://www.jobup.ch/fr/offres-emploi/?term={term}&regionName={city}",                  tipo: "general",  logo: "🔍" },
-  { nombre: "indeed.ch",    url: "https://ch.indeed.com/jobs?q={term}&l={city}",                                          tipo: "general",  logo: "🔍" },
-  { nombre: "LinkedIn",     url: "https://www.linkedin.com/jobs/search/?keywords={term}&location={city}%2C%20Switzerland",tipo: "general",  logo: "💼" },
-  { nombre: "RAV / job-room", url: "https://www.job-room.ch/#/jobsearch?term={term}&location={city}&radius=30",           tipo: "oficial",  logo: "🏛️" },
-  { nombre: "local.ch",     url: "https://www.local.ch/de/q/{term}/{city}",                                               tipo: "empresas", logo: "🏢" },
+  { nombre: "jobs.ch",        url: "https://www.jobs.ch/en/vacancies/?term={term}&location={city}",                          tipo: "general",  logo: "🔍" },
+  { nombre: "jobup.ch",       url: "https://www.jobup.ch/en/jobs/?term={term}&location={city}",                              tipo: "general",  logo: "🔍" },
+  { nombre: "indeed.ch",      url: "https://ch.indeed.com/jobs?q={term}&l={city}",                                           tipo: "general",  logo: "🔍" },
+  { nombre: "LinkedIn",       url: "https://www.linkedin.com/jobs/search/?keywords={term}&location={city}%2C%20Switzerland", tipo: "general",  logo: "💼" },
+  { nombre: "RAV / job-room", url: "https://www.job-room.ch/#/jobsearch?term={term}&location={city}&radius=30",              tipo: "oficial",  logo: "🏛️" },
+  { nombre: "Xing",           url: "https://www.xing.com/jobs/search?q={term}&location={city}",                             tipo: "general",  logo: "🟢" },
 ];
 
 export const AGENCIAS_ETT = [

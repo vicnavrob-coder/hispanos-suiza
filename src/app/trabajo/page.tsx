@@ -25,10 +25,11 @@ function timeAgo(dateStr: string): string {
   } catch { return ""; }
 }
 
-const ACCENT = "#C0392B";
+const ACCENT      = "#C0392B";
 const ACCENT_DARK = "#96281B";
 
 const CIUDAD_EMOJIS: Record<string, string> = {
+  "Toda Suiza": "🇨🇭",
   "Zürich":     "🏔️",
   "Geneva":     "🌊",
   "Basel":      "🏛️",
@@ -41,36 +42,51 @@ const CIUDAD_EMOJIS: Record<string, string> = {
   "Zug":        "💼",
 };
 
-// Salary range text for unselected state
+const SOURCE_STYLE: Record<string, { bg: string; color: string; label: string }> = {
+  "jobs.ch":  { bg: "#e0f2fe", color: "#0369a1", label: "jobs.ch" },
+  "LinkedIn": { bg: "#dbeafe", color: "#1d4ed8", label: "LinkedIn" },
+};
+
 function salaryLabel(cat: JobCategory): string {
   return `${fmt(cat.salarioMin)}–${fmt(cat.salarioMax)}`;
 }
 
 export default function TrabajoPage() {
   const [categoria, setCategoria] = useState<JobCategory | null>(null);
-  const [ciudad, setCiudad] = useState("Zürich");
-  const [jobs, setJobs] = useState<JobItem[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [buscado, setBuscado] = useState(false);
-  const [error, setError] = useState("");
-  const { user, openModal } = useAuth();
+  const [ciudad, setCiudad]       = useState("Toda Suiza");
+  const [customTerm, setCustomTerm] = useState("");
+  const [jobs, setJobs]           = useState<JobItem[]>([]);
+  const [loading, setLoading]     = useState(false);
+  const [buscado, setBuscado]     = useState(false);
+  const [error, setError]         = useState("");
+  const [sources, setSources]     = useState<{ jobsCh: number; linkedin: number } | null>(null);
+  const { user, openModal }       = useAuth();
 
   async function buscar() {
-    if (!categoria) return;
+    if (!categoria && !customTerm.trim()) return;
     if (!user) { openModal(() => buscar()); return; }
+
     setLoading(true);
     setBuscado(true);
     setJobs([]);
     setError("");
+    setSources(null);
 
     try {
-      const term = categoria.terms[0];
-      const res = await fetch(
-        `/api/jobs?term=${encodeURIComponent(term)}&city=${encodeURIComponent(ciudad)}`
-      );
+      // Término principal: texto libre si se escribió, sino terms[0] del sector
+      const term  = customTerm.trim() || (categoria?.terms[0] ?? "");
+      // Segundo término para enriquecer si hay pocos resultados
+      const term2 = !customTerm.trim() && categoria ? (categoria.terms[1] ?? "") : "";
+
+      const params = new URLSearchParams({ term, city: ciudad });
+      if (term2) params.set("term2", term2);
+
+      const res  = await fetch(`/api/jobs?${params}`);
       const data = await res.json();
-      setJobs(data.jobs ?? []);
-      if ((data.jobs ?? []).length === 0) setError("Sin resultados. Prueba con otra ciudad.");
+      const result: JobItem[] = data.jobs ?? [];
+      setJobs(result);
+      setSources(data.sources ?? null);
+      if (result.length === 0) setError("Sin resultados. Prueba otra ciudad o busca directamente en los portales de abajo.");
     } catch {
       setError("Error al cargar ofertas. Usa los portales directamente.");
     } finally {
@@ -81,7 +97,10 @@ export default function TrabajoPage() {
     }
   }
 
-  const termPrincipal = categoria?.terms[0] ?? "";
+  const termPrincipal = customTerm.trim() || (categoria?.terms[0] ?? "");
+
+  // Texto de ciudad para mostrar en portales (URL-compatible)
+  const ciudadUrl = ciudad === "Toda Suiza" ? "Switzerland" : ciudad;
 
   return (
     <div>
@@ -99,14 +118,14 @@ export default function TrabajoPage() {
                 Buscador de trabajo en Suiza
               </h1>
               <p className="text-gray-500 text-sm max-w-xl">
-                Ofertas reales de LinkedIn y portales suizos. Regístrate gratis para buscar.
+                Ofertas reales de jobs.ch y LinkedIn. Más portales directos y agencias ETT.
               </p>
             </div>
             <div className="flex gap-5 text-center flex-shrink-0">
               {[
                 { n: "11", l: "sectores" },
+                { n: "2",  l: "fuentes live" },
                 { n: "6",  l: "portales" },
-                { n: "6",  l: "agencias ETT" },
               ].map((s) => (
                 <div key={s.l} className="text-center">
                   <div className="text-xl font-bold text-gray-900">{s.n}</div>
@@ -122,9 +141,9 @@ export default function TrabajoPage() {
       <section className="bg-gray-50 border-b border-gray-200">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center gap-0 overflow-x-auto">
           {[
-            { n: "1", label: "Elige el sector", done: !!categoria },
-            { n: "2", label: "Ciudad", done: !!categoria },
-            { n: "3", label: "Ver ofertas", done: buscado },
+            { n: "1", label: "Elige el sector", done: !!categoria || !!customTerm.trim() },
+            { n: "2", label: "Ciudad",           done: true },
+            { n: "3", label: "Ver ofertas",      done: buscado },
           ].map((paso, i) => (
             <div key={paso.n} className="flex items-center flex-shrink-0">
               <div className="flex items-center gap-2">
@@ -148,6 +167,33 @@ export default function TrabajoPage() {
         {/* ── FORMULARIO ───────────────────────────────────────── */}
         <div className="bg-white border border-gray-100 rounded-2xl p-6 mb-8 shadow-sm">
 
+          {/* Búsqueda libre — opcional */}
+          <div className="mb-5">
+            <label className="block text-sm font-bold text-gray-700 mb-2">
+              Búsqueda libre{" "}
+              <span className="font-normal text-gray-400 text-xs">(opcional — o elige un sector abajo)</span>
+            </label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={customTerm}
+                onChange={(e) => { setCustomTerm(e.target.value); setBuscado(false); }}
+                placeholder="Ej: cocinero, electricista, nurse…"
+                className="flex-1 rounded-xl px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 transition-all"
+                style={{ border: "1.5px solid #E5E7EB", focusRingColor: ACCENT } as React.CSSProperties}
+                onKeyDown={(e) => { if (e.key === "Enter") buscar(); }}
+              />
+              {customTerm.trim() && (
+                <button
+                  onClick={() => { setCustomTerm(""); setBuscado(false); }}
+                  className="px-3 py-2 rounded-xl text-xs text-gray-400 hover:text-gray-600 border border-gray-200"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          </div>
+
           {/* Categorías — Step 1 */}
           <div className="mb-5">
             <label className="block text-sm font-bold text-gray-700 mb-3">
@@ -160,7 +206,7 @@ export default function TrabajoPage() {
                 return (
                   <button
                     key={cat.slug}
-                    onClick={() => { setCategoria(cat); setBuscado(false); }}
+                    onClick={() => { setCategoria(cat); setCustomTerm(""); setBuscado(false); }}
                     className={`relative flex flex-col items-start px-3 py-3 rounded-xl border text-sm font-medium transition-all text-left ${
                       selected
                         ? "border-red-600 bg-red-50 text-red-700 shadow-sm"
@@ -191,7 +237,7 @@ export default function TrabajoPage() {
           </div>
 
           {/* Info sector */}
-          {categoria && (
+          {categoria && !customTerm.trim() && (
             <div className="rounded-xl p-4 mb-5 border border-red-100 bg-red-50/60">
               <div className="flex items-start gap-3">
                 <span className="text-2xl flex-shrink-0">{categoria.icono}</span>
@@ -224,7 +270,7 @@ export default function TrabajoPage() {
                   className={`px-3 py-1.5 rounded-full border text-sm font-medium transition-all ${
                     ciudad === c ? "text-white border-transparent" : "border-gray-200 text-gray-600 hover:border-red-300 hover:text-red-700 bg-white"
                   }`}
-                  style={ciudad === c ? { background: ACCENT } : {}}
+                  style={ciudad === c ? { background: c === "Toda Suiza" ? "#1d4ed8" : ACCENT } : {}}
                 >
                   {CIUDAD_EMOJIS[c] ?? ""} {c}
                 </button>
@@ -234,10 +280,10 @@ export default function TrabajoPage() {
 
           <button
             onClick={buscar}
-            disabled={!categoria || loading}
-            style={{ background: categoria && !loading ? `linear-gradient(135deg, ${ACCENT}, ${ACCENT_DARK})` : undefined }}
+            disabled={(!categoria && !customTerm.trim()) || loading}
+            style={{ background: (categoria || customTerm.trim()) && !loading ? `linear-gradient(135deg, ${ACCENT}, ${ACCENT_DARK})` : undefined }}
             className={`w-full font-bold py-3.5 rounded-xl text-base transition-all flex items-center justify-center gap-2 ${
-              categoria && !loading ? "text-white hover:opacity-95 shadow-md shadow-red-200" : "bg-gray-100 text-gray-400 cursor-not-allowed"
+              (categoria || customTerm.trim()) && !loading ? "text-white hover:opacity-95 shadow-md shadow-red-200" : "bg-gray-100 text-gray-400 cursor-not-allowed"
             }`}
           >
             {loading ? (
@@ -246,20 +292,22 @@ export default function TrabajoPage() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
                 </svg>
-                <span>Cargando ofertas de LinkedIn…</span>
+                <span>Buscando en jobs.ch y LinkedIn…</span>
               </>
-            ) : categoria && !user ? (
+            ) : (categoria || customTerm.trim()) && !user ? (
               <>
                 <span>🔒</span>
                 <span>Regístrate gratis para ver ofertas</span>
               </>
-            ) : categoria ? (
+            ) : categoria || customTerm.trim() ? (
               <>
-                <span>Buscar {categoria.label} en {ciudad}</span>
+                <span>
+                  Buscar {customTerm.trim() || categoria?.label} en {ciudad}
+                </span>
                 <span className="text-lg">→</span>
               </>
             ) : (
-              "Selecciona un sector para empezar"
+              "Selecciona un sector o escribe qué buscas"
             )}
           </button>
         </div>
@@ -282,9 +330,9 @@ export default function TrabajoPage() {
 
             {/* Barra resumen */}
             <div className="flex items-center gap-3 py-3 border-b border-gray-100">
-              <span className="text-2xl">{categoria?.icono}</span>
-              <div className="flex-1">
-                <span className="font-bold text-gray-800">{categoria?.label}</span>
+              <span className="text-2xl">{customTerm.trim() ? "🔎" : (categoria?.icono ?? "🔎")}</span>
+              <div className="flex-1 min-w-0">
+                <span className="font-bold text-gray-800">{customTerm.trim() || categoria?.label}</span>
                 <span className="text-gray-400 mx-2">·</span>
                 <span className="text-gray-600">{ciudad}</span>
                 {jobs.length > 0 && (
@@ -293,10 +341,15 @@ export default function TrabajoPage() {
                     <span className="text-green-700 font-semibold text-sm">{jobs.length} ofertas</span>
                   </>
                 )}
+                {sources && (
+                  <span className="text-gray-400 text-xs ml-2">
+                    (jobs.ch: {sources.jobsCh} · LinkedIn: {sources.linkedin})
+                  </span>
+                )}
               </div>
               <button
-                onClick={() => { setBuscado(false); setCategoria(null); setJobs([]); }}
-                className="text-xs text-gray-400 hover:text-red-600 border border-gray-200 rounded-full px-3 py-1"
+                onClick={() => { setBuscado(false); setCategoria(null); setJobs([]); setCustomTerm(""); }}
+                className="text-xs text-gray-400 hover:text-red-600 border border-gray-200 rounded-full px-3 py-1 flex-shrink-0"
               >
                 Nueva búsqueda
               </button>
@@ -309,54 +362,60 @@ export default function TrabajoPage() {
                   <div className="w-1 h-6 rounded-full" style={{ background: ACCENT }} />
                   <h2 className="text-lg font-bold text-gray-800">Ofertas de trabajo — actualizadas ahora</h2>
                   <span className="text-xs bg-green-100 text-green-700 font-semibold px-2 py-0.5 rounded-full">
-                    {jobs.length} en LinkedIn
+                    {jobs.length} resultados
                   </span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {jobs.map((job, i) => (
-                    <a
-                      key={i}
-                      href={job.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-md hover:border-red-200 transition-all group flex flex-col border-l-4"
-                      style={{ borderLeftColor: ACCENT }}
-                    >
-                      <div className="flex items-start justify-between gap-2 mb-1">
-                        <h3 className="font-bold text-gray-800 group-hover:text-red-700 text-sm leading-snug flex-1">
-                          {job.title}
-                        </h3>
-                        <span className="text-gray-300 group-hover:text-red-400 text-lg flex-shrink-0">→</span>
-                      </div>
-                      {job.company && (
-                        <div className="text-xs font-bold text-gray-700 mb-1">{job.company}</div>
-                      )}
-                      <div className="flex items-center gap-3 mt-auto pt-2 border-t border-gray-50">
-                        {job.location && (
-                          <span className="text-xs text-gray-400 flex items-center gap-1">
-                            <span>📍</span>{job.location}
-                          </span>
+                  {jobs.map((job, i) => {
+                    const src = SOURCE_STYLE[job.source] ?? SOURCE_STYLE["LinkedIn"];
+                    return (
+                      <a
+                        key={i}
+                        href={job.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-md hover:border-red-200 transition-all group flex flex-col border-l-4"
+                        style={{ borderLeftColor: ACCENT }}
+                      >
+                        <div className="flex items-start justify-between gap-2 mb-1">
+                          <h3 className="font-bold text-gray-800 group-hover:text-red-700 text-sm leading-snug flex-1">
+                            {job.title}
+                          </h3>
+                          <span className="text-gray-300 group-hover:text-red-400 text-lg flex-shrink-0">→</span>
+                        </div>
+                        {job.company && (
+                          <div className="text-xs font-bold text-gray-700 mb-1">{job.company}</div>
                         )}
-                        {job.pubDate && (
+                        <div className="flex items-center gap-2 mt-auto pt-2 border-t border-gray-50 flex-wrap">
+                          {job.location && (
+                            <span className="text-xs text-gray-400 flex items-center gap-1">
+                              <span>📍</span>{job.location}
+                            </span>
+                          )}
+                          {job.pubDate && (
+                            <span
+                              className="text-xs font-semibold px-2 py-0.5 rounded-full ml-auto"
+                              style={{ background: "#fef3c7", color: "#92400e" }}
+                            >
+                              {timeAgo(job.pubDate)}
+                            </span>
+                          )}
                           <span
-                            className="text-xs font-semibold px-2 py-0.5 rounded-full ml-auto"
-                            style={{ background: "#fef3c7", color: "#92400e" }}
+                            className="text-xs font-semibold px-2 py-0.5 rounded-full"
+                            style={{ background: src.bg, color: src.color }}
                           >
-                            {timeAgo(job.pubDate)}
+                            {src.label}
                           </span>
-                        )}
-                        <span className="text-xs bg-blue-50 text-blue-700 font-semibold px-2 py-0.5 rounded-full">
-                          LinkedIn
-                        </span>
-                      </div>
-                    </a>
-                  ))}
+                        </div>
+                      </a>
+                    );
+                  })}
                 </div>
               </section>
             ) : error ? (
               <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 text-center">
                 <p className="text-amber-800 font-semibold mb-1">⚠ {error}</p>
-                <p className="text-amber-700 text-sm">Usa los portales de abajo para buscar directamente.</p>
+                <p className="text-amber-700 text-sm">Prueba buscar directamente en los portales de abajo.</p>
               </div>
             ) : null}
 
@@ -370,7 +429,7 @@ export default function TrabajoPage() {
                 {PORTALES_EMPLEO_BUSQUEDA.map((p) => (
                   <a
                     key={p.nombre}
-                    href={buildUrl(p.url, termPrincipal, ciudad)}
+                    href={buildUrl(p.url, termPrincipal, ciudadUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-white border border-gray-100 rounded-xl p-3 hover:border-red-200 transition-all flex items-center gap-2 group text-sm"
@@ -393,7 +452,7 @@ export default function TrabajoPage() {
                 {AGENCIAS_ETT.map((a) => (
                   <a
                     key={a.nombre}
-                    href={buildUrl(a.url, termPrincipal, ciudad)}
+                    href={buildUrl(a.url, termPrincipal, ciudadUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-white border border-gray-100 rounded-xl p-3 hover:border-amber-200 transition-all flex items-center gap-2 group text-sm"
@@ -416,7 +475,7 @@ export default function TrabajoPage() {
                 {PORTALES_PUBLICOS.map((p) => (
                   <a
                     key={p.nombre}
-                    href={buildUrl(p.url, termPrincipal, ciudad)}
+                    href={buildUrl(p.url, termPrincipal, ciudadUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-white border border-gray-100 rounded-xl p-3 hover:border-blue-200 transition-all group"
@@ -431,13 +490,16 @@ export default function TrabajoPage() {
             {/* Tips */}
             <section className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
               <h2 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <span>💡</span> Consejos para {categoria?.label} en Suiza
+                <span>💡</span> Consejos para buscar trabajo en Suiza
               </h2>
               <ul className="space-y-2.5 text-sm text-gray-700">
+                <li className="flex gap-2"><span className="text-amber-500 flex-shrink-0">▸</span><span><strong>jobs.ch es el portal más grande</strong> — la mayoría de empresas suizas publica aquí primero.</span></li>
                 <li className="flex gap-2"><span className="text-amber-500 flex-shrink-0">▸</span><span><strong>LinkedIn es imprescindible</strong> — muchos reclutadores suizos buscan activamente perfiles.</span></li>
                 <li className="flex gap-2"><span className="text-amber-500 flex-shrink-0">▸</span><span><strong>Regístrate en varias ETT a la vez</strong> — cada agencia tiene acuerdos con empresas distintas.</span></li>
                 <li className="flex gap-2"><span className="text-amber-500 flex-shrink-0">▸</span><span><strong>CV en formato europeo</strong> — máximo 2 páginas, foto opcional.</span></li>
-                <li className="flex gap-2"><span className="text-amber-500 flex-shrink-0">▸</span><span><strong>Salario referencia en {categoria?.label}:</strong> {categoria && fmt(categoria.salarioMin)} – {categoria && fmt(categoria.salarioMax)} CHF/mes bruto.</span></li>
+                {categoria && (
+                  <li className="flex gap-2"><span className="text-amber-500 flex-shrink-0">▸</span><span><strong>Salario referencia en {categoria.label}:</strong> {fmt(categoria.salarioMin)} – {fmt(categoria.salarioMax)} CHF/mes bruto.</span></li>
+                )}
               </ul>
             </section>
 
