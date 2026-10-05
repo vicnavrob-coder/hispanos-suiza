@@ -53,27 +53,31 @@ export function register(
   nombre: string,
   pais = ""
 ): { ok: boolean; error?: string } {
-  const accounts = getAccounts();
-  if (accounts.find((a) => a.email.toLowerCase() === email.toLowerCase())) {
-    return { ok: false, error: "Este email ya tiene una cuenta. Inicia sesión." };
+  try {
+    const accounts = getAccounts();
+    if (accounts.find((a) => a.email.toLowerCase() === email.toLowerCase())) {
+      return { ok: false, error: "Este email ya tiene una cuenta. Inicia sesión." };
+    }
+    const account: Account = {
+      email: email.toLowerCase(),
+      passwordHash: hashPassword(password),
+      nombre,
+      pais,
+      provider: "email",
+    };
+    localStorage.setItem(ACCOUNTS_KEY, JSON.stringify([...accounts, account]));
+    const user: AuthUser = {
+      email: email.toLowerCase(),
+      nombre,
+      pais,
+      createdAt: new Date().toISOString(),
+      provider: "email",
+    };
+    saveUser(user);
+    return { ok: true };
+  } catch {
+    return { ok: false, error: "No se pudo guardar la cuenta. Comprueba que el navegador no esté en modo privado." };
   }
-  const account: Account = {
-    email: email.toLowerCase(),
-    passwordHash: hashPassword(password),
-    nombre,
-    pais,
-    provider: "email",
-  };
-  localStorage.setItem(ACCOUNTS_KEY, JSON.stringify([...accounts, account]));
-  const user: AuthUser = {
-    email: email.toLowerCase(),
-    nombre,
-    pais,
-    createdAt: new Date().toISOString(),
-    provider: "email",
-  };
-  saveUser(user);
-  return { ok: true };
 }
 
 export function login(

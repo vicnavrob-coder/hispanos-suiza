@@ -14,6 +14,48 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Sync environment variables to Vercel via REST API (upsert)
+      - name: Sync env vars to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          upsert_env() {
+            local KEY="$1"
+            local VALUE="$2"
+            local TYPE="${3:-encrypted}"  # encrypted for secrets, plain for public
+
+            # Check if the var exists
+            EXISTING=$(curl -s \
+              "https://api.vercel.com/v9/projects/$VERCEL_PROJECT_ID/env?gitBranch=main" \
+              -H "Authorization: Bearer $VERCEL_TOKEN" | \
+              python3 -c "import sys,json; d=json.load(sys.stdin); envs=[e for e in d.get('envs',[]) if e['key']=='$KEY' and 'production' in e.get('target',[])]; print(envs[0]['id'] if envs else '')" 2>/dev/null)
+
+            if [ -n "$EXISTING" ]; then
+              # Update existing
+              curl -s -X PATCH \
+                "https://api.vercel.com/v10/projects/$VERCEL_PROJECT_ID/env/$EXISTING" \
+                -H "Authorization: Bearer $VERCEL_TOKEN" \
+                -H "Content-Type: application/json" \
+                -d "{\"value\":$(echo "$VALUE" | python3 -c 'import sys,json; print(json.dumps(sys.stdin.read().strip()))'),\"type\":\"$TYPE\",\"target\":[\"production\"]}" > /dev/null
+              echo "  Updated: $KEY"
+            else
+              # Create new
+              curl -s -X POST \
+                "https://api.vercel.com/v10/projects/$VERCEL_PROJECT_ID/env" \
+                -H "Authorization: Bearer $VERCEL_TOKEN" \
+                -H "Content-Type: application/json" \
+                -d "{\"key\":\"$KEY\",\"value\":$(echo "$VALUE" | python3 -c 'import sys,json; print(json.dumps(sys.stdin.read().strip()))'),\"type\":\"$TYPE\",\"target\":[\"production\"]}" > /dev/null
+              echo "  Created: $KEY"
+            fi
+          }
+
+          upsert_env "NEXT_PUBLIC_GOOGLE_CLIENT_ID" "${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}" "plain"
+          upsert_env "NEXT_PUBLIC_GA_ID"            "${{ secrets.NEXT_PUBLIC_GA_ID }}"            "plain"
+          upsert_env "NEXT_PUBLIC_GSC_VERIFICATION" "${{ secrets.NEXT_PUBLIC_GSC_VERIFICATION }}" "plain"
+          upsert_env "BREVO_API_KEY"                "${{ secrets.BREVO_API_KEY }}"                "encrypted"
+          upsert_env "BREVO_LIST_ID"                "${{ secrets.BREVO_LIST_ID }}"                "plain"
+
       - name: Install Vercel CLI
         run: npm install -g vercel
 

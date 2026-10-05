@@ -52,23 +52,32 @@ export default function AuthModal() {
     if (!GA_CLIENT_ID || !window.google || !googleBtnRef.current || googleInitRef.current) return;
     googleInitRef.current = true;
 
-    window.google.accounts.id.initialize({
-      client_id: GA_CLIENT_ID,
-      callback: (res: { credential: string }) => {
-        const result = loginUserWithGoogle(res.credential);
-        if (!result.ok) setError(result.error ?? "Error con Google.");
-      },
-    });
+    try {
+      window.google.accounts.id.initialize({
+        client_id: GA_CLIENT_ID,
+        callback: (res: { credential: string }) => {
+          const result = loginUserWithGoogle(res.credential);
+          if (!result.ok) setError(result.error ?? "Error con Google.");
+        },
+        error_callback: () => {
+          setError("No se pudo conectar con Google. Usa email y contraseña.");
+          setEmailOpen(true);
+        },
+      });
 
-    window.google.accounts.id.renderButton(googleBtnRef.current, {
-      type: "standard",
-      theme: "filled_black",
-      size: "large",
-      text: "continue_with",
-      shape: "rectangular",
-      width: "320",
-      logo_alignment: "left",
-    });
+      window.google.accounts.id.renderButton(googleBtnRef.current, {
+        type: "standard",
+        theme: "filled_black",
+        size: "large",
+        text: "continue_with",
+        shape: "rectangular",
+        width: "320",
+        logo_alignment: "left",
+      });
+    } catch {
+      // Google GIS failed silently — show email form as fallback
+      setEmailOpen(true);
+    }
   }, [loginUserWithGoogle]);
 
   // Renderizar botón Google cuando el modal abre
@@ -76,16 +85,24 @@ export default function AuthModal() {
     if (!showModal || !GA_CLIENT_ID) return;
 
     if (window.google) {
-      // Script ya cargado
       initGoogle();
     } else {
-      // Esperar a que cargue
+      // Esperar a que el script cargue (max 3 segundos, luego fallback a email)
       const script = document.querySelector<HTMLScriptElement>(
         'script[src*="accounts.google.com/gsi/client"]'
       );
       if (script) {
         script.addEventListener("load", initGoogle);
-        return () => script.removeEventListener("load", initGoogle);
+        const timeout = setTimeout(() => {
+          // Si el script no cargó en 3s, mostrar email directamente
+          if (!googleInitRef.current) setEmailOpen(true);
+        }, 3000);
+        return () => {
+          script.removeEventListener("load", initGoogle);
+          clearTimeout(timeout);
+        };
+      } else {
+        setEmailOpen(true);
       }
     }
   }, [showModal, initGoogle]);
