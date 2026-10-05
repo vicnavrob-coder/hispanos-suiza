@@ -89,7 +89,7 @@ PALABRAS CLAVE: ${topic.palabrasClave.join(", ")}
 REQUISITOS DEL ARTÍCULO:
 - Contenido en HTML (solo el body, sin <html>/<body>/<head>)
 - Usa <h2> para secciones principales, <h3> para subsecciones
-- Mínimo 1.500 palabras de contenido real y útil
+- Entre 1.000 y 1.400 palabras de contenido real y útil
 - Datos específicos y actualizados de Suiza en 2026 (CHF, cantones, leyes, empresas reales)
 - Tono cercano y práctico, como si lo escribiera alguien que vive en Suiza
 - Incluye al menos 1 blockquote con testimonio real de un hispanohablante
@@ -130,18 +130,32 @@ for (const topic of pending) {
 
   try {
     const message = await client.messages.create({
-      model: "claude-opus-4-6",
-      max_tokens: 4096,
+      model: "claude-sonnet-4-6",
+      max_tokens: 8000,
       messages: [{ role: "user", content: buildPrompt(topic) }],
     });
 
     const raw = message.content[0].text.trim();
+    console.log(`  stop_reason: ${message.stop_reason}, tokens: ${message.usage?.output_tokens}`);
 
-    // Extraer JSON de la respuesta
-    const jsonMatch = raw.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error("No se encontró JSON en la respuesta");
+    // Extraer JSON — buscar desde el primer { hasta el último }
+    const start = raw.indexOf("{");
+    const end = raw.lastIndexOf("}");
+    if (start === -1 || end === -1) throw new Error("No se encontró JSON en la respuesta");
 
-    const generated = JSON.parse(jsonMatch[0]);
+    let jsonStr = raw.slice(start, end + 1);
+
+    // Si el JSON está truncado (stop_reason = max_tokens), intentar cerrarlo
+    if (message.stop_reason === "max_tokens") {
+      console.warn("  ⚠️ Respuesta truncada — intentando recuperar JSON parcial");
+      // Cerrar array faq y objeto si están abiertos
+      const openBraces = (jsonStr.match(/\{/g) || []).length - (jsonStr.match(/\}/g) || []).length;
+      const openBrackets = (jsonStr.match(/\[/g) || []).length - (jsonStr.match(/\]/g) || []).length;
+      if (openBrackets > 0) jsonStr += "]".repeat(openBrackets);
+      if (openBraces > 0) jsonStr += "}".repeat(openBraces);
+    }
+
+    const generated = JSON.parse(jsonStr);
 
     const post = {
       slug: topic.slug,
