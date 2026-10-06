@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 
 export const BASE_URL = "https://hispanosensuiza.ch";
 export const SITE_NAME = "HispanosEnSuiza";
-export const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpg`;
+export const DEFAULT_OG_IMAGE = `${BASE_URL}/opengraph-image`;
 export const TWITTER_HANDLE = "@hispanosensuiza";
 
 // ─────────────────────────────────────────────

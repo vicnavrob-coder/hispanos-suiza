@@ -1,11 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SEGUROS_ASEGURADORAS, SEGUROS_FRANQUICIAS, SEGUROS_MODELOS } from "@/lib/data";
+import { buildMetadata, BASE_URL, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Guía del seguro médico suizo (KVG/LAMal) 2026",
   description: "Todo sobre el seguro de salud obligatorio en Suiza: cómo elegir aseguradora, franquicia, modelo y cuánto pagarás. Guía en español.",
-};
+  path: "/herramientas/seguros-medicos",
+  keywords: [
+    "guia seguro medico suiza", "kvg lamal suiza", "como contratar seguro suiza",
+    "elegir aseguradora suiza", "franquicia seguro suiza", "modelo hmo telmed suiza",
+  ],
+});
+
+const schemas = [
+  breadcrumbSchema([
+    { name: "Inicio",           url: BASE_URL },
+    { name: "Herramientas",     url: `${BASE_URL}/herramientas` },
+    { name: "Guía seguros KVG", url: `${BASE_URL}/herramientas/seguros-medicos` },
+  ]),
+  webAppSchema({
+    name: "Guía del seguro médico suizo KVG/LAMal",
+    description: "Guía completa sobre el seguro médico obligatorio en Suiza: aseguradoras, franquicias y modelos.",
+    path: "/herramientas/seguros-medicos",
+    applicationCategory: "HealthApplication",
+  }),
+];
 
 const PASOS = [
   {
@@ -29,6 +49,10 @@ const PASOS = [
 
 export default function SegurosMedicosPage() {
   return (
+    <>
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
     <div className="max-w-4xl mx-auto px-4 py-10">
       <nav className="text-sm text-gray-400 mb-6 flex items-center gap-2">
         <Link href="/" className="hover:text-red-700">Inicio</Link>
@@ -156,5 +180,6 @@ export default function SegurosMedicosPage() {
         </a>
       </div>
     </div>
+    </>
   );
 }

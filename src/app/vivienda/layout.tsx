@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, BASE_URL, webAppSchema, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Buscador de pisos y vivienda en Suiza — Para hispanohablantes",
@@ -8,10 +8,30 @@ export const metadata: Metadata = buildMetadata({
   keywords: [
     "pisos alquiler suiza", "buscar piso suiza", "vivienda suiza hispanohablantes",
     "alquilar piso suiza", "homegate suiza", "flatfox suiza", "immoScout suiza",
-    "apartamento suiza espanol",
+    "apartamento suiza espanol", "wg suiza", "piso compartido suiza",
   ],
 });
 
 export default function ViviendaLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  const schemas = [
+    breadcrumbSchema([
+      { name: "Inicio",           url: BASE_URL },
+      { name: "Buscar vivienda",  url: `${BASE_URL}/vivienda` },
+    ]),
+    webAppSchema({
+      name: "Buscador de vivienda en Suiza",
+      description: "Busca pisos en alquiler en Suiza. Resultados en tiempo real de flatfox.ch más acceso directo a Homegate, ImmoScout24 y más.",
+      path: "/vivienda",
+      applicationCategory: "BusinessApplication",
+    }),
+  ];
+
+  return (
+    <>
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
+      {children}
+    </>
+  );
 }
