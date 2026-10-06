@@ -55,6 +55,7 @@ jobs:
           upsert_env "NEXT_PUBLIC_GSC_VERIFICATION" "${{ secrets.NEXT_PUBLIC_GSC_VERIFICATION }}" "plain"
           upsert_env "BREVO_API_KEY"                "${{ secrets.BREVO_API_KEY }}"                "encrypted"
           upsert_env "BREVO_LIST_ID"                "${{ secrets.BREVO_LIST_ID }}"                "plain"
+          upsert_env "ADMIN_SECRET"                 "${{ secrets.ADMIN_SECRET }}"                 "encrypted"
 
       - name: Install Vercel CLI
         run: npm install -g vercel
