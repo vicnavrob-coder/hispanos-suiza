@@ -7,9 +7,11 @@ export const metadata: Metadata = buildMetadata({
   title: "Guía del seguro médico suizo (KVG/LAMal) 2026",
   description: "Todo sobre el seguro de salud obligatorio en Suiza: cómo elegir aseguradora, franquicia, modelo y cuánto pagarás. Guía en español.",
   path: "/herramientas/seguros-medicos",
+  ogImage: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=85&auto=format&fit=crop",
   keywords: [
     "guia seguro medico suiza", "kvg lamal suiza", "como contratar seguro suiza",
     "elegir aseguradora suiza", "franquicia seguro suiza", "modelo hmo telmed suiza",
+    "aseguradoras suiza baratas", "comparar kvg suiza 2026",
   ],
 });
 

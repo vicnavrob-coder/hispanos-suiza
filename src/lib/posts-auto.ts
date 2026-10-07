@@ -15,7 +15,7 @@ export const postsAuto: Post[] = [
     categoria: "vida-diaria",
     fecha: "2026-10-05",
     tiempoLectura: 7,
-    imagen: "/images/en.jpg",
+    imagen: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["vivir en basilea", "basilea españoles", "basilea latinoamericanos", "trabajar basilea", "novartis roche basilea", "mudarse basilea suiza"],
     faq: [
@@ -35,7 +35,7 @@ export const postsAuto: Post[] = [
     categoria: "vida-diaria",
     fecha: "2026-10-05",
     tiempoLectura: 7,
-    imagen: "/images/en.jpg",
+    imagen: "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["vivir en berna", "berna españoles", "berna hispanohablantes", "trabajar berna", "capital suiza berna", "mudarse berna"],
     faq: [
@@ -55,7 +55,7 @@ export const postsAuto: Post[] = [
     categoria: "emigrar",
     fecha: "2026-10-05",
     tiempoLectura: 7,
-    imagen: "/images/residencia.jpg",
+    imagen: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["permiso residencia suiza", "permiso b suiza", "permiso c suiza", "permiso l suiza", "tramitar permiso suiza", "tarjeta residencia suiza"],
     faq: [
@@ -75,7 +75,7 @@ export const postsAuto: Post[] = [
     categoria: "vida-diaria",
     fecha: "2026-10-05",
     tiempoLectura: 7,
-    imagen: "/images/vida.jpg",
+    imagen: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["coste vida suiza vs espana", "suiza vs españa salarios", "merece la pena emigrar suiza", "suiza mas caro espana", "poder adquisitivo suiza"],
     faq: [
@@ -95,7 +95,7 @@ export const postsAuto: Post[] = [
     categoria: "trabajo",
     fecha: "2026-10-05",
     tiempoLectura: 7,
-    imagen: "/images/motivacion.jpg",
+    imagen: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["carta motivacion suiza", "carta presentacion suiza", "motivationsschreiben suiza", "lettre motivation suisse", "como escribir carta motivacion suiza"],
     faq: [
@@ -116,7 +116,7 @@ export const postsAuto: Post[] = [
     categoria: "vida-diaria",
     fecha: "2026-10-05",
     tiempoLectura: 7,
-    imagen: "/images/en.jpg",
+    imagen: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["vivir en lausana", "lausana españoles", "lausana hispanohablantes", "trabajar lausana", "epfl lausana", "mudarse lausana suiza"],
     faq: [
@@ -137,7 +137,7 @@ export const postsAuto: Post[] = [
     categoria: "banca",
     fecha: "2026-10-06",
     tiempoLectura: 7,
-    imagen: "/images/banca.jpg",
+    imagen: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["abrir cuenta bancaria suiza", "banco suiza extranjero", "cuenta bancaria suiza permiso b", "neon suiza", "yuh suiza", "postfinance cuenta suiza", "mejor banco suiza hispanohablante"],
     faq: [
@@ -157,7 +157,7 @@ export const postsAuto: Post[] = [
     categoria: "banca",
     fecha: "2026-10-06",
     tiempoLectura: 8,
-    imagen: "/images/impuestos.jpg",
+    imagen: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["quellensteuer suiza", "impuesto fuente suiza", "retención nómina suiza permiso b", "declaración impuestos suiza extranjero", "quellensteuer devolución suiza"],
     faq: [
@@ -177,7 +177,7 @@ export const postsAuto: Post[] = [
     categoria: "vivienda",
     fecha: "2026-10-06",
     tiempoLectura: 7,
-    imagen: "/images/vivienda.jpg",
+    imagen: "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["wg suiza habitacion", "piso compartido suiza", "wg zimmer suiza", "buscar habitacion zurich", "habitacion ginebra suiza", "wg berna suiza hispanohablante"],
     faq: [
@@ -197,7 +197,7 @@ export const postsAuto: Post[] = [
     categoria: "vida-diaria",
     fecha: "2026-10-06",
     tiempoLectura: 6,
-    imagen: "/images/vida.jpg",
+    imagen: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["canjear carnet conducir suiza", "permiso conducir suiza español", "carnet conducir suiza latinoamericano", "umschreiben führerschein suiza", "conducir suiza permiso extranjero"],
     faq: [
@@ -217,7 +217,7 @@ export const postsAuto: Post[] = [
     categoria: "banca",
     fecha: "2026-10-05",
     tiempoLectura: 8,
-    imagen: "/images/3a.jpg",
+    imagen: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["pilar 3a suiza", "pension privada suiza", "ahorro fiscal suiza", "saeule 3a", "plan pensiones suiza expatriado"],
     faq: [

@@ -28,7 +28,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const toolPages: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/herramientas/salario-neto`,          lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/herramientas/comparador-ciudades`,   lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE_URL}/herramientas/seguros-medicos`,       lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE_URL}/herramientas/seguros-medicos`,       lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}/trabajo/buscador`,                   lastModified: now, changeFrequency: "daily",   priority: 0.8 },
   ];
 
   // Artículos del blog (prioridad por destacado)
@@ -55,9 +56,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Planes: índice + cantones + actividades individuales
+  // Planes: índice + itinerarios + cantones + actividades individuales
   const planesPages: MetadataRoute.Sitemap = [
-    { url: `${BASE_URL}/planes`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE_URL}/planes`,             lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
+    { url: `${BASE_URL}/planes/itinerarios`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     ...cantones.map((c) => ({
       url: `${BASE_URL}/planes/${c.slug}`,
       lastModified: now,
