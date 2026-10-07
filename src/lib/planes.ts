@@ -1,6 +1,6 @@
 // src/lib/planes.ts — Planes y excursiones por cantón
 
-export type TipoActividad = "senderismo" | "teleferico" | "esqui" | "lago" | "cultura" | "gastronomia" | "urbano" | "nieve" | "naturaleza";
+export type TipoActividad = "senderismo" | "teleferico" | "esqui" | "lago" | "cultura" | "gastronomia" | "urbano" | "nieve" | "naturaleza" | "ciclismo" | "familia";
 export type Dificultad = "facil" | "moderada" | "dificil" | "muy-dificil";
 export type Temporada = "primavera" | "verano" | "otono" | "invierno";
 
@@ -13,7 +13,9 @@ export type Actividad = {
   duracion?: string;
   distancia?: string;
   desnivel?: string;
+  altitud?: string;
   precio?: string;
+  gratuito?: boolean;
   temporada: Temporada[];
   destacado: boolean;
   imagen: string;
@@ -21,6 +23,11 @@ export type Actividad = {
   consejos: string[];
   cercaDe: string;
   keywords: string[];
+  coordenadas?: { lat: number; lng: number };
+  aptoNinos?: boolean;
+  aptoPerros?: boolean;
+  equipamiento?: string[];
+  urlSBB?: string;
 };
 
 export type Canton = {
@@ -29,6 +36,7 @@ export type Canton = {
   region: "alemana" | "francesa" | "italiana" | "romanche";
   descripcion: string;
   imagen: string;
+  coordenadas?: { lat: number; lng: number };
   actividades: Actividad[];
 };
 

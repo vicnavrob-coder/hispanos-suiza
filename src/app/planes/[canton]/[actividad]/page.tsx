@@ -28,11 +28,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const TIPO_LABEL: Record<string, string> = {
   senderismo: "Senderismo", teleferico: "Teleférico", esqui: "Esquí", lago: "Lago / Agua",
-  naturaleza: "Naturaleza", cultura: "Cultura", gastronomia: "Gastronomía", urbano: "Urbano", nieve: "Nieve",
+  naturaleza: "Naturaleza", cultura: "Cultura", gastronomia: "Gastronomía", urbano: "Urbano",
+  nieve: "Nieve", ciclismo: "Ciclismo", familia: "Familiar",
 };
 const TIPO_EMOJI: Record<string, string> = {
   senderismo: "🥾", teleferico: "🚡", esqui: "⛷️", lago: "🏊",
-  naturaleza: "🌿", cultura: "🏛️", gastronomia: "🧀", urbano: "🏙️", nieve: "❄️",
+  naturaleza: "🌿", cultura: "🏛️", gastronomia: "🧀", urbano: "🏙️",
+  nieve: "❄️", ciclismo: "🚴", familia: "👨‍👩‍👧",
 };
 const DIFICULTAD_LABEL: Record<string, string> = {
   facil: "Fácil", moderada: "Moderada", dificil: "Difícil", "muy-dificil": "Muy difícil",
@@ -53,7 +55,6 @@ export default async function ActividadPage({ params }: Props) {
   const a = c?.actividades.find(x => x.slug === actividad);
   if (!a || !c) notFound();
 
-  // Actividades relacionadas del mismo cantón
   const relacionadas = c.actividades
     .filter(x => x.slug !== a.slug)
     .sort((x, y) => (y.destacado ? 1 : 0) - (x.destacado ? 1 : 0))
@@ -62,7 +63,9 @@ export default async function ActividadPage({ params }: Props) {
   const faqs = [
     {
       pregunta: `¿Cuánto cuesta ${a.nombre}?`,
-      respuesta: a.precio ? `El precio aproximado es de ${a.precio}. Te recomendamos verificar los precios actuales en el momento de tu visita.` : `${a.nombre} es gratuito o de acceso libre. Solo necesitas transporte para llegar.`,
+      respuesta: a.precio
+        ? `El precio aproximado es de ${a.precio}. Te recomendamos verificar los precios actuales en el momento de tu visita.`
+        : `${a.nombre} es gratuito o de acceso libre. Solo necesitas transporte para llegar.`,
     },
     {
       pregunta: `¿Cuándo es la mejor época para ${a.nombre}?`,
@@ -74,7 +77,15 @@ export default async function ActividadPage({ params }: Props) {
     },
     ...(a.dificultad ? [{
       pregunta: `¿Qué nivel físico se necesita para ${a.nombre}?`,
-      respuesta: `La dificultad es ${DIFICULTAD_LABEL[a.dificultad]}. ${a.dificultad === "facil" ? "Apto para toda la familia, incluidos niños y personas mayores." : a.dificultad === "moderada" ? "Recomendable tener algo de forma física. Calzado deportivo adecuado." : "Se recomienda experiencia previa y equipamiento adecuado."}`,
+      respuesta: `La dificultad es ${DIFICULTAD_LABEL[a.dificultad]}. ${
+        a.dificultad === "facil" ? "Apto para toda la familia, incluidos niños y personas mayores." :
+        a.dificultad === "moderada" ? "Recomendable tener algo de forma física. Calzado deportivo adecuado." :
+        "Se recomienda experiencia previa y equipamiento adecuado."
+      }`,
+    }] : []),
+    ...((a as any).aptoNinos ? [{
+      pregunta: `¿Es ${a.nombre} apto para niños?`,
+      respuesta: `Sí, ${a.nombre} es apto para familias con niños. ${a.dificultad === "facil" ? "El acceso es fácil y no requiere esfuerzo físico especial." : "Recomendable para niños a partir de 6-8 años con buena condición física."}`,
     }] : []),
   ];
 
@@ -95,8 +106,17 @@ export default async function ActividadPage({ params }: Props) {
       touristType: TIPO_LABEL[a.tipo],
       availableLanguage: "Spanish",
       containedInPlace: { "@type": "State", name: c.nombre },
+      ...((a as any).coordenadas ? {
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: (a as any).coordenadas.lat,
+          longitude: (a as any).coordenadas.lng,
+        }
+      } : {}),
     },
   ];
+
+  const actividadExt = a as any;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
@@ -116,8 +136,9 @@ export default async function ActividadPage({ params }: Props) {
       </nav>
 
       <div className="flex flex-col lg:flex-row gap-10">
-        {/* Main */}
+        {/* ── Main content ──────────────────────────────────── */}
         <div className="flex-1 min-w-0">
+
           {/* Hero image */}
           <div className="relative rounded-2xl overflow-hidden mb-6 h-72 md:h-96">
             <Image src={a.imagen} alt={a.nombre} fill className="object-cover" priority />
@@ -131,6 +152,18 @@ export default async function ActividadPage({ params }: Props) {
                   {DIFICULTAD_LABEL[a.dificultad]}
                 </span>
               )}
+              {actividadExt.gratuito && (
+                <span className="text-xs font-bold bg-green-600 text-white px-3 py-1 rounded-full">🆓 Gratis</span>
+              )}
+            </div>
+            {/* Badges en la parte inferior de la imagen */}
+            <div className="absolute bottom-4 right-4 flex gap-2">
+              {actividadExt.aptoNinos && (
+                <span className="text-xs font-bold bg-blue-600 text-white px-2 py-1 rounded-full">👶 Niños</span>
+              )}
+              {actividadExt.aptoPerros && (
+                <span className="text-xs font-bold bg-amber-600 text-white px-2 py-1 rounded-full">🐕 Perros</span>
+              )}
             </div>
           </div>
 
@@ -143,11 +176,13 @@ export default async function ActividadPage({ params }: Props) {
           {/* Datos rápidos */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
             {[
-              a.duracion   && { label: "Duración",  value: a.duracion,  emoji: "⏱️" },
-              a.distancia  && { label: "Distancia", value: a.distancia, emoji: "📏" },
-              a.desnivel   && { label: "Desnivel",  value: a.desnivel,  emoji: "📈" },
-              a.precio     && { label: "Precio",    value: a.precio,    emoji: "💰" },
-            ].filter(Boolean).map((stat: any) => (
+              a.duracion   && { label: "Duración",  value: a.duracion,           emoji: "⏱️" },
+              a.distancia  && { label: "Distancia", value: a.distancia,          emoji: "📏" },
+              a.desnivel   && { label: "Desnivel",  value: a.desnivel,           emoji: "📈" },
+              actividadExt.altitud && { label: "Altitud",   value: actividadExt.altitud, emoji: "⛰️" },
+              a.precio     && { label: "Precio",    value: a.precio,             emoji: "💰" },
+              (!a.precio && actividadExt.gratuito) && { label: "Precio",    value: "Gratuito",           emoji: "🆓" },
+            ].filter(Boolean).slice(0, 4).map((stat: any) => (
               <div key={stat.label} className="bg-gray-50 rounded-xl p-3 text-center">
                 <div className="text-xl mb-1">{stat.emoji}</div>
                 <div className="font-bold text-gray-800 text-sm">{stat.value}</div>
@@ -168,16 +203,63 @@ export default async function ActividadPage({ params }: Props) {
             </div>
           </div>
 
-          {/* Cómo llegar */}
+          {/* Equipamiento necesario */}
+          {actividadExt.equipamiento && actividadExt.equipamiento.length > 0 && (
+            <div className="bg-green-50 border border-green-100 rounded-xl p-5 mb-6">
+              <h2 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                <span>🎒</span> Qué llevar
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {actividadExt.equipamiento.map((item: string, i: number) => (
+                  <span key={i} className="text-sm bg-white text-gray-700 px-3 py-1.5 rounded-lg border border-green-200 flex items-center gap-1.5">
+                    <span className="text-green-500">✓</span> {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Cómo llegar + SBB */}
           <div className="bg-amber-50 border border-amber-100 rounded-xl p-5 mb-6">
             <h2 className="font-bold text-gray-800 mb-2 flex items-center gap-2">
               <span>🚉</span> Cómo llegar
             </h2>
-            <p className="text-gray-700 text-sm leading-relaxed">{a.comoLlegar}</p>
+            <p className="text-gray-700 text-sm leading-relaxed mb-3">{a.comoLlegar}</p>
             {a.cercaDe && (
-              <p className="text-xs text-gray-500 mt-2">📍 Referencia: {a.cercaDe}</p>
+              <p className="text-xs text-gray-500 mb-3">📍 Referencia: {a.cercaDe}</p>
             )}
+            <a
+              href={actividadExt.urlSBB || "https://www.sbb.ch/es/horarios.html"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-red-700 hover:bg-red-600 text-white text-xs font-semibold px-4 py-2 rounded-full transition-colors"
+            >
+              🚆 Ver horarios de tren SBB →
+            </a>
           </div>
+
+          {/* Mapa mini si hay coordenadas */}
+          {actividadExt.coordenadas && (
+            <div className="mb-6">
+              <h2 className="font-bold text-gray-800 mb-2 text-base">📍 Ubicación</h2>
+              <a
+                href={`https://www.openstreetmap.org/?mlat=${actividadExt.coordenadas.lat}&mlon=${actividadExt.coordenadas.lng}&zoom=13`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-gray-100 rounded-xl overflow-hidden hover:opacity-90 transition-opacity"
+              >
+                <img
+                  src={`https://staticmap.openstreetmap.de/staticmap.php?center=${actividadExt.coordenadas.lat},${actividadExt.coordenadas.lng}&zoom=12&size=800x200&markers=${actividadExt.coordenadas.lat},${actividadExt.coordenadas.lng},red`}
+                  alt={`Mapa de ${a.nombre}`}
+                  className="w-full h-40 object-cover"
+                  loading="lazy"
+                />
+                <div className="p-2 text-xs text-gray-500 text-center">
+                  Abrir en OpenStreetMap →
+                </div>
+              </a>
+            </div>
+          )}
 
           {/* Consejos */}
           <div className="mb-8">
@@ -193,20 +275,22 @@ export default async function ActividadPage({ params }: Props) {
           </div>
 
           {/* CTA planes */}
-          <div
-            className="rounded-2xl p-6 mb-8 text-white"
-            style={{ background: "linear-gradient(135deg, #C8102E, #A00D24)" }}
-          >
+          <div className="rounded-2xl p-6 mb-8 text-white"
+               style={{ background: "linear-gradient(135deg, #C8102E, #A00D24)" }}>
             <h3 className="font-bold text-lg mb-2">¿Buscas más planes en Suiza?</h3>
             <p className="text-red-100 text-sm mb-4">
               Explora excursiones, rutas de senderismo y actividades en los 26 cantones. Guías en español para hispanohablantes.
             </p>
-            <Link
-              href="/planes"
-              className="inline-block bg-white text-red-700 font-bold px-5 py-2.5 rounded-full hover:bg-red-50 transition-colors text-sm"
-            >
-              Ver todos los planes →
-            </Link>
+            <div className="flex flex-wrap gap-2">
+              <Link href="/planes"
+                className="inline-block bg-white text-red-700 font-bold px-5 py-2.5 rounded-full hover:bg-red-50 transition-colors text-sm">
+                Ver todos los planes →
+              </Link>
+              <Link href="/planes/itinerarios"
+                className="inline-block bg-red-600 text-white font-bold px-5 py-2.5 rounded-full hover:bg-red-500 transition-colors text-sm border border-red-400">
+                Ver itinerarios →
+              </Link>
+            </div>
           </div>
 
           {/* FAQs */}
@@ -223,9 +307,66 @@ export default async function ActividadPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Sidebar */}
+        {/* ── Sidebar ──────────────────────────────────────── */}
         <aside className="w-full lg:w-64 flex-shrink-0">
           <div className="sticky top-4 space-y-4">
+
+            {/* Info rápida */}
+            <div className="bg-white border border-gray-100 rounded-2xl p-5">
+              <h3 className="font-bold text-gray-800 mb-3 text-sm">Información rápida</h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center gap-2">
+                  <span>{TIPO_EMOJI[a.tipo]}</span>
+                  <span className="text-gray-600">{TIPO_LABEL[a.tipo]}</span>
+                </div>
+                {a.dificultad && (
+                  <div className="flex items-center gap-2">
+                    <span>🧗</span>
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${DIFICULTAD_COLOR[a.dificultad]}`}>
+                      {DIFICULTAD_LABEL[a.dificultad]}
+                    </span>
+                  </div>
+                )}
+                {a.duracion && (
+                  <div className="flex items-center gap-2">
+                    <span>⏱️</span>
+                    <span className="text-gray-600">{a.duracion}</span>
+                  </div>
+                )}
+                {a.precio ? (
+                  <div className="flex items-center gap-2">
+                    <span>💰</span>
+                    <span className="text-gray-700 font-medium">{a.precio}</span>
+                  </div>
+                ) : actividadExt.gratuito && (
+                  <div className="flex items-center gap-2">
+                    <span>🆓</span>
+                    <span className="text-green-700 font-medium">Gratuito</span>
+                  </div>
+                )}
+                {actividadExt.altitud && (
+                  <div className="flex items-center gap-2">
+                    <span>⛰️</span>
+                    <span className="text-gray-600">{actividadExt.altitud}</span>
+                  </div>
+                )}
+                <div className="flex items-center gap-2">
+                  <span>🗺️</span>
+                  <Link href={`/planes/${canton}`} className="text-red-700 hover:underline">{c.nombre}</Link>
+                </div>
+              </div>
+
+              {/* Aptitudes */}
+              <div className="flex flex-wrap gap-2 mt-3 pt-3 border-t border-gray-50">
+                {actividadExt.aptoNinos && (
+                  <span className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full border border-blue-100">👶 Apto niños</span>
+                )}
+                {actividadExt.aptoPerros && (
+                  <span className="text-xs bg-amber-50 text-amber-700 px-2 py-1 rounded-full border border-amber-100">🐕 Perros OK</span>
+                )}
+              </div>
+            </div>
+
             {/* Más planes en este cantón */}
             {relacionadas.length > 0 && (
               <div className="bg-white border border-gray-100 rounded-2xl p-5">
@@ -238,6 +379,7 @@ export default async function ActividadPage({ params }: Props) {
                         {TIPO_EMOJI[r.tipo]} {r.nombre}
                       </Link>
                       {r.precio && <span className="text-xs text-gray-400">{r.precio}</span>}
+                      {!r.precio && (r as any).gratuito && <span className="text-xs text-green-600">Gratis</span>}
                     </li>
                   ))}
                 </ul>
@@ -255,6 +397,16 @@ export default async function ActividadPage({ params }: Props) {
               <Link href="/herramientas/comparador-ciudades"
                 className="inline-block text-sm font-semibold text-blue-700 hover:underline">
                 Comparar ciudades →
+              </Link>
+            </div>
+
+            {/* Itinerarios */}
+            <div className="bg-gray-800 rounded-2xl p-5 text-white">
+              <h3 className="font-bold mb-1 text-sm">🗓️ Itinerarios curados</h3>
+              <p className="text-xs text-gray-400 mb-3">¿No sabes por dónde empezar? Tenemos rutas completas.</p>
+              <Link href="/planes/itinerarios"
+                className="inline-block text-sm font-semibold text-red-400 hover:text-red-300">
+                Ver itinerarios →
               </Link>
             </div>
 
