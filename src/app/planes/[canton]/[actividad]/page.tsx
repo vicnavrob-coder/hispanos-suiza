@@ -192,22 +192,21 @@ export default async function ActividadPage({ params }: Props) {
             </ul>
           </div>
 
-          {/* CTA GetYourGuide */}
+          {/* CTA planes */}
           <div
             className="rounded-2xl p-6 mb-8 text-white"
             style={{ background: "linear-gradient(135deg, #C8102E, #A00D24)" }}
           >
-            <h3 className="font-bold text-lg mb-2">¿Prefieres ir con guía?</h3>
+            <h3 className="font-bold text-lg mb-2">¿Buscas más planes en Suiza?</h3>
             <p className="text-red-100 text-sm mb-4">
-              Reserva tours guiados en español, excursiones organizadas y actividades en Suiza. Cancelación gratuita en la mayoría de opciones.
+              Explora excursiones, rutas de senderismo y actividades en los 26 cantones. Guías en español para hispanohablantes.
             </p>
-            <a
-              href={`https://www.getyourguide.es/suiza-l45/?partner_id=hispanosensuiza`}
-              target="_blank" rel="noopener noreferrer sponsored"
+            <Link
+              href="/planes"
               className="inline-block bg-white text-red-700 font-bold px-5 py-2.5 rounded-full hover:bg-red-50 transition-colors text-sm"
             >
-              Ver tours disponibles →
-            </a>
+              Ver todos los planes →
+            </Link>
           </div>
 
           {/* FAQs */}
