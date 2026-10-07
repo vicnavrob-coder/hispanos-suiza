@@ -51,7 +51,7 @@ const cantones: Canton[] = [
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: true,
         dificultad: "facil",
-        imagen: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1549880181-5d74f3aa3a75?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren desde Brig o Visp hasta Zermatt (sin coches). Desde Zermatt, teleférico en el centro del pueblo.",
         consejos: [
           "Reserva online con antelación en verano: la cola puede superar 2 horas.",
@@ -73,7 +73,7 @@ const cantones: Canton[] = [
         desnivel: "+8.000m",
         temporada: ["verano"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1458668383970-8ddd3927deed?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Inicio en Zermatt (tren desde Visp/Brig). Final en Saas-Fee (autobús desde Visp).",
         consejos: [
           "Reserva refugios con meses de antelación; se llenan enseguida en julio y agosto.",
@@ -115,7 +115,7 @@ const cantones: Canton[] = [
         precio: "Gratis",
         temporada: ["primavera", "verano", "otono"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Visp, luego autobús al pueblo de Baltschieder (15 min).",
         consejos: [
           "Lleva calzado de trekking con buena suela antideslizante.",
@@ -136,7 +136,7 @@ const cantones: Canton[] = [
         precio: "Gratis",
         temporada: ["primavera", "verano", "otono"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1439853949212-36589f9c6c81?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1520637836993-5b4b540a62f9?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Autobús desde Sion hasta Derborence (temporada estival). O coche desde Conthey.",
         consejos: [
           "El acceso en autobús es limitado: consulta horarios con antelación.",
@@ -176,7 +176,7 @@ const cantones: Canton[] = [
         precio: "Felskinn teleférico 55 CHF ida/vuelta",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1516550135131-42b1fbc5a0b8?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Autobús PostAuto desde Visp (estación tren) hasta Saas-Fee (1h). Aparca en Saas-Almagell si vas en coche.",
         consejos: [
           "Saas-Fee es completamente peatonal: deja el coche en el aparcamiento de entrada.",
@@ -195,7 +195,7 @@ const cantones: Canton[] = [
         precio: "Forfait diario 95-110 CHF adulto",
         temporada: ["invierno", "verano"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1543874007-e3d16ec2c7a5?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1547234935-80c7145ec969?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren Matterhon Gotthard Bahn desde Brig hasta Zermatt (sin coches).",
         consejos: [
           "El forfait Zermatt Peak Pass es el más completo e incluye el Glacier Paradise.",
@@ -226,7 +226,7 @@ const cantones: Canton[] = [
         precio: "Desde 162 CHF adulto (Swiss Travel Pass descuento 50%)",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1491555103944-7c647fd857e6?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Interlaken Ost o Grindelwald, luego tren de montaña Jungfraubahn. Desde Zúrich ~2,5h.",
         consejos: [
           "Compra el billete online: hay tarifas Good Morning (primera salida) más baratas.",
@@ -247,7 +247,7 @@ const cantones: Canton[] = [
         precio: "Swiss Travel Pass: incluido. Sin tarjeta: ~30 CHF",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Interlaken West (lago Thun) o Interlaken Ost (lago Brienz). Embarcaderos junto a las estaciones.",
         consejos: [
           "Con Swiss Travel Pass el barco está incluido sin coste adicional.",
@@ -308,7 +308,7 @@ const cantones: Canton[] = [
         precio: "Forfait diario 79-92 CHF adulto",
         temporada: ["invierno"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1516802273409-68526ee1bdd6?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Grindelwald o Lauterbrunnen, luego telecabinas hasta las pistas.",
         consejos: [
           "La pista Lauberhorn (Wengen) es famosa por el descenso de Copa del Mundo.",
@@ -328,7 +328,7 @@ const cantones: Canton[] = [
         precio: "Gratis (museo Zytglogge 8 CHF)",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1573836706441-1a208c08e06f?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren directo a Berna desde Zúrich (1h), Ginebra (1h45) o Basilea (55 min).",
         consejos: [
           "El reloj Zytglogge da el espectáculo de los autómatas 4 minutos antes de cada hora.",
@@ -349,7 +349,7 @@ const cantones: Canton[] = [
         precio: "14 CHF adulto",
         temporada: ["primavera", "verano", "otono"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Autobús desde Lauterbrunnen (10 min). Lauterbrunnen en tren desde Interlaken (20 min).",
         consejos: [
           "El ascensor interno te lleva hasta la catarata más alta.",
@@ -369,7 +369,7 @@ const cantones: Canton[] = [
         precio: "40 CHF ida/vuelta",
         temporada: ["primavera", "verano", "otono"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1439853949212-36589f9c6c81?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Barco desde Interlaken hasta Beatenbucht, luego funicular hasta Beatenberg y telecabina al Niederhorn.",
         consejos: [
           "La combinación barco + funicular + telecabina está incluida en el Swiss Travel Pass.",
@@ -387,7 +387,7 @@ const cantones: Canton[] = [
     nombre: "Grisones",
     region: "romanche",
     descripcion: "El cantón más grande de Suiza con tres idiomas oficiales, el Parque Nacional Suizo, Davos y los lujosos deportes de invierno de St. Moritz.",
-    imagen: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "esqui-st-moritz",
@@ -398,7 +398,7 @@ const cantones: Canton[] = [
         precio: "Forfait diario 90-105 CHF adulto",
         temporada: ["invierno"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1543874007-e3d16ec2c7a5?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1544484613-5e093e1ac0c5?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Glacier Express desde Zermatt (7h45) o tren Intercity desde Zúrich (3h15).",
         consejos: [
           "El forfait Engadin St. Moritz Mountain incluye todas las estaciones del área.",
@@ -418,7 +418,7 @@ const cantones: Canton[] = [
         precio: "Reserva 39 CHF + billete (Swiss Travel Pass válido)",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1478827217976-7214a0556393?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Sale de Zermatt y llega a St. Moritz, o viceversa. Reserva el asiento online.",
         consejos: [
           "Los asientos del lado derecho (sentido Zermatt→St.Moritz) tienen las mejores vistas.",
@@ -439,7 +439,7 @@ const cantones: Canton[] = [
         precio: "Gratis (acceso libre)",
         temporada: ["verano", "otono"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Autobús PostAuto desde Zernez (estación de tren Engadina) hasta las distintas entradas del parque.",
         consejos: [
           "Está completamente prohibido salirse de los senderos marcados.",
@@ -459,7 +459,7 @@ const cantones: Canton[] = [
         precio: "Forfait diario 78-88 CHF adulto",
         temporada: ["invierno"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren directo desde Zúrich a Davos (2h15) con el tren panorámico Rätische Bahn.",
         consejos: [
           "El Parsenn tiene la bajada más larga de Suiza (12 km hasta Küblis).",
@@ -479,7 +479,7 @@ const cantones: Canton[] = [
         precio: "5 CHF adulto",
         temporada: ["primavera", "verano", "otono"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Autobús o coche desde Thusis (A13, salida Thusis). A 30 min al sur de Coira.",
         consejos: [
           "Los puentes sobre el precipicio generan vértigo: no apto para acrofóbicos.",
@@ -498,7 +498,7 @@ const cantones: Canton[] = [
         precio: "Forfait diario 72-82 CHF adulto",
         temporada: ["invierno"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Autobús directo desde Zúrich hasta Flims-Laax (2h) o desde Coira en 45 min.",
         consejos: [
           "El Freestyle.ch contest (febrero) es uno de los eventos de nieve más espectaculares.",
@@ -517,7 +517,7 @@ const cantones: Canton[] = [
     nombre: "Ticino",
     region: "italiana",
     descripcion: "El cantón italiano de Suiza con lagos como Lugano, Maggiore y Como, palmeras y el sabor mediterráneo de la Confederación.",
-    imagen: "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "lugano-lago-monte-bre",
@@ -529,7 +529,7 @@ const cantones: Canton[] = [
         precio: "Barco: Swiss Travel Pass incluido. Monte Brè: 22 CHF",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1439853949212-36589f9c6c81?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Lugano (2h desde Zúrich, 3h desde Ginebra). Embarcadero junto a la estación del funicular.",
         consejos: [
           "Gandria es un pueblo medieval sin coches accesible solo en barco o a pie.",
@@ -549,7 +549,7 @@ const cantones: Canton[] = [
         precio: "Barco Ascona-Brissago: 18 CHF. Jardín: 10 CHF",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Locarno, luego bus o barco hasta Ascona (20 min).",
         consejos: [
           "Las Isole di Brissago tienen el único jardín botánico subtropical de Suiza.",
@@ -569,7 +569,7 @@ const cantones: Canton[] = [
         precio: "Gratis (bungee: 255 CHF)",
         temporada: ["verano"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Autobús desde Locarno hasta Lavertezzo (1h). Paradas en varios puntos del valle.",
         consejos: [
           "La piscina natural de Lavertezzo es la más fotografiada del valle.",
@@ -590,7 +590,7 @@ const cantones: Canton[] = [
         precio: "38 CHF ida/vuelta (Swiss Travel Pass 50%)",
         temporada: ["primavera", "verano", "otono"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1549880181-5d74f3aa3a75?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "La telecabina parte del Orselina, a 5 min en funicular desde Locarno.",
         consejos: [
           "El funicular hasta Orselina ya incluye vistas bonitas al lago.",
@@ -641,7 +641,7 @@ const cantones: Canton[] = [
         precio: "Incluido en abono de zona o Swiss Travel Pass",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Línea S10 desde Zúrich HB (Hauptbahnhof) hasta estación Uetliberg (25 min).",
         consejos: [
           "La cresta de la montaña (Planetenweg) conecta Uetliberg con Felsenegg: 5 km de paseo espectacular.",
@@ -683,7 +683,7 @@ const cantones: Canton[] = [
         precio: "Gratis (torres Grossmünster: 5 CHF)",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1555990538-16501cf18f59?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1533105165878-b4e1f2c49b97?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren a Zúrich HB, luego a pie por la Bahnhofstrasse cruzando el río Limmat.",
         consejos: [
           "Las vidrieras de Marc Chagall en el Fraumünster son únicas: visita gratuita pero donación voluntaria.",
@@ -703,7 +703,7 @@ const cantones: Canton[] = [
         precio: "Swiss Travel Pass incluido",
         temporada: ["primavera", "verano", "otono"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1521194254756-b87e6fde08d9?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "S-Bahn desde Zúrich HB hasta Rapperswil (45 min). Regreso en barco (2h).",
         consejos: [
           "El barco de vuelta es panorámico y muy cómodo en verano.",
@@ -734,7 +734,7 @@ const cantones: Canton[] = [
         precio: "Gratis (barco: Swiss Travel Pass incluido)",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1474722883778-792e7990302f?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Lutry o Grandvaux (15 min desde Lausana). El sendero de los viñedos está señalizado.",
         consejos: [
           "La ruta más bonita va de Rivaz a Cully (5 km, fácil).",
@@ -755,7 +755,7 @@ const cantones: Canton[] = [
         precio: "13 CHF adulto",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Veytaux-Chillon o barco desde Montreux (10 min). Desde Montreux a pie por el lago (45 min).",
         consejos: [
           "La mazmorra donde estuvo prisionero Bonivard inspiró el poema de Byron.",
@@ -774,7 +774,7 @@ const cantones: Canton[] = [
         precio: "Forfait + telecabina: 72 CHF adulto",
         temporada: ["invierno", "verano"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren + bus desde Lausana hasta Les Diablerets (1h45) o desde Aigle.",
         consejos: [
           "El Peak Walk (puente colgante entre dos cumbres) no tiene coste extra.",
@@ -794,7 +794,7 @@ const cantones: Canton[] = [
         precio: "Museo Olímpico: 18 CHF adulto",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1543874007-e3d16ec2c7a5?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Lausana desde Ginebra (45 min) o Zúrich (2h15).",
         consejos: [
           "El metro de Lausana (M2) es el único metro suizo automático sin conductor.",
@@ -813,7 +813,7 @@ const cantones: Canton[] = [
     nombre: "Ginebra",
     region: "francesa",
     descripcion: "La ciudad internacional de la diplomacia con el famoso Jet d'Eau, el lago Lemán y la Ginebra histórica del barrio antiguo.",
-    imagen: "https://images.unsplash.com/photo-1573059254073-26c26f12e476?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1485470733090-0611b9e3ecd0?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "jet-eau-paseo-leman",
@@ -846,7 +846,7 @@ const cantones: Canton[] = [
         precio: "Gratis (torres catedral: 5 CHF)",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1555990538-16501cf18f59?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Desde la estación Cornavin, tram línea 12 o 15 min a pie cuesta arriba hasta la colina de la catedral.",
         consejos: [
           "Las torres de la catedral dan la mejor vista panorámica de Ginebra.",
@@ -885,7 +885,7 @@ const cantones: Canton[] = [
     nombre: "Lucerna",
     region: "alemana",
     descripcion: "La ciudad más turística de Suiza con el Puente de la Capilla, el lago de los Cuatro Cantones y acceso al Pilatus y Rigi.",
-    imagen: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "monte-pilatus",
@@ -897,7 +897,7 @@ const cantones: Canton[] = [
         precio: "Circuito dorado: 73 CHF adulto (Swiss Travel Pass 50%)",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Barco desde Lucerna hasta Alpnachstad (1,5h), cremallera hasta la cumbre. Bajada en telecabina por Kriens.",
         consejos: [
           "El circuito dorado (barco + cremallera + telecabina) es la experiencia completa.",
@@ -918,7 +918,7 @@ const cantones: Canton[] = [
         precio: "Rigi Bahnen: 58 CHF ida/vuelta (Swiss Travel Pass 50%)",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1516550135131-42b1fbc5a0b8?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Barco desde Lucerna hasta Vitznau (1h), cremallera hasta Rigi Kulm. O desde Weggis por telecabina.",
         consejos: [
           "El amanecer desde el Rigi es legendario: muchos turistas se quedan a dormir.",
@@ -958,7 +958,7 @@ const cantones: Canton[] = [
         precio: "96 CHF adulto (Swiss Travel Pass 50%)",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1543874007-e3d16ec2c7a5?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1482784160316-6eb046863ece?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren desde Lucerna hasta Engelberg (1h), luego telecabinas hasta la cumbre.",
         consejos: [
           "El Rotair (teleférico giratorio 360°) da vuelta completa en 5 min.",
@@ -977,7 +977,7 @@ const cantones: Canton[] = [
     nombre: "Basilea-Ciudad",
     region: "alemana",
     descripcion: "La capital cultural de Suiza con el mayor museo de arte del país, el río Rin donde bañarse en verano y el carnaval más famoso de Suiza.",
-    imagen: "https://images.unsplash.com/photo-1555990538-16501cf18f59?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1543874007-e3d16ec2c7a5?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "kunstmuseum-basilea",
@@ -989,7 +989,7 @@ const cantones: Canton[] = [
         precio: "26 CHF adulto",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1555990538-16501cf18f59?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren a Basilea SBB, luego tram línea 2 o 15 min a pie. El museo está junto al Steinenberg.",
         consejos: [
           "El primer domingo del mes la entrada es gratuita.",
@@ -1009,7 +1009,7 @@ const cantones: Canton[] = [
         precio: "Gratis (Wickelfisch: 15 CHF)",
         temporada: ["verano"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tram hasta Johanniterbrücke o Mittlere Brücke. El río está a 5 min de cualquier punto del centro.",
         consejos: [
           "El Wickelfisch (bolsa estanca en forma de pez) sirve de flotador y porta-ropa.",
@@ -1030,7 +1030,7 @@ const cantones: Canton[] = [
         precio: "Gratis (asistencia), alojamiento muy caro en esas fechas",
         temporada: ["invierno"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1573836706441-1a208c08e06f?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren a Basilea SBB. Empieza a las 4 AM del lunes: el Morgestraich (apagado de luces y salida de cliques).",
         consejos: [
           "Reserva alojamiento con 6 meses de antelación: la ciudad se llena.",
@@ -1050,7 +1050,7 @@ const cantones: Canton[] = [
     nombre: "Friburgo",
     region: "francesa",
     descripcion: "La ciudad bilingüe frontera entre Suiza alemana y francesa, con una de las mejores catedrales góticas de Europa y la cuna de la fondue.",
-    imagen: "https://images.unsplash.com/photo-1573836706441-1a208c08e06f?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "catedral-friburgo-fondue",
@@ -1062,7 +1062,7 @@ const cantones: Canton[] = [
         precio: "Gratis (torre: 3 CHF)",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1521194254756-b87e6fde08d9?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren desde Berna (30 min) o Lausana (1h). A pie desde la estación (15 min).",
         consejos: [
           "Friburgo es ciudad bilingüe: el alemán y el francés conviven en las mismas calles.",
@@ -1082,7 +1082,7 @@ const cantones: Canton[] = [
         precio: "Château: 12 CHF adulto",
         temporada: ["primavera", "verano", "otono"],
         destacado: false,
-        imagen: "https://images.unsplash.com/photo-1439853949212-36589f9c6c81?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Broc o Gruyères desde Friburgo (45 min). Autobús local desde la estación.",
         consejos: [
           "La fábrica de queso Gruyère en Pringy tiene visitas con cata incluida.",
@@ -1101,7 +1101,7 @@ const cantones: Canton[] = [
     nombre: "Neuchâtel",
     region: "francesa",
     descripcion: "Ciudad lacustre con un castillo medieval que domina el lago de Neuchâtel, la segunda ciudad universitaria de la Suiza francesa.",
-    imagen: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "lago-neuchatel-barco",
@@ -1113,7 +1113,7 @@ const cantones: Canton[] = [
         precio: "Swiss Travel Pass incluido",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1439853949212-36589f9c6c81?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Neuchâtel desde Berna (45 min) o Lausana (50 min). Embarcadero junto a la estación.",
         consejos: [
           "La ruta de los 3 Lagos conecta Neuchâtel, Biel y Murten en barco.",
@@ -1132,7 +1132,7 @@ const cantones: Canton[] = [
     nombre: "Jura",
     region: "francesa",
     descripcion: "El cantón más joven de Suiza (1979), con paisajes de mesetas, caballos Franches-Montagnes y rutas de senderismo poco transitadas.",
-    imagen: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1490682143684-14369e18dce8?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "franches-montagnes-caballos",
@@ -1144,7 +1144,7 @@ const cantones: Canton[] = [
         precio: "Rutas ecuestres desde 50 CHF/h",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1490682143684-14369e18dce8?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Saignelégier desde Biel/Bienne (1h) o desde La Chaux-de-Fonds (45 min).",
         consejos: [
           "El Marché-Concours en Saignelégier (agosto) es la feria de caballos más famosa de Suiza.",
@@ -1163,7 +1163,7 @@ const cantones: Canton[] = [
     nombre: "Uri",
     region: "alemana",
     descripcion: "El corazón histórico de la Confederación Suiza, con la ruta original de Guillermo Tell, el lago de Uri y el paso del San Gotardo.",
-    imagen: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "ruta-guillermo-tell",
@@ -1175,7 +1175,7 @@ const cantones: Canton[] = [
         precio: "Swiss Travel Pass incluido (barco)",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Flüelen (conexión en Arth-Goldau), barco por el lago de Uri.",
         consejos: [
           "El barco de paletas del lago de los 4 Cantones es uno de los más bonitos de Suiza.",
@@ -1194,7 +1194,7 @@ const cantones: Canton[] = [
     nombre: "Schwyz",
     region: "alemana",
     descripcion: "El cantón que da nombre a Suiza, con los Mythen y el lago de Lauerz. Aquí se firmó el Pacto Original de la Confederación en 1291.",
-    imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "mythen-hike",
@@ -1208,7 +1208,7 @@ const cantones: Canton[] = [
         precio: "Gratis",
         temporada: ["verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1458668383970-8ddd3927deed?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Bus desde Schwyz hasta Haggenegg. Schwyz en tren desde Arth-Goldau o Zúrich (1h).",
         consejos: [
           "El último tramo es por roca sólida con cadenas de seguridad.",
@@ -1239,7 +1239,7 @@ const cantones: Canton[] = [
         precio: "Gratis",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1439853949212-36589f9c6c81?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1485470733090-0611b9e3ecd0?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren directo desde Zúrich en 25 min. La ciudad está a 5 min de la estación.",
         consejos: [
           "La Zuger Kirschtorte (tarta de cereza con kirsch) es el postre local por excelencia.",
@@ -1258,7 +1258,7 @@ const cantones: Canton[] = [
     nombre: "Glaris",
     region: "alemana",
     descripcion: "El cantón más pequeño de Suiza continental, con la democracia directa más antigua del mundo (Landsgemeinde) y paisajes alpinos vírgenes.",
-    imagen: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1482784160316-6eb046863ece?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "klontalersee",
@@ -1270,7 +1270,7 @@ const cantones: Canton[] = [
         precio: "Gratis",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1439853949212-36589f9c6c81?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Glarus desde Zúrich (1h15), luego bus hasta el lago o bicicleta (9 km).",
         consejos: [
           "El lago apenas aparece en guías turísticas: tranquilidad garantizada.",
@@ -1289,7 +1289,7 @@ const cantones: Canton[] = [
     nombre: "Soleura",
     region: "alemana",
     descripcion: "La ciudad del número 11 con la catedral más bella de Suiza y el río Aare. Conocida como la ciudad más barroca del país.",
-    imagen: "https://images.unsplash.com/photo-1573836706441-1a208c08e06f?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "catedral-san-ursus-soleura",
@@ -1301,7 +1301,7 @@ const cantones: Canton[] = [
         precio: "Gratis",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1503249023995-51b0f3778ccf?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren desde Berna (35 min) o Basilea (50 min) hasta Solothurn.",
         consejos: [
           "Todo en Soleura viene en grupos de 11: el número tiene significado histórico.",
@@ -1320,7 +1320,7 @@ const cantones: Canton[] = [
     nombre: "Basilea-Campiña",
     region: "alemana",
     descripcion: "El cantón que rodea Basilea-Ciudad con los viñedos del Sundgau, castillos medievales y el pueblo termal de Liestal.",
-    imagen: "https://images.unsplash.com/photo-1474722883778-792e7990302f?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1503249023995-51b0f3778ccf?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "augst-augusta-raurica",
@@ -1332,7 +1332,7 @@ const cantones: Canton[] = [
         precio: "Museo: 12 CHF (ruinas gratuitas)",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren desde Basilea hasta Kaiseraugst (15 min), luego 10 min a pie.",
         consejos: [
           "El anfiteatro romano acoge espectáculos de teatro en verano.",
@@ -1351,7 +1351,7 @@ const cantones: Canton[] = [
     nombre: "Schaffhausen",
     region: "alemana",
     descripcion: "Hogar de las Cataratas del Rin, las más grandes de Europa central, y una de las ciudades medievales mejor conservadas de Suiza.",
-    imagen: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "cataratas-rin",
@@ -1383,7 +1383,7 @@ const cantones: Canton[] = [
     nombre: "Appenzell Rodas Exteriores",
     region: "alemana",
     descripcion: "El cantón que rodea a Appenzell Interior, con el pico Säntis y las tradiciones alpinas más antiguas de Suiza.",
-    imagen: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "santis-teleférico",
@@ -1395,7 +1395,7 @@ const cantones: Canton[] = [
         precio: "50 CHF ida/vuelta (Swiss Travel Pass 50%)",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Bus desde Urnäsch o Appenzell hasta Schwägalp (estación del teleférico). Desde Zúrich ~1,5h.",
         consejos: [
           "En días claros se ven Alemania, Austria, Francia, Liechtenstein, Italia y el lago de Constanza.",
@@ -1414,7 +1414,7 @@ const cantones: Canton[] = [
     nombre: "Appenzell Rodas Interiores",
     region: "alemana",
     descripcion: "El cantón más pequeño de Suiza y el último que concedió el voto a la mujer (1990). Famoso por sus tradiciones, bordados y queso.",
-    imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "pueblo-appenzell",
@@ -1426,7 +1426,7 @@ const cantones: Canton[] = [
         precio: "Gratis",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1573836706441-1a208c08e06f?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren desde Gossau o St. Gallen (1h desde Zúrich, cambio en Gossau/Herisau).",
         consejos: [
           "La Landsgemeinde (votación a mano alzada al aire libre) es cada último domingo de abril.",
@@ -1445,7 +1445,7 @@ const cantones: Canton[] = [
     nombre: "San Galo",
     region: "alemana",
     descripcion: "La ciudad del lino y el bordado, con la abadía de St. Gallen (Patrimonio UNESCO) y su biblioteca barroca considerada la más bella del mundo.",
-    imagen: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1533105165878-b4e1f2c49b97?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "biblioteca-abadia-san-galo",
@@ -1457,7 +1457,7 @@ const cantones: Canton[] = [
         precio: "13 CHF adulto",
         temporada: ["primavera", "verano", "otono", "invierno"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1533105165878-b4e1f2c49b97?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren desde Zúrich hasta St. Gallen (1h). La abadía está a 10 min a pie de la estación.",
         consejos: [
           "Solo se puede visitar con zapatillas de fieltro para proteger el parquet.",
@@ -1476,7 +1476,7 @@ const cantones: Canton[] = [
     nombre: "Argovia",
     region: "alemana",
     descripcion: "El cantón de los castillos (más de 200), los Habsburgo y el río Aare con termas naturales en Schinznach-Bad.",
-    imagen: "https://images.unsplash.com/photo-1555990538-16501cf18f59?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1521194254756-b87e6fde08d9?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "castillo-habsburg",
@@ -1488,7 +1488,7 @@ const cantones: Canton[] = [
         precio: "5 CHF adulto",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Bus desde Brugg (10 min). Brugg en tren desde Zúrich (35 min) o Berna (50 min).",
         consejos: [
           "El sendero de 2 km desde Brugg hasta el castillo es fácil y agradable.",
@@ -1507,7 +1507,7 @@ const cantones: Canton[] = [
     nombre: "Turgovia",
     region: "alemana",
     descripcion: "El cantón de los manzanos y el lago de Constanza. Las orillas del Bodensee son perfectas para ciclismo y deportes acuáticos.",
-    imagen: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1553532434-5ab5b6b84993?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "lago-constanza-ciclovía",
@@ -1519,7 +1519,7 @@ const cantones: Canton[] = [
         precio: "Alquiler bici: 30-40 CHF/día",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1565098772267-60af42b81ef2?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Kreuzlingen o Konstanz desde Zúrich (1h). Las bicis se alquilan en la estación.",
         consejos: [
           "La ruta es plana y apta para toda la familia.",
@@ -1538,7 +1538,7 @@ const cantones: Canton[] = [
     nombre: "Obwalden",
     region: "alemana",
     descripcion: "Pequeño cantón en el corazón de los Alpes con el Monte Pilatus en su frontera y el lago Sarner, perfecto para retiros tranquilos.",
-    imagen: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=1200&q=85&auto=format&fit=crop",
     actividades: [
       {
         slug: "lago-sarnen-engstlen",
@@ -1582,7 +1582,7 @@ const cantones: Canton[] = [
         precio: "58 CHF ida/vuelta (Swiss Travel Pass 50%)",
         temporada: ["primavera", "verano", "otono"],
         destacado: true,
-        imagen: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=85&auto=format&fit=crop",
+        imagen: "https://images.unsplash.com/photo-1549880181-5d74f3aa3a75?w=1200&q=85&auto=format&fit=crop",
         comoLlegar: "Tren hasta Stans desde Luzern (20 min), luego funicular + telecabina.",
         consejos: [
           "El CabriO es único en el mundo: piso superior descubierto para sentir el viento.",
