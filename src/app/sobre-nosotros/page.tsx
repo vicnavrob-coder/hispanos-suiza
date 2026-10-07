@@ -1,17 +1,33 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, BASE_URL, breadcrumbSchema, organizationSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Sobre nosotros — Hispanohablantes que viven en Suiza",
   description: "HispanosEnSuiza es un proyecto creado por hispanohablantes que viven en Suiza. Información real, verificada y en español sobre cómo vivir, trabajar y prosperar en Suiza.",
   path: "/sobre-nosotros",
-  keywords: ["hispanohablantes suiza", "comunidad hispana suiza", "españoles suiza", "latinoamericanos suiza"],
+  ogImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85&auto=format&fit=crop",
+  keywords: [
+    "hispanohablantes suiza", "comunidad hispana suiza", "guía española suiza",
+    "hispanosensuiza proyecto", "información vivir suiza español",
+    "recursos expatriados suiza", "quienes somos hispanosensuiza",
+  ],
 });
 
 export default function SobreNosotrosPage() {
+  const schemas = [
+    breadcrumbSchema([
+      { name: "Inicio", url: BASE_URL },
+      { name: "Sobre nosotros", url: `${BASE_URL}/sobre-nosotros` },
+    ]),
+    organizationSchema(),
+  ];
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
       <h1 className="text-3xl font-bold text-gray-800 mb-4">Sobre nosotros</h1>
 
       <div className="bg-red-50 border border-red-100 rounded-2xl p-6 mb-8">

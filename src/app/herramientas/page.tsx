@@ -7,7 +7,13 @@ export const metadata: Metadata = buildMetadata({
   title: "Herramientas gratuitas para vivir en Suiza — Calculadoras y comparadores",
   description: "Calculadoras y herramientas gratuitas para hispanohablantes en Suiza: salario neto por cantón, comparador de seguros médicos, comparador de ciudades y más.",
   path: "/herramientas",
-  keywords: ["herramientas suiza", "calculadora suiza gratis", "calculadora salario suiza", "comparador seguros suiza", "herramientas expat suiza"],
+  ogImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=85&auto=format&fit=crop",
+  keywords: [
+    "herramientas suiza", "calculadora suiza gratis", "calculadora salario suiza",
+    "comparador seguros suiza", "herramientas expat suiza",
+    "calculadora impuestos suiza", "coste vida suiza calculadora",
+    "salario neto suiza 2026",
+  ],
 });
 
 const herramientas = [
@@ -50,8 +56,27 @@ const herramientas = [
 ];
 
 export default function HerramientasPage() {
+  const schemas = [
+    breadcrumbSchema([
+      { name: "Inicio", url: BASE_URL },
+      { name: "Herramientas", url: `${BASE_URL}/herramientas` },
+    ]),
+    itemListSchema(
+      herramientas
+        .filter(h => h.estado === "disponible")
+        .map(h => ({
+          name: h.titulo,
+          url: `${BASE_URL}${h.href}`,
+          description: h.descripcion,
+        }))
+    ),
+  ];
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-800 mb-2">Herramientas gratuitas</h1>
         <p className="text-gray-500">

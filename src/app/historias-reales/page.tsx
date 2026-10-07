@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, BASE_URL, breadcrumbSchema, itemListSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Historias reales — Experiencias sin filtros de hispanohablantes en Suiza",
   description: "Historias reales de españoles y latinoamericanos que viven en Suiza. Lo que nadie te cuenta: errores, sorpresas, consejos prácticos de quienes ya lo vivieron.",
   path: "/historias-reales",
-  keywords: ["historias reales suiza", "experiencias españoles suiza", "vivir en suiza testimonios", "comunidad hispana suiza"],
+  ogImage: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=85&auto=format&fit=crop",
+  keywords: [
+    "historias reales suiza", "experiencias españoles suiza", "vivir en suiza testimonios",
+    "comunidad hispana suiza", "expatriados suiza experiencias",
+    "testimonio vivir suiza", "consejos emigrar suiza", "retos vivir suiza",
+  ],
 });
 
 const historias = [
@@ -53,8 +58,25 @@ const historias = [
 ];
 
 export default function HistoriasRealesPage() {
+  const schemas = [
+    breadcrumbSchema([
+      { name: "Inicio", url: BASE_URL },
+      { name: "Historias reales", url: `${BASE_URL}/historias-reales` },
+    ]),
+    itemListSchema(
+      historias.map((h, i) => ({
+        name: `${h.nombre} — ${h.resumen.slice(0, 60)}`,
+        url: `${BASE_URL}/historias-reales#historia-${i + 1}`,
+        description: h.extracto.slice(0, 120),
+      }))
+    ),
+  ];
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-800 mb-2">Historias reales</h1>
         <p className="text-gray-500">
