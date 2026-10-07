@@ -107,7 +107,7 @@ export default function MapaPlanes({ actividades }: { actividades: Actividad[] }
             </div>
             <div style="display:flex;gap:6px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
               ${a.duracion ? `<span style="font-size:10px;background:#f0f0f0;padding:2px 6px;border-radius:999px;">⏱ ${a.duracion}</span>` : ""}
-              ${a.precio ? `<span style="font-size:10px;background:#fff3e0;padding:2px 6px;border-radius:999px;color:#e65100;">💰 ${a.precio}</span>` :
+              ${a.precio ? `<span style="font-size:10px;background:#fff3e0;padding:2px 6px;border-radius:999px;color:#9a3412;">💰 ${a.precio}</span>` :
                 a.gratuito ? `<span style="font-size:10px;background:#e8f5e9;padding:2px 6px;border-radius:999px;color:#2e7d32;">🆓 Gratis</span>` : ""}
             </div>
             <a href="/planes/${a.cantonSlug}/${a.slug}"

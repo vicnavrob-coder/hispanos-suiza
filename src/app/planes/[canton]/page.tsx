@@ -49,7 +49,7 @@ const TIPO_LABEL: Record<string, string> = {
 };
 const DIFICULTAD_COLOR: Record<string, string> = {
   facil: "bg-green-100 text-green-700",
-  moderada: "bg-yellow-100 text-yellow-700",
+  moderada: "bg-yellow-100 text-yellow-900",
   dificil: "bg-orange-100 text-orange-700",
   "muy-dificil": "bg-red-100 text-red-700",
 };

@@ -40,14 +40,14 @@ const TEMPORADAS: { value: Temporada | "todos"; label: string; emoji: string }[]
 const DIFICULTADES: { value: Dificultad | "todos"; label: string; color: string }[] = [
   { value: "todos",       label: "Toda dificultad",   color: "bg-gray-100 text-gray-600" },
   { value: "facil",       label: "Fácil",              color: "bg-green-100 text-green-700" },
-  { value: "moderada",    label: "Moderada",           color: "bg-yellow-100 text-yellow-700" },
+  { value: "moderada",    label: "Moderada",           color: "bg-yellow-100 text-yellow-900" },
   { value: "dificil",     label: "Difícil",            color: "bg-orange-100 text-orange-700" },
   { value: "muy-dificil", label: "Muy difícil",        color: "bg-red-100 text-red-700" },
 ];
 
 const DIFICULTAD_COLOR: Record<string, string> = {
   facil: "bg-green-100 text-green-700",
-  moderada: "bg-yellow-100 text-yellow-700",
+  moderada: "bg-yellow-100 text-yellow-900",
   dificil: "bg-orange-100 text-orange-700",
   "muy-dificil": "bg-red-100 text-red-700",
 };
@@ -178,7 +178,7 @@ export default function PlanesPage() {
                   📋 Ver itinerarios
                 </Link>
                 <button onClick={() => setVista("mapa")}
-                  className="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors border border-white/20">
+                  className="inline-flex items-center gap-1.5 bg-white/25 hover:bg-white/35 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors border border-white/40">
                   🗺️ Ver en mapa
                 </button>
               </div>
@@ -295,7 +295,7 @@ export default function PlanesPage() {
             👶 Para niños
           </button>
           <button onClick={() => setSoloFavoritos(v => !v)}
-            className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${soloFavoritos ? "bg-yellow-500 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}>
+            className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${soloFavoritos ? "bg-amber-700 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}>
             ❤️ Favoritos{favoritos.size > 0 && ` (${favoritos.size})`}
           </button>
         </div>
