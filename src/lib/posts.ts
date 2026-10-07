@@ -819,6 +819,7 @@ const postsManual: Post[] = [
 <h2>La comunidad hispanohablante en Zúrich</h2>
 <p>Zúrich tiene una comunidad hispanohablante activa. Grupos en Facebook como "Españoles en Zúrich" o "Latinoamericanos en Zúrich" tienen miles de miembros y son muy útiles para encontrar piso, hacer contactos o simplemente resolver dudas prácticas.</p>
 <p>También hay eventos regulares: cenas, salidas al lago, grupos de español para suizos que quieren practicar (muy útil para hacer amigos locales).</p>
+<p>¿Quieres comparar Zúrich con otras ciudades suizas? Lee nuestra guía sobre <a href="/blog/vivir-en-ginebra-espanoles-hispanohablantes">vivir en Ginebra</a> (más internacional, con francés) o <a href="/blog/vivir-en-lugano-espanoles-hispanohablantes">vivir en Lugano</a> (más latina, con italiano y clima mediterráneo). También puedes usar el <a href="/herramientas/comparador-ciudades">comparador de ciudades</a> para ver las diferencias de coste real lado a lado.</p>
     `
   },
 
@@ -878,7 +879,7 @@ const postsManual: Post[] = [
 
 <h2>Salario mínimo y poder adquisitivo</h2>
 <p>Ginebra tiene el salario mínimo cantonal más alto de Suiza: 24 CHF/hora (aproximadamente 4.000 CHF/mes para jornada completa). Los salarios medios en banca privada o en organizaciones internacionales superan holgadamente los 8.000 CHF/mes brutos.</p>
-<p>Para comparar el poder adquisitivo real entre Ginebra y otras ciudades suizas, usa nuestra <a href="/herramientas/comparador-ciudades">herramienta de comparación de ciudades</a>.</p>
+<p>Para comparar el poder adquisitivo real entre Ginebra y otras ciudades suizas, usa nuestra <a href="/herramientas/comparador-ciudades">herramienta de comparación de ciudades</a>. Si valoras más las oportunidades tech o financieras, lee también nuestra guía sobre <a href="/blog/vivir-en-zurich-espanoles-hispanohablantes">vivir en Zúrich</a>. Y si buscas un ritmo de vida más tranquilo con clima mediterráneo, Lugano puede sorprenderte: <a href="/blog/vivir-en-lugano-espanoles-hispanohablantes">vivir en Lugano</a>.</p>
     `
   },
 
@@ -944,6 +945,7 @@ const postsManual: Post[] = [
 <h2>La comunidad hispanohablante en Lugano</h2>
 <p>Lugano tiene la mayor concentración proporcional de hispanohablantes de Suiza — especialmente colombianos, argentinos, venezolanos y ecuatorianos que llevan décadas en el Ticino. La comunidad es activa y acogedora con los recién llegados.</p>
 <p>Grupos como "Hispanos en Lugano" en Facebook tienen miles de miembros y son el mejor canal para encontrar piso, trabajo informal o simplemente adaptarse más rápido.</p>
+<p>¿Valoras más las oportunidades laborales y el tamaño de ciudad? Lee nuestras guías sobre <a href="/blog/vivir-en-zurich-espanoles-hispanohablantes">vivir en Zúrich</a> (mayor hub tecnológico y financiero) y <a href="/blog/vivir-en-ginebra-espanoles-hispanohablantes">vivir en Ginebra</a> (organizaciones internacionales y banca privada). Compara los tres destinos con el <a href="/herramientas/comparador-ciudades">comparador de ciudades suizas</a>.</p>
     `
   },
 
