@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { BASE_URL, buildMetadata } from "@/lib/seo";
+import { BASE_URL, buildMetadata, breadcrumbSchema, itemListSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Itinerarios en Suiza — Rutas y planes curados para hispanohablantes",
   description: "Itinerarios completos para visitar Suiza: fin de semana en Berna, semana en los Alpes, viaje en familia, ruta del esquí y mucho más. Guías en español.",
   path: "/planes/itinerarios",
-  keywords: ["itinerarios suiza", "ruta suiza español", "qué ver suiza semana", "viaje suiza familia", "suiza 7 días"],
+  ogImage: "https://images.unsplash.com/photo-1573108724029-4c46571d6490?w=1200&q=85&auto=format&fit=crop",
+  keywords: ["itinerarios suiza", "ruta suiza español", "qué ver suiza semana", "viaje suiza familia", "suiza 7 días", "qué ver suiza", "visitar suiza primera vez"],
 });
 
 type Itinerario = {
@@ -569,8 +570,26 @@ export default function ItinerariosPage() {
   const familia = itinerarios.find(i => i.slug === "suiza-en-familia");
   const resto = itinerarios.filter(i => i.slug !== "ruta-del-esqui" && i.slug !== "suiza-en-familia");
 
+  const schemas = [
+    breadcrumbSchema([
+      { name: "Inicio", url: BASE_URL },
+      { name: "Planes", url: `${BASE_URL}/planes` },
+      { name: "Itinerarios", url: `${BASE_URL}/planes/itinerarios` },
+    ]),
+    itemListSchema(
+      itinerarios.map(it => ({
+        name: it.titulo,
+        url: `${BASE_URL}/planes/itinerarios#${it.slug}`,
+        description: it.descripcion,
+      }))
+    ),
+  ];
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
 
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-400 mb-6 flex items-center gap-2" aria-label="Breadcrumb">

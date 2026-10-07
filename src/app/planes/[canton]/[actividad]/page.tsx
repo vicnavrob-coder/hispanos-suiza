@@ -22,6 +22,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${a.nombre} — ${c.nombre}, Suiza`,
     description: a.descripcion,
     path: `/planes/${canton}/${actividad}`,
+    ogImage: a.imagen,
+    ogType: "article",
     keywords: a.keywords,
   });
 }
@@ -103,9 +105,20 @@ export default async function ActividadPage({ params }: Props) {
       name: a.nombre,
       description: a.descripcion,
       url: `${BASE_URL}/planes/${canton}/${actividad}`,
+      image: { "@type": "ImageObject", url: a.imagen, width: 1200, height: 630 },
       touristType: TIPO_LABEL[a.tipo],
       availableLanguage: "Spanish",
       containedInPlace: { "@type": "State", name: c.nombre },
+      isAccessibleForFree: (a as any).gratuito ?? !a.precio,
+      ...(a.precio ? {
+        offers: {
+          "@type": "Offer",
+          price: a.precio.replace(/[^0-9.,–-]/g, "").split(/[–-]/)[0].trim(),
+          priceCurrency: "CHF",
+          availability: "https://schema.org/InStock",
+          description: `Precio aproximado: ${a.precio}`,
+        },
+      } : {}),
       ...((a as any).coordenadas ? {
         geo: {
           "@type": "GeoCoordinates",

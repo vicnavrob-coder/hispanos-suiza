@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { cantones } from "@/lib/planes";
-import { BASE_URL, buildMetadata, breadcrumbSchema } from "@/lib/seo";
+import { BASE_URL, buildMetadata, breadcrumbSchema, itemListSchema } from "@/lib/seo";
 
 type Props = { params: Promise<{ canton: string }> };
 
@@ -15,11 +15,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { canton } = await params;
   const c = cantones.find(x => x.slug === canton);
   if (!c) return {};
+  // Build dynamic keywords from actual activities
+  const tiposUnicos = [...new Set(c.actividades.map(a => a.tipo))];
+  const actDestacadas = c.actividades.filter(a => a.destacado).slice(0, 3).map(a => a.nombre);
+  const dynamicKeywords = [
+    `planes ${c.nombre}`,
+    `excursiones ${c.nombre}`,
+    `que hacer ${c.nombre} suiza`,
+    `rutas ${c.nombre}`,
+    ...tiposUnicos.map(t => `${t} ${c.nombre}`),
+    ...actDestacadas.map(n => n.toLowerCase()),
+    `visitar ${c.nombre}`,
+    `turismo ${c.nombre}`,
+  ];
   return buildMetadata({
     title: `Planes y excursiones en ${c.nombre} — Qué hacer y ver`,
-    description: `Las mejores rutas, teleféricos, lagos y planes en el cantón de ${c.nombre}. Guía completa en español con precios y cómo llegar.`,
+    description: `${c.actividades.length} planes en ${c.nombre}: ${tiposUnicos.slice(0, 4).join(", ")} y más. Guía completa para hispanohablantes con precios, rutas y cómo llegar en transporte público.`,
     path: `/planes/${canton}`,
-    keywords: [`planes ${c.nombre}`, `excursiones ${c.nombre}`, `que hacer ${c.nombre} suiza`, `rutas ${c.nombre}`, `senderismo ${c.nombre}`],
+    ogImage: c.imagen,
+    keywords: dynamicKeywords,
   });
 }
 
@@ -70,6 +84,13 @@ export default async function CantonPlanesPage({ params }: Props) {
       { name: "Planes", url: `${BASE_URL}/planes` },
       { name: c.nombre, url: `${BASE_URL}/planes/${canton}` },
     ]),
+    itemListSchema(
+      c.actividades.slice(0, 20).map(a => ({
+        name: a.nombre,
+        url: `${BASE_URL}/planes/${canton}/${a.slug}`,
+        description: a.descripcion,
+      }))
+    ),
   ];
 
   return (
