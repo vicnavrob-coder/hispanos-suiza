@@ -38,7 +38,7 @@ const postsManual: Post[] = [
     categoria: "emigrar",
     fecha: "2026-09-15",
     tiempoLectura: 12,
-    imagen: "/images/emigrar-suiza.jpg",
+    imagen: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85&auto=format&fit=crop",
     destacado: true,
     palabrasClave: ["emigrar a suiza", "vivir en suiza", "permiso residencia suiza", "mudarse a suiza", "españoles en suiza", "latinoamericanos suiza"],
     faq: [
@@ -73,11 +73,11 @@ const postsManual: Post[] = [
 <p>Los españoles obtienen automáticamente permiso B al empezar a trabajar. Latinoamericanos deben tramitarlo antes de viajar.</p>
 
 <h2>El seguro médico obligatorio: primer paso tras llegar</h2>
-<p>Tienes <strong>3 meses desde tu llegada</strong> para contratar el seguro de salud básico (KVG/LAMal). Si no lo haces, te lo asignan por defecto y pagas más. El coste varía entre 300 y 500 CHF/mes según cantón y aseguradora.</p>
-<p>Compara en <strong>Comparis.ch</strong> antes de contratar. Es la herramienta oficial para comparar tarifas.</p>
+<p>Tienes <strong>3 meses desde tu llegada</strong> para contratar el <a href="/seguros">seguro de salud básico (KVG/LAMal)</a>. Si no lo haces, te lo asignan por defecto y pagas más. El coste varía entre 300 y 500 CHF/mes según cantón y aseguradora.</p>
+<p>Usa nuestra <a href="/herramientas/seguros-medicos">calculadora de seguros médicos</a> para comparar precios por cantón, edad y franquicia antes de contratar.</p>
 
 <h2>Encontrar vivienda: el gran obstáculo</h2>
-<p>Encontrar piso en Suiza es difícil para todos, pero más para recién llegados sin historial suizo. Los portales principales son Homegate.ch e ImmoScout24.ch.</p>
+<p>Encontrar piso en Suiza es difícil para todos, pero más para recién llegados sin historial suizo. Los portales principales son Homegate.ch e ImmoScout24.ch. En nuestro <a href="/vivienda">buscador de vivienda</a> puedes acceder a todos los portales directamente con tu búsqueda ya aplicada.</p>
 <p>Lo que piden siempre: extracto de deudas (Betreibungsregisterauszug), últimas 3 nóminas, permiso de residencia y cartas de recomendación del anterior casero.</p>
 
 <h2>Primeras semanas: checklist de supervivencia</h2>
@@ -101,7 +101,7 @@ const postsManual: Post[] = [
     categoria: "vivienda",
     fecha: "2026-09-20",
     tiempoLectura: 9,
-    imagen: "/images/vivienda-suiza.jpg",
+    imagen: "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=1200&q=85&auto=format&fit=crop",
     destacado: true,
     palabrasClave: ["alquilar piso suiza", "vivienda suiza", "homegate", "flatfox", "alquiler suiza", "piso suiza extranjero"],
     faq: [
@@ -183,7 +183,7 @@ const postsManual: Post[] = [
     categoria: "banca",
     fecha: "2026-09-25",
     tiempoLectura: 7,
-    imagen: "/images/banca-suiza.jpg",
+    imagen: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["cuenta bancaria suiza extranjero", "banco suiza expatriado", "postfinance", "ubs suiza", "wise suiza", "cuenta bancaria suiza"],
     faq: [
@@ -262,7 +262,7 @@ const postsManual: Post[] = [
     categoria: "seguros",
     fecha: "2026-09-28",
     tiempoLectura: 8,
-    imagen: "/images/seguros-suiza.jpg",
+    imagen: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=85&auto=format&fit=crop",
     destacado: true,
     palabrasClave: ["seguro medico suiza", "kvg suiza", "lamal suiza", "seguro salud suiza", "krankenversicherung", "seguro obligatorio suiza", "comparar seguros suiza"],
     faq: [
@@ -346,7 +346,7 @@ const postsManual: Post[] = [
     categoria: "trabajo",
     fecha: "2026-10-01",
     tiempoLectura: 11,
-    imagen: "/images/trabajo-suiza.jpg",
+    imagen: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=85&auto=format&fit=crop",
     destacado: true,
     palabrasClave: ["trabajar en suiza latinoamericano", "visa trabajo suiza", "permiso trabajo suiza", "trabajo suiza colombiano", "trabajo suiza mexicano", "emigrar suiza latinoamerica"],
     faq: [
@@ -363,7 +363,7 @@ const postsManual: Post[] = [
 
 <h2>El proceso paso a paso para trabajar en Suiza desde Latinoamérica</h2>
 <ol>
-  <li><strong>Encuentra una oferta de trabajo en Suiza.</strong> Usa LinkedIn, Jobs.ch, Indeed.ch y los portales de tu sector. El empleador debe estar dispuesto a tramitar el permiso — esto es clave.</li>
+  <li><strong>Encuentra una oferta de trabajo en Suiza.</strong> Usa <a href="/trabajo/buscador">nuestro buscador de empleo suizo</a>, LinkedIn, Jobs.ch e Indeed.ch. El empleador debe estar dispuesto a tramitar el permiso — esto es clave.</li>
   <li><strong>El empleador solicita el permiso cantonal.</strong> La empresa presenta tu expediente a las autoridades del cantón donde está ubicada. Incluye justificación de por qué te contratan a ti y no a alguien de la UE.</li>
   <li><strong>Aprobación cantonal y federal.</strong> El cantón revisa y, si aprueba, lo envía a la Secretaría de Estado de Migraciones (SEM). Duración: 1-4 meses.</li>
   <li><strong>Tramitas el visado en el consulado suizo de tu país.</strong> Una vez aprobado el permiso, el consulado suizo en tu ciudad te emite el visado de entrada (tipo D).</li>
@@ -422,7 +422,7 @@ const postsManual: Post[] = [
     categoria: "vida-diaria",
     fecha: "2026-10-02",
     tiempoLectura: 10,
-    imagen: "/images/vida-suiza.jpg",
+    imagen: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["coste vida suiza", "coste vida zurich", "coste vida ginebra", "precio alquiler zurich", "salario minimo suiza", "cuanto cuesta vivir en suiza"],
     faq: [
@@ -511,7 +511,7 @@ const postsManual: Post[] = [
     categoria: "trabajo",
     fecha: "2026-10-03",
     tiempoLectura: 9,
-    imagen: "/images/impuestos-suiza.jpg",
+    imagen: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["impuestos suiza", "declaracion renta suiza", "impuesto fuente suiza", "fiscalidad suiza extranjero", "cuanto se paga impuestos suiza", "doble imposicion suiza"],
     faq: [
@@ -594,7 +594,7 @@ const postsManual: Post[] = [
     categoria: "trabajo",
     fecha: "2026-10-04",
     tiempoLectura: 8,
-    imagen: "/images/salarios-suiza.jpg",
+    imagen: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1200&q=85&auto=format&fit=crop",
     destacado: true,
     palabrasClave: ["salarios suiza", "sueldo suiza", "cuanto gana enfermero suiza", "salario ingeniero suiza", "sueldo programador suiza", "salario medio suiza"],
     faq: [
@@ -606,7 +606,7 @@ const postsManual: Post[] = [
     contenido: `
 <h2>Por qué los salarios suizos son los más altos de Europa</h2>
 <p>Suiza tiene los salarios nominales más elevados de Europa y del mundo. Esto no es casualidad: alta productividad, especialización en sectores de alto valor añadido (banca, farmacéutica, relojería, tecnología) y un mercado laboral muy protegido se combinan para producir sueldos que duplican o triplican los de España.</p>
-<p>Pero ojo: el coste de vida también es muy alto. Para evaluar si te compensa emigrar a Suiza para tu profesión, hay que mirar el poder adquisitivo neto, no solo el número bruto.</p>
+<p>Pero ojo: el coste de vida también es muy alto. Para evaluar si te compensa emigrar a Suiza para tu profesión, usa nuestra <a href="/herramientas/salario-neto">calculadora de salario neto</a> para ver cuánto te queda en mano después de impuestos y deducciones, y el <a href="/herramientas/comparador-ciudades">comparador de ciudades</a> para ver el poder adquisitivo real en cada cantón.</p>
 
 <h2>Salarios en IT y tecnología</h2>
 <p>El sector IT es el más demandado y el más accesible para hispanohablantes cualificados, ya que el inglés es frecuentemente suficiente.</p>
@@ -678,7 +678,7 @@ const postsManual: Post[] = [
     categoria: "trabajo",
     fecha: "2026-10-05",
     tiempoLectura: 7,
-    imagen: "/images/cv-suiza.jpg",
+    imagen: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["cv suizo", "curriculum vitae suiza", "adaptar cv suiza", "curriculum suiza español", "como hacer cv suiza", "carta motivacion suiza"],
     faq: [
@@ -763,7 +763,7 @@ const postsManual: Post[] = [
     categoria: "vida-diaria",
     fecha: "2026-10-06",
     tiempoLectura: 8,
-    imagen: "/images/zurich.jpg",
+    imagen: "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["vivir en zurich", "zurich españoles", "vivir en zurich español", "mudarse zurich", "trabajar en zurich", "zurich hispanohablantes"],
     faq: [
@@ -832,7 +832,7 @@ const postsManual: Post[] = [
     categoria: "vida-diaria",
     fecha: "2026-10-07",
     tiempoLectura: 7,
-    imagen: "/images/ginebra.jpg",
+    imagen: "https://images.unsplash.com/photo-1573108724029-4c46571d6490?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["vivir en ginebra", "ginebra españoles", "vivir en ginebra español", "mudarse ginebra", "trabajar ginebra", "organizaciones internacionales ginebra"],
     faq: [
@@ -892,7 +892,7 @@ const postsManual: Post[] = [
     categoria: "vida-diaria",
     fecha: "2026-10-08",
     tiempoLectura: 6,
-    imagen: "/images/lugano.jpg",
+    imagen: "https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["vivir en lugano", "lugano hispanohablantes", "lugano españoles", "vivir lugano suiza", "mudarse lugano", "lugano ticino trabajo"],
     faq: [
@@ -957,7 +957,7 @@ const postsManual: Post[] = [
     categoria: "vida-diaria",
     fecha: "2026-10-09",
     tiempoLectura: 7,
-    imagen: "/images/aleman-suiza.jpg",
+    imagen: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: ["aprender aleman suiza", "schweizerdeutsch", "hochdeutsch suiza", "cursos aleman zurich", "aleman hispanohablante suiza", "aprender aleman berna basilea"],
     faq: [
