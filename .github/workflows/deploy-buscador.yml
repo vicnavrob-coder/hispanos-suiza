@@ -1,0 +1,22 @@
+name: Deploy Buscador Empleo Suiza
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout buscador-empleo-suiza
+        uses: actions/checkout@v4
+        with:
+          repository: vicnavrob-coder/buscador-empleo-suiza
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Deploy to Vercel (production)
+        run: vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
