@@ -22,10 +22,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: `/blog/${slug}`,
     ogType: "article",
     publishedTime: post.fecha,
+    modifiedTime: post.fechaModificada ?? post.fecha,
     keywords: post.palabrasClave,
     ogImage: post.imagen?.startsWith("/images/")
       ? `${BASE_URL}${post.imagen}`
-      : undefined,
+      : post.imagen ?? undefined,
   });
 }
 

@@ -40,6 +40,7 @@ const postsManual: Post[] = [
     tiempoLectura: 12,
     imagen: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85&auto=format&fit=crop",
     destacado: true,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["emigrar a suiza", "vivir en suiza", "permiso residencia suiza", "mudarse a suiza", "españoles en suiza", "latinoamericanos suiza"],
     faq: [
       { pregunta: "¿Necesito visado para emigrar a Suiza siendo español?", respuesta: "No. Los ciudadanos españoles y de la UE/EEE tienen libre circulación y pueden entrar sin visado. Tienes 90 días para buscar trabajo y luego obtienes el permiso B automáticamente al ser contratado." },
@@ -103,6 +104,7 @@ const postsManual: Post[] = [
     tiempoLectura: 9,
     imagen: "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=1200&q=85&auto=format&fit=crop",
     destacado: true,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["alquilar piso suiza", "vivienda suiza", "homegate", "flatfox", "alquiler suiza", "piso suiza extranjero"],
     faq: [
       { pregunta: "¿Qué documentos piden para alquilar un piso en Suiza?", respuesta: "Los caseros suizos suelen pedir: extracto de deudas (Betreibungsregisterauszug), últimas 3 nóminas, copia del permiso de residencia, carta de presentación y referencia del anterior casero." },
@@ -185,6 +187,7 @@ const postsManual: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["cuenta bancaria suiza extranjero", "banco suiza expatriado", "postfinance", "ubs suiza", "wise suiza", "cuenta bancaria suiza"],
     faq: [
       { pregunta: "¿Puede un extranjero abrir una cuenta bancaria en Suiza?", respuesta: "Sí, con permiso de residencia (L o B) es posible abrir cuenta en PostFinance, UBS, Raiffeisen u otras. PostFinance es la más accesible para recién llegados. También puedes usar Wise o Revolut sin permiso." },
@@ -264,6 +267,7 @@ const postsManual: Post[] = [
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=85&auto=format&fit=crop",
     destacado: true,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["seguro medico suiza", "kvg suiza", "lamal suiza", "seguro salud suiza", "krankenversicherung", "seguro obligatorio suiza", "comparar seguros suiza"],
     faq: [
       { pregunta: "¿Es obligatorio el seguro médico en Suiza?", respuesta: "Sí, el seguro básico KVG (Krankenversicherung) es obligatorio para todos los residentes en Suiza, incluidos extranjeros. Debes contratarlo en los 3 primeros meses tras tu llegada." },
@@ -348,6 +352,7 @@ const postsManual: Post[] = [
     tiempoLectura: 11,
     imagen: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=85&auto=format&fit=crop",
     destacado: true,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["trabajar en suiza latinoamericano", "visa trabajo suiza", "permiso trabajo suiza", "trabajo suiza colombiano", "trabajo suiza mexicano", "emigrar suiza latinoamerica"],
     faq: [
       { pregunta: "¿Pueden los latinoamericanos trabajar en Suiza?", respuesta: "Sí, pero necesitan una oferta de trabajo previa ya que no tienen libre circulación. El empleador suizo debe demostrar que no encontró candidato en la UE antes de contratar a un latinoamericano (cuota contingente)." },
@@ -424,6 +429,7 @@ const postsManual: Post[] = [
     tiempoLectura: 10,
     imagen: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["coste vida suiza", "coste vida zurich", "coste vida ginebra", "precio alquiler zurich", "salario minimo suiza", "cuanto cuesta vivir en suiza"],
     faq: [
       { pregunta: "¿Cuánto cuesta vivir en Zúrich al mes?", respuesta: "Una persona sola en Zúrich necesita entre 3.500 y 4.500 CHF/mes para vivir con comodidad: alquiler (1.500-2.200 CHF), seguro médico (400-500 CHF), comida (400-600 CHF), transporte (100 CHF) y ocio (300-500 CHF)." },
@@ -513,6 +519,7 @@ const postsManual: Post[] = [
     tiempoLectura: 9,
     imagen: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["impuestos suiza", "declaracion renta suiza", "impuesto fuente suiza", "fiscalidad suiza extranjero", "cuanto se paga impuestos suiza", "doble imposicion suiza"],
     faq: [
       { pregunta: "¿Cuánto se paga de impuestos en Suiza?", respuesta: "El tipo efectivo varía según el cantón, el municipio, el nivel de ingresos y el estado civil. Para un sueldo de 80.000 CHF brutos en Zúrich, el tipo efectivo ronda el 15-18%. En Zug, puede ser del 10-13%." },
@@ -596,6 +603,7 @@ const postsManual: Post[] = [
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1200&q=85&auto=format&fit=crop",
     destacado: true,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["salarios suiza", "sueldo suiza", "cuanto gana enfermero suiza", "salario ingeniero suiza", "sueldo programador suiza", "salario medio suiza"],
     faq: [
       { pregunta: "¿Cuál es el salario medio en Suiza en 2026?", respuesta: "El salario bruto medio en Suiza es de aproximadamente 6.500 CHF/mes (78.000 CHF/año). Varía mucho según sector, cantón, experiencia y nivel de formación." },
@@ -680,6 +688,7 @@ const postsManual: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["cv suizo", "curriculum vitae suiza", "adaptar cv suiza", "curriculum suiza español", "como hacer cv suiza", "carta motivacion suiza"],
     faq: [
       { pregunta: "¿Hay que incluir foto en el CV suizo?", respuesta: "Sí, en Suiza la foto en el CV es habitual y esperada. Debe ser una foto profesional, fondo neutro, ropa formal. Al contrario de lo que ocurre en EE.UU. o Reino Unido, no incluir foto puede parecer extraño." },
@@ -765,6 +774,7 @@ const postsManual: Post[] = [
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["vivir en zurich", "zurich españoles", "vivir en zurich español", "mudarse zurich", "trabajar en zurich", "zurich hispanohablantes"],
     faq: [
       { pregunta: "¿Cuánto cuesta vivir en Zúrich para una persona sola?", respuesta: "Una persona sola en Zúrich necesita entre 3.200 y 4.500 CHF/mes: alquiler de habitación o estudio (1.500-2.200 CHF), seguro médico (420-500 CHF), comida (500-700 CHF), transporte (100 CHF) y ocio (300-500 CHF)." },
@@ -835,6 +845,7 @@ const postsManual: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1573108724029-4c46571d6490?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["vivir en ginebra", "ginebra españoles", "vivir en ginebra español", "mudarse ginebra", "trabajar ginebra", "organizaciones internacionales ginebra"],
     faq: [
       { pregunta: "¿Cuánto cuesta vivir en Ginebra al mes?", respuesta: "Una persona sola necesita entre 3.300 y 4.600 CHF/mes. El seguro médico es el más caro de Suiza (480-560 CHF/mes) y los alquileres son similares a Zúrich. Sin embargo, los salarios en Ginebra también están entre los más altos." },
@@ -895,6 +906,7 @@ const postsManual: Post[] = [
     tiempoLectura: 6,
     imagen: "https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["vivir en lugano", "lugano hispanohablantes", "lugano españoles", "vivir lugano suiza", "mudarse lugano", "lugano ticino trabajo"],
     faq: [
       { pregunta: "¿Qué idioma se habla en Lugano?", respuesta: "En Lugano y el cantón Ticino se habla italiano. Para un hispanohablante, el italiano es el idioma más fácil de aprender de Suiza — 6-9 meses para comunicarse con fluidez. El inglés funciona en el sector bancario y las multinacionales." },
@@ -961,6 +973,7 @@ const postsManual: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["aprender aleman suiza", "schweizerdeutsch", "hochdeutsch suiza", "cursos aleman zurich", "aleman hispanohablante suiza", "aprender aleman berna basilea"],
     faq: [
       { pregunta: "¿Es el alemán suizo muy diferente al alemán estándar?", respuesta: "Sí, mucho más de lo que la gente cree. El Schweizerdeutsch (alemán suizo) es un dialecto que varía por cantón, se usa en la calle y no tiene forma escrita estándar. En el trabajo y la administración se usa Hochdeutsch (alemán estándar). Lo que estudias en academias es Hochdeutsch, que sí funciona para trabajo y trámites." },

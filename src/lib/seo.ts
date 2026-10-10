@@ -22,6 +22,7 @@ export interface SeoOptions {
   ogImage?: string;
   ogType?: "website" | "article";
   publishedTime?: string;
+  modifiedTime?: string;
   keywords?: string[];
   noIndex?: boolean;
 }
@@ -59,6 +60,7 @@ export function buildMetadata(opts: SeoOptions): Metadata {
       url,
       images: [{ url: image, width: 1200, height: 630, alt: opts.title }],
       ...(opts.publishedTime ? { publishedTime: opts.publishedTime } : {}),
+      ...(opts.modifiedTime ? { modifiedTime: opts.modifiedTime } : {}),
     },
     twitter: {
       card: "summary_large_image",

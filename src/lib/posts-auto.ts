@@ -17,6 +17,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["vivir en basilea", "basilea españoles", "basilea latinoamericanos", "trabajar basilea", "novartis roche basilea", "mudarse basilea suiza"],
     faq: [
     { pregunta: "¿Merece la pena vivir en Basilea para españoles y latinoamericanos?", respuesta: "Sí, Basilea es una excelente opción para hispanohablantes con perfil técnico o científico, especialmente en el sector farmacéutico, donde empresas como Novartis y Roche ofrecen salarios muy competitivos. Los alquileres son entre un 20% y un 30% más baratos que en Zúrich, y la ciudad tiene una comunidad hispanohablante activa y una posición estratégica en la frontera con Francia y Alemania." },
@@ -37,6 +38,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["vivir en berna", "berna españoles", "berna hispanohablantes", "trabajar berna", "capital suiza berna", "mudarse berna"],
     faq: [
     { pregunta: "¿Es Berna una buena ciudad para vivir como español o hispanohablante?", respuesta: "Sí, Berna es una excelente opción para hispanohablantes que buscan estabilidad y calidad de vida en Suiza. Es más asequible que Zúrich o Ginebra, con alquileres entre un 20 y un 30% más bajos, y ofrece un mercado laboral estable gracias a la presencia de la administración federal suiza. El principal reto es el idioma, ya que se habla alemán (dialecto bernés), aunque el alemán estándar y el inglés son suficientes para trabajar en entornos formales." },
@@ -57,6 +59,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["permiso residencia suiza", "permiso b suiza", "permiso c suiza", "permiso l suiza", "tramitar permiso suiza", "tarjeta residencia suiza"],
     faq: [
     { pregunta: "¿Cuáles son los tipos de permiso de residencia en Suiza y cuál me corresponde?", respuesta: "En Suiza existen cuatro permisos principales: el permiso L (corta duración, hasta 12 meses), el permiso B (residencia temporal renovable anual, el más común para quienes llegan con contrato indefinido), el permiso C (residencia permanente, tras 5 o 10 años según el origen) y el permiso G (para trabajadores fronterizos que viven en un país vecino). El tipo que te corresponde depende de tu nacionalidad, tu contrato de trabajo y el tiempo que llevas residiendo en Suiza." },
@@ -77,6 +80,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["coste vida suiza vs espana", "suiza vs españa salarios", "merece la pena emigrar suiza", "suiza mas caro espana", "poder adquisitivo suiza"],
     faq: [
     { pregunta: "¿Compensa económicamente emigrar de España a Suiza?", respuesta: "Sí, para la mayoría de profesionales cualificados el salto compensa. Aunque el coste de vida en Suiza es entre un 60% y un 80% más alto que en España, los salarios son entre 3 y 4 veces superiores, lo que se traduce en un poder adquisitivo real significativamente mayor al final del mes." },
@@ -97,6 +101,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["carta motivacion suiza", "carta presentacion suiza", "motivationsschreiben suiza", "lettre motivation suisse", "como escribir carta motivacion suiza"],
     faq: [
     { pregunta: "¿Cómo debe ser una carta de motivación para trabajar en Suiza?", respuesta: "Una carta de motivación en Suiza debe ser concisa (máximo una página A4, entre 300 y 400 palabras), escrita en el idioma de la región de la empresa y personalizada para cada oferta. Debe incluir logros concretos con datos cuantificables y evitar frases genéricas, ya que los reclutadores suizos valoran la precisión y la honestidad por encima de todo." },
@@ -118,6 +123,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["vivir en lausana", "lausana españoles", "lausana hispanohablantes", "trabajar lausana", "epfl lausana", "mudarse lausana suiza"],
     faq: [
     { pregunta: "¿Es buena idea vivir en Lausana siendo hispanohablante?", respuesta: "Sí, Lausana es una excelente opción para hispanohablantes, especialmente para quienes trabajan en tecnología, investigación o el sector salud. Al estar en la Suiza francófona, el idioma es más accesible que el alemán para hispanohablantes, y la ciudad ofrece una calidad de vida muy alta, una comunidad internacional activa y una ubicación privilegiada junto al lago Lemán." },
@@ -139,6 +145,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["abrir cuenta bancaria suiza", "banco suiza extranjero", "cuenta bancaria suiza permiso b", "neon suiza", "yuh suiza", "postfinance cuenta suiza", "mejor banco suiza hispanohablante"],
     faq: [
       { pregunta: "¿Puede un extranjero con permiso B abrir una cuenta bancaria en Suiza?", respuesta: "Sí. Con permiso B puedes abrir una cuenta en cualquier banco suizo. Los bancos digitales como Neon o Yuh son los más ágiles: solo necesitas el permiso de residencia, un selfie y unos minutos desde el móvil. Los bancos tradicionales como UBS o Credit Suisse pueden pedir documentación adicional pero también aceptan permisos B." },
@@ -159,6 +166,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["quellensteuer suiza", "impuesto fuente suiza", "retención nómina suiza permiso b", "declaración impuestos suiza extranjero", "quellensteuer devolución suiza"],
     faq: [
       { pregunta: "¿Qué es el Quellensteuer y quién lo paga en Suiza?", respuesta: "El Quellensteuer (impuesto a la fuente) es el sistema por el que el empleador descuenta directamente los impuestos del salario bruto antes de ingresártelo. Lo pagan obligatoriamente las personas residentes en Suiza con permiso B o L que no tienen nacionalidad suiza ni son ciudadanos de la UE sin años de residencia suficientes. También los trabajadores fronterizos con permiso G tributan a la fuente en muchos casos." },
@@ -179,6 +187,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["wg suiza habitacion", "piso compartido suiza", "wg zimmer suiza", "buscar habitacion zurich", "habitacion ginebra suiza", "wg berna suiza hispanohablante"],
     faq: [
       { pregunta: "¿Qué es un WG en Suiza y cómo funciona?", respuesta: "WG viene del alemán Wohngemeinschaft (comunidad de vivienda) y equivale a un piso compartido. En Suiza, el WG es la forma más habitual y asequible de alojarse, especialmente para quienes llegan solos o sin una pareja. Cada habitante suele firmar un subarrendamiento con el inquilino principal (Hauptmieter), aunque también existen WGs donde todos firman el contrato directamente con el propietario." },
@@ -199,6 +208,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 6,
     imagen: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["canjear carnet conducir suiza", "permiso conducir suiza español", "carnet conducir suiza latinoamericano", "umschreiben führerschein suiza", "conducir suiza permiso extranjero"],
     faq: [
       { pregunta: "¿Puedo conducir en Suiza con mi carnet español?", respuesta: "Sí, con el carnet español puedes conducir en Suiza durante los primeros 12 meses desde tu llegada sin canjearlo. Pasado ese plazo, debes canjearlo por un carnet suizo. El canje es gratuito para ciudadanos de la UE/AELE con carnet emitido en un país de la UE, y no requiere volver a hacer el examen de conducir." },
@@ -219,6 +229,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["pilar 3a suiza", "pension privada suiza", "ahorro fiscal suiza", "saeule 3a", "plan pensiones suiza expatriado"],
     faq: [
     { pregunta: "¿Qué es el Pilar 3a en Suiza y cuánto puedo deducir en 2026?", respuesta: "El Pilar 3a es el plan de pensiones privado y voluntario de Suiza que permite deducir fiscalmente las aportaciones. En 2026, los empleados con acceso al Pilar 2 pueden aportar y deducir hasta 7.056 CHF anuales, mientras que los autónomos sin Pilar 2 pueden deducir hasta el 20% de sus ingresos netos con un máximo de 35.280 CHF." },
@@ -240,6 +251,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["sistema salud suiza", "medico cabecera suiza", "urgencias suiza", "especialista suiza", "sanidad suiza extranjero", "como funciona sanidad suiza"],
     faq: [
       { pregunta: "¿Cómo elijo médico de cabecera en Suiza?", respuesta: "En Suiza no hay asignación automática de médico. Tú eliges libremente un Hausarzt (médico de familia) en tu cantón. Lo más sencillo es buscarlo en el directorio de tu seguro médico o en Doctorfmh.ch. Llamas, pides cita y ya tienes médico. Es recomendable elegir uno que hable español o inglés si tu alemán o francés es limitado. Muchas ciudades tienen médicos hispanohablantes." },
@@ -260,6 +272,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1474487548417-781cb6d646b3?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["transporte publico suiza", "ga suiza", "halbtax suiza", "abono anual suiza", "sbb suiza", "tren suiza precio"],
     faq: [
       { pregunta: "¿Qué es el GA en Suiza y cuánto cuesta en 2026?", respuesta: "El GA (Generalabonnement) es el abono de transporte más completo de Suiza: viajes ilimitados en tren, bus, tranvía, metro y muchos barcos en toda la red nacional durante un año. En 2026 cuesta 3.860 CHF en segunda clase y 6.300 CHF en primera clase para adultos. Hay precios reducidos para jóvenes menores de 25 años (GA Joven: 1.680 CHF) y mayores de 65 años (2.680 CHF)." },
@@ -280,6 +293,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["vivir en zug", "zug impuestos bajos", "zug hispanohablantes", "mudarse zug suiza", "zug español", "canton zug suiza"],
     faq: [
       { pregunta: "¿Por qué los impuestos en Zug son tan bajos?", respuesta: "Zug adoptó desde los años 60 una política fiscal muy favorable para atraer empresas y ciudadanos de alto patrimonio. Hoy alberga más de 30.000 empresas registradas (multinacionales, fondos, holdings) para solo 130.000 habitantes. Esta base imponible enorme permite al cantón mantener tipos impositivos muy bajos para todos los residentes." },
@@ -300,6 +314,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["guarderia suiza precio", "escuela suiza extranjero", "sistema educativo suiza", "colegio suiza hijos", "kita suiza", "escolarizacion suiza"],
     faq: [
       { pregunta: "¿Cuánto cuesta una guardería (Kita) en Suiza?", respuesta: "Las Kitas en Suiza son privadas o semi-públicas. En Zúrich, el coste completo sin subvención oscila entre 100 y 160 CHF por día por niño (2.000–3.200 CHF al mes para jornada completa). Sin embargo, muchos cantones y municipios ofrecen subvenciones basadas en ingresos que pueden reducir el coste a la mitad o más. En Ginebra y Zúrich las subvenciones son especialmente generosas para familias con ingresos medios." },
@@ -320,6 +335,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["supermercados suiza baratos", "migros suiza", "lidl suiza", "aldi suiza", "comprar barato suiza", "cesta compra suiza precio"],
     faq: [
       { pregunta: "¿Cuál es el supermercado más barato de Suiza?", respuesta: "Lidl y Aldi son consistentemente los supermercados con los precios más bajos en Suiza, entre un 20 y un 30% más baratos que Migros y Coop en productos comparables. Dentro de los grandes supermercados, Migros suele ser algo más económico que Coop en la mayoría de categorías. Denner (filial de Migros) es también una buena opción de precio bajo con mayor cobertura geográfica que Lidl o Aldi." },
@@ -340,6 +356,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["permiso c suiza", "residencia permanente suiza", "niederlassungsbewilligung suiza", "como conseguir permiso c suiza", "permiso c plazo suiza", "nacionalidad suiza"],
     faq: [
       { pregunta: "¿Cuántos años hay que vivir en Suiza para obtener el permiso C?", respuesta: "Depende de tu nacionalidad. Los ciudadanos de la UE/AELE (incluidos españoles) necesitan 5 años de residencia ininterrumpida con permiso B. Los ciudadanos de países terceros necesitan en general 10 años, aunque España tiene un acuerdo bilateral que permite solicitarlo tras 5 años. Para latinoamericanos sin pasaporte europeo el plazo estándar es de 10 años." },
@@ -360,6 +377,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["traer mascotas suiza", "perro suiza", "gato suiza", "requisitos mascotas suiza", "chip mascotas suiza", "viaje mascotas suiza"],
     faq: [
       { pregunta: "¿Qué documentos necesita mi perro o gato para entrar en Suiza desde España?", respuesta: "Para entrar desde España (país UE) necesitas: microchip ISO 11784/11785, vacuna antirrábica vigente (administrada después del chip, con al menos 21 días de antelación si es la primera vacuna), y el Pasaporte Europeo de Animales de Compañía expedido por un veterinario oficial. Suiza acepta el pasaporte europeo de mascotas y aplica las mismas normas que el Espacio Schengen." },
@@ -380,6 +398,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 9,
     imagen: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
+    fechaModificada: "2026-10-09",
     palabrasClave: ["jubilacion suiza", "pension suiza", "ahv suiza", "avs suiza", "tres pilares suiza", "pension suiza extranjero", "jubilarse suiza"],
     faq: [
       { pregunta: "¿Cuánto se cobra de pensión de la AHV/AVS en Suiza?", respuesta: "La pensión AHV/AVS máxima individual es de 2.520 CHF al mes en 2026, para quien haya cotizado los 44–45 años completos requeridos. La mínima es de 1.260 CHF/mes. Los hispanohablantes que no han cotizado todos los años recibirán una pensión proporcional a los años cotizados en Suiza. La AHV sola es insuficiente para mantener el nivel de vida en Suiza; de ahí que los Pilares 2 y 3 sean esenciales." },

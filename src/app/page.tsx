@@ -4,7 +4,7 @@ import Image from "next/image";
 import ArticleCard from "@/components/ArticleCard";
 import NewsletterForm from "@/components/NewsletterForm";
 import { posts, categorias, getDestacados } from "@/lib/posts";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, organizationSchema, websiteSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "HispanosEnSuiza — La guía real para vivir en Suiza",
@@ -49,8 +49,13 @@ export default function Home() {
   const destacados = getDestacados();
   const recientes  = posts.slice(0, 6);
 
+  const schemas = [organizationSchema(), websiteSchema()];
+
   return (
     <div>
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
 
       {/* ══════════════════════════════════════════
           HERO
