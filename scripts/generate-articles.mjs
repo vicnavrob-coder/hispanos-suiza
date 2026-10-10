@@ -164,7 +164,7 @@ for (const topic of pending) {
       categoria: topic.categoria,
       fecha: new Date().toISOString().split("T")[0],
       tiempoLectura: generated.tiempoLectura || 8,
-      imagen: `/images/${topic.slug.split("-")[1] || "suiza"}.jpg`,
+      imagen: topic.imagen || "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85&auto=format&fit=crop",
       destacado: false,
       palabrasClave: topic.palabrasClave,
       faq: generated.faq || [],
@@ -243,8 +243,11 @@ ${faqStr}
 let fileContent;
 if (previousContent) {
   // Añadir nuevos posts al final del array existente
-  fileContent = previousContent +
-    ",\n\n  // ── AUTO-GENERADO " + new Date().toISOString().split("T")[0] + " ──\n" +
+  // Ensure previousContent doesn't already end with a comma
+  const trimmed = previousContent.trimEnd();
+  const separator = trimmed.endsWith(",") ? "" : ",";
+  fileContent = trimmed + separator +
+    "\n\n  // ── AUTO-GENERADO " + new Date().toISOString().split("T")[0] + " ──\n" +
     newPosts.map(postToTs).join(",\n\n") +
     "\n];\n";
 } else {
