@@ -401,7 +401,7 @@ export default function TrabajoPage() {
                           <h3 className="font-bold text-gray-800 group-hover:text-red-700 text-sm leading-snug flex-1">
                             {job.title}
                           </h3>
-                          <span className="text-gray-300 group-hover:text-red-400 text-lg flex-shrink-0">→</span>
+                          <span className="text-gray-500 group-hover:text-red-400 text-lg flex-shrink-0">→</span>
                         </div>
                         {job.company && (
                           <div className="text-xs font-bold text-gray-700 mb-1">{job.company}</div>
@@ -456,7 +456,7 @@ export default function TrabajoPage() {
                   >
                     <span className="text-lg">{p.logo}</span>
                     <span className="font-medium text-gray-700 group-hover:text-red-700">{p.nombre}</span>
-                    <span className="ml-auto text-gray-300 group-hover:text-red-400 text-xs">→</span>
+                    <span className="ml-auto text-gray-500 group-hover:text-red-400 text-xs">→</span>
                   </a>
                 ))}
               </div>
@@ -479,7 +479,7 @@ export default function TrabajoPage() {
                   >
                     <span>{a.logo}</span>
                     <span className="font-medium text-gray-700 group-hover:text-amber-700">{a.nombre}</span>
-                    <span className="ml-auto text-gray-300 group-hover:text-amber-400 text-xs">→</span>
+                    <span className="ml-auto text-gray-500 group-hover:text-amber-400 text-xs">→</span>
                   </a>
                 ))}
               </div>
@@ -531,7 +531,7 @@ export default function TrabajoPage() {
                   <div className="font-bold text-gray-800 group-hover:text-red-700">¿Cuánto cobrarás neto?</div>
                   <div className="text-sm text-gray-500">Calcula después de impuestos y cotizaciones.</div>
                 </div>
-                <span className="text-gray-300 group-hover:text-red-400">→</span>
+                <span className="text-gray-500 group-hover:text-red-500">→</span>
               </Link>
               <Link href="/vivienda" className="group bg-white border border-gray-100 rounded-2xl p-5 hover:shadow-md hover:border-blue-100 transition-all flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center text-xl flex-shrink-0 bg-blue-50">🏠</div>
@@ -539,7 +539,7 @@ export default function TrabajoPage() {
                   <div className="font-bold text-gray-800 group-hover:text-blue-700">¿Dónde vivir?</div>
                   <div className="text-sm text-gray-500">Pisos reales de flatfox y otros portales.</div>
                 </div>
-                <span className="text-gray-300 group-hover:text-blue-400">→</span>
+                <span className="text-gray-500 group-hover:text-blue-500">→</span>
               </Link>
             </div>
           </div>

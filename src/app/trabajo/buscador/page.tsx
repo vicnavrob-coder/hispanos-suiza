@@ -132,7 +132,7 @@ export default function BuscadorTrabajoPage() {
                       {p.tipo === "oficial" ? "Portal oficial" : p.tipo === "empresas" ? "Directorio empresas" : "Portal general"}
                     </div>
                   </div>
-                  <span className="ml-auto text-gray-300 group-hover:text-red-400 text-lg">→</span>
+                  <span className="ml-auto text-gray-500 group-hover:text-red-400 text-lg">→</span>
                 </a>
               ))}
             </div>
@@ -155,7 +155,7 @@ export default function BuscadorTrabajoPage() {
                 >
                   <span className="text-xl">{a.logo}</span>
                   <span className="font-semibold text-gray-800 group-hover:text-red-700 text-sm">{a.nombre}</span>
-                  <span className="ml-auto text-gray-300 group-hover:text-red-400">→</span>
+                  <span className="ml-auto text-gray-500 group-hover:text-red-400">→</span>
                 </a>
               ))}
             </div>
