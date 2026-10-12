@@ -30,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/herramientas/comparador-ciudades`,   lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/herramientas/seguros-medicos`,       lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/trabajo/buscador`,                   lastModified: now, changeFrequency: "daily",   priority: 0.8 },
+    { url: `${BASE_URL}/trabajo/unia`,                       lastModified: now, changeFrequency: "monthly", priority: 0.9 },
   ];
 
   // Artículos del blog (prioridad por destacado)
