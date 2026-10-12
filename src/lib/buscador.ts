@@ -116,13 +116,32 @@ export const PORTALES_EMPLEO_BUSQUEDA = [
   { nombre: "Xing",           url: "https://www.xing.com/jobs/search?q={term}&location={city}",                             tipo: "general",  logo: "🟢" },
 ];
 
-export const AGENCIAS_ETT = [
-  { nombre: "Adecco",       url: "https://www.adecco.ch/de-ch/jobs/?q={term}&l={city}",                logo: "🔵" },
-  { nombre: "Randstad",     url: "https://www.randstad.ch/jobs/?q={term}&location={city}",             logo: "🔴" },
-  { nombre: "Manpower",     url: "https://www.manpower.ch/de/jobsuche?q={term}&location={city}",       logo: "🟠" },
-  { nombre: "Gi Group",     url: "https://www.gigroup.ch/stellenangebote/?q={term}&location={city}",   logo: "🟣" },
-  { nombre: "Kelly Services",url: "https://www.kellyservices.ch/jobs?keywords={term}&location={city}", logo: "🟢" },
-  { nombre: "Tempservice",  url: "https://www.tempservice.ch/de/jobs?q={term}&location={city}",        logo: "⚪" },
+export type AgenciaETT = {
+  nombre: string;
+  url: string;
+  logo: string;
+  sector?: string;
+  desc?: string;
+};
+
+export const AGENCIAS_ETT: AgenciaETT[] = [
+  // ── Construcción y oficios ────────────────────────────────────────────────
+  { nombre: "ICM Bau",       url: "https://www.icmbau.ch/jobs",                                             logo: "🏗️", sector: "construccion", desc: "Especialistas en construcción" },
+  { nombre: "tempoX",        url: "https://tempox.ch/job-list/?filter-title={term}",                        logo: "🔨", sector: "construccion", desc: "Obras, oficios, industria" },
+  { nombre: "PEMSA",         url: "https://www.pemsa.ch/offres-demploi/",                                   logo: "🏛️", sector: "construccion", desc: "Suiza romanda" },
+  // ── Hostelería y servicios ────────────────────────────────────────────────
+  { nombre: "Adia",          url: "https://www.adia.ch/jobs?lang=de",                                       logo: "🍽️", sector: "hosteleria",   desc: "Hostelería, catering, eventos" },
+  { nombre: "Alps Staffing", url: "https://jobs.alpsstaffing.ch/?keywords={term}",                          logo: "⛰️", sector: "hosteleria",   desc: "Turismo, esquí, hostelería" },
+  // ── Generalistas grandes ──────────────────────────────────────────────────
+  { nombre: "Adecco",        url: "https://www.adecco.ch/de-ch/jobs/?q={term}&l={city}",                    logo: "🔵", sector: "general",      desc: "Mayor ETT multinacional" },
+  { nombre: "Randstad",      url: "https://www.randstad.ch/jobs/q-{term}/",                                 logo: "🔴", sector: "general",      desc: "Todos los sectores" },
+  { nombre: "Manpower",      url: "https://www.manpower.ch/de/jobsuche?q={term}&location={city}",           logo: "🟠", sector: "general",      desc: "Oficina, industria, IT" },
+  { nombre: "Gi Group",      url: "https://www.gigroup.ch/stellenangebote/?q={term}&location={city}",       logo: "🟣", sector: "general",      desc: "Industria y logística" },
+  { nombre: "Tempservice",   url: "https://www.tempservice.ch/de/suche.php?id={term}",                      logo: "⚪", sector: "general",      desc: "Convenios colectivos CH" },
+  { nombre: "Flexsis",       url: "https://www.flexsis.ch/recherche-offres-emploi/?s={term}",               logo: "🟤", sector: "general",      desc: "Técnico y comercial" },
+  // ── ETT locales ───────────────────────────────────────────────────────────
+  { nombre: "Activaperson",  url: "https://www.activaperson.ch/jobs",                                       logo: "👤", sector: "general",      desc: "ETT local suiza" },
+  { nombre: "Inovus",        url: "https://www.inovus.ch/jobs",                                             logo: "⭐", sector: "general",      desc: "ETT local suiza" },
 ];
 
 export const PORTALES_PUBLICOS = [

@@ -47,6 +47,8 @@ const SOURCE_STYLE: Record<string, { bg: string; color: string; label: string }>
   "LinkedIn":     { bg: "#dbeafe", color: "#1d4ed8", label: "LinkedIn" },
   "job-room.ch":  { bg: "#dcfce7", color: "#15803d", label: "Portal Oficial CH" },
   "Indeed":       { bg: "#fef9c3", color: "#a16207", label: "Indeed" },
+  "Tempservice":  { bg: "#fff7ed", color: "#c2410c", label: "Tempservice ETT" },
+  "tempoX":       { bg: "#fef2f2", color: "#b91c1c", label: "tempoX ETT" },
 };
 
 function salaryLabel(cat: JobCategory): string {
@@ -61,7 +63,7 @@ export default function TrabajoPage() {
   const [loading, setLoading]     = useState(false);
   const [buscado, setBuscado]     = useState(false);
   const [error, setError]         = useState("");
-  const [sources, setSources]     = useState<{ jobsCh: number; jobRoom: number; indeed: number; linkedin: number } | null>(null);
+  const [sources, setSources]     = useState<{ jobsCh: number; jobRoom: number; indeed: number; linkedin: number; tempservice: number; tempoX: number } | null>(null);
   const { user, openModal }       = useAuth();
 
   async function buscar() {
@@ -120,14 +122,14 @@ export default function TrabajoPage() {
                 Buscador de trabajo en Suiza
               </h1>
               <p className="text-gray-500 text-sm max-w-xl">
-                Ofertas en tiempo real de jobs.ch, Portal Oficial Suizo, Indeed y LinkedIn. Con datos de jornada, idioma y contrato.
+                Ofertas de ETTs (temporeras), portal oficial suizo, jobs.ch, Indeed y LinkedIn. Datos de jornada, idioma y contrato.
               </p>
             </div>
             <div className="flex gap-5 text-center flex-shrink-0">
               {[
                 { n: "11", l: "sectores" },
-                { n: "4",  l: "fuentes live" },
-                { n: "6",  l: "portales" },
+                { n: "6",  l: "fuentes live" },
+                { n: "13", l: "ETTs listadas" },
               ].map((s) => (
                 <div key={s.l} className="text-center">
                   <div className="text-xl font-bold text-gray-900">{s.n}</div>
@@ -314,7 +316,7 @@ export default function TrabajoPage() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
                 </svg>
-                <span>Buscando en 4 portales suizos…</span>
+                <span>Buscando en ETTs y 4 portales suizos…</span>
               </>
             ) : (categoria || customTerm.trim()) && !user ? (
               <>
@@ -372,7 +374,7 @@ export default function TrabajoPage() {
                 )}
                 {sources && (
                   <span className="text-gray-400 text-xs ml-2">
-                    (jobs.ch: {sources.jobsCh} · Portal CH: {sources.jobRoom} · Indeed: {sources.indeed} · LinkedIn: {sources.linkedin})
+                    (ETT: {sources.tempservice + sources.tempoX} · jobs.ch: {sources.jobsCh} · Portal CH: {sources.jobRoom} · Indeed: {sources.indeed} · LinkedIn: {sources.linkedin})
                   </span>
                 )}
               </div>
@@ -387,12 +389,17 @@ export default function TrabajoPage() {
             {/* Ofertas reales */}
             {jobs.length > 0 ? (
               <section>
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-4 flex-wrap">
                   <div className="w-1 h-6 rounded-full" style={{ background: ACCENT }} />
-                  <h2 className="text-lg font-bold text-gray-800">Ofertas de trabajo — actualizadas ahora</h2>
+                  <h2 className="text-lg font-bold text-gray-800">Ofertas en tiempo real</h2>
                   <span className="text-xs bg-green-100 text-green-700 font-semibold px-2 py-0.5 rounded-full">
-                    {jobs.length} resultados
+                    {jobs.length} ofertas
                   </span>
+                  {jobs.some(j => j.isEtt) && (
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-orange-100 text-orange-700">
+                      🏭 {jobs.filter(j => j.isEtt).length} de agencias ETT
+                    </span>
+                  )}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {jobs.map((job, i) => {
@@ -508,10 +515,13 @@ export default function TrabajoPage() {
 
             {/* ETT */}
             <section>
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-2">
                 <div className="w-1 h-6 rounded-full bg-amber-500" />
-                <h2 className="text-base font-bold text-gray-700">Agencias ETT — regístrate en varias</h2>
+                <h2 className="text-base font-bold text-gray-700">Agencias ETT — la vía más rápida para trabajar</h2>
               </div>
+              <p className="text-xs text-gray-500 mb-4 ml-4">
+                Regístrate directamente en varias a la vez. Las temporeras tienen acceso a ofertas que <strong>no aparecen en portales públicos</strong> — especialmente en construcción, hostelería y logística.
+              </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {AGENCIAS_ETT.map((a) => (
                   <a
@@ -519,11 +529,16 @@ export default function TrabajoPage() {
                     href={buildUrl(a.url, termPrincipal, ciudadUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white border border-gray-100 rounded-xl p-3 hover:border-amber-200 transition-all flex items-center gap-2 group text-sm"
+                    className="bg-white border border-gray-100 rounded-xl p-3 hover:border-amber-200 transition-all flex flex-col gap-0.5 group text-sm"
                   >
-                    <span>{a.logo}</span>
-                    <span className="font-medium text-gray-700 group-hover:text-amber-700">{a.nombre}</span>
-                    <span className="ml-auto text-gray-500 group-hover:text-amber-400 text-xs">→</span>
+                    <div className="flex items-center gap-2">
+                      <span>{a.logo}</span>
+                      <span className="font-medium text-gray-700 group-hover:text-amber-700">{a.nombre}</span>
+                      <span className="ml-auto text-gray-400 group-hover:text-amber-400 text-xs">→</span>
+                    </div>
+                    {a.desc && (
+                      <span className="text-[10px] text-gray-400 ml-6">{a.desc}</span>
+                    )}
                   </a>
                 ))}
               </div>
@@ -559,7 +574,7 @@ export default function TrabajoPage() {
               <ul className="space-y-2.5 text-sm text-gray-700">
                 <li className="flex gap-2"><span className="text-amber-500 flex-shrink-0">▸</span><span><strong>jobs.ch es el portal más grande</strong> — la mayoría de empresas suizas publica aquí primero.</span></li>
                 <li className="flex gap-2"><span className="text-amber-500 flex-shrink-0">▸</span><span><strong>LinkedIn es imprescindible</strong> — muchos reclutadores suizos buscan activamente perfiles.</span></li>
-                <li className="flex gap-2"><span className="text-amber-500 flex-shrink-0">▸</span><span><strong>Regístrate en varias ETT a la vez</strong> — cada agencia tiene acuerdos con empresas distintas.</span></li>
+                <li className="flex gap-2"><span className="text-amber-500 flex-shrink-0">▸</span><span><strong>Las ETT son lo primero</strong> — ICM Bau, tempoX, Adia y las demás tienen ofertas exclusivas que no salen en los portales públicos. Regístrate en varias.</span></li>
                 <li className="flex gap-2"><span className="text-amber-500 flex-shrink-0">▸</span><span><strong>CV en formato europeo</strong> — máximo 2 páginas, foto opcional.</span></li>
                 {categoria && (
                   <li className="flex gap-2"><span className="text-amber-500 flex-shrink-0">▸</span><span><strong>Salario referencia en {categoria.label}:</strong> {fmt(categoria.salarioMin)} – {fmt(categoria.salarioMax)} CHF/mes bruto.</span></li>

@@ -7,11 +7,12 @@ export type JobItem = {
   url: string;
   description: string;
   pubDate: string;
-  source: "jobs.ch" | "LinkedIn" | "job-room.ch" | "Indeed";
-  contractType?: string;  // "Indefinido" | "Temporal" | "Prácticas"
+  source: "jobs.ch" | "LinkedIn" | "job-room.ch" | "Indeed" | "Tempservice" | "tempoX";
+  contractType?: string;  // "Jornada completa" | "Temporal" | "Prácticas"
   workload?: string;      // "100%" | "80–100%" | "50–80%"
   salary?: string;        // "5 000 CHF/mes"
   languageRequired?: string; // "Alemán" | "Francés" | "Inglés"
+  isEtt?: boolean;        // resultado de agencia de trabajo temporal
 };
 
 // ── Mapeos ciudad UI ─────────────────────────────────────────────────────────
@@ -233,6 +234,123 @@ async function fetchIndeed(term: string, city: string): Promise<JobItem[]> {
   } catch { return []; }
 }
 
+// ── Tempservice.ch — API JSON propia ─────────────────────────────────────────
+
+type TempserviceJob = {
+  title?: string;
+  job_title?: string;
+  name?: string;
+  company?: string;
+  employer?: string;
+  location?: string;
+  city?: string;
+  url?: string;
+  link?: string;
+  permalink?: string;
+  date?: string;
+  published?: string;
+  description?: string;
+  excerpt?: string;
+  employment_type?: string;
+  workload?: string;
+  workload_min?: number;
+  workload_max?: number;
+};
+
+async function fetchTempservice(term: string, city: string): Promise<JobItem[]> {
+  // Tempservice tiene un endpoint de búsqueda JSON
+  const url = `https://www.tempservice.ch/tools/search/search-result.php?search=${encodeURIComponent(term)}&searchlang=de`;
+  try {
+    const res = await fetch(url, {
+      headers: { ...HEADERS, Accept: "application/json, text/javascript, */*" },
+      next: { revalidate: 600 },
+    });
+    if (!res.ok) return [];
+    const text = await res.text();
+    if (!text.trim().startsWith("{") && !text.trim().startsWith("[")) return [];
+    const data: unknown = JSON.parse(text);
+    const arr: TempserviceJob[] = Array.isArray(data)
+      ? (data as TempserviceJob[])
+      : ((data as Record<string, unknown>).jobs as TempserviceJob[] ?? (data as Record<string, unknown>).results as TempserviceJob[] ?? []);
+    if (!Array.isArray(arr)) return [];
+
+    const cityLower = city.toLowerCase();
+    return arr
+      .map((j): JobItem => {
+        const wMin = j.workload_min;
+        const wMax = j.workload_max;
+        return {
+          title:        j.title ?? j.job_title ?? j.name ?? "",
+          company:      j.company ?? j.employer ?? "Tempservice",
+          location:     j.location ?? j.city ?? "Suiza",
+          url:          j.url ?? j.link ?? j.permalink ?? "https://www.tempservice.ch",
+          description:  (j.description ?? j.excerpt ?? "").replace(/<[^>]+>/g, "").slice(0, 220),
+          pubDate:      j.date ?? j.published ?? "",
+          source:       "Tempservice",
+          isEtt:        true,
+          contractType: j.employment_type,
+          workload:     j.workload ?? (wMin || wMax ? workloadStr(wMin, wMax) : undefined),
+        };
+      })
+      .filter((j) => j.title && j.url)
+      .filter((j) => city === "Toda Suiza" || j.location.toLowerCase().includes(cityLower) || j.location === "Suiza")
+      .slice(0, 15);
+  } catch { return []; }
+}
+
+// ── tempoX.ch — WordPress REST API ───────────────────────────────────────────
+
+type WPJob = {
+  id?: number;
+  link?: string;
+  title?: { rendered?: string };
+  excerpt?: { rendered?: string };
+  content?: { rendered?: string };
+  date?: string;
+  meta?: Record<string, unknown>;
+  acf?: Record<string, unknown>;
+};
+
+async function fetchTempoX(term: string, city: string): Promise<JobItem[]> {
+  // WordPress REST API — WP Job Board Pro usa el CPT "job_listing" o "jobs"
+  const cityPath = city !== "Toda Suiza" ? `&filter[job_location]=${encodeURIComponent(city)}` : "";
+  const url = `https://tempox.ch/wp-json/wp/v2/job_listing?search=${encodeURIComponent(term)}&per_page=20${cityPath}`;
+  try {
+    const res = await fetch(url, {
+      headers: { ...HEADERS, Accept: "application/json" },
+      next: { revalidate: 600 },
+    });
+    if (!res.ok) {
+      // Probar con CPT "jobs" como fallback
+      const res2 = await fetch(
+        `https://tempox.ch/wp-json/wp/v2/jobs?search=${encodeURIComponent(term)}&per_page=20`,
+        { headers: { ...HEADERS, Accept: "application/json" }, next: { revalidate: 600 } }
+      );
+      if (!res2.ok) return [];
+      const data2: WPJob[] = await res2.json();
+      return parseWPJobs(data2, "tempoX");
+    }
+    const data: WPJob[] = await res.json();
+    return parseWPJobs(data, "tempoX");
+  } catch { return []; }
+}
+
+function parseWPJobs(data: WPJob[], company: string): JobItem[] {
+  if (!Array.isArray(data)) return [];
+  return data
+    .map((j): JobItem => ({
+      title:       (j.title?.rendered ?? "").replace(/<[^>]+>/g, "").trim(),
+      company:     company,
+      location:    "Suiza",
+      url:         j.link ?? `https://tempox.ch`,
+      description: (j.excerpt?.rendered ?? j.content?.rendered ?? "").replace(/<[^>]+>/g, "").slice(0, 220),
+      pubDate:     j.date ?? "",
+      source:      "tempoX",
+      isEtt:       true,
+    }))
+    .filter((j) => j.title && j.url);
+}
+
 // ── LinkedIn ─────────────────────────────────────────────────────────────────
 
 function extractAll(html: string, pattern: RegExp): string[] {
@@ -297,20 +415,24 @@ export async function GET(request: Request) {
 
   if (!term) return NextResponse.json({ jobs: [], total: 0 });
 
-  // Lanzar las 4 fuentes en paralelo
-  const [jobsChRes, jobRoomRes, indeedRes, linkedInRes] = await Promise.allSettled([
+  // Lanzar las 6 fuentes en paralelo
+  const [jobsChRes, jobRoomRes, indeedRes, linkedInRes, tempserviceRes, tempoXRes] = await Promise.allSettled([
     fetchJobsCh(term, city),
     fetchJobRoom(term, city),
     fetchIndeed(term, city),
     fetchLinkedIn(term, city),
+    fetchTempservice(term, city),
+    fetchTempoX(term, city),
   ]);
 
-  const jobsCh    = jobsChRes.status    === "fulfilled" ? jobsChRes.value    : [];
-  const jobRoom   = jobRoomRes.status   === "fulfilled" ? jobRoomRes.value   : [];
-  const indeed    = indeedRes.status    === "fulfilled" ? indeedRes.value    : [];
-  const linkedin  = linkedInRes.status  === "fulfilled" ? linkedInRes.value  : [];
+  const jobsCh      = jobsChRes.status      === "fulfilled" ? jobsChRes.value      : [];
+  const jobRoom     = jobRoomRes.status     === "fulfilled" ? jobRoomRes.value     : [];
+  const indeed      = indeedRes.status      === "fulfilled" ? indeedRes.value      : [];
+  const linkedin    = linkedInRes.status    === "fulfilled" ? linkedInRes.value    : [];
+  const tempservice = tempserviceRes.status === "fulfilled" ? tempserviceRes.value : [];
+  const tempoX      = tempoXRes.status      === "fulfilled" ? tempoXRes.value      : [];
 
-  // Segundo término para enrichment si hay pocos resultados
+  // Segundo término para enrichment si hay pocos resultados en portales principales
   let jobsCh2: JobItem[] = [];
   let jobRoom2: JobItem[] = [];
   if (term2 && jobsCh.length + jobRoom.length < 8) {
@@ -322,10 +444,10 @@ export async function GET(request: Request) {
     jobRoom2 = r2.status === "fulfilled" ? r2.value : [];
   }
 
-  // Merge: prioridad jobs.ch y job-room.ch (más locales), luego Indeed, luego LinkedIn
+  // Merge: ETT primero (más especializadas), luego portales públicos, luego LinkedIn
   const seen   = new Set<string>();
   const merged: JobItem[] = [];
-  for (const job of [...jobsCh, ...jobRoom, ...jobsCh2, ...jobRoom2, ...indeed, ...linkedin]) {
+  for (const job of [...tempservice, ...tempoX, ...jobsCh, ...jobRoom, ...jobsCh2, ...jobRoom2, ...indeed, ...linkedin]) {
     const key = `${job.title.toLowerCase().slice(0, 40)}|${job.company.toLowerCase().slice(0, 20)}`;
     if (!seen.has(key)) {
       seen.add(key);
@@ -334,13 +456,15 @@ export async function GET(request: Request) {
   }
 
   return NextResponse.json({
-    jobs:    merged.slice(0, 40),
+    jobs:    merged.slice(0, 50),
     total:   merged.length,
     sources: {
-      jobsCh:   jobsCh.length + jobsCh2.length,
-      jobRoom:  jobRoom.length + jobRoom2.length,
-      indeed:   indeed.length,
-      linkedin: linkedin.length,
+      jobsCh:       jobsCh.length + jobsCh2.length,
+      jobRoom:      jobRoom.length + jobRoom2.length,
+      indeed:       indeed.length,
+      linkedin:     linkedin.length,
+      tempservice:  tempservice.length,
+      tempoX:       tempoX.length,
     },
   });
 }
