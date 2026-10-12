@@ -43,8 +43,10 @@ const CIUDAD_EMOJIS: Record<string, string> = {
 };
 
 const SOURCE_STYLE: Record<string, { bg: string; color: string; label: string }> = {
-  "jobs.ch":  { bg: "#e0f2fe", color: "#0369a1", label: "jobs.ch" },
-  "LinkedIn": { bg: "#dbeafe", color: "#1d4ed8", label: "LinkedIn" },
+  "jobs.ch":      { bg: "#e0f2fe", color: "#0369a1", label: "jobs.ch" },
+  "LinkedIn":     { bg: "#dbeafe", color: "#1d4ed8", label: "LinkedIn" },
+  "job-room.ch":  { bg: "#dcfce7", color: "#15803d", label: "Portal Oficial CH" },
+  "Indeed":       { bg: "#fef9c3", color: "#a16207", label: "Indeed" },
 };
 
 function salaryLabel(cat: JobCategory): string {
@@ -59,7 +61,7 @@ export default function TrabajoPage() {
   const [loading, setLoading]     = useState(false);
   const [buscado, setBuscado]     = useState(false);
   const [error, setError]         = useState("");
-  const [sources, setSources]     = useState<{ jobsCh: number; linkedin: number } | null>(null);
+  const [sources, setSources]     = useState<{ jobsCh: number; jobRoom: number; indeed: number; linkedin: number } | null>(null);
   const { user, openModal }       = useAuth();
 
   async function buscar() {
@@ -118,13 +120,13 @@ export default function TrabajoPage() {
                 Buscador de trabajo en Suiza
               </h1>
               <p className="text-gray-500 text-sm max-w-xl">
-                Ofertas reales de jobs.ch y LinkedIn. Más portales directos y agencias ETT.
+                Ofertas en tiempo real de jobs.ch, Portal Oficial Suizo, Indeed y LinkedIn. Con datos de jornada, idioma y contrato.
               </p>
             </div>
             <div className="flex gap-5 text-center flex-shrink-0">
               {[
                 { n: "11", l: "sectores" },
-                { n: "2",  l: "fuentes live" },
+                { n: "4",  l: "fuentes live" },
                 { n: "6",  l: "portales" },
               ].map((s) => (
                 <div key={s.l} className="text-center">
@@ -312,7 +314,7 @@ export default function TrabajoPage() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
                 </svg>
-                <span>Buscando en jobs.ch y LinkedIn…</span>
+                <span>Buscando en 4 portales suizos…</span>
               </>
             ) : (categoria || customTerm.trim()) && !user ? (
               <>
@@ -334,12 +336,19 @@ export default function TrabajoPage() {
 
         {/* ── RESULTADOS ───────────────────────────────────────── */}
         {buscado && loading && (
-          <div id="resultados-trabajo" className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="rounded-xl overflow-hidden border border-gray-100">
-                <div className="skeleton h-5 mx-4 mt-4 rounded mb-2" />
-                <div className="skeleton h-3 mx-4 w-1/3 rounded mb-3" />
-                <div className="skeleton h-3 mx-4 w-2/3 rounded mb-4" />
+          <div id="resultados-trabajo" className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="rounded-xl overflow-hidden border border-gray-100 border-l-4" style={{ borderLeftColor: "#e5e7eb" }}>
+                <div className="p-4 pb-3">
+                  <div className="skeleton h-5 rounded mb-2" />
+                  <div className="skeleton h-3 w-1/2 rounded mb-2" />
+                  <div className="skeleton h-3 w-2/3 rounded" />
+                </div>
+                <div className="px-4 py-2.5 bg-gray-50 border-t border-gray-100 flex gap-2">
+                  <div className="skeleton h-5 w-16 rounded-full" />
+                  <div className="skeleton h-5 w-12 rounded-full" />
+                  <div className="skeleton h-5 w-20 rounded-full ml-auto" />
+                </div>
               </div>
             ))}
           </div>
@@ -363,7 +372,7 @@ export default function TrabajoPage() {
                 )}
                 {sources && (
                   <span className="text-gray-400 text-xs ml-2">
-                    (jobs.ch: {sources.jobsCh} · LinkedIn: {sources.linkedin})
+                    (jobs.ch: {sources.jobsCh} · Portal CH: {sources.jobRoom} · Indeed: {sources.indeed} · LinkedIn: {sources.linkedin})
                   </span>
                 )}
               </div>
@@ -385,7 +394,7 @@ export default function TrabajoPage() {
                     {jobs.length} resultados
                   </span>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {jobs.map((job, i) => {
                     const src = SOURCE_STYLE[job.source] ?? SOURCE_STYLE["LinkedIn"];
                     return (
@@ -394,34 +403,69 @@ export default function TrabajoPage() {
                         href={job.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-md hover:border-red-200 transition-all group flex flex-col border-l-4"
+                        className="bg-white border border-gray-100 rounded-xl hover:shadow-md hover:border-red-200 transition-all group flex flex-col border-l-4 overflow-hidden"
                         style={{ borderLeftColor: ACCENT }}
                       >
-                        <div className="flex items-start justify-between gap-2 mb-1">
-                          <h3 className="font-bold text-gray-800 group-hover:text-red-700 text-sm leading-snug flex-1">
-                            {job.title}
-                          </h3>
-                          <span className="text-gray-500 group-hover:text-red-400 text-lg flex-shrink-0">→</span>
+                        {/* Cabecera */}
+                        <div className="p-4 pb-3">
+                          <div className="flex items-start justify-between gap-2 mb-1.5">
+                            <h3 className="font-bold text-gray-800 group-hover:text-red-700 text-sm leading-snug flex-1">
+                              {job.title}
+                            </h3>
+                            <span className="text-gray-400 group-hover:text-red-400 text-base flex-shrink-0 mt-0.5">→</span>
+                          </div>
+
+                          {/* Empresa + ubicación */}
+                          <div className="flex items-center gap-3 flex-wrap text-xs text-gray-500 mb-2">
+                            {job.company && (
+                              <span className="font-semibold text-gray-700 flex items-center gap-1">
+                                🏢 {job.company}
+                              </span>
+                            )}
+                            {job.location && (
+                              <span className="flex items-center gap-1">
+                                📍 {job.location}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Descripción breve */}
+                          {job.description && (
+                            <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">
+                              {job.description}
+                            </p>
+                          )}
                         </div>
-                        {job.company && (
-                          <div className="text-xs font-bold text-gray-700 mb-1">{job.company}</div>
-                        )}
-                        <div className="flex items-center gap-2 mt-auto pt-2 border-t border-gray-50 flex-wrap">
-                          {job.location && (
-                            <span className="text-xs text-gray-400 flex items-center gap-1">
-                              <span>📍</span>{job.location}
+
+                        {/* Footer con badges */}
+                        <div className="px-4 py-2.5 bg-gray-50 border-t border-gray-100 flex flex-wrap gap-1.5 items-center">
+                          {job.contractType && (
+                            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">
+                              📋 {job.contractType}
+                            </span>
+                          )}
+                          {job.workload && (
+                            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-purple-50 text-purple-700">
+                              ⏱ {job.workload}
+                            </span>
+                          )}
+                          {job.salary && (
+                            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-green-50 text-green-700">
+                              💰 {job.salary}
+                            </span>
+                          )}
+                          {job.languageRequired && (
+                            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">
+                              🗣 {job.languageRequired}
                             </span>
                           )}
                           {job.pubDate && (
-                            <span
-                              className="text-xs font-semibold px-2 py-0.5 rounded-full ml-auto"
-                              style={{ background: "#fef3c7", color: "#92400e" }}
-                            >
-                              {timeAgo(job.pubDate)}
+                            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 ml-auto">
+                              🕐 {timeAgo(job.pubDate)}
                             </span>
                           )}
                           <span
-                            className="text-xs font-semibold px-2 py-0.5 rounded-full"
+                            className="text-[11px] font-semibold px-2 py-0.5 rounded-full"
                             style={{ background: src.bg, color: src.color }}
                           >
                             {src.label}
