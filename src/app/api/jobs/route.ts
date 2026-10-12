@@ -102,17 +102,36 @@ const TITLE_PATTERNS: TitlePattern[] = [
   { kw: ["maler", "painter", "peintre"],     es: "Pintor",                  sector: "Pintura" },
 
   // ── Hostelería / Restauración ────────────────────────────────────────────
-  { kw: ["küchenchef", "chefkoch", "chef de cuisine", "executive chef", "head chef"],
-                                             es: "Jefe de cocina",          sector: "Hostelería" },
+  { kw: ["küchenchef", "chefkoch", "chef de cuisine", "executive chef", "head chef", "responsable de cuisine", "responsable cuisine"],
+                                             es: "Jefe/a de cocina",        sector: "Hostelería" },
+  { kw: ["sous-chef", "sous chef", "second de cuisine", "second cuisine"],
+                                             es: "Segundo de cocina",       sector: "Hostelería" },
+  { kw: ["chef de partie", "chef partie", "küchenchef de partie"],
+                                             es: "Chef de partida",         sector: "Hostelería" },
+  { kw: ["pâtissier", "patissier", "konditor", "pastry chef", "pastelero"],
+                                             es: "Pastelero/a",             sector: "Hostelería" },
+  { kw: ["sommelier", "cave", "caviste"],    es: "Sumiller / Sommelier",    sector: "Hostelería" },
   { kw: ["koch", "köchin", "cuisinier", "cuisi", "cook"],
                                              es: "Cocinero/a",              sector: "Hostelería" },
-  { kw: ["hilfskoch", "küchenhilfe", "commis", "kitchen help"], es: "Ayudante de cocina", sector: "Hostelería" },
-  { kw: ["kellner", "kelln", "waiter", "waitress", "serveur", "serveuse", "service mitarbeiter"],
+  { kw: ["hilfskoch", "küchenhilfe", "commis", "kitchen help", "aide de cuisine"],
+                                             es: "Ayudante de cocina",      sector: "Hostelería" },
+  { kw: ["kellner", "kelln", "waiter", "waitress", "serveur", "serveuse", "service mitarbeiter", "servicefachkraft"],
                                              es: "Camarero/a",              sector: "Hostelería" },
-  { kw: ["barkeeper", "barman", "bartender"], es: "Barman / Barista",       sector: "Hostelería" },
-  { kw: ["rezeptionist", "receptionist", "réceptionniste", "hotel"], es: "Recepcionista de hotel", sector: "Hostelería" },
-  { kw: ["hauswirtschaft", "housekeeping", "gouvernant"], es: "Gobernanta / Limpieza hotel", sector: "Hostelería" },
-  { kw: ["spülkraft", "plongeur", "dishwasher"], es: "Lavaplatos / Limpieza cocina", sector: "Hostelería" },
+  { kw: ["barkeeper", "barman", "bartender", "barista"],
+                                             es: "Barman / Barista",        sector: "Hostelería" },
+  { kw: ["restaurant manager", "responsable de restaurant", "restaurantleiter", "directeur restaur"],
+                                             es: "Director/a de restaurante", sector: "Hostelería" },
+  { kw: ["f&b manager", "food and beverage", "food & beverage"],
+                                             es: "Director F&B",            sector: "Hostelería" },
+  { kw: ["réceptionniste", "rezeptionist", "receptionist", "front office", "portier hotel"],
+                                             es: "Recepcionista de hotel",  sector: "Hostelería" },
+  { kw: ["hotel manager", "directeur hôtel", "hotelmanager", "hoteldirektor"],
+                                             es: "Director/a de hotel",     sector: "Hostelería" },
+  { kw: ["hauswirtschaft", "housekeeping", "gouvernant", "linge"],
+                                             es: "Gobernanta / Pisos",      sector: "Hostelería" },
+  { kw: ["spülkraft", "plongeur", "dishwasher", "plonge"],
+                                             es: "Lavaplatos",              sector: "Hostelería" },
+  { kw: ["concierge", "conciergerie"],       es: "Conserje de hotel",       sector: "Hostelería" },
 
   // ── Logística / Transporte ───────────────────────────────────────────────
   { kw: ["chauffeur", "fahrer", "driver", "lkw", "transport"], es: "Conductor / Chófer", sector: "Logística" },
@@ -182,6 +201,33 @@ const TITLE_PATTERNS: TitlePattern[] = [
                                              es: "Profesor/a",              sector: "Educación" },
   { kw: ["erzieher", "erzieherin", "educateur", "kita", "kinderpfleger"],
                                              es: "Educador/a infantil",     sector: "Educación" },
+
+  // ── Instalaciones y fachadas ─────────────────────────────────────────────
+  { kw: ["fassade", "façade", "verkleidung", "isolier"],
+                                             es: "Instalador de fachadas",  sector: "Construcción" },
+  { kw: ["gerüstbauer", "échafaudeur", "scaffolder"],
+                                             es: "Montador de andamios",    sector: "Construcción" },
+  { kw: ["monteur", "montage", "installateur", "poseur"],
+                                             es: "Montador / Instalador",   sector: "Instalaciones" },
+
+  // ── RRHH / Consultoría ───────────────────────────────────────────────────
+  { kw: ["personalberater", "personalberatung", "consultant rh", "conseiller rh"],
+                                             es: "Consultor/a de RRHH",     sector: "Administración" },
+  { kw: ["unternehmensberater", "berater", "consultant"],
+                                             es: "Consultor/a",             sector: "Administración" },
+
+  // ── Finanzas ─────────────────────────────────────────────────────────────
+  { kw: ["finanzberater", "financial advisor", "conseiller financier"],
+                                             es: "Asesor financiero",       sector: "Finanzas" },
+  { kw: ["controller", "controlling"],       es: "Controller financiero",   sector: "Finanzas" },
+  { kw: ["steuerberater", "fiscaliste", "tax advisor"],
+                                             es: "Asesor fiscal",           sector: "Finanzas" },
+
+  // ── Marketing ────────────────────────────────────────────────────────────
+  { kw: ["marketing manager", "marketing specialist"],
+                                             es: "Responsable de marketing", sector: "Marketing" },
+  { kw: ["content manager", "redakteur", "rédacteur", "copywriter"],
+                                             es: "Redactor/a de contenidos", sector: "Marketing" },
 ];
 
 /**

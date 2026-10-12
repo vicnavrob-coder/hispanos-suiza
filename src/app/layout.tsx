@@ -89,8 +89,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CookieBanner />
           <RegistroPrompt />
         </AuthProvider>
-        <VercelAnalytics />
-        <SpeedInsights />
+        {process.env.VERCEL === "1" && <VercelAnalytics />}
+        {process.env.VERCEL === "1" && <SpeedInsights />}
       </body>
     </html>
   );
