@@ -135,6 +135,8 @@ export default function Header() {
               className="md:hidden text-[#0A0A0A] hover:text-[#C8102E] transition-colors"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Menú"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -189,7 +191,7 @@ export default function Header() {
             </div>
           )}
 
-          <nav className="flex flex-col gap-1 px-6 mt-4 flex-1">
+          <nav id="mobile-nav" className="flex flex-col gap-1 px-6 mt-4 flex-1">
             {MOBILE_LINKS.map((link) => {
               const active = isActive(link.href);
               return (

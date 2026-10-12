@@ -9,8 +9,10 @@ import {
 import type { JobItem } from "@/app/api/jobs/route";
 import { useAuth } from "@/contexts/AuthContext";
 
+// Formateador consistente server/client (sin Intl.NumberFormat que produce \xa0 distinto por entorno)
 const fmt = (n: number) =>
-  new Intl.NumberFormat("de-CH", { style: "currency", currency: "CHF", maximumFractionDigits: 0 }).format(n);
+  `CHF ${String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, "'")}`;
+
 
 function timeAgo(dateStr: string): string {
   try {
@@ -43,12 +45,10 @@ const CIUDAD_EMOJIS: Record<string, string> = {
 };
 
 const SOURCE_STYLE: Record<string, { bg: string; color: string; label: string }> = {
-  "jobs.ch":      { bg: "#e0f2fe", color: "#0369a1", label: "jobs.ch" },
-  "LinkedIn":     { bg: "#dbeafe", color: "#1d4ed8", label: "LinkedIn" },
-  "job-room.ch":  { bg: "#dcfce7", color: "#15803d", label: "Portal Oficial CH" },
-  "Indeed":       { bg: "#fef9c3", color: "#a16207", label: "Indeed" },
-  "Tempservice":  { bg: "#fff7ed", color: "#c2410c", label: "Tempservice ETT" },
-  "tempoX":       { bg: "#fef2f2", color: "#b91c1c", label: "tempoX ETT" },
+  "jobs.ch":     { bg: "#e0f2fe", color: "#0369a1", label: "jobs.ch" },
+  "LinkedIn":    { bg: "#dbeafe", color: "#1d4ed8", label: "LinkedIn" },
+  "Tempservice": { bg: "#fff7ed", color: "#c2410c", label: "Tempservice ETT" },
+  "tempoX":      { bg: "#fef2f2", color: "#b91c1c", label: "tempoX ETT" },
 };
 
 function salaryLabel(cat: JobCategory): string {
@@ -63,7 +63,7 @@ export default function TrabajoPage() {
   const [loading, setLoading]     = useState(false);
   const [buscado, setBuscado]     = useState(false);
   const [error, setError]         = useState("");
-  const [sources, setSources]     = useState<{ jobsCh: number; jobRoom: number; indeed: number; linkedin: number; tempservice: number; tempoX: number } | null>(null);
+  const [sources, setSources]     = useState<{ jobsCh: number; linkedin: number; tempservice: number; tempoX: number } | null>(null);
   const { user, openModal }       = useAuth();
 
   async function buscar() {
@@ -122,13 +122,13 @@ export default function TrabajoPage() {
                 Buscador de trabajo en Suiza
               </h1>
               <p className="text-gray-500 text-sm max-w-xl">
-                Ofertas de ETTs (temporeras), portal oficial suizo, jobs.ch, Indeed y LinkedIn. Datos de jornada, idioma y contrato.
+                Ofertas en tiempo real de ETTs (Tempservice, tempoX), jobs.ch y LinkedIn. Más 13 agencias temporeras directas.
               </p>
             </div>
             <div className="flex gap-5 text-center flex-shrink-0">
               {[
                 { n: "11", l: "sectores" },
-                { n: "6",  l: "fuentes live" },
+                { n: "4",  l: "fuentes live" },
                 { n: "13", l: "ETTs listadas" },
               ].map((s) => (
                 <div key={s.l} className="text-center">
@@ -374,7 +374,7 @@ export default function TrabajoPage() {
                 )}
                 {sources && (
                   <span className="text-gray-400 text-xs ml-2">
-                    (ETT: {sources.tempservice + sources.tempoX} · jobs.ch: {sources.jobsCh} · Portal CH: {sources.jobRoom} · Indeed: {sources.indeed} · LinkedIn: {sources.linkedin})
+                    (ETT: {sources.tempservice + sources.tempoX} · jobs.ch: {sources.jobsCh} · LinkedIn: {sources.linkedin})
                   </span>
                 )}
               </div>
