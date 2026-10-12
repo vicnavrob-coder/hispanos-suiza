@@ -5,7 +5,8 @@ export type JobItem = {
   company: string;
   location: string;
   url: string;
-  description: string;
+  description: string;       // extracto corto (220 chars)
+  descriptionFull?: string;  // descripción completa
   pubDate: string;
   source: "jobs.ch" | "LinkedIn" | "Tempservice" | "tempoX";
   contractType?: string;
@@ -13,8 +14,14 @@ export type JobItem = {
   salary?: string;
   languageRequired?: string;
   isEtt?: boolean;
-  titleEs?: string;   // título traducido al español (si disponible)
-  sectorEs?: string;  // sector en español para contextualizar
+  titleEs?: string;
+  sectorEs?: string;
+  // ── Contacto directo ──────────────────────────────────────────────────────
+  applyEmail?: string;      // email directo para aplicar
+  applyPhone?: string;      // teléfono directo
+  companyWebsite?: string;  // web de la empresa
+  requirements?: string[];  // lista de requisitos extraídos
+  startDate?: string;       // fecha de inicio
 };
 
 // ── Mapeos ciudad UI → portales ───────────────────────────────────────────────
@@ -257,7 +264,28 @@ function cleanTitle(title: string): string {
     .trim();
 }
 
-/** Aplica traducción a un JobItem devuelto por cualquier fuente */
+/** Extrae email y teléfono de un texto libre */
+function extractContact(text: string): { email?: string; phone?: string } {
+  const emailM = text.match(/\b[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,6}\b/);
+  // Teléfonos suizos: +41 44 123 45 67 / 044 123 45 67 / 0041 44 …
+  const phoneM = text.match(/(\+41|0041|0\d{2})[\s.\-]?\d{3}[\s.\-]?\d{2}[\s.\-]?\d{2}/);
+  return {
+    email: emailM?.[0],
+    phone: phoneM?.[0]?.trim(),
+  };
+}
+
+/** Extrae hasta 5 requisitos de bullet points en texto libre */
+function extractRequirements(text: string): string[] {
+  // Busca frases cortas precedidas de • – ✓ ▸ * o números
+  const bullets = [...text.matchAll(/(?:^|[\n\r])[\s]*[•\-–*✓▸►\d\.]+[\s]+([^\n\r]{15,100})/gm)]
+    .map((m) => m[1].trim())
+    .filter(Boolean)
+    .slice(0, 5);
+  return bullets;
+}
+
+/** Aplica traducción + extracción de contacto a un JobItem */
 function enrichJob(job: JobItem): JobItem {
   const cleaned = cleanTitle(job.title);
   const translation = translateTitle(cleaned);
@@ -282,11 +310,24 @@ type JsonLdJobPosting = {
   title?: string;
   description?: string;
   datePosted?: string;
+  validThrough?: string;
   url?: string;
   employmentType?: string | string[];
-  hiringOrganization?: { name?: string };
+  hiringOrganization?: {
+    name?: string;
+    sameAs?: string;
+    url?: string;
+    "@type"?: string;
+  };
   jobLocation?: { address?: { addressLocality?: string; addressCountry?: string } };
   baseSalary?: { value?: { minValue?: number; maxValue?: number; unitText?: string } };
+  applicationContact?: {
+    email?: string;
+    telephone?: string;
+    "@type"?: string;
+  };
+  directApply?: boolean;
+  jobStartDate?: string;
 };
 
 function mapEmploymentType(raw: string | string[] | undefined): string | undefined {
@@ -318,16 +359,29 @@ function parseJobsChHTML(html: string): JobItem[] {
             if (sal?.minValue && sal?.maxValue) {
               salaryStr = `${Math.round(sal.minValue / 100) * 100}–${Math.round(sal.maxValue / 100) * 100} CHF/mes`;
             }
+            const descFull = (j.description ?? "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+            // Contacto: primero del JSON-LD, luego extraído del texto
+            const ctJson  = j.applicationContact;
+            const ctText  = extractContact(descFull);
+            const email   = ctJson?.email   || ctText.email;
+            const phone   = ctJson?.telephone || ctText.phone;
+            const website = j.hiringOrganization?.sameAs || j.hiringOrganization?.url;
             jobs.push({
-              title:        j.title ?? "",
-              company:      j.hiringOrganization?.name ?? "",
-              location:     addr?.addressLocality ?? addr?.addressCountry ?? "Suiza",
-              url:          j.url ?? "",
-              description:  (j.description ?? "").replace(/<[^>]+>/g, "").slice(0, 220),
-              pubDate:      j.datePosted ?? "",
-              source:       "jobs.ch",
-              contractType: mapEmploymentType(j.employmentType),
-              salary:       salaryStr,
+              title:           j.title ?? "",
+              company:         j.hiringOrganization?.name ?? "",
+              location:        addr?.addressLocality ?? addr?.addressCountry ?? "Suiza",
+              url:             j.url ?? "",
+              description:     descFull.slice(0, 280),
+              descriptionFull: descFull,
+              pubDate:         j.datePosted ?? "",
+              source:          "jobs.ch",
+              contractType:    mapEmploymentType(j.employmentType),
+              salary:          salaryStr,
+              applyEmail:      email,
+              applyPhone:      phone,
+              companyWebsite:  website,
+              startDate:       j.jobStartDate,
+              requirements:    extractRequirements(descFull),
             });
           }
           return jobs.filter((j) => j.title && j.url);
@@ -452,16 +506,27 @@ async function fetchTempoX(_term: string, _city: string): Promise<JobItem[]> {
 function parseWPJobs(data: WPJob[], company: string): JobItem[] {
   if (!Array.isArray(data)) return [];
   return data
-    .map((j): JobItem => ({
-      title:       (j.title?.rendered ?? "").replace(/<[^>]+>/g, "").trim(),
-      company:     company,
-      location:    "Suiza",
-      url:         j.link ?? `https://tempox.ch`,
-      description: (j.excerpt?.rendered ?? j.content?.rendered ?? "").replace(/<[^>]+>/g, "").slice(0, 220),
-      pubDate:     j.date ?? "",
-      source:      "tempoX",
-      isEtt:       true,
-    }))
+    .map((j): JobItem => {
+      const fullText = (j.content?.rendered ?? j.excerpt?.rendered ?? "")
+        .replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+      const ct = extractContact(fullText);
+      // tempoX es una ETT — su contacto siempre es tempoX directamente
+      return {
+        title:           (j.title?.rendered ?? "").replace(/<[^>]+>/g, "").trim(),
+        company:         company,
+        location:        "Suiza",
+        url:             j.link ?? "https://tempox.ch",
+        description:     fullText.slice(0, 280),
+        descriptionFull: fullText,
+        pubDate:         j.date ?? "",
+        source:          "tempoX",
+        isEtt:           true,
+        applyEmail:      ct.email || "jobs@tempox.ch",
+        applyPhone:      ct.phone || "+41 44 388 83 00",
+        companyWebsite:  "https://tempox.ch",
+        requirements:    extractRequirements(fullText),
+      };
+    })
     .filter((j) => j.title && j.url);
 }
 

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import {
   JOB_CATEGORIES, CIUDADES_SUIZA,
@@ -73,6 +73,14 @@ export default function TrabajoPage() {
   const [categoria, setCategoria]     = useState<JobCategory | null>(null);
   const [ciudad, setCiudad]           = useState("Toda Suiza");
   const [mostrarTodasCiudades, setMostrarTodasCiudades] = useState(false);
+  const [expandedJobs, setExpandedJobs] = useState<Set<number>>(new Set());
+  const toggleExpand = useCallback((i: number) => {
+    setExpandedJobs((prev) => {
+      const next = new Set(prev);
+      next.has(i) ? next.delete(i) : next.add(i);
+      return next;
+    });
+  }, []);
   const [customTerm, setCustomTerm] = useState("");
   const [jobs, setJobs]           = useState<JobItem[]>([]);
   const [loading, setLoading]     = useState(false);
@@ -423,47 +431,51 @@ export default function TrabajoPage() {
                     </span>
                   )}
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-4">
                   {jobs.map((job, i) => {
-                    const src = SOURCE_STYLE[job.source] ?? SOURCE_STYLE["LinkedIn"];
-                    const salaryRange = categoria ? `${fmt(categoria.salarioMin)}–${fmt(categoria.salarioMax)} CHF/mes` : null;
+                    const src      = SOURCE_STYLE[job.source] ?? SOURCE_STYLE["LinkedIn"];
+                    const expanded = expandedJobs.has(i);
+                    const hasContact = job.applyEmail || job.applyPhone;
+                    const salaryRange = categoria
+                      ? `${fmt(categoria.salarioMin)}–${fmt(categoria.salarioMax)} CHF/mes`
+                      : null;
                     return (
-                      <a
+                      <div
                         key={i}
-                        href={job.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white border border-gray-100 rounded-xl hover:shadow-md hover:border-red-200 transition-all group flex flex-col border-l-4 overflow-hidden"
-                        style={{ borderLeftColor: job.isEtt ? "#f59e0b" : ACCENT }}
+                        className="bg-white border border-gray-100 rounded-xl shadow-sm flex flex-col border-l-4 overflow-hidden"
+                        style={{ borderLeftColor: hasContact ? "#16a34a" : job.isEtt ? "#f59e0b" : ACCENT }}
                       >
-                        {/* Cabecera */}
+                        {/* ── CABECERA ──────────────────────────────── */}
                         <div className="p-4 pb-3">
 
-                          {/* Sector + ETT badge */}
-                          {(job.sectorEs || job.isEtt) && (
-                            <div className="flex items-center gap-1.5 mb-2 flex-wrap">
-                              {job.sectorEs && (
-                                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 uppercase tracking-wide">
-                                  {job.sectorEs}
-                                </span>
-                              )}
-                              {job.isEtt && (
-                                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">
-                                  🏭 Agencia ETT
-                                </span>
-                              )}
-                            </div>
-                          )}
-
-                          {/* Título en español (principal) */}
-                          <div className="flex items-start justify-between gap-2 mb-0.5">
-                            <h3 className="font-bold text-gray-900 group-hover:text-red-700 text-sm leading-snug flex-1">
-                              {job.titleEs ?? job.title}
-                            </h3>
-                            <span className="text-gray-400 group-hover:text-red-400 text-base flex-shrink-0 mt-0.5">→</span>
+                          {/* Badges superiores */}
+                          <div className="flex items-center gap-1.5 mb-2 flex-wrap">
+                            {job.sectorEs && (
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 uppercase tracking-wide">
+                                {job.sectorEs}
+                              </span>
+                            )}
+                            {hasContact && (
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-green-100 text-green-700">
+                                ✅ Contacto directo disponible
+                              </span>
+                            )}
+                            {job.isEtt && (
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">
+                                🏭 Agencia ETT
+                              </span>
+                            )}
+                            {job.pubDate && (
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-gray-50 text-gray-400 ml-auto">
+                                🕐 {timeAgo(job.pubDate)}
+                              </span>
+                            )}
                           </div>
 
-                          {/* Título original (referencia, más pequeño) */}
+                          {/* Título en español */}
+                          <h3 className="font-bold text-gray-900 text-base leading-snug mb-0.5">
+                            {job.titleEs ?? job.title}
+                          </h3>
                           {job.titleEs && (
                             <p className="text-[11px] text-gray-400 mb-2 italic">
                               Anuncio original: &ldquo;{job.title}&rdquo;
@@ -471,9 +483,9 @@ export default function TrabajoPage() {
                           )}
 
                           {/* Empresa + ubicación */}
-                          <div className="flex items-center gap-3 flex-wrap text-xs text-gray-500 mb-2">
+                          <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600 mb-3">
                             {job.company && (
-                              <span className="font-semibold text-gray-700 flex items-center gap-1">
+                              <span className="font-semibold flex items-center gap-1">
                                 🏢 {job.company}
                               </span>
                             )}
@@ -482,55 +494,151 @@ export default function TrabajoPage() {
                                 📍 {job.location}
                               </span>
                             )}
+                            {job.contractType && (
+                              <span className="text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-medium">
+                                📋 {job.contractType}
+                              </span>
+                            )}
+                            {job.workload && (
+                              <span className="text-xs px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 font-medium">
+                                ⏱ {job.workload}
+                              </span>
+                            )}
                           </div>
 
-                          {/* Descripción: original si existe, sino salario del sector */}
-                          {job.description ? (
-                            <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 border-l-2 border-gray-200 pl-2">
-                              {job.description}
-                            </p>
-                          ) : salaryRange ? (
-                            <p className="text-xs text-green-700 font-semibold">
-                              💰 Salario orientativo en {job.sectorEs ?? "este sector"}: {salaryRange}
-                            </p>
-                          ) : null}
+                          {/* Salario */}
+                          {(job.salary || salaryRange) && (
+                            <div className="mb-3">
+                              <span className="text-sm font-bold text-green-700">
+                                💰 {job.salary ?? `Aprox. ${salaryRange}`}
+                              </span>
+                            </div>
+                          )}
+
+                          {/* Descripción */}
+                          {job.description && (
+                            <div className="mb-3">
+                              <p className={`text-sm text-gray-600 leading-relaxed ${expanded ? "" : "line-clamp-3"}`}>
+                                {expanded ? (job.descriptionFull ?? job.description) : job.description}
+                              </p>
+                              {(job.descriptionFull?.length ?? 0) > 280 && (
+                                <button
+                                  onClick={() => toggleExpand(i)}
+                                  className="text-xs text-red-600 hover:text-red-800 font-semibold mt-1"
+                                >
+                                  {expanded ? "▲ Ver menos" : "▼ Ver descripción completa"}
+                                </button>
+                              )}
+                            </div>
+                          )}
+
+                          {/* Requisitos (si expandido) */}
+                          {expanded && job.requirements && job.requirements.length > 0 && (
+                            <div className="mb-3 bg-gray-50 rounded-lg p-3">
+                              <p className="text-xs font-bold text-gray-700 mb-2">📌 Requisitos mencionados:</p>
+                              <ul className="space-y-1">
+                                {job.requirements.map((r, ri) => (
+                                  <li key={ri} className="text-xs text-gray-600 flex gap-2">
+                                    <span className="text-gray-400 flex-shrink-0">▸</span>
+                                    <span>{r}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          {/* Idioma requerido */}
+                          {job.languageRequired && (
+                            <div className="mb-2">
+                              <span className="text-xs px-2 py-1 rounded-full bg-amber-50 text-amber-700 font-semibold">
+                                🗣 Idioma requerido: {job.languageRequired}
+                              </span>
+                            </div>
+                          )}
                         </div>
 
-                        {/* Footer con badges */}
-                        <div className="px-4 py-2.5 bg-gray-50 border-t border-gray-100 flex flex-wrap gap-1.5 items-center">
-                          {job.contractType && (
-                            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">
-                              📋 {job.contractType}
-                            </span>
-                          )}
-                          {job.workload && (
-                            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-purple-50 text-purple-700">
-                              ⏱ {job.workload}
-                            </span>
-                          )}
-                          {job.salary && (
-                            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-green-50 text-green-700">
-                              💰 {job.salary}
-                            </span>
-                          )}
-                          {job.languageRequired && (
-                            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">
-                              🗣 Idioma: {job.languageRequired}
-                            </span>
-                          )}
-                          {job.pubDate && (
-                            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 ml-auto">
-                              🕐 {timeAgo(job.pubDate)}
-                            </span>
-                          )}
+                        {/* ── SECCIÓN DE CONTACTO DIRECTO ───────────── */}
+                        {hasContact ? (
+                          <div className="mx-4 mb-3 rounded-xl border border-green-200 bg-green-50 p-3">
+                            <p className="text-xs font-bold text-green-800 mb-2.5">
+                              📬 Contactar directamente — sin pasar por el portal
+                            </p>
+                            <div className="flex flex-col gap-2">
+                              {job.applyEmail && (
+                                <a
+                                  href={`mailto:${job.applyEmail}?subject=Candidatura: ${job.titleEs ?? job.title}&body=Hola,%0A%0AMe interesa la oferta de ${job.titleEs ?? job.title} en ${job.company}.%0A%0AQuedo a vuestra disposición.%0A%0ASaludos`}
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="flex items-center gap-2 bg-white border border-green-200 rounded-lg px-3 py-2 hover:bg-green-100 transition-colors"
+                                >
+                                  <span className="text-lg flex-shrink-0">✉️</span>
+                                  <div className="min-w-0">
+                                    <div className="text-xs font-bold text-green-800">Enviar email</div>
+                                    <div className="text-xs text-green-700 truncate">{job.applyEmail}</div>
+                                  </div>
+                                  <span className="ml-auto text-green-600 text-sm font-bold flex-shrink-0">→</span>
+                                </a>
+                              )}
+                              {job.applyPhone && (
+                                <a
+                                  href={`tel:${job.applyPhone.replace(/[\s.-]/g, "")}`}
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="flex items-center gap-2 bg-white border border-green-200 rounded-lg px-3 py-2 hover:bg-green-100 transition-colors"
+                                >
+                                  <span className="text-lg flex-shrink-0">📞</span>
+                                  <div>
+                                    <div className="text-xs font-bold text-green-800">Llamar</div>
+                                    <div className="text-xs text-green-700">{job.applyPhone}</div>
+                                  </div>
+                                  <span className="ml-auto text-green-600 text-sm font-bold flex-shrink-0">→</span>
+                                </a>
+                              )}
+                              {job.companyWebsite && (
+                                <a
+                                  href={job.companyWebsite}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="flex items-center gap-2 bg-white border border-blue-200 rounded-lg px-3 py-2 hover:bg-blue-50 transition-colors"
+                                >
+                                  <span className="text-lg flex-shrink-0">🌐</span>
+                                  <div className="min-w-0">
+                                    <div className="text-xs font-bold text-blue-800">Web de la empresa</div>
+                                    <div className="text-xs text-blue-600 truncate">{job.companyWebsite.replace(/^https?:\/\//, "")}</div>
+                                  </div>
+                                  <span className="ml-auto text-blue-500 text-sm font-bold flex-shrink-0">↗</span>
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="mx-4 mb-3 rounded-xl border border-gray-100 bg-gray-50 px-3 py-2">
+                            <p className="text-[11px] text-gray-500">
+                              ℹ️ Sin datos de contacto en este anuncio.{" "}
+                              <a href={job.url} target="_blank" rel="noopener noreferrer" className="text-red-600 font-semibold hover:underline">
+                                Ver oferta completa →
+                              </a>
+                            </p>
+                          </div>
+                        )}
+
+                        {/* ── FOOTER ───────────────────────────────── */}
+                        <div className="px-4 py-2.5 bg-gray-50 border-t border-gray-100 flex items-center gap-2 flex-wrap">
                           <span
                             className="text-[11px] font-semibold px-2 py-0.5 rounded-full"
                             style={{ background: src.bg, color: src.color }}
                           >
                             {src.label}
                           </span>
+                          <a
+                            href={job.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-auto text-xs text-gray-400 hover:text-red-600 flex items-center gap-1 font-medium"
+                          >
+                            Ver oferta original ↗
+                          </a>
                         </div>
-                      </a>
+                      </div>
                     );
                   })}
                 </div>
