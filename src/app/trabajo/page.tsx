@@ -107,6 +107,7 @@ export default function TrabajoPage() {
 
       const params = new URLSearchParams({ term, city: ciudad });
       if (term2) params.set("term2", term2);
+      if (categoria && !customTerm.trim()) params.set("sectorFilter", categoria.slug);
 
       const res  = await fetch(`/api/jobs?${params}`);
       const data = await res.json();

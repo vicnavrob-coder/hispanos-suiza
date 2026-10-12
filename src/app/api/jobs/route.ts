@@ -106,7 +106,8 @@ const TITLE_PATTERNS: TitlePattern[] = [
 
   // ── Madera / Carpintería ─────────────────────────────────────────────────
   { kw: ["schreiner", "menuisier", "carpenter", "tischler"], es: "Carpintero / Ebanista", sector: "Carpintería" },
-  { kw: ["maler", "painter", "peintre"],     es: "Pintor",                  sector: "Pintura" },
+  { kw: ["maler", "painter", "peintre", "lackierer", "lacador"],
+                                             es: "Pintor / Lacador",          sector: "Pintura" },
 
   // ── Hostelería / Restauración ────────────────────────────────────────────
   { kw: ["küchenchef", "chefkoch", "chef de cuisine", "executive chef", "head chef", "responsable de cuisine", "responsable cuisine"],
@@ -134,8 +135,8 @@ const TITLE_PATTERNS: TitlePattern[] = [
                                              es: "Recepcionista de hotel",  sector: "Hostelería" },
   { kw: ["hotel manager", "directeur hôtel", "hotelmanager", "hoteldirektor"],
                                              es: "Director/a de hotel",     sector: "Hostelería" },
-  { kw: ["hauswirtschaft", "housekeeping", "gouvernant", "linge"],
-                                             es: "Gobernanta / Pisos",      sector: "Hostelería" },
+  { kw: ["hauswirtschaft", "housekeeping", "gouvernant", "linge", "room attendant", "zimmermädchen", "wäscherei"],
+                                             es: "Gobernanta / Camarera de pisos", sector: "Hostelería" },
   { kw: ["spülkraft", "plongeur", "dishwasher", "plonge"],
                                              es: "Lavaplatos",              sector: "Hostelería" },
   { kw: ["concierge", "conciergerie"],       es: "Conserje de hotel",       sector: "Hostelería" },
@@ -148,10 +149,13 @@ const TITLE_PATTERNS: TitlePattern[] = [
   { kw: ["logistik coordinator", "dispatcher", "spedition"], es: "Coordinador logístico", sector: "Logística" },
 
   // ── Limpieza / Mantenimiento ─────────────────────────────────────────────
-  { kw: ["reinigungskraft", "reinigung", "cleaner", "nettoyeur", "nettoyage"],
+  { kw: ["reinigungskraft", "reinigung", "cleaner", "nettoyeur", "nettoyage", "hausdienst", "nettoyage de bureau"],
                                              es: "Operario/a de limpieza",  sector: "Limpieza" },
   { kw: ["hauswart", "hausmeister", "conserge", "janitor"], es: "Conserje / Mantenimiento", sector: "Limpieza" },
-  { kw: ["wartung", "maintenance", "entretien", "técnico mantenimiento"], es: "Técnico de mantenimiento", sector: "Mantenimiento" },
+  { kw: ["wartung", "maintenance", "entretien", "betriebsunterhalt", "kanalunterhalt", "gebäudetechnik"],
+                                             es: "Técnico de mantenimiento", sector: "Mantenimiento" },
+  { kw: ["facility manager", "facility management", "gebäudemanagement"],
+                                             es: "Facility Manager / Gestión instalaciones", sector: "Mantenimiento" },
 
   // ── Sanidad / Cuidados ───────────────────────────────────────────────────
   { kw: ["pflegefachfrau", "pflegefachmann", "krankenpflege", "soins infirmiers", "nurse", "enfermero"],
@@ -275,14 +279,36 @@ function extractContact(text: string): { email?: string; phone?: string } {
   };
 }
 
-/** Extrae hasta 5 requisitos de bullet points en texto libre */
+/** Extrae hasta 5 requisitos de bullet points en texto estructurado (con \n) */
 function extractRequirements(text: string): string[] {
-  // Busca frases cortas precedidas de • – ✓ ▸ * o números
+  // Busca frases cortas precedidas de • – ✓ ▸ * o números al comienzo de línea
   const bullets = [...text.matchAll(/(?:^|[\n\r])[\s]*[•\-–*✓▸►\d\.]+[\s]+([^\n\r]{15,100})/gm)]
     .map((m) => m[1].trim())
     .filter(Boolean)
     .slice(0, 5);
   return bullets;
+}
+
+/**
+ * Convierte HTML en texto estructurado:
+ * - <li> → "\n• " (para que extractRequirements pueda detectarlos)
+ * - <br>, </p> → "\n"
+ * - resto de tags eliminados
+ */
+function htmlToStructured(html: string): string {
+  return html
+    .replace(/<li[^>]*>/gi, "\n• ")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/p>/gi, "\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+    .replace(/&nbsp;/g, " ").replace(/&#\d+;/g, "")
+    // Normalizar bullets emoji (🔹 🔸 ✅ ▶ etc.) a • para que extractRequirements los detecte
+    .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}]/gu, "•")
+    .replace(/[▶◆◉●▸►✔✓→]/g, "•")
+    .replace(/[ \t]+/g, " ")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 /** Aplica traducción + extracción de contacto a un JobItem */
@@ -359,7 +385,11 @@ function parseJobsChHTML(html: string): JobItem[] {
             if (sal?.minValue && sal?.maxValue) {
               salaryStr = `${Math.round(sal.minValue / 100) * 100}–${Math.round(sal.maxValue / 100) * 100} CHF/mes`;
             }
-            const descFull = (j.description ?? "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+            const rawDesc = j.description ?? "";
+            // Texto estructurado (con \n) para extraer requisitos
+            const descFull = htmlToStructured(rawDesc);
+            // Texto plano para el extracto corto de la tarjeta
+            const descShort = rawDesc.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
             // Contacto: primero del JSON-LD, luego extraído del texto
             const ctJson  = j.applicationContact;
             const ctText  = extractContact(descFull);
@@ -371,7 +401,7 @@ function parseJobsChHTML(html: string): JobItem[] {
               company:         j.hiringOrganization?.name ?? "",
               location:        addr?.addressLocality ?? addr?.addressCountry ?? "Suiza",
               url:             j.url ?? "",
-              description:     descFull.slice(0, 280),
+              description:     descShort.slice(0, 280),
               descriptionFull: descFull,
               pubDate:         j.datePosted ?? "",
               source:          "jobs.ch",
@@ -507,8 +537,11 @@ function parseWPJobs(data: WPJob[], company: string): JobItem[] {
   if (!Array.isArray(data)) return [];
   return data
     .map((j): JobItem => {
-      const fullText = (j.content?.rendered ?? j.excerpt?.rendered ?? "")
-        .replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+      const rawContent = j.content?.rendered ?? j.excerpt?.rendered ?? "";
+      // Texto estructurado (con \n) para extraer requisitos de <li>
+      const fullText = htmlToStructured(rawContent);
+      // Texto plano para el extracto corto de la tarjeta
+      const shortText = rawContent.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
       const ct = extractContact(fullText);
       // tempoX es una ETT — su contacto siempre es tempoX directamente
       return {
@@ -516,7 +549,7 @@ function parseWPJobs(data: WPJob[], company: string): JobItem[] {
         company:         company,
         location:        "Suiza",
         url:             j.link ?? "https://tempox.ch",
-        description:     fullText.slice(0, 280),
+        description:     shortText.slice(0, 280),
         descriptionFull: fullText,
         pubDate:         j.date ?? "",
         source:          "tempoX",
@@ -584,21 +617,183 @@ async function fetchLinkedIn(term: string, city: string): Promise<JobItem[]> {
   } catch { return []; }
 }
 
-// ── Handler ──────────────────────────────────────────────────────────────────
+// ── Relevancia y filtrado ─────────────────────────────────────────────────────
+
+/**
+ * Mapeo slug de categoría → sectores esperados en sectorEs.
+ */
+const SLUG_TO_SECTORS: Record<string, string[]> = {
+  "limpieza":     ["Limpieza", "Mantenimiento"],
+  "hosteleria":   ["Hostelería"],
+  "electricidad": ["Electricidad"],
+  "construccion": ["Construcción", "Carpintería", "Pintura", "Instalaciones"],
+  "soldadura":    ["Metal", "Mecánica"],
+  "mecanica":     ["Mecánica", "Metal"],
+  "logistica":    ["Logística"],
+  "sanidad":      ["Sanidad"],
+  "informatica":  ["Informática"],
+  "fontaneria":   ["Fontanería"],
+  "agricultura":  ["Agricultura"],
+};
+
+/**
+ * Términos en alemán para buscar en jobs.ch (portal principalmente alemán).
+ * Enviamos el término nativo del portal para obtener resultados precisos.
+ */
+const SLUG_TERM_DE: Record<string, string> = {
+  "limpieza":     "Reinigung",
+  "hosteleria":   "Koch",
+  "electricidad": "Elektriker",
+  "construccion": "Maurer",
+  "soldadura":    "Schweisser",
+  "mecanica":     "Mechaniker",
+  "logistica":    "Chauffeur Lager",
+  "sanidad":      "Pflegefachfrau",
+  "informatica":  "Software Developer",
+  "fontaneria":   "Sanitärinstallateur",
+  "agricultura":  "Gärtner",
+};
+
+/**
+ * Términos en inglés para buscar en LinkedIn.
+ */
+const SLUG_TERM_EN: Record<string, string> = {
+  "limpieza":     "cleaner maintenance",
+  "hosteleria":   "cook chef waiter",
+  "electricidad": "electrician",
+  "construccion": "construction worker",
+  "soldadura":    "welder",
+  "mecanica":     "mechanic",
+  "logistica":    "driver warehouse",
+  "sanidad":      "nurse caregiver",
+  "informatica":  "software developer",
+  "fontaneria":   "plumber HVAC",
+  "agricultura":  "farm worker",
+};
+
+/**
+ * Alias de ciudad para filtrar resultados por ubicación.
+ * Los portales devuelven ubicaciones en diferentes idiomas/formatos.
+ */
+const CITY_ALIASES: Record<string, string[]> = {
+  "Lucerne":      ["luzern", "lucerne", "lucerna"],
+  "Zürich":       ["zürich", "zurich", "zurigo"],
+  "Geneva":       ["genf", "geneva", "genève", "geneve", "ginebra"],
+  "Basel":        ["basel", "bâle", "basilea"],
+  "Bern":         ["bern", "berne", "berna"],
+  "Lausanne":     ["lausanne", "lausana"],
+  "Lugano":       ["lugano"],
+  "Winterthur":   ["winterthur"],
+  "St. Gallen":   ["st. gallen", "st.gallen", "saint gallen"],
+  "Zug":          ["zug", "zoug"],
+  "Aarau":        ["aarau"],
+  "Biel/Bienne":  ["biel", "bienne"],
+  "Fribourg":     ["fribourg", "freiburg"],
+  "Solothurn":    ["solothurn", "soleura"],
+  "Neuchâtel":    ["neuchâtel", "neuchatel", "neenburg"],
+  "Sion":         ["sion", "sitten"],
+  "Chur":         ["chur", "coire"],
+  "Bellinzona":   ["bellinzona"],
+  "Thun":         ["thun"],
+  "Schaffhausen": ["schaffhausen"],
+  "Olten":        ["olten"],
+  "Baden":        ["baden"],
+  "Frauenfeld":   ["frauenfeld"],
+  "Herisau":      ["herisau"],
+};
+
+/** Comprueba si la ubicación de una oferta corresponde a la ciudad seleccionada */
+function matchesCity(location: string, city: string): boolean {
+  if (city === "Toda Suiza") return true;
+  const loc = location.toLowerCase().trim();
+  // Aceptar ofertas nacionales / sin ciudad específica
+  // IMPORTANTE: usar match exacto para "ch" ya que es substring de muchas ciudades (zürich, etc.)
+  const NATIONAL = ["ch", "suiza", "switzerland", "schweiz", "svizzera", "suisse"];
+  if (NATIONAL.some((g) => loc === g)) return true;
+  // También aceptar si empieza con "ch " / "ch," o lo contiene como token
+  if (/\bch\b/.test(loc)) return true;
+  // Verificar con aliases de ciudad
+  const aliases = CITY_ALIASES[city] ?? [city.toLowerCase()];
+  return aliases.some((a) => loc.includes(a));
+}
+
+/**
+ * Calcula una puntuación de relevancia (mayor = más relevante).
+ * Criterios, en orden de peso:
+ *   1. El sector del trabajo coincide con los sectores esperados (+20)
+ *   2. El sector del trabajo es incorrecto pero reconocido (-8)
+ *   3. Palabras del término aparecen en el título o sector (+4–6 c/u)
+ *   4. Coincidencia exacta de ciudad (+3) / ETT nationwide (+1) / ciudad diferente (-2)
+ *   5. Tiene datos de contacto directo (+2)
+ */
+function scoreJob(
+  job: JobItem,
+  termLower: string,
+  cityLower: string,
+  expectedSectors: string[],
+): number {
+  let score = 0;
+  const titleLower  = (job.titleEs ?? job.title).toLowerCase();
+  const sectorLower = (job.sectorEs ?? "").toLowerCase();
+  const locLower    = job.location.toLowerCase();
+
+  // ── Sector match ──────────────────────────────────────────────────────────
+  if (expectedSectors.length > 0) {
+    if (expectedSectors.some((s) => sectorLower.includes(s.toLowerCase()))) {
+      score += 20;
+    } else if (job.sectorEs) {
+      // Tiene sector reconocido pero no es el esperado
+      score -= 8;
+    }
+  }
+
+  // ── Palabras del término en título/sector ──────────────────────────────────
+  if (titleLower.includes(termLower))  score += 8;
+  if (sectorLower.includes(termLower)) score += 5;
+  const words = termLower.split(/\s+/).filter((w) => w.length > 3);
+  for (const w of words) {
+    if (titleLower.includes(w))  score += 4;
+    if (sectorLower.includes(w)) score += 2;
+  }
+
+  // ── Coincidencia de ciudad ────────────────────────────────────────────────
+  if (cityLower && cityLower !== "toda suiza") {
+    if (locLower.includes(cityLower))  score += 3;
+    else if (job.location === "Suiza") score += 1; // ETT: a nivel nacional, puede ser
+    else                               score -= 2; // ciudad diferente
+  }
+
+  // ── Calidad de la oferta ──────────────────────────────────────────────────
+  if (job.applyEmail || job.applyPhone) score += 2;
+  if (job.isEtt)                        score += 1;
+
+  return score;
+}
+
+// ── Handler ───────────────────────────────────────────────────────────────────
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const term  = searchParams.get("term")  ?? "";
-  const city  = searchParams.get("city")  ?? "Zürich";
-  const term2 = searchParams.get("term2") ?? "";
+  const term         = searchParams.get("term")         ?? "";
+  const city         = searchParams.get("city")         ?? "Zürich";
+  const term2        = searchParams.get("term2")        ?? "";
+  const sectorFilter = searchParams.get("sectorFilter") ?? "";
 
   if (!term) return NextResponse.json({ jobs: [], total: 0 });
 
+  const expectedSectors = SLUG_TO_SECTORS[sectorFilter] ?? [];
+
+  // Usar términos nativos del portal cuando se busca por categoría:
+  //   jobs.ch es portal alemán → buscar en alemán
+  //   LinkedIn es portal inglés → buscar en inglés
+  //   Si es búsqueda libre (sin sectorFilter) usar el término tal cual
+  const termJobsCh  = sectorFilter ? (SLUG_TERM_DE[sectorFilter] ?? term) : term;
+  const termLinkedIn = sectorFilter ? (SLUG_TERM_EN[sectorFilter] ?? term) : term;
+
   // Lanzar las 4 fuentes en paralelo
-  // (job-room.ch requiere auth, Indeed bloquea scrapers — se mantienen como links de portal)
   const [jobsChRes, linkedInRes, tempserviceRes, tempoXRes] = await Promise.allSettled([
-    fetchJobsCh(term, city),
-    fetchLinkedIn(term, city),
+    fetchJobsCh(termJobsCh, city),
+    fetchLinkedIn(termLinkedIn, city),
     fetchTempservice(term, city),
     fetchTempoX(term, city),
   ]);
@@ -606,7 +801,17 @@ export async function GET(request: Request) {
   const jobsCh      = jobsChRes.status      === "fulfilled" ? jobsChRes.value      : [];
   const linkedin    = linkedInRes.status    === "fulfilled" ? linkedInRes.value    : [];
   const tempservice = tempserviceRes.status === "fulfilled" ? tempserviceRes.value : [];
-  const tempoX      = tempoXRes.status      === "fulfilled" ? tempoXRes.value      : [];
+  const tempoXRaw   = tempoXRes.status      === "fulfilled" ? tempoXRes.value      : [];
+
+  // Bug fix: tempoX siempre devuelve los 20 últimos trabajos sin filtrar por término.
+  // Enriquecer y filtrar por relevancia ANTES del merge para evitar resultados irrelevantes.
+  const termLower = term.toLowerCase();
+  const tempoX = tempoXRaw.map(enrichJob).filter(j =>
+    (j.titleEs  ?? "").toLowerCase().includes(termLower) ||
+    (j.sectorEs ?? "").toLowerCase().includes(termLower) ||
+    j.title.toLowerCase().includes(termLower) ||
+    (j.descriptionFull ?? j.description ?? "").toLowerCase().includes(termLower)
+  );
 
   // Segundo término para enrichment si hay pocos resultados en jobs.ch
   let jobsCh2: JobItem[] = [];
@@ -615,11 +820,12 @@ export async function GET(request: Request) {
   }
 
   // Merge: ETT primero (más especializadas y exclusivas), luego portales, luego LinkedIn
-  // Aplicar traducción + limpieza de título a todos los resultados
+  // tempoX ya está enriquecido + filtrado; el resto se enriquece aquí.
   const seen   = new Set<string>();
   const merged: JobItem[] = [];
+  const preEnrichedSet = new Set(tempoX); // evitar double-enrichment
   for (const job of [...tempservice, ...tempoX, ...jobsCh, ...jobsCh2, ...linkedin]) {
-    const enriched = enrichJob(job);
+    const enriched = preEnrichedSet.has(job) ? job : enrichJob(job);
     const key = `${enriched.title.toLowerCase().slice(0, 40)}|${enriched.company.toLowerCase().slice(0, 20)}`;
     if (!seen.has(key)) {
       seen.add(key);
@@ -627,9 +833,40 @@ export async function GET(request: Request) {
     }
   }
 
+  // ── Filtrado preciso cuando hay sectorFilter ─────────────────────────────
+  // 1. Eliminar ofertas cuyo sector reconocido NO corresponde al buscado
+  // 2. Eliminar ofertas en ciudades equivocadas (excepto ofertas nacionales)
+  let filtered = merged;
+
+  if (expectedSectors.length > 0) {
+    filtered = merged.filter((j) => {
+      // Si el trabajo tiene sector reconocido, debe coincidir con los esperados
+      if (j.sectorEs) {
+        return expectedSectors.some((s) => (j.sectorEs ?? "").includes(s));
+      }
+      // Sin sector reconocido: incluir solo si el título contiene alguna palabra del término
+      const titleLower = (j.titleEs ?? j.title).toLowerCase();
+      const words = termLower.split(/\s+/).filter((w) => w.length > 3);
+      return words.some((w) => titleLower.includes(w));
+    });
+  }
+
+  // Filtro de ciudad: eliminar resultados claramente de otra ciudad
+  if (city !== "Toda Suiza") {
+    filtered = filtered.filter((j) => matchesCity(j.location, city));
+  }
+
+  // Ordenar por relevancia: mayor puntuación primero
+  const cityLower = city.toLowerCase();
+  filtered.sort(
+    (a, b) =>
+      scoreJob(b, termLower, cityLower, expectedSectors) -
+      scoreJob(a, termLower, cityLower, expectedSectors),
+  );
+
   return NextResponse.json({
-    jobs:    merged.slice(0, 50),
-    total:   merged.length,
+    jobs:    filtered.slice(0, 50),
+    total:   filtered.length,
     sources: {
       jobsCh:      jobsCh.length + jobsCh2.length,
       linkedin:    linkedin.length,
