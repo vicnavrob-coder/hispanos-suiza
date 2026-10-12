@@ -91,7 +91,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-[#4B5563]"
+          className="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-[#6B7280]"
           style={{
             borderTop: "1px solid rgba(255,255,255,0.08)",
             fontFamily: "var(--font-dm-sans), system-ui, sans-serif",

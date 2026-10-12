@@ -144,7 +144,7 @@ export default function TrabajoPage() {
             <span className="text-2xl flex-shrink-0">⚖️</span>
             <div>
               <span className="font-bold text-amber-900 text-sm">¿Conoces tus derechos laborales en Suiza?</span>
-              <span className="text-amber-700 text-sm ml-2">La UNIA te protege desde el primer día — ~CHF 50/mes.</span>
+              <span className="text-amber-700 text-sm ml-2">La UNIA te protege desde el primer día de trabajo.</span>
             </div>
           </div>
           <Link

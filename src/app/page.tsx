@@ -636,10 +636,10 @@ export default function Home() {
               <NewsletterForm />
               <p
                 className="mt-3"
-                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#4B5563", fontSize: "0.72rem" }}
+                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#9CA3AF", fontSize: "0.72rem" }}
               >
                 Tus datos están seguros.{" "}
-                <Link href="/privacidad" className="underline hover:text-white transition-colors" style={{ color: "#6B7280" }}>
+                <Link href="/privacidad" className="underline hover:text-white transition-colors" style={{ color: "#9CA3AF" }}>
                   Política de privacidad
                 </Link>.
               </p>

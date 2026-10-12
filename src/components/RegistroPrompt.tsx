@@ -88,7 +88,7 @@ export default function RegistroPrompt() {
             </div>
             <button
               onClick={dismiss}
-              className="text-[#4B5563] hover:text-white transition-colors ml-2 flex-shrink-0 -mt-0.5"
+              className="text-[#6B7280] hover:text-white transition-colors ml-2 flex-shrink-0 -mt-0.5"
               aria-label="Cerrar"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -128,7 +128,7 @@ export default function RegistroPrompt() {
           </button>
 
           <p
-            className="text-center text-xs text-[#4B5563] mt-2"
+            className="text-center text-xs text-[#6B7280] mt-2"
             style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
           >
             Sin tarjeta · Sin spam

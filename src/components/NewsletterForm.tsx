@@ -59,7 +59,7 @@ export default function NewsletterForm() {
         placeholder="tu@email.com"
         required
         disabled={state === "loading"}
-        className="rounded-xl px-4 py-2.5 text-sm placeholder-[#4B5563] focus:outline-none focus:ring-2 focus:ring-[#C8102E] transition-all text-white disabled:opacity-50"
+        className="rounded-xl px-4 py-2.5 text-sm placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#C8102E] transition-all text-white disabled:opacity-50"
         style={{
           background: "rgba(255,255,255,0.06)",
           border: "1px solid rgba(255,255,255,0.12)",
