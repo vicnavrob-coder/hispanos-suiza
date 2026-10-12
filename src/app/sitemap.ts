@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { allPosts as posts, categorias } from "@/lib/posts";
 import { ciudades } from "@/lib/ciudades";
 import { cantones } from "@/lib/planes";
+import { paises } from "@/lib/latinoamericanos";
 import { BASE_URL } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -31,6 +32,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/herramientas/seguros-medicos`,       lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/trabajo/buscador`,                   lastModified: now, changeFrequency: "daily",   priority: 0.8 },
     { url: `${BASE_URL}/trabajo/unia`,                       lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}/trabajo/esqui-suiza`,                lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+  ];
+
+  // Sección latinoamericanos
+  const latinoPages: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/latinoamericanos`,                   lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    ...paises.map((p) => ({
+      url: `${BASE_URL}/latinoamericanos/${p.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+  ];
+
+  // Guías prácticas
+  const guiasPages: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/guias`,                              lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE_URL}/guias/rav-paro-suiza`,               lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}/guias/divorcio-suiza`,               lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE_URL}/guias/volver-espana-desde-suiza`,    lastModified: now, changeFrequency: "monthly", priority: 0.8 },
   ];
 
   // Artículos del blog (prioridad por destacado)
@@ -77,5 +98,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ),
   ];
 
-  return [...staticPages, ...toolPages, ...postPages, ...categoriaPages, ...ciudadPages, ...planesPages];
+  return [...staticPages, ...toolPages, ...latinoPages, ...guiasPages, ...postPages, ...categoriaPages, ...ciudadPages, ...planesPages];
 }

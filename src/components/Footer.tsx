@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0A0A0A] text-[#6B7280]">
       <div className="max-w-[1200px] mx-auto px-6 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Marca */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5 mb-3">
@@ -61,13 +61,31 @@ export default function Footer() {
               Temas
             </h4>
             <ul className="space-y-3 text-sm" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}>
+              <li><Link href="/latinoamericanos" className="hover:text-white transition-colors">Emigrar desde Latinoamérica</Link></li>
               <li><Link href="/categorias/emigrar" className="hover:text-white transition-colors">Emigrar a Suiza</Link></li>
               <li><Link href="/categorias/vivienda" className="hover:text-white transition-colors">Vivienda</Link></li>
               <li><Link href="/categorias/trabajo" className="hover:text-white transition-colors">Trabajo</Link></li>
               <li><Link href="/trabajo/unia" className="hover:text-white transition-colors">UNIA — Derechos laborales</Link></li>
+              <li><Link href="/trabajo/esqui-suiza" className="hover:text-white transition-colors">Trabajo en estaciones de esquí</Link></li>
               <li><Link href="/categorias/banca" className="hover:text-white transition-colors">Banca y Finanzas</Link></li>
               <li><Link href="/categorias/seguros" className="hover:text-white transition-colors">Seguros</Link></li>
-              <li><Link href="/categorias/vida-diaria" className="hover:text-white transition-colors">Vida diaria</Link></li>
+            </ul>
+          </div>
+
+          {/* Guías */}
+          <div>
+            <h4
+              className="text-white font-semibold mb-4 text-sm uppercase tracking-wider"
+              style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
+            >
+              Guías prácticas
+            </h4>
+            <ul className="space-y-3 text-sm" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}>
+              <li><Link href="/guias/rav-paro-suiza" className="hover:text-white transition-colors">Cobrar el paro (RAV)</Link></li>
+              <li><Link href="/guias/divorcio-suiza" className="hover:text-white transition-colors">Divorcio en Suiza</Link></li>
+              <li><Link href="/guias/volver-espana-desde-suiza" className="hover:text-white transition-colors">Volver a España desde Suiza</Link></li>
+              <li><Link href="/herramientas/seguros-medicos" className="hover:text-white transition-colors">Comparador seguros médicos</Link></li>
+              <li><Link href="/herramientas/salario-neto" className="hover:text-white transition-colors">Calculadora salario neto</Link></li>
             </ul>
           </div>
 

@@ -379,15 +379,134 @@ export const PORTALES_VIVIENDA = [
   { nombre: "flatfox.ch",     url: "https://flatfox.ch",         desc: "Moderno, muchos propietarios directos", color: "#7c3aed" },
 ];
 
-export const SEGUROS_ASEGURADORAS = [
-  { nombre: "Assura",     web: "https://www.assura.ch",    precio: "Más barata",  nota: "Sin atención telefónica premium — ideal para sanos" },
-  { nombre: "Sympany",    web: "https://www.sympany.ch",   precio: "Muy barata",  nota: "Digital, buena app" },
-  { nombre: "Atupri",     web: "https://www.atupri.ch",    precio: "Barata",      nota: "Digital-first, moderna" },
-  { nombre: "KPT",        web: "https://www.kpt.ch",       precio: "Barata",      nota: "Fuerte en Berna y alrededores" },
-  { nombre: "CSS",        web: "https://www.css.ch",       precio: "Media",       nota: "Gran red, buena app, buena relación calidad-precio" },
-  { nombre: "Concordia",  web: "https://www.concordia.ch", precio: "Media",       nota: "Buena valoración en servicio" },
-  { nombre: "Visana",     web: "https://www.visana.ch",    precio: "Media",       nota: "Fuerte en Berna y Suiza central" },
-  { nombre: "Sanitas",    web: "https://www.sanitas.com",  precio: "Media-alta",  nota: "App excelente, buena atención" },
+export type AseguradoraData = {
+  nombre: string;
+  logo: string;
+  web: string;
+  primaMediaMensual: number; // adulto, franquicia 300, promedio nacional aprox.
+  franquiciaMin: number;
+  franquiciaMax: number;
+  modelosDisponibles: ("standard" | "telmed" | "hmo" | "hausarzt")[];
+  nota: string;
+  recomendadoPara: string;
+  rating: number;
+  acreditada: boolean;
+  precio: string; // etiqueta legacy para compatibilidad
+};
+
+export const SEGUROS_ASEGURADORAS: AseguradoraData[] = [
+  {
+    nombre: "Assura",
+    logo: "🔵",
+    web: "https://www.assura.ch",
+    primaMediaMensual: 420,
+    franquiciaMin: 300,
+    franquiciaMax: 2500,
+    modelosDisponibles: ["standard", "telmed"],
+    nota: "Prima más baja del mercado. Menos servicios complementarios. Ideal si eres sano y vas poco al médico.",
+    recomendadoPara: "Recién llegados con presupuesto ajustado",
+    rating: 3,
+    acreditada: true,
+    precio: "Más barata",
+  },
+  {
+    nombre: "Sympany",
+    logo: "🟢",
+    web: "https://www.sympany.ch",
+    primaMediaMensual: 435,
+    franquiciaMin: 300,
+    franquiciaMax: 2500,
+    modelosDisponibles: ["standard", "telmed", "hausarzt"],
+    nota: "Precio competitivo con buena app digital. Atención ágil por canales digitales.",
+    recomendadoPara: "Jóvenes y perfil digital",
+    rating: 3,
+    acreditada: true,
+    precio: "Muy barata",
+  },
+  {
+    nombre: "KPT",
+    logo: "🟡",
+    web: "https://www.kpt.ch",
+    primaMediaMensual: 445,
+    franquiciaMin: 300,
+    franquiciaMax: 2500,
+    modelosDisponibles: ["standard", "telmed", "hmo", "hausarzt"],
+    nota: "Buena relación calidad-precio especialmente en Berna y alrededores.",
+    recomendadoPara: "Residentes en Berna y Suiza central",
+    rating: 4,
+    acreditada: true,
+    precio: "Barata",
+  },
+  {
+    nombre: "Concordia",
+    logo: "🔷",
+    web: "https://www.concordia.ch",
+    primaMediaMensual: 460,
+    franquiciaMin: 300,
+    franquiciaMax: 2500,
+    modelosDisponibles: ["standard", "telmed", "hmo", "hausarzt"],
+    nota: "Buena valoración en atención al cliente e información en varios idiomas.",
+    recomendadoPara: "Recién llegados que valoran la atención multilingüe",
+    rating: 4,
+    acreditada: true,
+    precio: "Media",
+  },
+  {
+    nombre: "CSS",
+    logo: "🔴",
+    web: "https://www.css.ch",
+    primaMediaMensual: 475,
+    franquiciaMin: 300,
+    franquiciaMax: 2500,
+    modelosDisponibles: ["standard", "telmed", "hmo", "hausarzt"],
+    nota: "Una de las mayores aseguradoras. Red amplia, buena app y sólida relación calidad-precio.",
+    recomendadoPara: "Quienes buscan equilibrio entre precio y cobertura",
+    rating: 4,
+    acreditada: true,
+    precio: "Media",
+  },
+  {
+    nombre: "Sanitas",
+    logo: "🟠",
+    web: "https://www.sanitas.com",
+    primaMediaMensual: 480,
+    franquiciaMin: 300,
+    franquiciaMax: 2500,
+    modelosDisponibles: ["standard", "telmed", "hmo", "hausarzt"],
+    nota: "Muy popular entre expatriados. Excelente atención al cliente y app bien valorada.",
+    recomendadoPara: "Expatriados y recién llegados con apoyo digital",
+    rating: 4,
+    acreditada: true,
+    precio: "Media",
+  },
+  {
+    nombre: "Swica",
+    logo: "🟣",
+    web: "https://www.swica.ch",
+    primaMediaMensual: 490,
+    franquiciaMin: 300,
+    franquiciaMax: 2500,
+    modelosDisponibles: ["standard", "telmed", "hmo", "hausarzt"],
+    nota: "Destacada por coberturas complementarias amplias, incluyendo medicina alternativa y fisioterapia.",
+    recomendadoPara: "Familias y personas con necesidades de salud complementaria",
+    rating: 4,
+    acreditada: true,
+    precio: "Media-alta",
+  },
+  {
+    nombre: "Helsana",
+    logo: "⭕",
+    web: "https://www.helsana.ch",
+    primaMediaMensual: 510,
+    franquiciaMin: 300,
+    franquiciaMax: 2500,
+    modelosDisponibles: ["standard", "telmed", "hmo", "hausarzt"],
+    nota: "Líder de mercado. Prima más alta pero cobertura complementaria y servicio muy completos.",
+    recomendadoPara: "Familias con hijos y personas con salud compleja",
+    rating: 5,
+    acreditada: true,
+    precio: "Alta",
+  },
 ];
 
 export const SEGUROS_FRANQUICIAS = [

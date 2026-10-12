@@ -498,7 +498,7 @@ export default function SegurosPage() {
                   <div className="font-bold text-gray-800 group-hover:text-red-700">Buscar trabajo</div>
                   <div className="text-sm text-gray-500">Portales, ETT y empleo público.</div>
                 </div>
-                <span className="text-gray-300 group-hover:text-red-400">→</span>
+                <span className="text-gray-500 group-hover:text-red-500">→</span>
               </Link>
               <Link
                 href="/vivienda"
@@ -509,7 +509,7 @@ export default function SegurosPage() {
                   <div className="font-bold text-gray-800 group-hover:text-blue-700">Buscar vivienda</div>
                   <div className="text-sm text-gray-500">Todos los portales inmobiliarios.</div>
                 </div>
-                <span className="text-gray-300 group-hover:text-blue-400">→</span>
+                <span className="text-gray-500 group-hover:text-blue-500">→</span>
               </Link>
             </div>
           </div>

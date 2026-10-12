@@ -15,15 +15,18 @@ const NAV_LINKS = [
 ];
 
 const MOBILE_LINKS = [
-  { href: "/trabajo",          label: "💼 Trabajo" },
-  { href: "/trabajo/unia",     label: "⚖️ UNIA — Derechos laborales" },
-  { href: "/vivienda",         label: "🏠 Vivienda" },
-  { href: "/ciudades",         label: "🏙️ Ciudades" },
-  { href: "/planes",           label: "🏔️ Planes" },
-  { href: "/seguros",          label: "🛡️ Seguros" },
-  { href: "/herramientas",     label: "🔧 Herramientas" },
-  { href: "/blog",             label: "📝 Blog" },
-  { href: "/historias-reales", label: "❤️ Historias reales" },
+  { href: "/trabajo",                label: "💼 Trabajo" },
+  { href: "/trabajo/unia",           label: "⚖️ UNIA — Derechos laborales" },
+  { href: "/trabajo/esqui-suiza",    label: "⛷️ Trabajo en estaciones de esquí" },
+  { href: "/latinoamericanos",       label: "🌎 Emigrar desde Latinoamérica" },
+  { href: "/vivienda",               label: "🏠 Vivienda" },
+  { href: "/ciudades",               label: "🏙️ Ciudades" },
+  { href: "/planes",                 label: "🏔️ Planes" },
+  { href: "/seguros",                label: "🛡️ Seguros" },
+  { href: "/herramientas",           label: "🔧 Herramientas" },
+  { href: "/guias",                  label: "📋 Guías prácticas" },
+  { href: "/blog",                   label: "📝 Blog" },
+  { href: "/historias-reales",       label: "❤️ Historias reales" },
 ];
 
 export default function Header() {

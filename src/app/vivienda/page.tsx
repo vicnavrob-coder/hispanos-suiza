@@ -423,7 +423,7 @@ export default function ViviendaPage() {
                           Abrir →
                         </span>
                       ) : (
-                        <span className="text-gray-300 group-hover:text-blue-400 flex-shrink-0">→</span>
+                        <span className="text-gray-500 group-hover:text-blue-500 flex-shrink-0">→</span>
                       )}
                     </div>
                   </a>
@@ -475,7 +475,7 @@ export default function ViviendaPage() {
                   <div className="font-bold text-gray-800 group-hover:text-red-700">Buscar trabajo</div>
                   <div className="text-sm text-gray-500">Ofertas reales de jobs.ch y LinkedIn.</div>
                 </div>
-                <span className="text-gray-300 group-hover:text-red-400">→</span>
+                <span className="text-gray-500 group-hover:text-red-500">→</span>
               </Link>
               <Link href="/seguros" className="group bg-white border border-gray-100 rounded-2xl p-5 hover:shadow-md hover:border-purple-100 transition-all flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center text-xl flex-shrink-0 bg-purple-50">🛡️</div>
@@ -483,7 +483,7 @@ export default function ViviendaPage() {
                   <div className="font-bold text-gray-800 group-hover:text-purple-700">Seguro médico obligatorio</div>
                   <div className="text-sm text-gray-500">Compara y contrata tu KVG/LAMal.</div>
                 </div>
-                <span className="text-gray-300 group-hover:text-purple-400">→</span>
+                <span className="text-gray-500 group-hover:text-purple-500">→</span>
               </Link>
             </div>
           </div>
