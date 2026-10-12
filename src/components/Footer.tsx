@@ -64,6 +64,7 @@ export default function Footer() {
               <li><Link href="/categorias/emigrar" className="hover:text-white transition-colors">Emigrar a Suiza</Link></li>
               <li><Link href="/categorias/vivienda" className="hover:text-white transition-colors">Vivienda</Link></li>
               <li><Link href="/categorias/trabajo" className="hover:text-white transition-colors">Trabajo</Link></li>
+              <li><Link href="/trabajo/unia" className="hover:text-white transition-colors">UNIA — Derechos laborales</Link></li>
               <li><Link href="/categorias/banca" className="hover:text-white transition-colors">Banca y Finanzas</Link></li>
               <li><Link href="/categorias/seguros" className="hover:text-white transition-colors">Seguros</Link></li>
               <li><Link href="/categorias/vida-diaria" className="hover:text-white transition-colors">Vida diaria</Link></li>

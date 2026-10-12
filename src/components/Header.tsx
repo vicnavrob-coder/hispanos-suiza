@@ -16,6 +16,7 @@ const NAV_LINKS = [
 
 const MOBILE_LINKS = [
   { href: "/trabajo",          label: "💼 Trabajo" },
+  { href: "/trabajo/unia",     label: "⚖️ UNIA — Derechos laborales" },
   { href: "/vivienda",         label: "🏠 Vivienda" },
   { href: "/ciudades",         label: "🏙️ Ciudades" },
   { href: "/planes",           label: "🏔️ Planes" },

@@ -137,6 +137,26 @@ export default function TrabajoPage() {
         </div>
       </section>
 
+      {/* ── UNIA BANNER ─────────────────────────────────────── */}
+      <div className="bg-amber-50 border-b border-amber-200">
+        <div className="max-w-5xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-start sm:items-center gap-3 justify-between">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl flex-shrink-0">⚖️</span>
+            <div>
+              <span className="font-bold text-amber-900 text-sm">¿Conoces tus derechos laborales en Suiza?</span>
+              <span className="text-amber-700 text-sm ml-2">La UNIA te protege desde el primer día — ~CHF 50/mes.</span>
+            </div>
+          </div>
+          <Link
+            href="/trabajo/unia"
+            className="flex-shrink-0 text-xs font-bold px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90"
+            style={{ background: "#C8102E" }}
+          >
+            Qué es la UNIA →
+          </Link>
+        </div>
+      </div>
+
       {/* ── PASOS ────────────────────────────────────────────── */}
       <section className="bg-gray-50 border-b border-gray-200">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center gap-0 overflow-x-auto">
