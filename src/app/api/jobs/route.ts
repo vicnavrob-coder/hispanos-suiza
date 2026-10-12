@@ -196,7 +196,7 @@ const TITLE_PATTERNS: TitlePattern[] = [
                                              es: "Administrativo/a",        sector: "Administración" },
   { kw: ["project manager", "projektleiter", "chef de projet"],
                                              es: "Jefe de proyecto",        sector: "Administración" },
-  { kw: ["hr", "human resources", "recruiting", "recruiter", "personalberatung"],
+  { kw: ["human resources", "recruiting", "recruiter", "personalberatung", "personalvermittlung", "personal manager"],
                                              es: "RRHH / Selección de personal", sector: "Administración" },
   { kw: ["verkäufer", "salesperson", "sales", "commercial", "vertrieb"],
                                              es: "Comercial / Ventas",      sector: "Ventas" },
