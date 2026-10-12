@@ -41,8 +41,10 @@ h1, h2, h3, h4 {
   color: var(--texto);
 }
 
-a { color: var(--rojo); text-decoration: none; }
-a:hover { color: var(--rojo-oscuro); }
+@layer base {
+  a { color: var(--rojo); text-decoration: none; }
+  a:hover { color: var(--rojo-oscuro); }
+}
 
 /* ── Mono utility ── */
 .mono {
