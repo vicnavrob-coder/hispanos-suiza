@@ -25,6 +25,7 @@ export interface SeoOptions {
   modifiedTime?: string;
   keywords?: string[];
   noIndex?: boolean;
+  extraLanguages?: Record<string, string>; // e.g. { "es-VE": url }
 }
 
 // ─────────────────────────────────────────────
@@ -48,6 +49,7 @@ export function buildMetadata(opts: SeoOptions): Metadata {
         "es-AR": url,
         "es-CO": url,
         "x-default": url,
+        ...(opts.extraLanguages ?? {}),
       },
     },
     openGraph: {

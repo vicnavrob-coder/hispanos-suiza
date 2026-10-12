@@ -17,12 +17,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { pais: paisSlug } = await params;
   const pais = getPais(paisSlug);
   if (!pais) return {};
+  const extraHreflang: Record<string, Record<string, string>> = {
+    venezuela: { "es-VE": `${BASE_URL}/latinoamericanos/venezuela` },
+    peru:      { "es-PE": `${BASE_URL}/latinoamericanos/peru` },
+    ecuador:   { "es-EC": `${BASE_URL}/latinoamericanos/ecuador` },
+  };
   return buildMetadata({
     title: `Emigrar a Suiza desde ${pais.nombre}: visado, permiso y proceso ${new Date().getFullYear()}`,
-    description: `${pais.descripcion} Plazo estimado: ${pais.plazosEstimados}. Guía actualizada ${new Date().getFullYear()} con pasos detallados, cantones más abiertos y profesiones en demanda.`,
+    description: `Guía ${new Date().getFullYear()} para emigrar a Suiza desde ${pais.nombre}: permiso de trabajo, sistema de cuotas, cantones más abiertos y profesiones en demanda.`,
     path: `/latinoamericanos/${pais.slug}`,
     ogImage: pais.imagen,
     keywords: pais.keywords,
+    extraLanguages: extraHreflang[pais.slug] ?? {},
   });
 }
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { buildMetadata, BASE_URL, webAppSchema, breadcrumbSchema } from "@/lib/seo";
+import { buildMetadata, webAppSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Buscador de trabajo en Suiza para hispanohablantes",
@@ -17,10 +17,6 @@ export const metadata: Metadata = buildMetadata({
 
 export default function TrabajoLayout({ children }: { children: React.ReactNode }) {
   const schemas = [
-    breadcrumbSchema([
-      { name: "Inicio",          url: BASE_URL },
-      { name: "Buscar trabajo",  url: `${BASE_URL}/trabajo` },
-    ]),
     webAppSchema({
       name: "Buscador de trabajo en Suiza",
       description: "Busca ofertas de trabajo en Suiza por sector y ciudad. Resultados en tiempo real de jobs.ch y LinkedIn.",

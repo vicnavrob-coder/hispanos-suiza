@@ -4,7 +4,7 @@ import { buildMetadata, BASE_URL, breadcrumbSchema, faqSchema } from "@/lib/seo"
 import { ESTACIONES, PUESTOS_SKI } from "@/lib/esqui";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Trabajar en estaciones de esquí en Suiza: guía completa 2026",
+  title: "Estaciones de esquí en Suiza: trabajar, salarios y permisos 2026",
   description:
     "Guía completa para trabajar en estaciones de esquí suizas: salarios, puestos, permisos y qué estaciones tienen más hispanohablantes. Actualizada 2026.",
   path: "/trabajo/esqui-suiza",

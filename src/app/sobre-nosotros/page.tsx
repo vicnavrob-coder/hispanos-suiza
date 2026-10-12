@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { buildMetadata, BASE_URL, breadcrumbSchema, organizationSchema } from "@/lib/seo";
+import { buildMetadata, BASE_URL, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Sobre nosotros — Hispanohablantes que viven en Suiza",
@@ -20,7 +20,6 @@ export default function SobreNosotrosPage() {
       { name: "Inicio", url: BASE_URL },
       { name: "Sobre nosotros", url: `${BASE_URL}/sobre-nosotros` },
     ]),
-    organizationSchema(),
   ];
 
   return (

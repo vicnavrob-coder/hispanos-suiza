@@ -12,6 +12,7 @@ export const metadata: Metadata = buildMetadata({
     "Todo lo que necesitas saber para inscribirte en el RAV y cobrar el paro en Suiza. Requisitos, importes, plazos y errores que cuestan dinero — explicado en español.",
   path: "/guias/rav-paro-suiza",
   ogType: "article",
+  ogImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=85&auto=format&fit=crop",
   keywords: [
     "RAV suiza español",
     "cobrar paro suiza español",

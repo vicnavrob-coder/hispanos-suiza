@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { buildMetadata, breadcrumbSchema, faqSchema, BASE_URL } from "@/lib/seo";
+import { buildMetadata, breadcrumbSchema, faqSchema, howToSchema, BASE_URL } from "@/lib/seo";
 
 const ACCENT = "#C8102E";
 
@@ -12,6 +12,7 @@ export const metadata: Metadata = buildMetadata({
     "Guía completa del divorcio en Suiza: proceso civil, custodia, pensiones, segundo pilar y qué pasa con tu permiso de residencia. En español, con datos reales.",
   path: "/guias/divorcio-suiza",
   ogType: "article",
+  ogImage: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=85&auto=format&fit=crop",
   keywords: [
     "divorcio suiza español",
     "separación suiza trámites",
@@ -62,6 +63,19 @@ const breadcrumb = breadcrumbSchema([
 
 const faq = faqSchema(FAQS);
 
+const howTo = howToSchema({
+  name: "Cómo divorciarse en Suiza siendo hispanohablante",
+  description: "Proceso completo del divorcio civil en Suiza para españoles y latinoamericanos residentes.",
+  totalTime: "PT3M",
+  steps: [
+    { name: "Redactar el convenio regulador", text: "Si hay mutuo acuerdo, elaborar el Scheidungskonvention con todos los puntos: custodia, alimentos, bienes y segundo pilar. Puede hacerse sin abogado si hay acuerdo total." },
+    { name: "Presentar la demanda en el tribunal cantonal", text: "Dirigirse al Zivilgericht (tribunal civil) del cantón de residencia con la demanda y el convenio firmado. Se acompaña de documentación: pasaportes, certificado de matrimonio, certificado de nacimiento de los hijos si los hay." },
+    { name: "Audiencia ante el juez", text: "Ambas partes deben comparecer. El juez verifica que las condiciones son libres, informadas y equilibradas. No es necesario abogado si hay acuerdo completo." },
+    { name: "Sentencia de divorcio", text: "El juez dicta sentencia. En casos con acuerdo total suele tardar 2-6 meses. La sentencia incluye todos los acuerdos sobre hijos, bienes y pensiones." },
+    { name: "Inscribir el divorcio en España (si aplica)", text: "El divorcio suizo es automáticamente reconocido en España. Para inscribirlo, contactar con el Registro Civil Central de Madrid o el consulado español más cercano con copia de la sentencia." },
+  ],
+});
+
 // ── Componente ────────────────────────────────────────────────────────────────
 
 export default function DivorcioSuizaPage() {
@@ -70,6 +84,7 @@ export default function DivorcioSuizaPage() {
       {/* JSON-LD */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howTo) }} />
 
       <div className="max-w-4xl mx-auto px-4 py-10">
 

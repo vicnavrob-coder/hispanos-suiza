@@ -7,7 +7,7 @@ const ACCENT = "#C8102E";
 // ── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = buildMetadata({
-  title: "Guías prácticas para hispanohablantes en Suiza — HispanosEnSuiza",
+  title: "Guías prácticas para hispanohablantes en Suiza 2026",
   description:
     "Guías paso a paso sobre los trámites más importantes en Suiza: cobrar el paro, divorciarse, volver a España. Todo en español, con datos reales y actualizados.",
   path: "/guias",

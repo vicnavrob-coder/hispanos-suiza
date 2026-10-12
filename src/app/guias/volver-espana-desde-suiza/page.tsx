@@ -12,6 +12,7 @@ export const metadata: Metadata = buildMetadata({
     "Guía completa para volver a España desde Suiza: segundo pilar, AHV, paro exportado (U2), baja municipal, seguro médico LAMal, impuestos y checklist de 20 puntos.",
   path: "/guias/volver-espana-desde-suiza",
   ogType: "article",
+  ogImage: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&q=85&auto=format&fit=crop",
   keywords: [
     "volver a españa desde suiza",
     "retorno suiza españa trámites",
