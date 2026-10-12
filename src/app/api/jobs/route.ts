@@ -8,41 +8,51 @@ export type JobItem = {
   description: string;
   pubDate: string;
   source: "jobs.ch" | "LinkedIn" | "Tempservice" | "tempoX";
-  contractType?: string;  // "Jornada completa" | "Temporal" | "Prácticas"
-  workload?: string;      // "100%" | "80–100%" | "50–80%"
-  salary?: string;        // "5 000 CHF/mes"
-  languageRequired?: string; // "Alemán" | "Francés" | "Inglés"
-  isEtt?: boolean;        // resultado de agencia de trabajo temporal
+  contractType?: string;
+  workload?: string;
+  salary?: string;
+  languageRequired?: string;
+  isEtt?: boolean;
+  titleEs?: string;   // título traducido al español (si disponible)
+  sectorEs?: string;  // sector en español para contextualizar
 };
 
-// ── Mapeos ciudad UI ─────────────────────────────────────────────────────────
+// ── Mapeos ciudad UI → portales ───────────────────────────────────────────────
 
-const JOBS_CH_CITY: Record<string, string> = {
-  "Zürich":     "Zurich",
-  "Geneva":     "Geneva",
-  "Basel":      "Basel",
-  "Bern":       "Bern",
-  "Lausanne":   "Lausanne",
-  "Lugano":     "Lugano",
-  "Winterthur": "Winterthur",
-  "St. Gallen": "St. Gallen",
-  "Lucerne":    "Lucerne",
-  "Zug":        "Zug",
+const CITY_SEARCH: Record<string, string> = {
+  "Zürich":       "Zurich",
+  "Geneva":       "Geneva",
+  "Basel":        "Basel",
+  "Bern":         "Bern",
+  "Lausanne":     "Lausanne",
+  "Lugano":       "Lugano",
+  "Winterthur":   "Winterthur",
+  "St. Gallen":   "St. Gallen",
+  "Lucerne":      "Lucerne",
+  "Zug":          "Zug",
+  "Aarau":        "Aarau",
+  "Biel/Bienne":  "Biel",
+  "Fribourg":     "Fribourg",
+  "Solothurn":    "Solothurn",
+  "Neuchâtel":    "Neuchatel",
+  "Sion":         "Sion",
+  "Chur":         "Chur",
+  "Bellinzona":   "Bellinzona",
+  "Thun":         "Thun",
+  "Schaffhausen": "Schaffhausen",
+  "Olten":        "Olten",
+  "Baden":        "Baden",
+  "Frauenfeld":   "Frauenfeld",
+  "Herisau":      "Herisau",
 };
 
-const LINKEDIN_CITY: Record<string, string> = {
-  "Zürich":      "Zurich, Switzerland",
-  "Geneva":      "Geneva, Switzerland",
-  "Basel":       "Basel, Switzerland",
-  "Bern":        "Bern, Switzerland",
-  "Lausanne":    "Lausanne, Switzerland",
-  "Lugano":      "Lugano, Switzerland",
-  "Winterthur":  "Winterthur, Switzerland",
-  "St. Gallen":  "St. Gallen, Switzerland",
-  "Lucerne":     "Lucerne, Switzerland",
-  "Zug":         "Zug, Switzerland",
-  "Toda Suiza":  "Switzerland",
-};
+// Alias para compatibilidad interna
+const JOBS_CH_CITY = CITY_SEARCH;
+
+const LINKEDIN_CITY: Record<string, string> = Object.fromEntries([
+  ["Toda Suiza", "Switzerland"],
+  ...Object.entries(CITY_SEARCH).map(([k, v]) => [k, `${v}, Switzerland`]),
+]);
 
 // Mapeo código ISO idioma → nombre en español
 const LANG_NAMES: Record<string, string> = {
@@ -50,6 +60,168 @@ const LANG_NAMES: Record<string, string> = {
   en: "Inglés", es: "Español", pt: "Portugués",
   rm: "Romanche", nl: "Holandés",
 };
+
+// ── Motor de traducción de títulos (Alemán/Inglés → Español) ─────────────────
+
+// Cada entrada: [palabras clave a detectar en el título], título ES, sector ES
+type TitlePattern = { kw: string[]; es: string; sector: string };
+
+const TITLE_PATTERNS: TitlePattern[] = [
+  // ── Construcción ────────────────────────────────────────────────────────
+  { kw: ["maurer"],                           es: "Albañil",                 sector: "Construcción" },
+  { kw: ["encofrador", "schalungsbauer", "schaler"], es: "Encofrador",      sector: "Construcción" },
+  { kw: ["ferrallista", "eisenbieger", "armador"], es: "Ferrallista",        sector: "Construcción" },
+  { kw: ["tiefbau", "civil engineer", "obra civil"], es: "Técnico obra civil", sector: "Construcción" },
+  { kw: ["bauführer", "bauleiter", "site manager", "polier"], es: "Jefe de obra", sector: "Construcción" },
+  { kw: ["hilfsarbeiter", "hilfskraft", "helper", "peón", "bauhelfer"], es: "Peón / Ayudante de obra", sector: "Construcción" },
+  { kw: ["gipser", "gips", "stuckateur"],     es: "Yesero / Estucador",      sector: "Construcción" },
+  { kw: ["soleur", "bodenleger", "fliesenleger", "carreleur"], es: "Solador / Alicatador", sector: "Construcción" },
+  { kw: ["zimmermann", "zimmerer", "charpentier"], es: "Carpintero de estructuras", sector: "Construcción" },
+  { kw: ["dachdecker", "couvreur"],           es: "Tejador / Cubiertas",     sector: "Construcción" },
+
+  // ── Electricidad ────────────────────────────────────────────────────────
+  { kw: ["elektriker", "electrician", "elektromonteur", "elektroinstallateur", "electrical"],
+                                              es: "Electricista",            sector: "Electricidad" },
+  { kw: ["automatiker", "automation", "automatisierung"], es: "Automatista", sector: "Electricidad" },
+  { kw: ["elektroniker", "electronics"],     es: "Técnico electrónico",     sector: "Electricidad" },
+
+  // ── Fontanería y HVAC ────────────────────────────────────────────────────
+  { kw: ["sanitärinstallateur", "sanitär", "plumber", "plombier"], es: "Fontanero / Instalador sanitario", sector: "Fontanería" },
+  { kw: ["heizung", "hvac", "chauffagiste", "klimatechniker", "lüftung"], es: "Técnico climatización (HVAC)", sector: "Fontanería" },
+
+  // ── Metal / Soldadura ────────────────────────────────────────────────────
+  { kw: ["schlosser", "schlosserei"],        es: "Cerrajero industrial",     sector: "Metal" },
+  { kw: ["schweisser", "welder", "soudeur", "soldeur", "soldad"], es: "Soldador",  sector: "Metal" },
+  { kw: ["polymechaniker", "polyméchanick"], es: "Polimecánico",            sector: "Metal" },
+  { kw: ["metallbauer", "metal worker", "metalúrgico"], es: "Metalúrgico",  sector: "Metal" },
+  { kw: ["dreher", "fräser", "cnc", "werkzeugmacher"], es: "Operador CNC / Tornero", sector: "Metal" },
+  { kw: ["mechaniker", "mechanic"],          es: "Mecánico",                sector: "Mecánica" },
+
+  // ── Madera / Carpintería ─────────────────────────────────────────────────
+  { kw: ["schreiner", "menuisier", "carpenter", "tischler"], es: "Carpintero / Ebanista", sector: "Carpintería" },
+  { kw: ["maler", "painter", "peintre"],     es: "Pintor",                  sector: "Pintura" },
+
+  // ── Hostelería / Restauración ────────────────────────────────────────────
+  { kw: ["küchenchef", "chefkoch", "chef de cuisine", "executive chef", "head chef"],
+                                             es: "Jefe de cocina",          sector: "Hostelería" },
+  { kw: ["koch", "köchin", "cuisinier", "cuisi", "cook"],
+                                             es: "Cocinero/a",              sector: "Hostelería" },
+  { kw: ["hilfskoch", "küchenhilfe", "commis", "kitchen help"], es: "Ayudante de cocina", sector: "Hostelería" },
+  { kw: ["kellner", "kelln", "waiter", "waitress", "serveur", "serveuse", "service mitarbeiter"],
+                                             es: "Camarero/a",              sector: "Hostelería" },
+  { kw: ["barkeeper", "barman", "bartender"], es: "Barman / Barista",       sector: "Hostelería" },
+  { kw: ["rezeptionist", "receptionist", "réceptionniste", "hotel"], es: "Recepcionista de hotel", sector: "Hostelería" },
+  { kw: ["hauswirtschaft", "housekeeping", "gouvernant"], es: "Gobernanta / Limpieza hotel", sector: "Hostelería" },
+  { kw: ["spülkraft", "plongeur", "dishwasher"], es: "Lavaplatos / Limpieza cocina", sector: "Hostelería" },
+
+  // ── Logística / Transporte ───────────────────────────────────────────────
+  { kw: ["chauffeur", "fahrer", "driver", "lkw", "transport"], es: "Conductor / Chófer", sector: "Logística" },
+  { kw: ["gabelstapler", "forklift", "carretillero"],  es: "Carretillero",   sector: "Logística" },
+  { kw: ["lager", "warehouse", "magasinier", "lagerarbeiter"], es: "Operario de almacén", sector: "Logística" },
+  { kw: ["kurier", "zustellung", "delivery", "repartidor"], es: "Repartidor",  sector: "Logística" },
+  { kw: ["logistik coordinator", "dispatcher", "spedition"], es: "Coordinador logístico", sector: "Logística" },
+
+  // ── Limpieza / Mantenimiento ─────────────────────────────────────────────
+  { kw: ["reinigungskraft", "reinigung", "cleaner", "nettoyeur", "nettoyage"],
+                                             es: "Operario/a de limpieza",  sector: "Limpieza" },
+  { kw: ["hauswart", "hausmeister", "conserge", "janitor"], es: "Conserje / Mantenimiento", sector: "Limpieza" },
+  { kw: ["wartung", "maintenance", "entretien", "técnico mantenimiento"], es: "Técnico de mantenimiento", sector: "Mantenimiento" },
+
+  // ── Sanidad / Cuidados ───────────────────────────────────────────────────
+  { kw: ["pflegefachfrau", "pflegefachmann", "krankenpflege", "soins infirmiers", "nurse", "enfermero"],
+                                             es: "Enfermero/a",             sector: "Sanidad" },
+  { kw: ["fachfrau gesundheit", "fage", "auxiliar", "soignant", "betreuung"],
+                                             es: "Auxiliar de enfermería",  sector: "Sanidad" },
+  { kw: ["arzt", "ärztin", "médecin", "doctor", "physician"], es: "Médico/a",   sector: "Sanidad" },
+  { kw: ["zahnarzt", "dentist", "dentiste"], es: "Dentista",                sector: "Sanidad" },
+  { kw: ["physiotherapeut", "physiothérapeute", "physio"], es: "Fisioterapeuta", sector: "Sanidad" },
+  { kw: ["pharmazeut", "apotheker", "pharmacien", "pharmacist"], es: "Farmacéutico", sector: "Sanidad" },
+  { kw: ["sanitäter", "rettungssanitäter", "paramedic"], es: "Sanitario / Auxiliar emergencias", sector: "Sanidad" },
+
+  // ── Informática / IT ─────────────────────────────────────────────────────
+  { kw: ["frontend developer", "front-end developer", "frontend engineer"],
+                                             es: "Desarrollador Frontend",  sector: "Informática" },
+  { kw: ["backend developer", "back-end developer", "backend engineer"],
+                                             es: "Desarrollador Backend",   sector: "Informática" },
+  { kw: ["fullstack", "full stack", "full-stack"],
+                                             es: "Desarrollador Fullstack", sector: "Informática" },
+  { kw: ["devops", "site reliability", "sre"],
+                                             es: "Ingeniero DevOps / SRE",  sector: "Informática" },
+  { kw: ["data engineer", "data scientist", "machine learning", "ml engineer"],
+                                             es: "Ingeniero de datos / ML", sector: "Informática" },
+  { kw: ["cloud engineer", "cloud architect", "aws", "azure architect"],
+                                             es: "Arquitecto Cloud",        sector: "Informática" },
+  { kw: ["software developer", "softwareentwickler", "entwickler", "programmer"],
+                                             es: "Desarrollador de software", sector: "Informática" },
+  { kw: ["software engineer"],               es: "Ingeniero de software",   sector: "Informática" },
+  { kw: ["system administrator", "sysadmin", "it administrator", "systemadministrator"],
+                                             es: "Administrador de sistemas", sector: "Informática" },
+  { kw: ["cyber", "security engineer", "penetration"],
+                                             es: "Técnico ciberseguridad",  sector: "Informática" },
+
+  // ── Administración / Oficina ─────────────────────────────────────────────
+  { kw: ["buchhalter", "buchhalting", "accountant", "comptable", "accounting"],
+                                             es: "Contable / Contabilidad", sector: "Administración" },
+  { kw: ["kaufmännisch", "sachbearbeiter", "administrateur", "assistant administratif"],
+                                             es: "Administrativo/a",        sector: "Administración" },
+  { kw: ["project manager", "projektleiter", "chef de projet"],
+                                             es: "Jefe de proyecto",        sector: "Administración" },
+  { kw: ["hr", "human resources", "recruiting", "recruiter", "personalberatung"],
+                                             es: "RRHH / Selección de personal", sector: "Administración" },
+  { kw: ["verkäufer", "salesperson", "sales", "commercial", "vertrieb"],
+                                             es: "Comercial / Ventas",      sector: "Ventas" },
+
+  // ── Agricultura ──────────────────────────────────────────────────────────
+  { kw: ["landwirt", "agriculture", "bauer", "farm", "recolect", "harvest"],
+                                             es: "Trabajador agrícola",     sector: "Agricultura" },
+  { kw: ["gärtner", "jardinier", "gardener", "jardinero"],
+                                             es: "Jardinero",               sector: "Agricultura" },
+
+  // ── Educación ────────────────────────────────────────────────────────────
+  { kw: ["lehrer", "lehrerin", "teacher", "enseignant", "profesor"],
+                                             es: "Profesor/a",              sector: "Educación" },
+  { kw: ["erzieher", "erzieherin", "educateur", "kita", "kinderpfleger"],
+                                             es: "Educador/a infantil",     sector: "Educación" },
+];
+
+/**
+ * Intenta traducir el título al español usando el diccionario.
+ * Retorna { titleEs, sectorEs } si hay match, undefined si no.
+ */
+function translateTitle(title: string): { titleEs: string; sectorEs: string } | undefined {
+  const t = title.toLowerCase();
+  for (const p of TITLE_PATTERNS) {
+    if (p.kw.some((kw) => t.includes(kw))) {
+      return { titleEs: p.es, sectorEs: p.sector };
+    }
+  }
+  return undefined;
+}
+
+/** Limpia sufijos de género alemanes y porcentajes del título */
+function cleanTitle(title: string): string {
+  return title
+    .replace(/\s*\(m\/w\/d\)/gi, "")
+    .replace(/\s*\(m\/f\/d\)/gi, "")
+    .replace(/\s*\(m\/w\)/gi, "")
+    .replace(/\s*\(all genders\)/gi, "")
+    .replace(/\s*\(gn\*\)/gi, "")
+    .replace(/\s*\d{1,3}[–-]\d{1,3}%/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** Aplica traducción a un JobItem devuelto por cualquier fuente */
+function enrichJob(job: JobItem): JobItem {
+  const cleaned = cleanTitle(job.title);
+  const translation = translateTitle(cleaned);
+  return {
+    ...job,
+    title:    cleaned,
+    titleEs:  translation?.titleEs,
+    sectorEs: translation?.sectorEs,
+  };
+}
 
 const HEADERS = {
   "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -332,13 +504,15 @@ export async function GET(request: Request) {
   }
 
   // Merge: ETT primero (más especializadas y exclusivas), luego portales, luego LinkedIn
+  // Aplicar traducción + limpieza de título a todos los resultados
   const seen   = new Set<string>();
   const merged: JobItem[] = [];
   for (const job of [...tempservice, ...tempoX, ...jobsCh, ...jobsCh2, ...linkedin]) {
-    const key = `${job.title.toLowerCase().slice(0, 40)}|${job.company.toLowerCase().slice(0, 20)}`;
+    const enriched = enrichJob(job);
+    const key = `${enriched.title.toLowerCase().slice(0, 40)}|${enriched.company.toLowerCase().slice(0, 20)}`;
     if (!seen.has(key)) {
       seen.add(key);
-      merged.push(job);
+      merged.push(enriched);
     }
   }
 

@@ -103,8 +103,13 @@ export const JOB_CATEGORIES: JobCategory[] = [
 
 export const CIUDADES_SUIZA = [
   "Toda Suiza",
+  // Grandes ciudades
   "Zürich", "Geneva", "Basel", "Bern", "Lausanne",
   "Lugano", "Winterthur", "St. Gallen", "Lucerne", "Zug",
+  // Ciudades medianas y cantones importantes
+  "Aarau", "Biel/Bienne", "Fribourg", "Solothurn", "Neuchâtel",
+  "Sion", "Chur", "Bellinzona", "Thun", "Schaffhausen",
+  "Olten", "Baden", "Frauenfeld", "Herisau",
 ];
 
 export const PORTALES_EMPLEO_BUSQUEDA = [

@@ -31,17 +31,31 @@ const ACCENT      = "#C0392B";
 const ACCENT_DARK = "#96281B";
 
 const CIUDAD_EMOJIS: Record<string, string> = {
-  "Toda Suiza": "🇨🇭",
-  "Zürich":     "🏔️",
-  "Geneva":     "🌊",
-  "Basel":      "🏛️",
-  "Bern":       "🐻",
-  "Lausanne":   "🎓",
-  "Lugano":     "☀️",
-  "Winterthur": "🌿",
-  "St. Gallen": "📚",
-  "Lucerne":    "🌉",
-  "Zug":        "💼",
+  "Toda Suiza":   "🇨🇭",
+  "Zürich":       "🏔️",
+  "Geneva":       "🌊",
+  "Basel":        "🏛️",
+  "Bern":         "🐻",
+  "Lausanne":     "🎓",
+  "Lugano":       "☀️",
+  "Winterthur":   "🌿",
+  "St. Gallen":   "📚",
+  "Lucerne":      "🌉",
+  "Zug":          "💼",
+  "Aarau":        "🏭",
+  "Biel/Bienne":  "⌚",
+  "Fribourg":     "🏰",
+  "Solothurn":    "🏛️",
+  "Neuchâtel":    "🍷",
+  "Sion":         "🏔️",
+  "Chur":         "🏔️",
+  "Bellinzona":   "🏰",
+  "Thun":         "🏞️",
+  "Schaffhausen": "💧",
+  "Olten":        "🚂",
+  "Baden":        "♨️",
+  "Frauenfeld":   "🌾",
+  "Herisau":      "🏡",
 };
 
 const SOURCE_STYLE: Record<string, { bg: string; color: string; label: string }> = {
@@ -56,8 +70,9 @@ function salaryLabel(cat: JobCategory): string {
 }
 
 export default function TrabajoPage() {
-  const [categoria, setCategoria] = useState<JobCategory | null>(null);
-  const [ciudad, setCiudad]       = useState("Toda Suiza");
+  const [categoria, setCategoria]     = useState<JobCategory | null>(null);
+  const [ciudad, setCiudad]           = useState("Toda Suiza");
+  const [mostrarTodasCiudades, setMostrarTodasCiudades] = useState(false);
   const [customTerm, setCustomTerm] = useState("");
   const [jobs, setJobs]           = useState<JobItem[]>([]);
   const [loading, setLoading]     = useState(false);
@@ -285,9 +300,10 @@ export default function TrabajoPage() {
             <label className="block text-sm font-bold text-gray-700 mb-2">
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full text-white text-xs mr-1.5" style={{ background: ACCENT }}>2</span>
               Ciudad o cantón
+              <span className="font-normal text-gray-400 text-xs ml-2">({CIUDADES_SUIZA.length - 1} opciones)</span>
             </label>
             <div className="flex flex-wrap gap-2">
-              {CIUDADES_SUIZA.map((c) => (
+              {(mostrarTodasCiudades ? CIUDADES_SUIZA : CIUDADES_SUIZA.slice(0, 11)).map((c) => (
                 <button
                   key={c}
                   onClick={() => { setCiudad(c); setBuscado(false); }}
@@ -299,6 +315,12 @@ export default function TrabajoPage() {
                   {CIUDAD_EMOJIS[c] ?? ""} {c}
                 </button>
               ))}
+              <button
+                onClick={() => setMostrarTodasCiudades(!mostrarTodasCiudades)}
+                className="px-3 py-1.5 rounded-full border border-dashed border-gray-300 text-sm text-gray-500 hover:border-red-300 hover:text-red-600 transition-all"
+              >
+                {mostrarTodasCiudades ? "▲ Menos" : `+${CIUDADES_SUIZA.length - 11} más`}
+              </button>
             </div>
           </div>
 
@@ -404,6 +426,7 @@ export default function TrabajoPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {jobs.map((job, i) => {
                     const src = SOURCE_STYLE[job.source] ?? SOURCE_STYLE["LinkedIn"];
+                    const salaryRange = categoria ? `${fmt(categoria.salarioMin)}–${fmt(categoria.salarioMax)} CHF/mes` : null;
                     return (
                       <a
                         key={i}
@@ -411,16 +434,41 @@ export default function TrabajoPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-white border border-gray-100 rounded-xl hover:shadow-md hover:border-red-200 transition-all group flex flex-col border-l-4 overflow-hidden"
-                        style={{ borderLeftColor: ACCENT }}
+                        style={{ borderLeftColor: job.isEtt ? "#f59e0b" : ACCENT }}
                       >
                         {/* Cabecera */}
                         <div className="p-4 pb-3">
-                          <div className="flex items-start justify-between gap-2 mb-1.5">
-                            <h3 className="font-bold text-gray-800 group-hover:text-red-700 text-sm leading-snug flex-1">
-                              {job.title}
+
+                          {/* Sector + ETT badge */}
+                          {(job.sectorEs || job.isEtt) && (
+                            <div className="flex items-center gap-1.5 mb-2 flex-wrap">
+                              {job.sectorEs && (
+                                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 uppercase tracking-wide">
+                                  {job.sectorEs}
+                                </span>
+                              )}
+                              {job.isEtt && (
+                                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">
+                                  🏭 Agencia ETT
+                                </span>
+                              )}
+                            </div>
+                          )}
+
+                          {/* Título en español (principal) */}
+                          <div className="flex items-start justify-between gap-2 mb-0.5">
+                            <h3 className="font-bold text-gray-900 group-hover:text-red-700 text-sm leading-snug flex-1">
+                              {job.titleEs ?? job.title}
                             </h3>
                             <span className="text-gray-400 group-hover:text-red-400 text-base flex-shrink-0 mt-0.5">→</span>
                           </div>
+
+                          {/* Título original (referencia, más pequeño) */}
+                          {job.titleEs && (
+                            <p className="text-[11px] text-gray-400 mb-2 italic">
+                              Anuncio original: &ldquo;{job.title}&rdquo;
+                            </p>
+                          )}
 
                           {/* Empresa + ubicación */}
                           <div className="flex items-center gap-3 flex-wrap text-xs text-gray-500 mb-2">
@@ -436,12 +484,16 @@ export default function TrabajoPage() {
                             )}
                           </div>
 
-                          {/* Descripción breve */}
-                          {job.description && (
-                            <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">
+                          {/* Descripción: original si existe, sino salario del sector */}
+                          {job.description ? (
+                            <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 border-l-2 border-gray-200 pl-2">
                               {job.description}
                             </p>
-                          )}
+                          ) : salaryRange ? (
+                            <p className="text-xs text-green-700 font-semibold">
+                              💰 Salario orientativo en {job.sectorEs ?? "este sector"}: {salaryRange}
+                            </p>
+                          ) : null}
                         </div>
 
                         {/* Footer con badges */}
@@ -463,7 +515,7 @@ export default function TrabajoPage() {
                           )}
                           {job.languageRequired && (
                             <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">
-                              🗣 {job.languageRequired}
+                              🗣 Idioma: {job.languageRequired}
                             </span>
                           )}
                           {job.pubDate && (
