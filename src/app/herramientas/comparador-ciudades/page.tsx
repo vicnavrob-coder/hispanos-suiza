@@ -78,7 +78,13 @@ function CityCard({
         {ciudad.nombre}
       </div>
       <div className="text-xs text-[#9CA3AF] mt-0.5">{ciudad.idioma.split(" ")[0]}</div>
-      <div className="text-xs font-semibold mt-2" style={{ color: ciudad.color }}>
+      {ciudad.region.includes("Cantón Zug") && (
+        <div className="text-[10px] font-bold mt-1 px-1.5 py-0.5 rounded-full inline-block"
+          style={{ background: "#FEF3C7", color: "#92400E" }}>
+          ⚡ Impuestos bajos
+        </div>
+      )}
+      <div className="text-xs font-semibold mt-1.5" style={{ color: ciudad.color }}>
         {fmt(totalMensual(ciudad))}/mes
       </div>
     </button>
@@ -92,6 +98,7 @@ export default function ComparadorCiudadesPage() {
   const [slugB, setSlugB] = useState("ginebra");
   const [salario, setSalario] = useState("6000");
   const [showEquiv, setShowEquiv] = useState(false);
+  const [replacing, setReplacing] = useState<"A" | "B">("B");
 
   const A = CIUDADES.find((c) => c.slug === slugA)!;
   const B = CIUDADES.find((c) => c.slug === slugB)!;
@@ -103,10 +110,10 @@ export default function ComparadorCiudadesPage() {
   const maxTotal = Math.max(...CIUDADES.map(totalMensual));
 
   function selectCity(slug: string) {
-    if (slug === slugA) return;
-    if (slug === slugB) return;
-    // pick the one to replace based on last clicked — toggle: click A city replaces A
-    setSlugB(slug);
+    if (slug === slugA) { setReplacing("A"); return; }
+    if (slug === slugB) { setReplacing("B"); return; }
+    if (replacing === "A") { setSlugA(slug); setReplacing("B"); }
+    else { setSlugB(slug); setReplacing("A"); }
   }
   function pickA(slug: string) { if (slug !== slugB) setSlugA(slug); }
   function pickB(slug: string) { if (slug !== slugA) setSlugB(slug); }
@@ -145,6 +152,36 @@ export default function ComparadorCiudadesPage() {
           <span className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-wider">Elige dos ciudades</span>
           <div className="h-px flex-1" style={{ background: "#E8E5E0" }} />
         </div>
+        {/* Replacing indicator */}
+        <div className="flex items-center justify-center gap-3 mb-3">
+          <span className="text-xs text-[#6B7280]">Siguiente clic cambia:</span>
+          <div className="flex gap-1.5">
+            <button
+              onClick={() => setReplacing("A")}
+              className="px-3 py-1 rounded-full text-xs font-bold transition-all"
+              style={{
+                background: replacing === "A" ? A.color : "#F0EDEA",
+                color: replacing === "A" ? "white" : "#6B7280",
+                outline: replacing === "A" ? `2px solid ${A.color}` : "none",
+                outlineOffset: "2px",
+              }}
+            >
+              A · {A.nombre}
+            </button>
+            <button
+              onClick={() => setReplacing("B")}
+              className="px-3 py-1 rounded-full text-xs font-bold transition-all"
+              style={{
+                background: replacing === "B" ? B.color : "#F0EDEA",
+                color: replacing === "B" ? "white" : "#6B7280",
+                outline: replacing === "B" ? `2px solid ${B.color}` : "none",
+                outlineOffset: "2px",
+              }}
+            >
+              B · {B.nombre}
+            </button>
+          </div>
+        </div>
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 mb-3">
           {CIUDADES.map((c) => (
             <CityCard
@@ -152,10 +189,7 @@ export default function ComparadorCiudadesPage() {
               ciudad={c}
               selected={c.slug === slugA ? "A" : c.slug === slugB ? "B" : null}
               slot={c.slug === slugA ? "A" : "B"}
-              onSelect={() => {
-                if (c.slug === slugA || c.slug === slugB) return;
-                setSlugB(c.slug);
-              }}
+              onSelect={() => selectCity(c.slug)}
             />
           ))}
         </div>
@@ -198,7 +232,7 @@ export default function ComparadorCiudadesPage() {
                 <div className="font-black text-xl text-[#0A0A0A]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                   {A.nombre}
                 </div>
-                <div className="text-xs text-[#6B7280]">{A.idioma}</div>
+                <div className="text-xs text-[#6B7280]">{A.idioma} · {A.region}</div>
               </div>
               <span className="ml-auto text-xs font-black text-white px-2.5 py-1 rounded-full"
                 style={{ background: A.color }}>A</span>
@@ -228,6 +262,10 @@ export default function ComparadorCiudadesPage() {
                   <div className="font-bold text-[#0A0A0A] text-sm">{fmt(A.seguroMedico)}</div>
                 </div>
               </div>
+              <div className="mt-3 rounded-lg p-2.5 bg-white" style={{ border: "1px solid #E8E5E0" }}>
+                <div className="text-xs text-[#9CA3AF] mb-0.5">Sectores clave</div>
+                <div className="text-xs font-medium text-[#374151] leading-relaxed">{A.sector}</div>
+              </div>
             </div>
           </div>
 
@@ -239,7 +277,7 @@ export default function ComparadorCiudadesPage() {
                 <div className="font-black text-xl text-[#0A0A0A]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                   {B.nombre}
                 </div>
-                <div className="text-xs text-[#6B7280]">{B.idioma}</div>
+                <div className="text-xs text-[#6B7280]">{B.idioma} · {B.region}</div>
               </div>
               <span className="ml-auto text-xs font-black text-white px-2.5 py-1 rounded-full"
                 style={{ background: B.color }}>B</span>
@@ -269,6 +307,10 @@ export default function ComparadorCiudadesPage() {
                   <div className="font-bold text-[#0A0A0A] text-sm">{fmt(B.seguroMedico)}</div>
                 </div>
               </div>
+              <div className="mt-3 rounded-lg p-2.5 bg-white" style={{ border: "1px solid #E8E5E0" }}>
+                <div className="text-xs text-[#9CA3AF] mb-0.5">Sectores clave</div>
+                <div className="text-xs font-medium text-[#374151] leading-relaxed">{B.sector}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -297,6 +339,54 @@ export default function ComparadorCiudadesPage() {
               <span>más barata al mes que {A.nombre}</span>
             </>
           )}
+        </div>
+      </div>
+
+      {/* ── veredicto rápido ── */}
+      <div className="bg-white rounded-2xl overflow-hidden mb-6" style={{ border: "1px solid #E8E5E0" }}>
+        <div className="px-5 py-4" style={{ borderBottom: "1px solid #E8E5E0", background: "#F8F6F3" }}>
+          <h2 className="font-bold text-[#0A0A0A]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+            ¿Cuál te conviene más?
+          </h2>
+          <p className="text-xs text-[#9CA3AF] mt-0.5">Veredicto rápido por categoría</p>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0" style={{ borderColor: "#E8E5E0" }}>
+          {[
+            {
+              icon: "💰",
+              label: "Fiscalidad",
+              winner: A.tasa <= B.tasa ? A : B,
+              detail: `${((Math.min(A.tasa, B.tasa)) * 100).toFixed(1)}% IRPF`,
+            },
+            {
+              icon: "🏠",
+              label: "Coste de vida",
+              winner: totalA <= totalB ? A : B,
+              detail: fmt(Math.min(totalA, totalB)) + "/mes",
+            },
+            {
+              icon: "💼",
+              label: "Mercado laboral",
+              winner: A.empleabilidad >= B.empleabilidad ? A : B,
+              detail: `${Math.max(A.empleabilidad, B.empleabilidad)}/5 empleabilidad`,
+            },
+            {
+              icon: "🇪🇸",
+              label: "Comunidad hispana",
+              winner: A.nivelEspanol >= B.nivelEspanol ? A : B,
+              detail: `${Math.max(A.nivelEspanol, B.nivelEspanol)}/5 comunidad`,
+            },
+          ].map(({ icon, label, winner, detail }) => (
+            <div key={label} className="p-4 text-center">
+              <div className="text-2xl mb-1.5">{icon}</div>
+              <div className="text-xs text-[#9CA3AF] mb-1">{label}</div>
+              <div className="flex items-center justify-center gap-1.5 mb-1">
+                <span className="text-base">{winner.emoji}</span>
+                <span className="font-bold text-sm text-[#0A0A0A]">{winner.nombre}</span>
+              </div>
+              <div className="text-[11px] font-semibold" style={{ color: winner.color }}>{detail}</div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -577,7 +667,7 @@ export default function ComparadorCiudadesPage() {
       <div className="bg-white rounded-2xl overflow-hidden mb-6" style={{ border: "1px solid #E8E5E0" }}>
         <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottom: "1px solid #E8E5E0", background: "#F8F6F3" }}>
           <h2 className="font-bold text-[#0A0A0A]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-            Las 6 ciudades — de menor a mayor coste
+            Las 11 ciudades — de menor a mayor coste
           </h2>
           <span className="text-xs text-[#9CA3AF]">coste mensual estimado</span>
         </div>
@@ -593,7 +683,7 @@ export default function ComparadorCiudadesPage() {
                 <span className="text-sm font-black w-5 text-center text-[#9CA3AF]">{i + 1}</span>
                 <span className="text-lg w-6">{c.emoji}</span>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
                     <span className="font-semibold text-sm text-[#0A0A0A]">{c.nombre}</span>
                     {sel && (
                       <span className="text-xs font-bold text-white px-1.5 py-0.5 rounded-full"
@@ -602,6 +692,10 @@ export default function ComparadorCiudadesPage() {
                       </span>
                     )}
                     <span className="text-xs text-[#9CA3AF]">{c.idioma.split(" ")[0]}</span>
+                    {c.region.includes("Cantón Zug") && (
+                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full"
+                        style={{ background: "#FEF3C7", color: "#92400E" }}>⚡ Zug</span>
+                    )}
                   </div>
                   <div className="w-full bg-[#F0EDEA] rounded-full h-1.5 overflow-hidden">
                     <div className="h-1.5 rounded-full transition-all duration-500"
