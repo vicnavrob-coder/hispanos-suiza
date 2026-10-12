@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getPost, allPosts as posts, allPosts, categorias } from "@/lib/posts";
 import { BASE_URL, buildMetadata, articleSchema, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import RespuestaRapida from "@/components/RespuestaRapida";
+import NewsletterForm from "@/components/NewsletterForm";
 
 type Props = PageProps<"/blog/[slug]">;
 
@@ -160,17 +161,7 @@ export default async function PostPage({ params }: Props) {
           <div className="bg-gray-900 text-white rounded-2xl p-5 mb-6">
             <h3 className="font-bold mb-1">Newsletter semanal</h3>
             <p className="text-gray-400 text-xs mb-3">Lo más útil sobre vivir en Suiza, cada semana.</p>
-            <input
-              type="email"
-              placeholder="tu@email.com"
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-red-500 mb-2"
-            />
-            <button
-              style={{ background: "#C8102E" }}
-              className="w-full text-white text-sm font-semibold py-2 rounded-lg hover:opacity-90"
-            >
-              Suscribirme gratis
-            </button>
+            <NewsletterForm />
           </div>
 
           {/* Categorías */}
