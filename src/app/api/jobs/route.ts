@@ -8,7 +8,7 @@ export type JobItem = {
   description: string;       // extracto corto (220 chars)
   descriptionFull?: string;  // descripción completa
   pubDate: string;
-  source: "jobs.ch" | "LinkedIn" | "Tempservice" | "tempoX";
+  source: "jobs.ch" | "LinkedIn" | "Tempservice" | "tempoX" | "JobScout24" | "Jobup" | "Indeed" | "job-room";
   contractType?: string;
   workload?: string;
   salary?: string;
@@ -311,15 +311,34 @@ function htmlToStructured(html: string): string {
     .trim();
 }
 
+/** Detecta idioma requerido desde texto de la oferta */
+function detectLanguage(text: string): string | undefined {
+  const t = text.toLowerCase();
+  const langs: [string, RegExp][] = [
+    ["Alemán",   /\b(deutsch|german|allemand|tedesco)\b/],
+    ["Francés",  /\b(français|french|französ|francese)\b/],
+    ["Inglés",   /\b(english|anglais|englisch|inglese)\b/],
+    ["Italiano", /\b(italiano|italian|italienisch)\b/],
+  ];
+  const found = langs.filter(([, re]) => re.test(t)).map(([name]) => name);
+  if (found.length === 0) return undefined;
+  // Try to detect level
+  const levelM = text.match(/\b([ABC][12]|fluent|basic|muttersprache|native|verhandlungssicher|grundkenntnisse|courant|bilingue)\b/i);
+  if (found.length === 1 && levelM) return `${found[0]} (${levelM[1]})`;
+  return found.join(", ");
+}
+
 /** Aplica traducción + extracción de contacto a un JobItem */
 function enrichJob(job: JobItem): JobItem {
   const cleaned = cleanTitle(job.title);
   const translation = translateTitle(cleaned);
+  const textForLang = job.descriptionFull ?? job.description ?? "";
   return {
     ...job,
-    title:    cleaned,
-    titleEs:  translation?.titleEs,
-    sectorEs: translation?.sectorEs,
+    title:            cleaned,
+    titleEs:          translation?.titleEs,
+    sectorEs:         translation?.sectorEs,
+    languageRequired: job.languageRequired ?? (textForLang ? detectLanguage(textForLang) : undefined),
   };
 }
 
@@ -431,6 +450,88 @@ async function fetchJobsCh(term: string, city: string): Promise<JobItem[]> {
     const res = await fetch(url, { headers: HEADERS, next: { revalidate: 600 } });
     if (!res.ok) return [];
     return parseJobsChHTML(await res.text()).slice(0, 20);
+  } catch { return []; }
+}
+
+async function fetchJobScout24(term: string, city: string): Promise<JobItem[]> {
+  const cityParam = city === "Toda Suiza" ? "" : (CITY_SEARCH[city] ?? city);
+  const url = cityParam
+    ? `https://www.jobscout24.ch/en/jobs?q=${encodeURIComponent(term)}&region=${encodeURIComponent(cityParam)}`
+    : `https://www.jobscout24.ch/en/jobs?q=${encodeURIComponent(term)}`;
+  try {
+    const res = await fetch(url, { headers: HEADERS, next: { revalidate: 600 } });
+    if (!res.ok) return [];
+    const jobs = parseJobsChHTML(await res.text());
+    return jobs.map(j => ({ ...j, source: "JobScout24" as const })).slice(0, 15);
+  } catch { return []; }
+}
+
+async function fetchJobup(term: string, city: string): Promise<JobItem[]> {
+  const cityParam = city === "Toda Suiza" ? "" : (CITY_SEARCH[city] ?? city);
+  const url = cityParam
+    ? `https://www.jobup.ch/en/jobs/?term=${encodeURIComponent(term)}&location=${encodeURIComponent(cityParam)}`
+    : `https://www.jobup.ch/en/jobs/?term=${encodeURIComponent(term)}`;
+  try {
+    const res = await fetch(url, { headers: HEADERS, next: { revalidate: 600 } });
+    if (!res.ok) return [];
+    const jobs = parseJobsChHTML(await res.text());
+    return jobs.map(j => ({ ...j, source: "Jobup" as const })).slice(0, 15);
+  } catch { return []; }
+}
+
+type JobRoomItem = {
+  jobId?: string;
+  title?: string;
+  employer?: { name?: string };
+  place?: { city?: string; communalCode?: string };
+  publicationDate?: string;
+  jobDescription?: string;
+  languageSkills?: Array<{ language?: string; spokenLevel?: string; writtenLevel?: string }>;
+  workingTimePercentageFrom?: number;
+  workingTimePercentageTo?: number;
+  url?: string;
+};
+
+async function fetchJobRoom(term: string, city: string): Promise<JobItem[]> {
+  const cityParam = city === "Toda Suiza" ? "" : (CITY_SEARCH[city] ?? city);
+  const params = new URLSearchParams({
+    searchText: term,
+    ...(cityParam ? { locationKeyword: cityParam } : {}),
+    page: "0",
+    pageSize: "20",
+    sort: "date",
+  });
+  const url = `https://www.job-room.ch/jobsearch/api/v1/jobs?${params}`;
+  try {
+    const res = await fetch(url, {
+      headers: { ...HEADERS, Accept: "application/json" },
+      next: { revalidate: 600 },
+    });
+    if (!res.ok) return [];
+    const data: unknown = await res.json();
+    const items: JobRoomItem[] = (data as Record<string, unknown>)?.content as JobRoomItem[] ?? [];
+    if (!Array.isArray(items)) return [];
+    return items.map((j): JobItem => {
+      const rawDesc = j.jobDescription ?? "";
+      const descFull = htmlToStructured(rawDesc);
+      const langSkills = j.languageSkills?.map(l => l.language).filter(Boolean).join(", ");
+      const workload = j.workingTimePercentageFrom && j.workingTimePercentageTo
+        ? workloadStr(j.workingTimePercentageFrom, j.workingTimePercentageTo)
+        : undefined;
+      return {
+        title:           j.title ?? "",
+        company:         j.employer?.name ?? "",
+        location:        j.place?.city ?? "Suiza",
+        url:             j.url ?? `https://www.job-room.ch/jobsearch/job-detail/${j.jobId}`,
+        description:     descFull.replace(/\n/g, " ").slice(0, 280),
+        descriptionFull: descFull,
+        pubDate:         j.publicationDate ?? "",
+        source:          "job-room",
+        workload,
+        languageRequired: langSkills || undefined,
+        requirements:    extractRequirements(descFull),
+      };
+    }).filter(j => j.title && j.url).slice(0, 15);
   } catch { return []; }
 }
 
@@ -790,18 +891,24 @@ export async function GET(request: Request) {
   const termJobsCh  = sectorFilter ? (SLUG_TERM_DE[sectorFilter] ?? term) : term;
   const termLinkedIn = sectorFilter ? (SLUG_TERM_EN[sectorFilter] ?? term) : term;
 
-  // Lanzar las 4 fuentes en paralelo
-  const [jobsChRes, linkedInRes, tempserviceRes, tempoXRes] = await Promise.allSettled([
+  // Lanzar las 7 fuentes en paralelo
+  const [jobsChRes, linkedInRes, tempserviceRes, tempoXRes, jobScout24Res, jobupRes, jobRoomRes] = await Promise.allSettled([
     fetchJobsCh(termJobsCh, city),
     fetchLinkedIn(termLinkedIn, city),
     fetchTempservice(term, city),
     fetchTempoX(term, city),
+    fetchJobScout24(termJobsCh, city),
+    fetchJobup(termLinkedIn, city),
+    fetchJobRoom(term, city),
   ]);
 
   const jobsCh      = jobsChRes.status      === "fulfilled" ? jobsChRes.value      : [];
   const linkedin    = linkedInRes.status    === "fulfilled" ? linkedInRes.value    : [];
   const tempservice = tempserviceRes.status === "fulfilled" ? tempserviceRes.value : [];
   const tempoXRaw   = tempoXRes.status      === "fulfilled" ? tempoXRes.value      : [];
+  const jobScout24  = jobScout24Res.status  === "fulfilled" ? jobScout24Res.value  : [];
+  const jobup       = jobupRes.status       === "fulfilled" ? jobupRes.value       : [];
+  const jobRoom     = jobRoomRes.status     === "fulfilled" ? jobRoomRes.value     : [];
 
   // Bug fix: tempoX siempre devuelve los 20 últimos trabajos sin filtrar por término.
   // Enriquecer y filtrar por relevancia ANTES del merge para evitar resultados irrelevantes.
@@ -824,7 +931,7 @@ export async function GET(request: Request) {
   const seen   = new Set<string>();
   const merged: JobItem[] = [];
   const preEnrichedSet = new Set(tempoX); // evitar double-enrichment
-  for (const job of [...tempservice, ...tempoX, ...jobsCh, ...jobsCh2, ...linkedin]) {
+  for (const job of [...tempservice, ...tempoX, ...jobsCh, ...jobsCh2, ...jobScout24, ...jobup, ...jobRoom, ...linkedin]) {
     const enriched = preEnrichedSet.has(job) ? job : enrichJob(job);
     const key = `${enriched.title.toLowerCase().slice(0, 40)}|${enriched.company.toLowerCase().slice(0, 20)}`;
     if (!seen.has(key)) {
@@ -865,13 +972,16 @@ export async function GET(request: Request) {
   );
 
   return NextResponse.json({
-    jobs:    filtered.slice(0, 50),
+    jobs:    filtered.slice(0, 60),
     total:   filtered.length,
     sources: {
       jobsCh:      jobsCh.length + jobsCh2.length,
       linkedin:    linkedin.length,
       tempservice: tempservice.length,
       tempoX:      tempoX.length,
+      jobScout24:  jobScout24.length,
+      jobup:       jobup.length,
+      jobRoom:     jobRoom.length,
     },
   });
 }

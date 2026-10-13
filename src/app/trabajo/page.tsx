@@ -63,6 +63,9 @@ const SOURCE_STYLE: Record<string, { bg: string; color: string; label: string }>
   "LinkedIn":    { bg: "#dbeafe", color: "#1d4ed8", label: "LinkedIn" },
   "Tempservice": { bg: "#fff7ed", color: "#c2410c", label: "Tempservice ETT" },
   "tempoX":      { bg: "#fef2f2", color: "#b91c1c", label: "tempoX ETT" },
+  "JobScout24":  { bg: "#f0fdf4", color: "#15803d", label: "JobScout24" },
+  "Jobup":       { bg: "#faf5ff", color: "#7c3aed", label: "Jobup.ch" },
+  "job-room":    { bg: "#eff6ff", color: "#1e40af", label: "RAV job-room" },
 };
 
 function salaryLabel(cat: JobCategory): string {
@@ -86,7 +89,7 @@ export default function TrabajoPage() {
   const [loading, setLoading]     = useState(false);
   const [buscado, setBuscado]     = useState(false);
   const [error, setError]         = useState("");
-  const [sources, setSources]     = useState<{ jobsCh: number; linkedin: number; tempservice: number; tempoX: number } | null>(null);
+  const [sources, setSources] = useState<{ jobsCh: number; linkedin: number; tempservice: number; tempoX: number; jobScout24: number; jobup: number; jobRoom: number } | null>(null);
   const { user, openModal }       = useAuth();
 
   async function buscar() {
@@ -146,13 +149,13 @@ export default function TrabajoPage() {
                 Buscador de trabajo en Suiza
               </h1>
               <p className="text-gray-500 text-sm max-w-xl">
-                Ofertas en tiempo real de ETTs (Tempservice, tempoX), jobs.ch y LinkedIn. Más 13 agencias temporeras directas.
+                Ofertas en tiempo real de 7 fuentes: jobs.ch, JobScout24, Jobup.ch, RAV job-room, LinkedIn, Tempservice y tempoX. Más 13 agencias ETT directas.
               </p>
             </div>
             <div className="flex gap-5 text-center flex-shrink-0">
               {[
                 { n: "11", l: "sectores" },
-                { n: "4",  l: "fuentes live" },
+                { n: "7",  l: "fuentes live" },
                 { n: "13", l: "ETTs listadas" },
               ].map((s) => (
                 <div key={s.l} className="text-center">
@@ -347,7 +350,7 @@ export default function TrabajoPage() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
                 </svg>
-                <span>Buscando en ETTs y 4 portales suizos…</span>
+                <span>Buscando en 7 fuentes: jobs.ch, LinkedIn, JobScout24, jobup, RAV, Tempservice, tempoX…</span>
               </>
             ) : (categoria || customTerm.trim()) && !user ? (
               <>
@@ -405,7 +408,7 @@ export default function TrabajoPage() {
                 )}
                 {sources && (
                   <span className="text-gray-400 text-xs ml-2">
-                    (ETT: {sources.tempservice + sources.tempoX} · jobs.ch: {sources.jobsCh} · LinkedIn: {sources.linkedin})
+                    (jobs.ch: {sources.jobsCh} · Scout24: {sources.jobScout24} · jobup: {sources.jobup} · RAV: {sources.jobRoom} · ETT: {sources.tempservice + sources.tempoX} · LinkedIn: {sources.linkedin})
                   </span>
                 )}
               </div>
@@ -533,17 +536,20 @@ export default function TrabajoPage() {
                             </div>
                           )}
 
-                          {/* Requisitos (si expandido) */}
-                          {expanded && job.requirements && job.requirements.length > 0 && (
-                            <div className="mb-3 bg-gray-50 rounded-lg p-3">
-                              <p className="text-xs font-bold text-gray-700 mb-2">📌 Requisitos mencionados:</p>
-                              <ul className="space-y-1">
-                                {job.requirements.map((r, ri) => (
+                          {/* Requisitos — siempre visibles si los hay */}
+                          {job.requirements && job.requirements.length > 0 && (
+                            <div className="mb-3">
+                              <p className="text-xs font-bold text-gray-600 mb-1.5">📌 Requisitos:</p>
+                              <ul className="space-y-0.5">
+                                {(expanded ? job.requirements : job.requirements.slice(0, 3)).map((r, ri) => (
                                   <li key={ri} className="text-xs text-gray-600 flex gap-2">
-                                    <span className="text-gray-400 flex-shrink-0">▸</span>
+                                    <span className="text-green-500 flex-shrink-0">✓</span>
                                     <span>{r}</span>
                                   </li>
                                 ))}
+                                {!expanded && job.requirements.length > 3 && (
+                                  <li className="text-xs text-gray-400 ml-4">+{job.requirements.length - 3} más…</li>
+                                )}
                               </ul>
                             </div>
                           )}
