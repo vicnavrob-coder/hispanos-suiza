@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/welcome-sequence?secret=UI8li2hDfIaZ3cP_SLI4HQp6mw8P36gpboeFD8lIUOQ",
+      "schedule": "0 8 * * *"
+    }
+  ]
+}

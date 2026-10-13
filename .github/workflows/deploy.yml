@@ -58,6 +58,7 @@ jobs:
           upsert_env "NEWSLETTER_GMAIL_USER"        "${{ secrets.NEWSLETTER_GMAIL_USER }}"        "plain"
           upsert_env "NEWSLETTER_GMAIL_PASS"                "${{ secrets.NEWSLETTER_GMAIL_PASS }}"                "encrypted"
           upsert_env "NEWSLETTER_NOTIFY_TO"               "${{ secrets.NEWSLETTER_NOTIFY_TO }}"               "plain"
+          upsert_env "CRON_SECRET"                        "${{ secrets.CRON_SECRET }}"                        "encrypted"
           upsert_env "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY" "${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}" "plain"
           upsert_env "STRIPE_SECRET_KEY"                  "${{ secrets.STRIPE_SECRET_KEY }}"                  "encrypted"
           upsert_env "STRIPE_PRICE_ID_PREMIUM"            "${{ secrets.STRIPE_PRICE_ID_PREMIUM }}"            "plain"
