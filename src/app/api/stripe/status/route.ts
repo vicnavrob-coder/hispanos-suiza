@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
     const active = subs.data.length > 0;
     const plan = active ? (subs.data[0].metadata?.plan || "premium") : null;
     const renewsAt = active
-      ? new Date(subs.data[0].current_period_end * 1000).toISOString()
+      ? new Date(subs.data[0].billing_cycle_anchor * 1000).toISOString()
       : null;
 
     return NextResponse.json({ active, plan, renewsAt, customerId });

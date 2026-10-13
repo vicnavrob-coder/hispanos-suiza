@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 
   switch (event.type) {
     case "checkout.session.completed": {
-      const session = event.data.object as Stripe.CheckoutSession;
+      const session = event.data.object as Stripe.Checkout.Session;
       const email = session.customer_details?.email || session.metadata?.email;
       const customerId = session.customer as string;
       console.log(`[webhook] Nueva suscripción: ${email} (${customerId})`);
