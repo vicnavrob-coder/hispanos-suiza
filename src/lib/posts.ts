@@ -1033,6 +1033,636 @@ const postsManual: Post[] = [
 <p>El secreto es la constancia, no la intensidad. 30 minutos diarios durante 2 años dan mejores resultados que un mes intensivo y luego nada.</p>
     `
   },
+
+  // ─────────────────────────────────────────────────────────
+  // PERMISO DE RESIDENCIA
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "permiso-residencia-suiza-espanoles-latinoamericanos-2026",
+    titulo: "Permiso de residencia en Suiza 2026: guía completa para españoles y latinoamericanos",
+    descripcion: "Todo sobre los permisos L, B, C y G en Suiza: quién los necesita, cómo tramitarlos, cuánto tardan y qué documentos piden. Actualizado con los cambios de 2026.",
+    categoria: "emigrar",
+    fecha: "2026-10-14",
+    fechaModificada: "2026-10-14",
+    tiempoLectura: 11,
+    imagen: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=85&auto=format&fit=crop",
+    destacado: true,
+    palabrasClave: [
+      "permiso residencia suiza", "permiso b suiza", "permiso l suiza", "permiso c suiza",
+      "residencia suiza españoles", "permiso trabajo suiza latinoamericanos",
+      "tramitar permiso suiza", "documento residencia suiza 2026",
+    ],
+    faq: [
+      {
+        pregunta: "¿Los españoles necesitan permiso de residencia en Suiza?",
+        respuesta: "Sí, pero el trámite es automático. Los ciudadanos españoles y de la UE/EEE se benefician del Acuerdo de Libre Circulación. Tienes derecho a entrar sin visado y, una vez contratado, el empleador tramita el permiso B directamente con las autoridades de migración cantonales. No necesitas ir al consulado ni antes ni después.",
+      },
+      {
+        pregunta: "¿Cuánto tarda en tramitarse el permiso B en Suiza?",
+        respuesta: "Para ciudadanos de la UE/EEE el permiso B se concede normalmente en 1-4 semanas desde que el empleador lo solicita. Para latinoamericanos el proceso es más largo: entre 2 y 6 meses desde el consulado suizo en el país de origen.",
+      },
+      {
+        pregunta: "¿Cuándo puedo pedir el permiso C (residencia permanente) en Suiza?",
+        respuesta: "Los ciudadanos de la UE/EEE pueden solicitar el permiso C tras 5 años de residencia continuada en Suiza. Para latinoamericanos y otros países terceros el plazo es de 10 años. En ambos casos debes demostrar integración (idioma, trabajo, sin deudas ni condenas).",
+      },
+      {
+        pregunta: "¿Qué es el permiso G y para quién es?",
+        respuesta: "El permiso G es para trabajadores fronterizos: personas que viven en un país vecino (Alemania, Francia, Italia, Austria, Liechtenstein) y trabajan en Suiza cruzando la frontera diariamente o semanalmente. Es distinto del permiso B y no da derecho a residir en Suiza.",
+      },
+      {
+        pregunta: "¿Puede un latinoamericano conseguir permiso de residencia en Suiza sin contrato de trabajo?",
+        respuesta: "Es muy difícil. La vía principal para latinoamericanos es tener un contrato de trabajo firmado antes de llegar. Otras vías posibles son: reunificación familiar (tener un cónyuge con permiso B o C), formación universitaria (permiso de estudiante) o ser titular de una empresa suiza. La búsqueda de empleo desde Suiza sin permiso previo está muy limitada.",
+      },
+    ],
+    contenido: `
+<h2>¿Por qué el permiso de residencia es lo primero que debes entender?</h2>
+<p>Muchos hispanohablantes llegan a Suiza sin entender bien el sistema de permisos — y eso genera problemas desde el primer día: no poder abrir cuenta bancaria, no poder alquilar piso, no poder matricular a los hijos en el colegio. Todo en Suiza arranca con el permiso de residencia.</p>
+<p>La buena noticia es que el sistema es ordenado y predecible. Esta guía te explica exactamente qué permiso necesitas, cómo conseguirlo y qué cambia según tu nacionalidad.</p>
+
+<h2>Los permisos de residencia en Suiza: L, B, C y G</h2>
+<p>Suiza utiliza un sistema de letras para clasificar los permisos de residencia. Cada letra indica un tipo distinto de autorización:</p>
+
+<h3>Permiso L — Estancia de corta duración</h3>
+<p>El permiso L es para contratos de trabajo de menos de 12 meses o para estancias temporales. Sus características principales:</p>
+<ul>
+  <li>Válido hasta 1 año (renovable si se amplía el contrato)</li>
+  <li>Ligado a un empleador específico — no puedes cambiar de trabajo libremente</li>
+  <li>No da derecho a reagrupación familiar automática</li>
+  <li>Frecuente en hostelería, construcción y trabajos de temporada</li>
+</ul>
+<p>Si tienes un permiso L y tu contrato pasa a ser indefinido o supera los 12 meses, se convierte automáticamente en permiso B.</p>
+
+<h3>Permiso B — Residencia de duración limitada</h3>
+<p>Es el permiso más habitual para los trabajadores nuevos que llegan a Suiza. Lo que debes saber:</p>
+<ul>
+  <li>Válido inicialmente por 1 año (renovable automáticamente mientras tengas trabajo)</li>
+  <li>Para ciudadanos de la UE/EEE: se concede para contratos indefinidos o de más de 12 meses</li>
+  <li>Permite cambiar de empleador dentro del mismo cantón (hay que notificarlo)</li>
+  <li>Después de 12 meses con permiso B puedes solicitar cambio de cantón</li>
+  <li>Da derecho a reagrupación familiar</li>
+</ul>
+<blockquote>"Lo que más me sorprendió es que mi empresa hizo todo el papeleo. Yo solo tuve que aparecer en la Gemeinde con mi pasaporte el primer día." — Laura, Madrid → Basilea</blockquote>
+
+<h3>Permiso C — Residencia permanente</h3>
+<p>El permiso C es el equivalente suizo a la residencia permanente. No tiene fecha de caducidad y da prácticamente los mismos derechos que la ciudadanía, excepto el voto:</p>
+<ul>
+  <li><strong>Ciudadanos UE/EEE:</strong> tras 5 años de residencia continuada</li>
+  <li><strong>Latinoamericanos y otros:</strong> tras 10 años de residencia continuada</li>
+  <li>Requisitos: integración demostrable (nivel de idioma, participación cívica), sin deudas en la oficina de cobros, sin condenas penales graves</li>
+  <li>Con permiso C puedes trabajar en cualquier cantón y sector sin restricciones</li>
+</ul>
+
+<h3>Permiso G — Trabajador fronterizo</h3>
+<p>El permiso G es exclusivo para quienes viven en un país vecino y trabajan en Suiza cruzando la frontera. No da derecho a residir en Suiza. Si vives en la región de Constanza, Alsacia, Lombardía o el Vorarlberg, este es tu permiso si trabajas en Suiza desde allí.</p>
+
+<h2>Españoles y ciudadanos de la UE/EEE: el proceso paso a paso</h2>
+<p>Gracias al <strong>Acuerdo de Libre Circulación de Personas (ALCP)</strong> entre Suiza y la UE, los españoles tienen un acceso muy facilitado:</p>
+<ol>
+  <li><strong>Llegar a Suiza:</strong> Puedes entrar sin visado y quedarte hasta 90 días buscando trabajo.</li>
+  <li><strong>Firmar un contrato de trabajo:</strong> Este es el paso clave. Sin contrato no hay permiso B.</li>
+  <li><strong>El empleador notifica a la oficina de migración cantonal:</strong> En la mayoría de cantones, el empleador hace el trámite. Solo debes acudir con tu pasaporte o DNI y el contrato firmado.</li>
+  <li><strong>Empadronarte en la Gemeinde/Commune:</strong> En los primeros 14 días desde tu llegada debes registrarte en el ayuntamiento de tu municipio. Te pedirán: pasaporte, contrato de trabajo y prueba de domicilio (contrato de alquiler o carta del casero).</li>
+  <li><strong>Recibir la tarjeta de permiso:</strong> Entre 1 y 4 semanas después recibirás la tarjeta de plástico con la letra B.</li>
+</ol>
+<p>Importante: el permiso B para ciudadanos de la UE se renueva automáticamente mientras tengas trabajo. Si pierdes el empleo, tienes 6 meses para encontrar otro antes de que te pidan justificar la estancia.</p>
+
+<h2>Latinoamericanos: el proceso es diferente</h2>
+<p>Los ciudadanos de países latinoamericanos no se benefician del ALCP. El proceso es más largo y requiere más planificación:</p>
+<ol>
+  <li><strong>Conseguir un contrato de trabajo firmado</strong> antes de salir de tu país. La empresa suiza debe demostrar que no encontró a nadie en Suiza ni en la UE para ese puesto (prioridad del mercado interior).</li>
+  <li><strong>Solicitar el visado en el consulado suizo</strong> de tu país. Documentos habituales: pasaporte válido, contrato de trabajo firmado, diploma o certificado de cualificaciones, certificado de antecedentes penales apostillado, reconocimiento del título si aplica.</li>
+  <li><strong>Esperar la aprobación:</strong> El proceso tarda entre 2 y 6 meses. Primero aprueba la oficina de migración cantonal, luego el Secretariado de Estado de Migración (SEM) federal.</li>
+  <li><strong>Llegar a Suiza con el visado D:</strong> una vez en Suiza, el visado D se convierte en permiso B o L.</li>
+  <li><strong>Registro en la Gemeinde</strong> en los primeros 8 días (plazo más estricto que para ciudadanos UE).</li>
+</ol>
+
+<h2>El cupo anual para latinoamericanos</h2>
+<p>Suiza aplica un sistema de cupos para trabajadores de países no comunitarios. Cada año se asigna un número limitado de permisos. En 2026 el cupo federal es de <strong>8.500 permisos B</strong> y <strong>4.500 permisos L</strong> para trabajadores de países terceros. Cuando se agotan (normalmente en la segunda mitad del año), no se tramitan más solicitudes hasta enero siguiente.</p>
+<p>Este sistema hace que conseguir trabajo desde Latinoamérica dependa también del momento del año en que solicites.</p>
+
+<h2>Documentos que siempre piden</h2>
+<p>Independientemente de tu nacionalidad, prepara estos documentos antes de iniciar cualquier trámite:</p>
+<ul>
+  <li>Pasaporte válido con al menos 6 meses de vigencia</li>
+  <li>Contrato de trabajo firmado por ambas partes</li>
+  <li>Contrato de alquiler o confirmación de domicilio en Suiza</li>
+  <li>Fotos de carnet recientes</li>
+  <li>Para latinoamericanos: certificado de antecedentes penales apostillado (no más de 3 meses)</li>
+  <li>Títulos universitarios o certificados de formación profesional (apostillados si vienen de fuera de la UE)</li>
+</ul>
+
+<h2>Cuánto cuesta tramitar el permiso</h2>
+<p>Las tasas varían por cantón, pero los rangos habituales son:</p>
+<ul>
+  <li>Permiso L: 65–100 CHF</li>
+  <li>Permiso B (primera vez): 65–100 CHF</li>
+  <li>Renovación permiso B: 65–80 CHF</li>
+  <li>Permiso C: 100–150 CHF</li>
+</ul>
+<p>Estas tasas las paga habitualmente el trabajador, aunque muchas empresas las reembolsan. Pregúntalo en tu contrato.</p>
+
+<h2>Cambiar de cantón o de empleador con permiso B</h2>
+<p>Una duda frecuente: ¿puedo cambiarme si ya tengo permiso B?</p>
+<ul>
+  <li><strong>Cambio de empleador en el mismo cantón:</strong> notificación a la oficina de migración. Generalmente aceptado sin problemas.</li>
+  <li><strong>Cambio de cantón:</strong> requiere solicitar un nuevo permiso B en el cantón de destino. Para ciudadanos UE solo necesitas llevar 12 meses de residencia. Para latinoamericanos puede requerir aprobación del SEM federal.</li>
+  <li><strong>Trabajo en otro cantón:</strong> si tu permiso es de Zúrich pero trabajas en Basilea, técnicamente necesitas notificarlo. En la práctica muchas personas lo hacen sin problema, pero puede causar complicaciones con los impuestos.</li>
+</ul>
+
+<h2>¿Y si pierdo el trabajo? ¿Qué pasa con mi permiso?</h2>
+<p>Esta es la pregunta que más miedo da. La respuesta depende de tu situación:</p>
+<ul>
+  <li><strong>Ciudadanos UE/EEE:</strong> si llevas menos de 1 año en Suiza y buscas trabajo activamente, puedes mantener el permiso B hasta 6 meses mientras te inscribes en el RAV (oficina de empleo) y buscas activamente trabajo. Si llevas más de 1 año, el derecho a permanecer es más robusto.</li>
+  <li><strong>Latinoamericanos:</strong> al perder el trabajo el permiso puede no renovarse. Es crítico encontrar nuevo empleo rápidamente e informar a la oficina de migración. Tienes derecho al paro suizo (RAV) si llevas suficiente tiempo cotizando.</li>
+</ul>
+<p>La clave es no esperar y registrarse en el <a href="/guias/rav-paro-suiza">RAV</a> el mismo día que te quedas sin trabajo.</p>
+
+<h2>Próximos pasos: checklist completo</h2>
+<ul>
+  <li>✅ Consigue un contrato de trabajo antes de salir (imprescindible para latinoamericanos, muy recomendable para españoles)</li>
+  <li>✅ Prepara los documentos con antelación (apostillas, traducciones juradas si es necesario)</li>
+  <li>✅ Empadrónat en la Gemeinde en los primeros 8-14 días tras llegar</li>
+  <li>✅ Contrata el seguro médico obligatorio en los primeros 3 meses</li>
+  <li>✅ Usa nuestra <a href="/herramientas/salario-neto">calculadora de salario neto</a> para saber cuánto cobrarás realmente</li>
+  <li>✅ Consulta el <a href="/trabajo">buscador de trabajo</a> si aún estás buscando empleo</li>
+</ul>
+    `,
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // IMPUESTO A LA FUENTE
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "impuesto-fuente-suiza-espanoles-extranjeros",
+    titulo: "Impuesto a la fuente en Suiza: cómo funciona, cuánto se descuenta y cómo reclamarlo",
+    descripcion: "Si tienes permiso B o G en Suiza, pagas el impuesto a la fuente directamente de tu nómina. Te explicamos los tramos, las diferencias por cantón y cómo pedir la rectificación si pagas de más.",
+    categoria: "emigrar",
+    fecha: "2026-10-14",
+    fechaModificada: "2026-10-14",
+    tiempoLectura: 9,
+    imagen: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=85&auto=format&fit=crop",
+    destacado: false,
+    palabrasClave: [
+      "impuesto fuente suiza", "quellensteuer suiza", "impuesto nómina suiza", "retención fiscal suiza",
+      "impuesto suiza extranjero permiso b", "declaracion impuestos suiza extranjero",
+      "cuánto se descuenta impuesto suiza", "rectificación impuesto fuente suiza",
+    ],
+    faq: [
+      {
+        pregunta: "¿Quién paga el impuesto a la fuente en Suiza?",
+        respuesta: "Todas las personas extranjeras con permiso B o G que residan en Suiza y ganen menos de 120.000 CHF brutos anuales. El impuesto se descuenta directamente de la nómina por el empleador y nunca llega a manos del trabajador.",
+      },
+      {
+        pregunta: "¿Cuánto es el impuesto a la fuente en Suiza?",
+        respuesta: "Varía según el cantón, el estado civil, si tienes hijos y el nivel salarial. Para un soltero sin hijos en Zúrich con un salario de 5.000 CHF/mes, el impuesto a la fuente es aproximadamente entre el 12% y el 15% del salario bruto.",
+      },
+      {
+        pregunta: "¿Cuándo paso a hacer declaración de la renta normal en Suiza?",
+        respuesta: "Cuando tu salario supera los 120.000 CHF brutos anuales estás obligado a presentar declaración ordinaria. También puedes solicitar la declaración ordinaria voluntariamente (por ejemplo, si tienes deducciones que reclamar: formación, transporte, gastos profesionales).",
+      },
+      {
+        pregunta: "¿Puedo recuperar parte del impuesto a la fuente pagado en Suiza?",
+        respuesta: "Sí. Si tienes gastos deducibles (formación, transporte largo, pensión alimenticia, donaciones reconocidas) puedes presentar una rectificación o una declaración ordinaria posterior y recuperar parte de lo pagado. El plazo para solicitarlo es el 31 de marzo del año siguiente.",
+      },
+    ],
+    contenido: `
+<h2>¿Qué es el impuesto a la fuente (Quellensteuer)?</h2>
+<p>En Suiza, la mayoría de los extranjeros con permiso B o G no hacen declaración de la renta al uso. En cambio, el impuesto se descuenta directamente del salario cada mes. El empleador actúa como recaudador y lo ingresa a la oficina fiscal cantonal. Por eso se llama "impuesto a la fuente": se cobra en el origen del ingreso.</p>
+<p>Para la mayoría de trabajadores extranjeros con salarios medios, este sistema es en realidad más sencillo que la declaración ordinaria. Pero tiene trampas: si no conoces los tramos ni las deducciones posibles, puedes estar pagando de más durante años sin saberlo.</p>
+
+<h2>¿Quién paga el impuesto a la fuente?</h2>
+<p>Estás sujeto al impuesto a la fuente si cumples <strong>todas estas condiciones</strong>:</p>
+<ul>
+  <li>Eres extranjero (no ciudadano suizo)</li>
+  <li>Tienes permiso B, L o G (los titulares de permiso C están exentos y hacen declaración ordinaria)</li>
+  <li>Tu salario bruto anual es inferior a 120.000 CHF (si superas este umbral, pasas a declaración obligatoria)</li>
+  <li>No estás casado con un ciudadano suizo o titular de permiso C</li>
+</ul>
+<p>Si tienes permiso C o llevas más de ciertos años en Suiza (varía por cantón), puedes estar obligado a la declaración ordinaria aunque ganes menos de 120.000 CHF.</p>
+
+<h2>Cómo se calcula: los factores que determinan tu retención</h2>
+<p>El importe mensual que te descuentan depende de varios factores que la oficina fiscal cantonal combina en una <strong>tarifa</strong> (código de tarifa):</p>
+<ul>
+  <li><strong>El cantón de residencia:</strong> cada cantón tiene sus propias tablas. Ginebra y Vaud son los más altos; Zug y Schwyz, los más bajos.</li>
+  <li><strong>El estado civil:</strong> soltero, casado (con o sin segundo salario en el hogar) o familia monoparental.</li>
+  <li><strong>El número de hijos a cargo:</strong> cada hijo reduce la retención.</li>
+  <li><strong>El salario mensual bruto.</strong></li>
+</ul>
+
+<h3>Tarifas más habituales</h3>
+<ul>
+  <li><strong>Tarifa A:</strong> soltero sin hijos</li>
+  <li><strong>Tarifa B:</strong> casado, único salario en el hogar</li>
+  <li><strong>Tarifa C:</strong> casado, ambos cónyuges tienen salario</li>
+  <li><strong>Tarifa H:</strong> familia monoparental</li>
+</ul>
+<p>La tarifa correcta la comunica el empleador a la oficina fiscal. Si tu situación personal cambia (matrimonio, nacimiento de un hijo) debes notificarlo para que ajusten la tarifa.</p>
+
+<h2>Ejemplo real: cuánto paga un trabajador en Zúrich</h2>
+<p>Tomemos a una persona soltera (tarifa A), sin hijos, con un salario bruto mensual de <strong>5.000 CHF</strong>, viviendo en el cantón de Zúrich:</p>
+<ul>
+  <li>AVS/AHV (5,3%): −265 CHF</li>
+  <li>Seguro desempleo (1,1%): −55 CHF</li>
+  <li>SUVA accidentes (1,0%): −50 CHF</li>
+  <li>BVG pensión (7,0%): −350 CHF</li>
+  <li><strong>Impuesto a la fuente Zúrich (~13,5%):</strong> −675 CHF</li>
+  <li><strong>Salario neto aproximado: 3.605 CHF</strong></li>
+</ul>
+<p>Usa nuestra <a href="/herramientas/salario-neto">calculadora de salario neto</a> para calcular exactamente cuánto cobrarás con tu salario y tu cantón.</p>
+
+<h2>Diferencias entre cantones: lo que nadie te dice</h2>
+<p>La diferencia de impuesto entre vivir en Zug y en Ginebra puede suponer <strong>más de 500 CHF al mes</strong> para el mismo salario. Estos son los cantones más y menos gravosos para un soltero con 5.000 CHF brutos:</p>
+<ul>
+  <li>🟢 <strong>Más baratos:</strong> Zug (~9%), Schwyz (~10%), Nidwalden (~10,5%)</li>
+  <li>🟡 <strong>Medios:</strong> Zúrich (~13,5%), Basilea (~13%), Berna (~14%)</li>
+  <li>🔴 <strong>Más caros:</strong> Ginebra (~18%), Vaud/Lausana (~17%), Valais (~16%)</li>
+</ul>
+<p>Si tienes libertad de elección de cantón al buscar trabajo, este factor puede tener más impacto en tu neto que una diferencia de 200 CHF en el salario bruto.</p>
+
+<h2>¿Puedo recuperar dinero? La rectificación del impuesto a la fuente</h2>
+<p>Sí. Si tienes gastos deducibles que no están reflejados en la tarifa estándar, puedes solicitar una <strong>rectificación (Tarifkorrektur)</strong> o directamente una <strong>declaración ordinaria posterior (nachträgliche ordentliche Veranlagung)</strong>.</p>
+<p>Gastos que suelen generar devoluciones:</p>
+<ul>
+  <li>Gastos de transporte al trabajo superiores a los estándar (más de 30 km diarios)</li>
+  <li>Formación profesional relacionada con el trabajo (cursos de idiomas, certificaciones)</li>
+  <li>Pensión alimenticia pagada a hijos o ex-cónyuge</li>
+  <li>Gastos de enfermedad no cubiertos por el seguro</li>
+  <li>Donaciones a organizaciones reconocidas</li>
+  <li>Intereses de deudas (hipoteca)</li>
+</ul>
+<p><strong>Plazo:</strong> tienes hasta el <strong>31 de marzo del año siguiente</strong> para solicitar la rectificación del año anterior. Pasada esa fecha, ya no es posible.</p>
+
+<h2>Qué hacer si tu tarifa es incorrecta</h2>
+<p>Es más común de lo que parece. Si tu empleador tiene tu estado civil incorrecto o no ha actualizado el número de hijos, estarás pagando más de lo que debes. El procedimiento es simple:</p>
+<ol>
+  <li>Comunica el cambio a tu departamento de RRHH con prueba documental (acta de matrimonio, libro de familia)</li>
+  <li>Si RRHH no actúa, contacta directamente con la Oficina Cantonal de Impuestos (Kantonales Steueramt)</li>
+  <li>La corrección es retroactiva al inicio del año en curso (no a años anteriores salvo rectificación formal)</li>
+</ol>
+
+<h2>¿Y si trabajo en varios cantones?</h2>
+<p>Se aplica el impuesto del cantón donde vives, no donde trabajas. Si vives en Zug pero trabajas en Zúrich, pagas según las tablas de Zug (más favorable). Esta es una de las razones por las que muchos trabajadores de Zúrich eligen vivir en Zug o Schwyz.</p>
+
+<h2>Resumen rápido</h2>
+<ul>
+  <li>El impuesto a la fuente se descuenta automáticamente de la nómina si tienes permiso B, L o G</li>
+  <li>La tarifa depende del cantón, estado civil, hijos y salario</li>
+  <li>Puedes recuperar dinero si tienes gastos deducibles — solicítalo antes del 31 de marzo</li>
+  <li>Si superas 120.000 CHF brutos anuales, pasas a declaración ordinaria obligatoria</li>
+  <li>Usa la <a href="/herramientas/salario-neto">calculadora de salario neto</a> para ver exactamente cuánto cobrarás en tu cantón</li>
+</ul>
+    `,
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // BAJA MÉDICA
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "baja-medica-suiza-derechos-tramites",
+    titulo: "Baja médica en Suiza: derechos, duración y cómo funciona el sistema",
+    descripcion: "En Suiza la baja médica funciona de forma muy distinta a España. Te explicamos cuánto cobras, quién paga, cuánto tiempo puedes estar de baja y qué obligaciones tienes con el empleador.",
+    categoria: "trabajo",
+    fecha: "2026-10-14",
+    fechaModificada: "2026-10-14",
+    tiempoLectura: 8,
+    imagen: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=1200&q=85&auto=format&fit=crop",
+    destacado: false,
+    palabrasClave: [
+      "baja médica suiza", "incapacidad laboral suiza", "enfermedad trabajo suiza",
+      "cuánto cobras baja suiza", "krankentaggeld suiza", "baja laboral suiza extranjero",
+      "derechos baja medica suiza", "seguro enfermedad diario suiza",
+    ],
+    faq: [
+      {
+        pregunta: "¿Cuánto cobras durante una baja médica en Suiza?",
+        respuesta: "Depende del convenio colectivo y el seguro de tu empresa. Lo habitual es cobrar entre el 80% y el 100% del salario durante los primeros días, y luego un mínimo del 80% si la empresa tiene seguro de dietas (Krankentaggeldversicherung). Sin seguro, la ley suiza garantiza solo un mínimo de semanas de salario completo según años de servicio.",
+      },
+      {
+        pregunta: "¿Cuánto tiempo puedes estar de baja en Suiza?",
+        respuesta: "Con el seguro estándar de dietas de enfermedad (Krankentaggeld), la cobertura es normalmente de 720 días (2 años) al 80% del salario dentro de un período de 900 días. Sin seguro complementario, la protección es mucho menor y varía según el contrato y el cantón.",
+      },
+      {
+        pregunta: "¿Puede despedirte mientras estás de baja en Suiza?",
+        respuesta: "Durante una baja médica existe un período de protección contra el despido que varía según los años trabajados: 30 días en el primer año de servicio, 90 días del 2.º al 5.º año, y 180 días a partir del 6.º año. El empleador puede enviarte el preaviso durante ese período, pero el plazo de preaviso no comienza a contar hasta que termina la baja.",
+      },
+      {
+        pregunta: "¿Necesito un certificado médico para estar de baja en Suiza?",
+        respuesta: "Sí. Si la baja dura más de 3 días (en muchos convenios, desde el primer día), debes presentar un certificado médico (Arztzeugnis) de tu médico de cabecera o especialista. Debes entregarlo a tu empresa lo antes posible, normalmente antes del cuarto día.",
+      },
+    ],
+    contenido: `
+<h2>El sistema suizo de baja médica: tan distinto al español</h2>
+<p>En España la baja médica la gestiona la Seguridad Social y cobras el 60-75% del sueldo. En Suiza no existe esa gestión centralizada. Cada empresa organiza la cobertura de forma independiente, lo que significa que dependiendo de tu empleador y tu contrato, las condiciones pueden ser muy diferentes.</p>
+<p>Esta guía te explica exactamente cómo funciona, qué derechos tienes legalmente y qué deberías revisar en tu contrato antes de necesitarlo.</p>
+
+<h2>El certificado médico: lo primero que debes hacer</h2>
+<p>En cuanto sabes que no vas a poder trabajar por enfermedad o lesión, debes:</p>
+<ol>
+  <li><strong>Avisar a tu empresa lo antes posible</strong> — idealmente el mismo día, por teléfono o mensaje.</li>
+  <li><strong>Ir al médico</strong> y obtener un <em>Arztzeugnis</em> (certificado médico de incapacidad).</li>
+  <li><strong>Entregar el certificado a RRHH</strong> — en la mayoría de contratos, antes del 4.º día. Muchos convenios lo exigen desde el primer día.</li>
+</ol>
+<p>Sin el certificado médico, la empresa puede considerar la ausencia como no justificada, lo que puede tener consecuencias disciplinarias. No esperes.</p>
+
+<h2>¿Quién paga durante la baja?</h2>
+<p>Aquí está la diferencia clave con España. En Suiza hay dos escenarios:</p>
+
+<h3>Escenario 1: Tu empresa tiene seguro de dietas de enfermedad (Krankentaggeldversicherung)</h3>
+<p>Es el caso más habitual en empresas medianas y grandes. La aseguradora cubre el salario durante la baja. Lo normal:</p>
+<ul>
+  <li><strong>Primeros 1-3 días:</strong> habitualmente sin cobertura de la seguradora (período de espera o "carencia"). La empresa suele cubrirlos igualmente por convenio o contrato.</li>
+  <li><strong>Del día 4 en adelante:</strong> la aseguradora paga entre el 80% y el 100% del salario, según la póliza.</li>
+  <li><strong>Duración máxima:</strong> normalmente 720 días al 80% dentro de un período de 900 días por enfermedad.</li>
+</ul>
+
+<h3>Escenario 2: Tu empresa no tiene seguro de dietas (o tiene uno mínimo)</h3>
+<p>En este caso se aplica el <strong>artículo 324a del Código de Obligaciones suizo</strong>, que es la red de seguridad mínima legal. La cobertura mínima legal es:</p>
+<ul>
+  <li>Año 1 de servicio: 3 semanas de salario completo</li>
+  <li>Año 2-3 de servicio: 8 semanas (escala de Berna) o entre 8 y 12 semanas según cantón</li>
+  <li>A partir del año 4: la protección aumenta progresivamente</li>
+</ul>
+<p>Esta cobertura es mucho más limitada. Si trabajas en una empresa pequeña, revisa explícitamente en tu contrato si tienen Krankentaggeld.</p>
+
+<h2>¿Puede tu empresa despedirte durante una baja?</h2>
+<p>Esta es la pregunta que más miedo genera. La respuesta es: <strong>durante la baja existe un período de protección</strong> contra el despido que varía según tu antigüedad:</p>
+<ul>
+  <li><strong>Año 1 en la empresa:</strong> protección de 30 días</li>
+  <li><strong>Años 2-5 en la empresa:</strong> protección de 90 días</li>
+  <li><strong>A partir del año 6:</strong> protección de 180 días</li>
+</ul>
+<p>Durante ese tiempo, el empleador <em>puede</em> enviarte la carta de despido, pero el <strong>plazo de preaviso no empieza a correr hasta que termina la baja</strong>. En la práctica, esto alarga mucho el despido, por lo que muchas empresas prefieren esperar.</p>
+<p>Atención: si la baja se extiende más allá del período de protección, la protección cesa y el despido puede hacerse efectivo normalmente.</p>
+
+<h2>¿Y si el accidente ocurre en el trabajo?</h2>
+<p>Los accidentes laborales están cubiertos por el <strong>seguro de accidentes (SUVA o equivalente privado)</strong>, que es obligatorio y lo paga el empleador. En este caso:</p>
+<ul>
+  <li>Cobras el <strong>80% del salario desde el primer día</strong> del accidente</li>
+  <li>La SUVA cubre tratamiento médico, rehabilitación y pensión de invalidez si hay secuelas</li>
+  <li>No hay período de carencia</li>
+</ul>
+<p>Por eso en la nómina suiza ves un descuento de aproximadamente el 1% para el seguro de accidentes no laborales (los laborales los paga íntegro el empleador).</p>
+
+<h2>Baja por maternidad y paternidad en Suiza</h2>
+<p>La baja por maternidad en Suiza es de <strong>14 semanas (98 días) al 80% del salario</strong>, con un máximo de 220 CHF/día. La financia el seguro de compensación de pérdida de ingresos (EO/APG), no el empleador directamente. Muchos convenios colectivos mejoran estas condiciones.</p>
+<p>La baja por paternidad es de <strong>2 semanas</strong> en las mismas condiciones desde 2021.</p>
+
+<h2>Qué revisar en tu contrato antes de ponerte enfermo</h2>
+<p>Revisa estos puntos ahora, no cuando ya estés de baja:</p>
+<ul>
+  <li>¿Tiene tu empresa un seguro de dietas de enfermedad? ¿Cuál es el porcentaje cubierto?</li>
+  <li>¿Cuántos días de espera (carencia) antes de que empiece a pagar la aseguradora?</li>
+  <li>¿A partir de qué día debes presentar el certificado médico?</li>
+  <li>¿Aplica algún convenio colectivo (CCT/GAV) en tu sector que mejore las condiciones?</li>
+</ul>
+
+<h2>Recursos útiles</h2>
+<ul>
+  <li>Tu médico de cabecera (Hausarzt) es el primer contacto para el certificado y para cualquier orientación médica.</li>
+  <li>La <strong>UNIA</strong> y otros sindicatos ofrecen asesoría gratuita sobre derechos laborales. <a href="/trabajo/unia">Más información sobre la UNIA aquí.</a></li>
+  <li>Si tienes disputas con tu empleador, la <strong>oficina cantonal de trabajo</strong> puede mediar.</li>
+</ul>
+    `,
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // CONTRATO DE TRABAJO
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "contrato-trabajo-suiza-lo-que-debes-saber",
+    titulo: "Contrato de trabajo en Suiza: lo que debes saber antes de firmar",
+    descripcion: "Los contratos de trabajo suizos tienen particularidades que sorprenden a los recién llegados. Preaviso, horas extra, vacaciones, período de prueba y qué es negociable y qué no.",
+    categoria: "trabajo",
+    fecha: "2026-10-14",
+    fechaModificada: "2026-10-14",
+    tiempoLectura: 9,
+    imagen: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=85&auto=format&fit=crop",
+    destacado: false,
+    palabrasClave: [
+      "contrato trabajo suiza", "firmar contrato suiza", "preaviso suiza", "período prueba suiza",
+      "vacaciones suiza días", "horas extras suiza", "convenio colectivo suiza", "derechos laborales suiza extranjero",
+    ],
+    faq: [
+      {
+        pregunta: "¿Cuántos días de vacaciones corresponden por ley en Suiza?",
+        respuesta: "La ley suiza garantiza un mínimo de 4 semanas (20 días laborables) de vacaciones anuales para empleados adultos, y 5 semanas (25 días) para menores de 20 años. Muchos convenios y contratos mejoran esto a 25 días. Los días festivos varían por cantón y no se cuentan dentro de las vacaciones.",
+      },
+      {
+        pregunta: "¿Cuánto es el período de preaviso en Suiza?",
+        respuesta: "Por ley: 7 días durante el período de prueba, 1 mes durante el primer año de servicio, 2 meses del 2.º al 9.º año, y 3 meses a partir del 10.º año. Los contratos y convenios colectivos pueden establecer plazos más largos pero nunca más cortos.",
+      },
+      {
+        pregunta: "¿Cuánto dura el período de prueba en Suiza?",
+        respuesta: "El período de prueba estándar es de 1 mes, ampliable hasta 3 meses por acuerdo contractual. Durante el período de prueba el preaviso es de solo 7 días. No existe el despido 'a la primera' automático, pero el preaviso es mucho más corto.",
+      },
+      {
+        pregunta: "¿Es obligatorio el 13.º salario en Suiza?",
+        respuesta: "No por ley, pero sí en la práctica: la gran mayoría de contratos en Suiza incluyen un 13.º salario (equivalente a un mes extra repartido entre junio y diciembre). Si no aparece en el contrato, pregúntalo explícitamente porque en muchos sectores y empresas es una costumbre tan extendida que se da por supuesto.",
+      },
+    ],
+    contenido: `
+<h2>El contrato suizo no es como el español</h2>
+<p>El Código de Obligaciones suizo (OR/CO) regula las relaciones laborales de forma diferente a España. Hay más flexibilidad en algunos puntos y más rigidez en otros. Conocer estas diferencias antes de firmar puede ahorrarte muchas sorpresas.</p>
+
+<h2>Lo que siempre debe aparecer por escrito</h2>
+<p>En Suiza los contratos de trabajo pueden ser verbales, pero es una mala idea. Exige siempre contrato por escrito que incluya:</p>
+<ul>
+  <li>Descripción del puesto y responsabilidades</li>
+  <li>Salario bruto mensual o anual (y si incluye 13.º salario)</li>
+  <li>Jornada semanal y distribución horaria</li>
+  <li>Número de días de vacaciones</li>
+  <li>Período de prueba</li>
+  <li>Plazos de preaviso</li>
+  <li>Si aplica un convenio colectivo (CCT/GAV)</li>
+</ul>
+
+<h2>El 13.º salario: cómo funciona</h2>
+<p>El 13.º salario no es obligatorio por ley, pero es prácticamente universal en Suiza. Funciona así:</p>
+<ul>
+  <li>Equivale a 1 mes de salario adicional al año</li>
+  <li>Suele pagarse en dos partes: mitad en junio y mitad en diciembre (o todo en diciembre)</li>
+  <li>Si llevas menos de un año en la empresa, se paga proporcionalmente</li>
+  <li>Está sujeto a impuestos como cualquier otro salario</li>
+</ul>
+<p>Si el contrato dice "salario anual de 72.000 CHF con 13.º salario incluido", tu mensualidad real es 72.000 ÷ 13 = 5.538 CHF, <em>no</em> 72.000 ÷ 12 = 6.000 CHF. Aclara esto siempre antes de negociar.</p>
+
+<h2>Vacaciones: lo que garantiza la ley y lo que puedes negociar</h2>
+<p>La ley garantiza 4 semanas (20 días hábiles) como mínimo para mayores de 20 años. En la práctica:</p>
+<ul>
+  <li>Muchos sectores tienen convenios que garantizan 25 días</li>
+  <li>Las empresas tecnológicas y multinacionales suelen ofrecer 25-30 días</li>
+  <li>Los días festivos son adicionales (varían por cantón: entre 8 y 15 días según el cantón)</li>
+  <li>No puedes renunciar a las vacaciones a cambio de dinero (excepto al terminar el contrato)</li>
+</ul>
+
+<h2>Período de prueba: corto pero con preaviso cortísimo</h2>
+<p>El período de prueba por defecto es de 1 mes, ampliable a 3 meses por contrato. Durante ese tiempo:</p>
+<ul>
+  <li>El preaviso es de solo <strong>7 días</strong> (por cualquiera de las partes)</li>
+  <li>No hay protección especial contra el despido</li>
+  <li>Si estás de baja médica durante el período de prueba, este se pausa y se reanuda al volver</li>
+</ul>
+<p>Pasado el período de prueba, los plazos de preaviso aumentan significativamente (ver sección siguiente).</p>
+
+<h2>El preaviso: plazos legales mínimos</h2>
+<p>Los plazos de preaviso en Suiza son más largos que en España:</p>
+<ul>
+  <li><strong>Durante el período de prueba:</strong> 7 días</li>
+  <li><strong>Año 1 de servicio:</strong> 1 mes</li>
+  <li><strong>Años 2-9:</strong> 2 meses</li>
+  <li><strong>A partir del año 10:</strong> 3 meses</li>
+</ul>
+<p>Estos son los mínimos legales. Tu contrato puede establecer plazos más largos (es habitual en puestos directivos) pero nunca más cortos. El preaviso siempre se cuenta a fin de mes.</p>
+<blockquote>Ejemplo: Si tu jefe te comunica el despido el 15 de octubre y llevas 4 años en la empresa (preaviso 2 meses a fin de mes), tu último día de trabajo es el <strong>31 de diciembre</strong>.</blockquote>
+
+<h2>Horas extras: ¿te las tienen que pagar?</h2>
+<p>Depende del contrato y el sector. En Suiza hay que distinguir entre <em>Überstunden</em> (horas extra ordinarias) y <em>Überzeit</em> (horas extra extraordinarias que superan el máximo legal):</p>
+<ul>
+  <li>Las <strong>Überstunden</strong> (hasta el máximo legal) pueden compensarse con días libres en lugar de dinero, si el contrato lo prevé. Muchos contratos incluyen cláusulas de "compensación global de horas extra" que las absorben en el salario.</li>
+  <li>Las <strong>Überzeit</strong> (las que superan las 45h semanales para empleados de oficina, o 50h para otros) deben pagarse con un recargo del 25%.</li>
+</ul>
+<p>Revisa si tu contrato incluye una cláusula de "pauschal Überstunden" — significa que las horas extra "razonables" están incluidas en el salario. En puestos profesionales es habitual y es legítimo, pero asegúrate de que la jornada real esperada sea razonable.</p>
+
+<h2>Los convenios colectivos (CCT/GAV): tu segunda fuente de derechos</h2>
+<p>Muchos sectores en Suiza tienen convenios colectivos de trabajo (CCT en francés / GAV en alemán) que mejoran las condiciones mínimas legales. Si tu sector tiene uno, se aplica aunque tu contrato no lo mencione. Sectores con CCT importantes:</p>
+<ul>
+  <li>Construcción (LMV/CCC) — muy protector</li>
+  <li>Hostelería y restauración (L-GAV)</li>
+  <li>Comercio minorista</li>
+  <li>Limpieza</li>
+  <li>Metalurgia</li>
+  <li>Salud y cuidados</li>
+</ul>
+<p>Puedes consultar si tu sector tiene CCT en la web del Seco (Estado Secretariado de Asuntos Económicos) o preguntar directamente a la <a href="/trabajo/unia">UNIA</a>.</p>
+
+<h2>Checklist antes de firmar</h2>
+<ul>
+  <li>✅ El salario indica si el 13.º está incluido o es adicional</li>
+  <li>✅ Los días de vacaciones son al menos 20 (y preferiblemente 25)</li>
+  <li>✅ El período de prueba y su duración están claros</li>
+  <li>✅ El preaviso es igual o mayor al mínimo legal</li>
+  <li>✅ La cláusula de horas extra está definida (y es razonable)</li>
+  <li>✅ Hay referencia al convenio colectivo si aplica</li>
+  <li>✅ El seguro de dietas de enfermedad (Krankentaggeld) está mencionado o confirmado</li>
+  <li>✅ Usa nuestra <a href="/herramientas/salario-neto">calculadora de salario neto</a> para verificar cuánto cobrarás realmente</li>
+</ul>
+    `,
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // CARNET DE CONDUCIR
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "conducir-suiza-carnet-espanol-canje",
+    titulo: "Conducir en Suiza con carnet español: canje, plazos y lo que nadie te explica",
+    descripcion: "¿Puedes conducir en Suiza con el carnet de conducir español? Sí, pero con condiciones y plazos que muy poca gente conoce. Guía completa sobre el canje, multas y seguros.",
+    categoria: "vida-diaria",
+    fecha: "2026-10-14",
+    fechaModificada: "2026-10-14",
+    tiempoLectura: 7,
+    imagen: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1200&q=85&auto=format&fit=crop",
+    destacado: false,
+    palabrasClave: [
+      "carnet conducir suiza", "canje carnet español suiza", "conducir suiza permiso español",
+      "plazo canje carnet suiza", "licencia conducir suiza extranjero", "carnet b suiza",
+    ],
+    faq: [
+      {
+        pregunta: "¿Puedo conducir en Suiza con el carnet de conducir español?",
+        respuesta: "Sí, pero solo durante un período limitado. Al establecer tu residencia en Suiza, tienes 12 meses para canjear tu carnet español por el suizo. Pasado ese plazo, el carnet español ya no es válido para conducir en Suiza como residente.",
+      },
+      {
+        pregunta: "¿Cómo se canjea el carnet español por el suizo?",
+        respuesta: "El canje se hace en la oficina cantonal de tráfico (Strassenverkehrsamt). No hay que hacer ningún examen si vienes de España u otro país de la UE. Solo necesitas: carnet original, pasaporte o DNI, foto de carnet, permiso de residencia y el pago de la tasa (entre 30 y 100 CHF según cantón).",
+      },
+      {
+        pregunta: "¿Qué pasa si no canjeo el carnet en el plazo de 12 meses?",
+        respuesta: "Técnicamente tu carnet español queda invalidado como permiso de conducción en Suiza. Seguir conduciendo sin canjearlo puede resultar en multa y, en caso de accidente, problemas con el seguro. Algunos cantones tienen cierta tolerancia, pero no es recomendable arriesgarse.",
+      },
+      {
+        pregunta: "¿Puedo conducir en Suiza con carnet latinoamericano?",
+        respuesta: "Depende del país. Algunos países latinoamericanos tienen acuerdo con Suiza que permite conducir hasta 12 meses y luego canjear sin examen (como Chile, Argentina o Colombia). Para otros países el proceso es diferente y puede requerir examen teórico o práctico. Consulta con el Strassenverkehrsamt de tu cantón.",
+      },
+    ],
+    contenido: `
+<h2>Lo que nadie te cuenta al llegar: el plazo de 12 meses</h2>
+<p>Miles de hispanohablantes llevan en Suiza más de un año conduciendo con el carnet español sin saber que técnicamente están infringiendo la normativa. No es un error que tenga consecuencias inmediatas en el día a día — la policía raramente lo comprueba — pero puede ser problemático en caso de accidente.</p>
+<p>La regla es simple: cuando estableces tu residencia en Suiza (te empadronas), tienes <strong>12 meses para canjear tu carnet extranjero</strong> por el suizo. Pasado ese plazo, el carnet original deja de ser válido como permiso de conducción en el país.</p>
+
+<h2>El canje del carnet español: paso a paso</h2>
+<p>La buena noticia para los españoles (y ciudadanos de la UE en general) es que el canje es un trámite administrativo sencillo, sin examen.</p>
+
+<h3>Documentos necesarios</h3>
+<ul>
+  <li>Carnet de conducir original español (válido y no caducado)</li>
+  <li>DNI o pasaporte</li>
+  <li>Permiso de residencia suizo (permiso B o superior)</li>
+  <li>Fotografía de carnet reciente</li>
+  <li>Formulario de solicitud de la oficina cantonal (lo puedes descargar online)</li>
+</ul>
+
+<h3>Dónde hacerlo</h3>
+<p>En la <strong>oficina cantonal de tráfico (Strassenverkehrsamt / Service des automobiles)</strong> de tu cantón. Cada cantón tiene la suya. Necesitas pedir cita previa (normalmente por internet).</p>
+
+<h3>Coste y tiempo</h3>
+<ul>
+  <li><strong>Tasa:</strong> entre 30 y 100 CHF según el cantón</li>
+  <li><strong>Tiempo de tramitación:</strong> 2-4 semanas</li>
+  <li><strong>Durante el proceso:</strong> te retienen el carnet español y te dan un documento provisional</li>
+</ul>
+
+<h2>¿Qué tipo de carnet suizo recibes?</h2>
+<p>El carnet suizo nuevo incluye las mismas categorías que el español. Si tienes el B europeo, recibes el B suizo. Si tienes B96 o BE también. Las categorías especiales (moto, camión) también se transfieren si las tenías en el original.</p>
+<p>El carnet suizo tiene <strong>validez vitalicia</strong> para las categorías que no requieren control médico periódico. No caduca como el español.</p>
+
+<h2>Latinoamericanos: el proceso según el país de origen</h2>
+<p>Para ciudadanos de países latinoamericanos el proceso varía considerablemente:</p>
+
+<h3>Países con acuerdo de canje directo (sin examen)</h3>
+<p>Algunos países tienen acuerdo con Suiza que permite el canje sin hacer ni el teórico ni el práctico:</p>
+<ul>
+  <li>Argentina, Chile, Colombia, Ecuador, México, Perú, Uruguay (lista orientativa — confirma con tu cantón)</li>
+</ul>
+
+<h3>Países sin acuerdo de canje</h3>
+<p>Para otros países (o si el carnet tiene menos de 2 años de antigüedad), el proceso puede incluir:</p>
+<ul>
+  <li>Examen teórico suizo (Primera Hilfe / primeros auxilios obligatorio para todos)</li>
+  <li>Posiblemente examen práctico</li>
+  <li>El carnet extranjero se retiene y no se devuelve</li>
+</ul>
+<p>El coste en estos casos sube a entre 300 y 600 CHF incluyendo curso de primeros auxilios, examen teórico y tasa de canje.</p>
+
+<h2>El seguro del coche: obligatorio y diferente al español</h2>
+<p>En Suiza el seguro de responsabilidad civil (RC) del vehículo es obligatorio, igual que en España. Las diferencias:</p>
+<ul>
+  <li>No existe el sistema de puntos en el carnet suizo (aunque sí hay sanciones por infracciones graves)</li>
+  <li>Las primas son más caras que en España, especialmente al llegar sin historial suizo</li>
+  <li>Si traes el <em>Bonus-Malus</em> de tu país de origen, algunas aseguradoras lo reconocen con carta de tu aseguradora anterior</li>
+  <li>Portales de comparación: Comparis.ch y Moneyland.ch</li>
+</ul>
+
+<h2>Infracciones y multas: el sistema suizo no perdona</h2>
+<p>Las multas de tráfico en Suiza son famosas por su severidad. Algunos datos:</p>
+<ul>
+  <li>Exceso de velocidad de 10 km/h en zona urbana: multa fija de entre 120 y 250 CHF</li>
+  <li>Exceso de 26-30 km/h en zona urbana: multa elevada + posible retirada del carnet</li>
+  <li>Superar 40 km/h en zona urbana o 50 km/h en autopista: <strong>retirada del carnet mínimo 3 meses + multa proporcional al salario</strong> (en Suiza las multas graves se calculan sobre el salario mensual)</li>
+  <li>Teléfono al volante: 100 CHF</li>
+  <li>No llevar cinturón: 60 CHF</li>
+</ul>
+<p>El sistema suizo es especialmente severo con las infracciones de velocidad. Conduce siempre con cuidado y respeta los límites al pie de la letra.</p>
+
+<h2>Resumen: lo que debes hacer al llegar</h2>
+<ul>
+  <li>✅ Puedes conducir con el carnet español desde el primer día</li>
+  <li>✅ Tienes <strong>12 meses</strong> para canjear el carnet desde que te empadronas</li>
+  <li>✅ El canje es sin examen para ciudadanos de la UE</li>
+  <li>✅ Pide cita en el Strassenverkehrsamt de tu cantón en los primeros meses (las citas tardan semanas)</li>
+  <li>✅ Contrata el seguro del coche antes de circular</li>
+</ul>
+    `,
+  },
 ];
 
 // ── Índice completo (manuales + auto) ─────────────────────────────────────────
