@@ -5,14 +5,15 @@ import { buildMetadata, BASE_URL, breadcrumbSchema, itemListSchema } from "@/lib
 
 export const metadata: Metadata = buildMetadata({
   title: "Herramientas gratuitas para vivir en Suiza — Calculadoras y comparadores",
-  description: "Calculadoras y herramientas gratuitas para hispanohablantes en Suiza: salario neto por cantón, comparador de seguros médicos, comparador de ciudades y más.",
+  description: "5 calculadoras y herramientas gratuitas para hispanohablantes en Suiza: salario neto por cantón, comparador de salarios por profesión, seguros médicos, comparador de ciudades y más.",
   path: "/herramientas",
   ogImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=85&auto=format&fit=crop",
   keywords: [
     "herramientas suiza", "calculadora suiza gratis", "calculadora salario suiza",
     "comparador seguros suiza", "herramientas expat suiza",
     "calculadora impuestos suiza", "coste vida suiza calculadora",
-    "salario neto suiza 2026",
+    "salario neto suiza 2026", "comparador salarios suiza ciudad",
+    "permiso trabajo suiza calculadora", "salario por profesion suiza",
   ],
 });
 
@@ -43,6 +44,24 @@ const herramientas = [
     href: "/herramientas/seguros-medicos",
     color: "bg-purple-50 border-purple-200",
     btnColor: "bg-purple-700",
+  },
+  {
+    icono: "📊",
+    titulo: "Comparador de salarios por profesión",
+    descripcion: "¿Cuánto gana un informático, enfermero o electricista en Zúrich vs Ginebra? Compara salarios por sector y nivel de experiencia en las 6 principales ciudades suizas.",
+    estado: "disponible",
+    href: "/herramientas/comparador-salarios",
+    color: "bg-red-50 border-red-200",
+    btnColor: "bg-[#C0392B]",
+  },
+  {
+    icono: "🛂",
+    titulo: "Calculadora de permiso de trabajo",
+    descripcion: "¿Qué permiso te corresponde? Ciudadano UE o latinoamericano, contrato indefinido o temporal, trabajador fronterizo. Resultado inmediato con documentación necesaria.",
+    estado: "disponible",
+    href: "/herramientas/permiso-trabajo",
+    color: "bg-yellow-50 border-yellow-200",
+    btnColor: "bg-yellow-700",
   },
   {
     icono: "🏠",
