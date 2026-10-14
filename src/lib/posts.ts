@@ -1663,6 +1663,465 @@ const postsManual: Post[] = [
 </ul>
     `,
   },
+
+  // ─────────────────────────────────────────────────────────
+  // VIVIR EN BERNA
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "vivir-en-berna-guia-hispanohablantes",
+    titulo: "Vivir en Berna: guía para hispanohablantes 2026",
+    descripcion: "Todo lo que necesitas saber para vivir en Berna: mercado laboral, alquileres, coste de vida, comunidad hispanohablante y pasos prácticos para mudarte a la capital federal suiza.",
+    categoria: "vida-diaria",
+    fecha: "2026-10-14",
+    tiempoLectura: 8,
+    imagen: "https://images.unsplash.com/photo-1527838832700-5059252407fa?w=1200&q=85&auto=format&fit=crop",
+    destacado: false,
+    palabrasClave: [
+      "vivir en berna", "berna hispanohablantes", "trabajo en berna", "alquiler berna",
+      "coste de vida berna", "mudarse a berna", "berna capital suiza", "berna españoles",
+    ],
+    faq: [
+      {
+        pregunta: "¿Es fácil encontrar trabajo en Berna siendo español?",
+        respuesta: "Berna tiene una demanda constante de profesionales en administración pública, salud y educación. Si tienes titulación reconocida en estos sectores y alemán funcional (B1-B2), las posibilidades son buenas. El sector federal contrata a muchos hispanohablantes con dominio del inglés también.",
+      },
+      {
+        pregunta: "¿Cuánto cuesta vivir en Berna al mes?",
+        respuesta: "El coste mensual total para una persona ronda los 3.400-3.800 CHF: alquiler 1 habitación (1.300-1.700 CHF), seguro médico (~400 CHF), transporte (~85 CHF), alimentación (~500 CHF) y ocio/varios (~300 CHF). Con el salario medio de 6.600 CHF queda margen de ahorro razonable.",
+      },
+      {
+        pregunta: "¿Se habla inglés en Berna?",
+        respuesta: "El inglés es útil en el entorno federal e internacional, pero el alemán (berndeutsch en la calle, hochdeutsch en el trabajo) es imprescindible para la vida cotidiana. Al ser capital federal hay más exposición al inglés que en otras ciudades de habla alemana.",
+      },
+      {
+        pregunta: "¿Berna es cara comparada con Zúrich?",
+        respuesta: "Berna es algo más barata que Zúrich: los alquileres están entre un 10-15% por debajo y los impuestos (tasa 12,4%) son similares. Para trabajadores de la administración pública o sanidad, Berna ofrece una relación calidad-precio muy buena.",
+      },
+    ],
+    contenido: `
+<h2>¿Por qué elegir Berna?</h2>
+<p>Berna es la capital federal de Suiza y una de las ciudades más subestimadas del país. A diferencia del ritmo frenético de Zúrich o el cosmopolitismo de Ginebra, Berna ofrece una calidad de vida más tranquila, barrios históricos con arcadas medievales declaradas Patrimonio de la Humanidad, y un mercado laboral estable centrado en el sector público y la sanidad.</p>
+<p>Para hispanohablantes, Berna presenta ventajas concretas: los alquileres son más bajos que en Ginebra o Zúrich, la ciudad es manejable y segura, y el hecho de ser capital federal atrae organismos internacionales con puestos en inglés y francés además del alemán.</p>
+<p><strong>Puntos fuertes:</strong> estabilidad laboral, alquileres relativamente asequibles, ciudad compacta y muy segura, conexiones de tren excelentes a toda Suiza.</p>
+<p><strong>Puntos débiles:</strong> el berndeutsch (dialecto bernés) es especialmente difícil, menor dinamismo que Zúrich, y la oferta cultural es más limitada que en otras capitales europeas.</p>
+
+<h2>Mercado laboral en Berna</h2>
+<p>El mayor empleador de Berna es el sector público federal. La Confederación Suiza tiene sus ministerios, el Parlamento y decenas de organismos federales en la ciudad. Si trabajas en administración, derecho, política internacional, estadística o comunicación institucional, Berna es tu ciudad.</p>
+<p>El sector salud es el segundo gran pilar: el Inselspital (hospital universitario), clínicas cantonales y una densa red de centros de salud generan empleo constante para médicos, enfermeros, técnicos y personal de apoyo. La homologación del título médico o de enfermería es un proceso largo pero factible.</p>
+<p>El salario medio en Berna ronda los <strong>6.600 CHF brutos mensuales</strong>. Con la <a href="/herramientas/salario-neto">calculadora de salario neto</a> puedes ver exactamente cuánto te quedará tras las deducciones. Para comparar con otras ciudades, usa el <a href="/herramientas/comparador-ciudades">comparador de ciudades</a>.</p>
+<p>Otros sectores con demanda: tecnología de la información (Berna tiene un ecosistema tech emergente), educación universitaria (Universidad de Berna) e investigación.</p>
+
+<h2>Vivienda: cuánto cuesta un piso en Berna</h2>
+<p>Berna es cara para el estándar europeo, pero más asequible que Ginebra o Zúrich. Los precios de alquiler típicos para un piso de 1 habitación:</p>
+<ul>
+  <li><strong>Centro histórico (Altstadt, Kirchenfeld):</strong> 1.600-1.900 CHF/mes</li>
+  <li><strong>Zonas intermedias (Länggasse, Mattenhof, Riedbach):</strong> 1.400-1.700 CHF/mes</li>
+  <li><strong>Periferia y municipios cercanos (Köniz, Ostermundigen, Muri):</strong> 1.100-1.400 CHF/mes</li>
+</ul>
+<p>Los barrios más recomendados para hispanohablantes que llegan: <strong>Länggasse</strong> (zona universitaria, ambiente joven y multicultural), <strong>Bümpliz</strong> (más económico, buena conexión en tranvía) y <strong>Bethlehem</strong> (diverso y asequible).</p>
+<p>Consejo práctico: en Berna la competencia por pisos es alta pero menor que en Zúrich. Usa Homegate.ch e ImmoScout24.ch. Tener el Betreibungsregisterauszug (certificado de no deudas) desde el primer día acelera mucho el proceso.</p>
+
+<h2>Coste de vida mensual en Berna</h2>
+<table>
+  <thead><tr><th>Concepto</th><th>Coste estimado (CHF/mes)</th></tr></thead>
+  <tbody>
+    <tr><td>Alquiler 1 hab. (zona media)</td><td>1.500</td></tr>
+    <tr><td>Seguro médico básico</td><td>400</td></tr>
+    <tr><td>Transporte (abono mensual)</td><td>85</td></tr>
+    <tr><td>Alimentación (supermercado)</td><td>500</td></tr>
+    <tr><td>Ocio, restaurantes, varios</td><td>300</td></tr>
+    <tr><td><strong>Total estimado</strong></td><td><strong>~2.785</strong></td></tr>
+  </tbody>
+</table>
+<p>Con un salario medio de 6.600 CHF brutos (≈ 5.400 CHF netos), el margen de ahorro en Berna puede superar los 2.500 CHF mensuales. La tasa impositiva cantonal es del 12,4%, competitiva dentro de Suiza.</p>
+
+<h2>Comunidad hispanohablante en Berna</h2>
+<p>La comunidad hispanohablante en Berna es menor que en Ginebra o Zúrich, pero está bien organizada. El Consulado General de España en Berna es el punto de referencia para los ciudadanos españoles en toda Suiza (excepto Ginebra). Hay varias asociaciones culturales hispanas y grupos activos en Facebook y WhatsApp.</p>
+<p>Por ser capital federal, Berna atrae a muchos hispanohablantes que trabajan en organismos internacionales, embajadas y la Confederación. Esto crea una comunidad con perfil profesional alto y bien integrada.</p>
+<p>El idioma en el trabajo suele ser alemán estándar (hochdeutsch), aunque en entornos federales el francés y el inglés también tienen presencia. El berndeutsch que escucharás en la calle es el dialecto más difícil del alemán suizo, pero no necesitas hablarlo.</p>
+
+<h2>Pasos para mudarte a Berna</h2>
+<ol>
+  <li><strong>Antes de llegar:</strong> Consigue un contrato de trabajo o al menos una oferta. Sin empleo, el empadronamiento estable es difícil. Usa el <a href="/trabajo/buscador">buscador de trabajo en Suiza</a> para buscar ofertas en Berna.</li>
+  <li><strong>Permiso de trabajo:</strong> Los ciudadanos de la UE obtienen el permiso B automáticamente al empezar a trabajar. Para latinoamericanos es necesario tramitarlo desde el consulado suizo. Consulta nuestra <a href="/herramientas/permiso-trabajo">calculadora de permiso de trabajo</a> y la <a href="/blog/permiso-residencia-suiza-espanoles-latinoamericanos-2026">guía de permisos de residencia</a>.</li>
+  <li><strong>Empadronamiento:</strong> Debes registrarte en la Einwohnergemeinde (oficina de empadronamiento) de tu municipio en Berna dentro de los 14 días de llegar. Necesitas: pasaporte/DNI, contrato de trabajo, contrato de alquiler y foto.</li>
+  <li><strong>Seguro médico:</strong> Contrátalo antes de los 3 meses. Compara precios por cantón en Comparis.ch. En Berna el coste medio ronda los 400 CHF/mes.</li>
+  <li><strong>Cuenta bancaria:</strong> PostFinance tiene oficinas en toda Berna y es la más accesible para recién llegados. También puedes usar Neon o Yuh (bancos digitales suizos) desde el primer día.</li>
+  <li><strong>Transporte:</strong> El abono mensual del transporte público bernés (BERNMOBIL + SBB zona local) cuesta alrededor de 85 CHF y cubre tranvías, buses y trenes dentro de la ciudad.</li>
+</ol>
+    `,
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // VIVIR EN BASILEA
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "vivir-en-basilea-guia-hispanohablantes",
+    titulo: "Vivir en Basilea: guía para hispanohablantes 2026",
+    descripcion: "Guía completa para vivir en Basilea: pharma, frontera tri-nacional, alquileres, coste de vida y todo lo que necesitas saber antes de mudarte a la ciudad de Roche y Novartis.",
+    categoria: "vida-diaria",
+    fecha: "2026-10-14",
+    tiempoLectura: 8,
+    imagen: "https://images.unsplash.com/photo-1584531735573-94af8e4b8a52?w=1200&q=85&auto=format&fit=crop",
+    destacado: false,
+    palabrasClave: [
+      "vivir en basilea", "basilea hispanohablantes", "trabajo basilea pharma", "alquiler basilea",
+      "coste de vida basilea", "mudarse a basilea", "basilea novartis roche", "basilea frontera",
+    ],
+    faq: [
+      {
+        pregunta: "¿Qué empresas contratan en Basilea?",
+        respuesta: "Basilea es la capital farmacéutica mundial. Novartis y Roche tienen sus sedes globales aquí, junto con decenas de empresas del sector life sciences como Lonza, Syngenta y Clariant. También hay demanda en química, finanzas y logística. Para hispanohablantes con formación en ciencias o ingeniería, Basilea ofrece oportunidades excelentes.",
+      },
+      {
+        pregunta: "¿Puedo vivir en Francia o Alemania y trabajar en Basilea?",
+        respuesta: "Sí. Muchos trabajadores viven en Saint-Louis (Francia) o Weil am Rhein (Alemania) y cruzan a diario. El coste de vida al otro lado de la frontera es significativamente menor. Necesitas el permiso de frontera (permiso G suizo) y debes gestionar los impuestos con cuidado (acuerdo fiscal entre Suiza, Francia y Alemania).",
+      },
+      {
+        pregunta: "¿Cuánto cuesta el seguro médico en Basilea?",
+        respuesta: "El seguro médico básico en Basilea ronda los 370 CHF/mes para un adulto. Basilea tiene una de las primas más bajas de las grandes ciudades suizas. Si vives en Francia o Alemania y trabajas en Suiza, tienes opciones especiales (CMU/régime frontalier) que pueden ser más económicas.",
+      },
+      {
+        pregunta: "¿Es Basilea buena para trabajadores de la salud?",
+        respuesta: "Sí. El Universitätsspital Basel (USB) es uno de los mejores hospitales de Suiza y contrata regularmente. La demanda de enfermeros, médicos, fisioterapeutas y técnicos es constante. La proximidad con hospitales franceses y alemanes también crea oportunidades de frontera.",
+      },
+    ],
+    contenido: `
+<h2>¿Por qué elegir Basilea?</h2>
+<p>Basilea es única en Suiza: una ciudad de apenas 180.000 habitantes que es al mismo tiempo la capital mundial de la industria farmacéutica, un centro cultural de primer nivel (el Art Basel es el mayor festival de arte contemporáneo del mundo) y la única ciudad suiza en la encrucijada de tres países: Suiza, Francia y Alemania.</p>
+<p>Para hispanohablantes con formación técnica, científica o sanitaria, Basilea puede ser la puerta de entrada más directa al mercado laboral suizo. El inglés funciona bien en el entorno corporativo pharma, lo que reduce la barrera del idioma en los primeros años.</p>
+<p><strong>Puntos fuertes:</strong> salario medio el más alto de las ciudades analizadas (7.000 CHF), primas de seguro médico bajas (370 CHF), opción de vivir en Francia/Alemania a menor coste, sector farmacéutico siempre con demanda.</p>
+<p><strong>Puntos débiles:</strong> ciudad relativamente pequeña, vida nocturna limitada comparada con Zúrich, el alemán es necesario para la vida cotidiana.</p>
+
+<h2>Mercado laboral en Basilea</h2>
+<p>Ninguna ciudad suiza tiene una especialización sectorial tan marcada como Basilea. El 40% del empleo privado está ligado directa o indirectamente al sector <em>life sciences</em>:</p>
+<ul>
+  <li><strong>Novartis:</strong> sede global en Basilea, uno de los mayores empleadores del país</li>
+  <li><strong>Roche:</strong> fundada en Basilea en 1896, emplea a más de 10.000 personas solo en la ciudad</li>
+  <li><strong>Lonza, Clariant, Syngenta:</strong> otras multinacionales con presencia importante</li>
+</ul>
+<p>Los perfiles más demandados: investigadores y científicos (PhD o máster en bioquímica, farmacia, biología), ingenieros de procesos, especialistas en regulación farmacéutica, IT y data science aplicado a salud, y profesionales de finanzas corporativas.</p>
+<p>El salario medio bruto es de <strong>7.000 CHF/mes</strong>, el más alto entre las ciudades medianas de Suiza. Usa la <a href="/herramientas/salario-neto">calculadora de salario neto</a> para estimar tu sueldo real y el <a href="/herramientas/comparador-ciudades">comparador de ciudades</a> para ver cómo se compara con otras opciones.</p>
+
+<h2>Vivienda: cuánto cuesta un piso en Basilea</h2>
+<p>Basilea es la gran sorpresa en cuanto a alquileres: pese a los salarios altos, los precios de vivienda son más bajos que en Zúrich o Ginebra. Un piso de 1 habitación:</p>
+<ul>
+  <li><strong>Centro (Grossbasel, Kleinbasel):</strong> 1.500-1.800 CHF/mes</li>
+  <li><strong>Zona media (St. Johann, Gundeldingen, Bachletten):</strong> 1.300-1.600 CHF/mes</li>
+  <li><strong>Periferia (Allschwil, Riehen, Birsfelden):</strong> 1.100-1.300 CHF/mes</li>
+</ul>
+<p>Los barrios más recomendados para recién llegados: <strong>St. Johann</strong> (multicultural, cerca de Novartis), <strong>Gundeldingen</strong> (joven y asequible, buena conexión) y <strong>Kleinbasel</strong> (diverso, cruzando el Rin, más económico que el centro).</p>
+<p><strong>Alternativa fronteriza:</strong> vivir en Saint-Louis (Francia) o Weil am Rhein (Alemania) puede reducir el alquiler a la mitad. Muchos trabajadores de Novartis y Roche cruzan la frontera cada día en bicicleta o tranvía.</p>
+
+<h2>Coste de vida mensual en Basilea</h2>
+<table>
+  <thead><tr><th>Concepto</th><th>Coste estimado (CHF/mes)</th></tr></thead>
+  <tbody>
+    <tr><td>Alquiler 1 hab. (zona media)</td><td>1.450</td></tr>
+    <tr><td>Seguro médico básico</td><td>370</td></tr>
+    <tr><td>Transporte (abono mensual)</td><td>80</td></tr>
+    <tr><td>Alimentación (supermercado)</td><td>480</td></tr>
+    <tr><td>Ocio, restaurantes, varios</td><td>300</td></tr>
+    <tr><td><strong>Total estimado</strong></td><td><strong>~2.680</strong></td></tr>
+  </tbody>
+</table>
+<p>Con el salario medio de 7.000 CHF brutos (≈ 5.750 CHF netos), el margen de ahorro mensual puede superar los 3.000 CHF. La tasa impositiva cantonal de Basilea es del 11,5%, una de las más competitivas de Suiza.</p>
+
+<h2>Comunidad hispanohablante en Basilea</h2>
+<p>La comunidad hispanohablante en Basilea es pequeña pero activa. La presencia de multinacionales farmacéuticas atrae a profesionales hispanohablantes de alto perfil: investigadores latinoamericanos con doctorado, ingenieros españoles y profesionales de la salud.</p>
+<p>Hay grupos de WhatsApp y Facebook para hispanos en Basilea, y el Consulado de España en Berna cubre la zona. El ambiente internacional de las empresas farmacéuticas facilita la integración sin necesidad de dominar el alemán desde el primer día.</p>
+<p>El idioma oficial es el alemán (el dialecto local es el baseldeutsch), pero en Novartis y Roche el inglés es el idioma de trabajo. La proximidad con Francia también hace que muchos hispanohablantes con francés se sientan cómodos en la zona fronteriza.</p>
+
+<h2>Pasos para mudarte a Basilea</h2>
+<ol>
+  <li><strong>Busca trabajo antes de llegar:</strong> el mercado pharma publica en LinkedIn, en las webs de Novartis y Roche, y en portales especializados como jobs.ch. El <a href="/trabajo/buscador">buscador de trabajo en Suiza</a> agrega todas las fuentes.</li>
+  <li><strong>Permiso de residencia o frontera:</strong> si vives en Basilea, obtienes permiso B como trabajador UE. Si vives en Francia o Alemania, necesitas el permiso G (frontalier). Consulta la <a href="/herramientas/permiso-trabajo">calculadora de permiso de trabajo</a> y nuestra <a href="/blog/permiso-residencia-suiza-espanoles-latinoamericanos-2026">guía de permisos</a>.</li>
+  <li><strong>Empadronamiento:</strong> en la Einwohnerdienste de Basilea-Ciudad. Lleva contrato de trabajo, pasaporte y contrato de alquiler. Plazo: 14 días desde la llegada.</li>
+  <li><strong>Seguro médico:</strong> en Basilea las primas son de las más bajas de Suiza. Compara en Comparis.ch antes de contratar. Tienes 3 meses desde la llegada.</li>
+  <li><strong>Transporte:</strong> el abono mensual del BVB (Basler Verkehrs-Betriebe) cuesta alrededor de 80 CHF. Basilea es muy ciclable y muchos trabajadores van en bici.</li>
+  <li><strong>Aprende alemán:</strong> el inglés funciona en el trabajo, pero el alemán estándar (B1 mínimo) abre muchas más puertas en la vida cotidiana y en la carrera.</li>
+</ol>
+    `,
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // VIVIR EN LAUSANA
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "vivir-en-lausana-guia-hispanohablantes",
+    titulo: "Vivir en Lausana: guía para hispanohablantes 2026",
+    descripcion: "Guía completa para vivir en Lausana: EPFL, startups, COI, coste de vida, alquileres y todo lo que necesitas para mudarte a la ciudad más dinámica de la Suiza francesa.",
+    categoria: "vida-diaria",
+    fecha: "2026-10-14",
+    tiempoLectura: 8,
+    imagen: "https://images.unsplash.com/photo-1601629665203-f9f2b8d07e06?w=1200&q=85&auto=format&fit=crop",
+    destacado: false,
+    palabrasClave: [
+      "vivir en lausana", "lausana hispanohablantes", "trabajo lausana epfl", "alquiler lausana",
+      "coste de vida lausana", "mudarse a lausana", "lausana startups", "lausana suiza francesa",
+    ],
+    faq: [
+      {
+        pregunta: "¿Es Lausana más barata que Ginebra?",
+        respuesta: "Sí, aunque la diferencia es modesta. Los alquileres en Lausana son un 10-15% más bajos que en Ginebra, y el coste de vida general es algo menor. Sin embargo, el seguro médico es más caro que en otras ciudades suizas (alrededor de 490 CHF/mes), ya que el cantón de Vaud tiene primas altas.",
+      },
+      {
+        pregunta: "¿Qué trabajo hay en Lausana?",
+        respuesta: "Lausana destaca en tecnología (EPFL genera un ecosistema de startups único en Europa), deporte internacional (sede del COI y docenas de federaciones deportivas), sanidad (CHUV, uno de los mejores hospitales universitarios de Suiza), y sector financiero. El perfil más demandado: ingenieros, científicos de datos, y profesionales de gestión deportiva o institucional.",
+      },
+      {
+        pregunta: "¿Cuánto cuesta vivir en Lausana al mes?",
+        respuesta: "El coste mensual total ronda los 3.600-4.000 CHF: alquiler 1 habitación (1.400-1.800 CHF), seguro médico (~490 CHF), transporte (~85 CHF), alimentación (~500 CHF) y ocio (~300 CHF). El seguro médico caro es el principal inconveniente de vivir en el cantón de Vaud.",
+      },
+      {
+        pregunta: "¿Es Lausana una ciudad para jóvenes?",
+        respuesta: "Absolutamente. Lausana tiene la población universitaria más joven de Suiza proporcionalmente, con la EPFL y la UNIL (Universidad de Lausana) generando un ambiente muy dinámico. Hay una escena cultural activa, bares, música en directo y una vida nocturna vibrante para el tamaño de la ciudad.",
+      },
+    ],
+    contenido: `
+<h2>¿Por qué elegir Lausana?</h2>
+<p>Lausana es la gran apuesta para hispanohablantes jóvenes y profesionales del sector tecnológico o deportivo. Ciudad universitaria por excelencia, sede del Comité Olímpico Internacional y hogar de la EPFL (una de las mejores universidades técnicas del mundo), Lausana combina una escena startup vibrante con la calidad de vida suiza y el idioma francés.</p>
+<p>Además, tiene una posición geográfica envidiable: a orillas del lago Lemán, con vistas a los Alpes y a 45 minutos en tren de Ginebra. Si Ginebra se te hace cara o demasiado formal, Lausana es la alternativa perfecta.</p>
+<p><strong>Puntos fuertes:</strong> ecosistema tech y startup muy activo, francés como idioma (más accesible para hispanohablantes), ciudad universitaria joven y dinámica, vistas al lago Lemán.</p>
+<p><strong>Puntos débiles:</strong> seguro médico caro (490 CHF/mes, uno de los más altos de Suiza), alquileres altos comparados con ciudades de habla alemana, tasa impositiva 12,8%.</p>
+
+<h2>Mercado laboral en Lausana</h2>
+<p>Lausana tiene un mercado laboral diversificado y en crecimiento, con varios clusters bien definidos:</p>
+<ul>
+  <li><strong>Tecnología y startups:</strong> la EPFL ha generado más de 350 startups en los últimos años. Innovation Square, el parque de innovación adjacente, es el ecosistema tech más denso de Suiza. Perfiles en demanda: ingenieros de software, especialistas en IA/ML, ingenieros de hardware, diseñadores UX.</li>
+  <li><strong>Deporte internacional:</strong> el COI tiene su sede en Lausana, junto con más de 60 federaciones deportivas internacionales. Puestos en gestión deportiva, comunicación, marketing y derecho deportivo.</li>
+  <li><strong>Sanidad:</strong> el CHUV (Centre Hospitalier Universitaire Vaudois) es uno de los cinco hospitales universitarios más importantes de Suiza, con empleados de más de 90 nacionalidades.</li>
+  <li><strong>Educación y academia:</strong> EPFL y UNIL generan cientos de puestos de investigación, docencia y administración universitaria.</li>
+</ul>
+<p>El salario medio en Lausana es de <strong>6.800 CHF brutos/mes</strong>. Comprueba tu sueldo neto real con la <a href="/herramientas/salario-neto">calculadora de salario neto</a>. Para comparar Lausana con otras ciudades, usa el <a href="/herramientas/comparador-ciudades">comparador de ciudades</a>.</p>
+
+<h2>Vivienda: cuánto cuesta un piso en Lausana</h2>
+<p>Lausana es una ciudad en pendiente constante (literalmente: está construida sobre colinas) y los barrios tienen personalidades muy distintas. Precios de alquiler para 1 habitación:</p>
+<ul>
+  <li><strong>Centro y Flon (barrio artístico):</strong> 1.700-2.100 CHF/mes</li>
+  <li><strong>Ouchy, Pully (a orillas del lago):</strong> 1.800-2.200 CHF/mes</li>
+  <li><strong>Zonas medias (Chailly, Prilly, Renens):</strong> 1.400-1.700 CHF/mes</li>
+  <li><strong>Periferia con tren (Morges, Nyon):</strong> 1.300-1.600 CHF/mes</li>
+</ul>
+<p>Los barrios más recomendados para hispanohablantes: <strong>Flon</strong> (dinámico, cultural, joven), <strong>Chailly</strong> (tranquilo, buena relación calidad-precio), y <strong>Prilly</strong> (fuera del municipio, más asequible, metro directo al centro).</p>
+<p>El mercado inmobiliario en Lausana es competitivo. Los portales principales son Homegate.ch, ImmoScout24.ch y Anibis.ch (más informal). La documentación requerida es la estándar suiza: Betreibungsregisterauszug, 3 últimas nóminas y permiso de residencia.</p>
+
+<h2>Coste de vida mensual en Lausana</h2>
+<table>
+  <thead><tr><th>Concepto</th><th>Coste estimado (CHF/mes)</th></tr></thead>
+  <tbody>
+    <tr><td>Alquiler 1 hab. (zona media)</td><td>1.550</td></tr>
+    <tr><td>Seguro médico básico</td><td>490</td></tr>
+    <tr><td>Transporte (abono mensual)</td><td>85</td></tr>
+    <tr><td>Alimentación (supermercado)</td><td>500</td></tr>
+    <tr><td>Ocio, restaurantes, varios</td><td>300</td></tr>
+    <tr><td><strong>Total estimado</strong></td><td><strong>~2.925</strong></td></tr>
+  </tbody>
+</table>
+<p>Atención: el seguro médico en el cantón de Vaud es el mayor gasto sorpresa para quienes vienen de ciudades de habla alemana. Con 6.800 CHF brutos (≈ 5.570 CHF netos), el margen de ahorro es de unos 2.600 CHF mensuales.</p>
+
+<h2>Comunidad hispanohablante en Lausana</h2>
+<p>Lausana tiene una comunidad hispanohablante nutrida y diversa. La UNIL y la EPFL atraen a estudiantes de doctorado e investigadores de toda América Latina y España. El ambiente internacional de estas instituciones facilita mucho la integración.</p>
+<p>Existen varios grupos en redes sociales (Facebook, WhatsApp, Meetup) de hispanos en Lausana y en la región del Lemán en general. El idioma oficial es el francés, lo que ya de por sí facilita enormemente la vida cotidiana para hispanohablantes: el francés suizo es fácil de entender y la barrera de comunicación es mínima desde el primer día.</p>
+<p>El Consulado General de España en Ginebra cubre toda la región del Lemán, incluyendo Lausana.</p>
+
+<h2>Pasos para mudarte a Lausana</h2>
+<ol>
+  <li><strong>Busca trabajo antes de llegar:</strong> LinkedIn es especialmente activo para los perfiles tech y científicos de Lausana. El <a href="/trabajo/buscador">buscador de trabajo en Suiza</a> agrega también portales locales como jobs.ch y jobup.ch.</li>
+  <li><strong>Permiso de trabajo y residencia:</strong> los ciudadanos de la UE obtienen permiso B al empezar a trabajar. Para latinoamericanos, el trámite es previo a la llegada. Consulta la <a href="/herramientas/permiso-trabajo">calculadora de permiso de trabajo</a> y la <a href="/blog/permiso-residencia-suiza-espanoles-latinoamericanos-2026">guía de permisos</a>.</li>
+  <li><strong>Empadronamiento:</strong> en el Contrôle des habitants de Lausana dentro de los 14 días de llegada. El trámite está en francés y es muy ordenado.</li>
+  <li><strong>Seguro médico:</strong> imprescindible comparar bien en Lausana, donde las primas son de las más altas. Usa Comparis.ch. Tienes 3 meses desde la llegada.</li>
+  <li><strong>Cuenta bancaria:</strong> Raiffeisen y BCV (Banque Cantonale Vaudoise) son las opciones más accesibles. Neon y Yuh (digitales) también funcionan perfectamente.</li>
+  <li><strong>Transporte:</strong> el metro M2 es la columna vertebral de Lausana. El abono mensual de la red TL (Transports Lausannois) cuesta alrededor de 85 CHF.</li>
+</ol>
+    `,
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // VIVIR EN LUCERNA
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "vivir-en-lucerna-guia-hispanohablantes",
+    titulo: "Vivir en Lucerna: guía para hispanohablantes 2026",
+    descripcion: "Todo lo que necesitas para vivir en Lucerna: trabajo en hostelería y turismo, alquileres junto al lago, coste de vida real y cómo integrarse en esta ciudad histórica del corazón de Suiza.",
+    categoria: "vida-diaria",
+    fecha: "2026-10-14",
+    tiempoLectura: 8,
+    imagen: "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&q=85&auto=format&fit=crop",
+    destacado: false,
+    palabrasClave: [
+      "vivir en lucerna", "lucerna hispanohablantes", "trabajo lucerna hostelería", "alquiler lucerna",
+      "coste de vida lucerna", "mudarse a lucerna", "lucerna lago", "lucerna suiza central",
+    ],
+    faq: [
+      {
+        pregunta: "¿Es Lucerna buena para hispanohablantes?",
+        respuesta: "Lucerna es una opción interesante para hispanohablantes con experiencia en hostelería, turismo o servicios. La industria turística local es la más importante de la Suiza central y busca constantemente personal multilingüe. La ciudad es hermosa y el coste de vida es algo más bajo que en Zúrich.",
+      },
+      {
+        pregunta: "¿Qué trabajo hay en Lucerna?",
+        respuesta: "El turismo y la hostelería son los sectores dominantes: hoteles de lujo, restaurantes, guías turísticos, recepcionistas y personal de servicio. También hay demanda en sanidad (Kantonsspital Luzern), educación, servicios financieros y pequeña industria. El perfil más demandado para hispanohablantes: personal de servicio multilingüe y guías de turismo.",
+      },
+      {
+        pregunta: "¿Cuánto cuesta alquilar en Lucerna?",
+        respuesta: "Un piso de 1 habitación en Lucerna cuesta entre 1.280 y 1.650 CHF/mes. El centro histórico cerca del lago es lo más caro, mientras que los municipios colindantes como Kriens, Emmen o Horw son más asequibles (1.100-1.400 CHF). Los precios son algo más bajos que en Zúrich o Ginebra.",
+      },
+      {
+        pregunta: "¿Vale la pena vivir en Lucerna vs Zúrich?",
+        respuesta: "Depende del perfil. Lucerna es más barata, más tranquila y más turística. Zúrich tiene más y mejor mercado laboral, especialmente para perfiles técnicos y financieros. Si trabajas en hostelería/turismo o buscas calidad de vida sin el ritmo de Zúrich, Lucerna puede ser mejor elección.",
+      },
+    ],
+    contenido: `
+<h2>¿Por qué elegir Lucerna?</h2>
+<p>Lucerna es posiblemente la ciudad más fotogénica de Suiza. El puente de madera del siglo XIV (Kapellbrücke), el lago de los Cuatro Cantones, las montañas del Pilatus y el Rigi como telón de fondo: vivir aquí tiene una dimensión estética difícil de igualar.</p>
+<p>Más allá de la postal, Lucerna es una ciudad de tamaño humano (80.000 habitantes) que ofrece buena calidad de vida, mercado laboral estable en turismo y servicios, y una ubicación central en Suiza que facilita desplazarse a cualquier parte del país.</p>
+<p><strong>Puntos fuertes:</strong> ciudad hermosa y segura, turismo genera empleo constante para multilingües, alquileres algo más bajos que Zúrich, ubicación central en Suiza, ritmo de vida tranquilo.</p>
+<p><strong>Puntos débiles:</strong> mercado laboral más limitado para perfiles técnicos o financieros, ciudad pequeña con menos oferta cultural que Zúrich o Ginebra, el alemán es imprescindible para la vida cotidiana.</p>
+
+<h2>Mercado laboral en Lucerna</h2>
+<p>El sector más importante para hispanohablantes en Lucerna es sin duda el <strong>turismo y la hostelería</strong>. Cada año más de tres millones de turistas visitan la ciudad, lo que genera una demanda estructural de personal en hoteles (el Palace Hotel y el Schweizerhof son referencias), restaurantes, agencias de viajes y operadores turísticos.</p>
+<p>Otros sectores con oportunidades:</p>
+<ul>
+  <li><strong>Sanidad:</strong> el Kantonsspital Luzern (LUKS) es el mayor empleador de la región y contrata regularmente enfermeros, médicos y personal auxiliar.</li>
+  <li><strong>Educación:</strong> la Hochschule Luzern (HSLU) y la Universidad de Lucerna generan empleos en docencia, investigación y administración.</li>
+  <li><strong>Servicios financieros:</strong> Lucerna tiene una pequeña pero activa plaza financiera con seguros y banca.</li>
+  <li><strong>Transporte y logística:</strong> Lucerna es nudo ferroviario de Suiza central.</li>
+</ul>
+<p>El salario medio bruto en Lucerna es de <strong>6.400 CHF/mes</strong>, algo por debajo de la media nacional pero compensado por alquileres más bajos. Calcula tu sueldo neto con la <a href="/herramientas/salario-neto">calculadora de salario neto</a> y compara opciones en el <a href="/herramientas/comparador-ciudades">comparador de ciudades</a>.</p>
+
+<h2>Vivienda: cuánto cuesta un piso en Lucerna</h2>
+<p>Lucerna ofrece una relación calidad-precio mejor que las grandes ciudades suizas. Precios de alquiler para 1 habitación:</p>
+<ul>
+  <li><strong>Centro histórico (Altstadt, junto al lago):</strong> 1.500-1.800 CHF/mes</li>
+  <li><strong>Zonas intermedias (Tribschen, Neustadt, Würzenbach):</strong> 1.300-1.600 CHF/mes</li>
+  <li><strong>Municipios colindantes (Kriens, Horw, Emmen, Ebikon):</strong> 1.100-1.400 CHF/mes</li>
+</ul>
+<p>Los barrios más recomendados para recién llegados: <strong>Neustadt</strong> (zona moderna con buen transporte), <strong>Tribschen</strong> (tranquilo, junto al lago, más asequible que el centro) y los municipios de <strong>Kriens u Horw</strong> para quienes buscan más espacio a menor precio.</p>
+<p>El mercado es competitivo pero menos feroz que en Zúrich. Homegate.ch e ImmoScout24.ch son los portales principales. La documentación habitual: Betreibungsregisterauszug, últimas 3 nóminas, permiso de residencia.</p>
+
+<h2>Coste de vida mensual en Lucerna</h2>
+<table>
+  <thead><tr><th>Concepto</th><th>Coste estimado (CHF/mes)</th></tr></thead>
+  <tbody>
+    <tr><td>Alquiler 1 hab. (zona media)</td><td>1.450</td></tr>
+    <tr><td>Seguro médico básico</td><td>395</td></tr>
+    <tr><td>Transporte (abono mensual)</td><td>80</td></tr>
+    <tr><td>Alimentación (supermercado)</td><td>480</td></tr>
+    <tr><td>Ocio, restaurantes, varios</td><td>280</td></tr>
+    <tr><td><strong>Total estimado</strong></td><td><strong>~2.685</strong></td></tr>
+  </tbody>
+</table>
+<p>Con un salario medio de 6.400 CHF brutos (≈ 5.230 CHF netos), el margen de ahorro puede alcanzar los 2.500 CHF mensuales. La tasa impositiva cantonal de Lucerna es del 12,4%, similar a Berna.</p>
+
+<h2>Comunidad hispanohablante en Lucerna</h2>
+<p>La comunidad hispanohablante en Lucerna es pequeña pero activa, impulsada principalmente por el sector turístico. La industria hotelera y de restauración atrae a trabajadores de España y América Latina que forman redes informales de apoyo mutuo.</p>
+<p>Por ser una ciudad turística, Lucerna está acostumbrada a personas de muchas nacionalidades y culturas. El ambiente es acogedor con extranjeros, aunque el alemán (y el dialecto lucernés en la calle) sigue siendo la llave para la integración profunda.</p>
+<p>El Consulado de España más cercano está en Zúrich, a 45 minutos en tren directo.</p>
+
+<h2>Pasos para mudarte a Lucerna</h2>
+<ol>
+  <li><strong>Busca trabajo en hostelería o turismo:</strong> los hoteles de lujo de Lucerna contratan directamente y en plataformas como Gastrojob.ch. El <a href="/trabajo/buscador">buscador de trabajo en Suiza</a> incluye estas fuentes especializadas.</li>
+  <li><strong>Permiso de trabajo y residencia:</strong> ciudadanos de la UE obtienen permiso B al empezar a trabajar. Para latinoamericanos, el trámite es previo. Consulta la <a href="/herramientas/permiso-trabajo">calculadora de permiso de trabajo</a> y la <a href="/blog/permiso-residencia-suiza-espanoles-latinoamericanos-2026">guía de permisos</a>.</li>
+  <li><strong>Empadronamiento:</strong> en el Einwohnerdienst de Lucerna, dentro de los 14 días de llegada. Llevar contrato de trabajo, pasaporte y contrato de alquiler.</li>
+  <li><strong>Seguro médico:</strong> en el cantón de Lucerna las primas son razonables (≈ 395 CHF/mes). Compara en Comparis.ch. Tienes 3 meses desde la llegada.</li>
+  <li><strong>Cuenta bancaria:</strong> la Luzerner Kantonalbank (LUKB) es la opción más accesible localmente. Las opciones digitales (Neon, Yuh) funcionan bien también.</li>
+  <li><strong>Alemán básico:</strong> en el sector turístico el inglés es suficiente para trabajar, pero el alemán B1 te abrirá muchas más puertas en la vida cotidiana y en el avance profesional.</li>
+</ol>
+    `,
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // VIVIR EN ZUG
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "vivir-en-zug-guia-hispanohablantes",
+    titulo: "Vivir en Zug: guía para hispanohablantes 2026",
+    descripcion: "Guía completa para vivir en Zug: impuestos bajos, crypto valley, finanzas, los alquileres más caros de Suiza, y por qué tantos profesionales internacionales eligen este cantón.",
+    categoria: "vida-diaria",
+    fecha: "2026-10-14",
+    tiempoLectura: 8,
+    imagen: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85&auto=format&fit=crop",
+    destacado: false,
+    palabrasClave: [
+      "vivir en zug", "zug hispanohablantes", "trabajo zug crypto valley", "alquiler zug",
+      "coste de vida zug", "mudarse a zug", "zug impuestos bajos", "zug finanzas",
+    ],
+    faq: [
+      {
+        pregunta: "¿Por qué son tan bajos los impuestos en Zug?",
+        respuesta: "Zug tiene una política fiscal agresivamente competitiva desde los años 60. La tasa impositiva cantonal es de solo el 11,5% (similar a Basilea pero con salarios mucho más altos), una de las más bajas de Suiza. Esto atrajo a multinacionales y personas de alto patrimonio, creando un círculo virtuoso de base fiscal alta y tipos bajos.",
+      },
+      {
+        pregunta: "¿Cuánto cuesta vivir en Zug?",
+        respuesta: "Zug es cara: un piso de 1 habitación en el centro cuesta 2.200-2.600 CHF/mes. El coste mensual total ronda los 4.000-4.500 CHF. Sin embargo, los salarios son los más altos de Suiza (media 8.200 CHF) y los impuestos muy bajos, lo que puede compensar sobradamente el mayor coste de vida.",
+      },
+      {
+        pregunta: "¿Qué empresas tienen sede en Zug?",
+        respuesta: "Zug es sede de más de 30.000 empresas registradas para su tamaño (130.000 habitantes), entre ellas Glencore (materias primas), Siemens Suiza, Landis+Gyr, y decenas de empresas de criptomonedas y blockchain (Ethereum Foundation, Cardano, Polkadot, Solana Foundation). El apodo Crypto Valley es oficial.",
+      },
+      {
+        pregunta: "¿Es Zug cara?",
+        respuesta: "Sí, es una de las ciudades más caras de Suiza en alquiler. Los pisos en el centro de Zug cuestan entre 2.200 y 2.600 CHF/mes por una habitación. Sin embargo, los salarios son proporcionalmente muy altos (media 8.200 CHF) y los impuestos los más bajos, por lo que el poder adquisitivo neto puede ser mayor que en Zúrich o Ginebra.",
+      },
+    ],
+    contenido: `
+<h2>¿Por qué elegir Zug?</h2>
+<p>Zug es la anomalía del sistema suizo: un cantón de solo 130.000 habitantes que es simultáneamente el más rico de Suiza por renta per cápita, el cantón con los impuestos más bajos del país, y la capital mundial del blockchain y las criptomonedas. Si eres profesional de las finanzas, la tecnología, el sector cripto o las materias primas, Zug no es solo una opción: es el destino.</p>
+<p>La ciudad de Zug, con su casco histórico medieval junto al lago de Zug y a 30 minutos en tren de Zúrich, combina la belleza típicamente suiza con una concentración de multinacionales y startups que rivaliza con ciudades diez veces más grandes.</p>
+<p><strong>Puntos fuertes:</strong> salario medio más alto de Suiza (8.200 CHF), impuestos los más bajos del país (11,5%), hub crypto/blockchain mundial, excelente conexión a Zúrich, calidad de vida extraordinaria.</p>
+<p><strong>Puntos débiles:</strong> alquileres muy caros (los más altos de las ciudades medianas suizas), ciudad pequeña con oferta cultural limitada, mercado laboral muy especializado (finanzas, cripto, materias primas).</p>
+
+<h2>Mercado laboral en Zug</h2>
+<p>El mercado laboral de Zug es pequeño en número pero extraordinariamente bien remunerado y especializado:</p>
+<ul>
+  <li><strong>Crypto Valley:</strong> Zug alberga más de 1.000 empresas de blockchain y criptomonedas, incluyendo la Ethereum Foundation, Cardano, Polkadot y decenas de exchanges y proyectos DeFi. Los perfiles más demandados: ingenieros blockchain, desarrolladores Solidity, especialistas en tokenomics, abogados cripto y expertos en compliance.</li>
+  <li><strong>Materias primas (commodities):</strong> Glencore, una de las mayores empresas del mundo, tiene su sede en Zug. También hay decenas de traders y brokers de commodities. Perfiles: traders, analistas de riesgo, expertos en logística internacional.</li>
+  <li><strong>Holding companies y estructuras corporativas:</strong> miles de empresas internacionales tienen su sede legal en Zug por razones fiscales. Esto genera demanda de abogados corporativos, contables y especialistas en tax.</li>
+  <li><strong>Tecnología industrial:</strong> empresas como Landis+Gyr (smart meters) y filiales de Siemens tienen operaciones relevantes.</li>
+</ul>
+<p>El salario medio bruto en Zug es de <strong>8.200 CHF/mes</strong>, el más alto de todos los cantones suizos. Calcula exactamente cuánto te quedará con la <a href="/herramientas/salario-neto">calculadora de salario neto</a>, y compara con otras ciudades en el <a href="/herramientas/comparador-ciudades">comparador de ciudades</a>.</p>
+
+<h2>Vivienda: cuánto cuesta un piso en Zug</h2>
+<p>Zug es la ciudad mediana más cara de Suiza en términos de alquiler. La demanda supera consistentemente la oferta:</p>
+<ul>
+  <li><strong>Centro de Zug (Altstadt, junto al lago):</strong> 2.200-2.700 CHF/mes para 1 habitación</li>
+  <li><strong>Zonas residenciales (Herti, Lorzen):</strong> 1.900-2.300 CHF/mes</li>
+  <li><strong>Municipios del cantón (Baar, Cham, Steinhausen):</strong> 1.600-2.000 CHF/mes</li>
+  <li><strong>Zugersee alternativa (Walchwil, Unterägeri):</strong> 1.700-2.100 CHF/mes con vistas al lago</li>
+</ul>
+<p>Muchos trabajadores de Zug eligen vivir en Zúrich (30 min en tren) o en municipios más asequibles del cantón para reducir el alquiler. La conexión ferroviaria con Zúrich HB es excelente y frecuente.</p>
+<p>El mercado inmobiliario en Zug es extremadamente competitivo: los pisos buenos se alquilan en días. Homegate.ch, ImmoScout24.ch y los grupos de Facebook de expats en Zug son los mejores canales.</p>
+
+<h2>Coste de vida mensual en Zug</h2>
+<table>
+  <thead><tr><th>Concepto</th><th>Coste estimado (CHF/mes)</th></tr></thead>
+  <tbody>
+    <tr><td>Alquiler 1 hab. (zona media)</td><td>2.100</td></tr>
+    <tr><td>Seguro médico básico</td><td>388</td></tr>
+    <tr><td>Transporte (abono mensual)</td><td>90</td></tr>
+    <tr><td>Alimentación (supermercado)</td><td>500</td></tr>
+    <tr><td>Ocio, restaurantes, varios</td><td>350</td></tr>
+    <tr><td><strong>Total estimado</strong></td><td><strong>~3.428</strong></td></tr>
+  </tbody>
+</table>
+<p>Con un salario medio de 8.200 CHF brutos (≈ 6.750 CHF netos, gracias a la tasa del 11,5%), el margen de ahorro mensual puede superar los 3.300 CHF, el más alto de todas las ciudades de esta guía. Los impuestos bajos de Zug marcan la diferencia.</p>
+
+<h2>Comunidad hispanohablante en Zug</h2>
+<p>La comunidad hispanohablante en Zug es pequeña pero con un perfil muy específico: profesionales del sector cripto y blockchain, abogados corporativos y financieros, y empleados de multinacionales. Es una comunidad joven, con alta formación y muy internacionalizada.</p>
+<p>El inglés es el idioma de trabajo en prácticamente todas las empresas de Zug, lo que hace de esta ciudad una de las más accesibles de Suiza para hispanohablantes sin alemán. La comunidad expat en general es muy activa, con eventos de networking regulares, muchos organizados en torno al ecosistema blockchain.</p>
+<p>El Consulado General de España en Zúrich cubre el cantón de Zug. A 30 minutos en tren, es perfectamente accesible.</p>
+
+<h2>Pasos para mudarte a Zug</h2>
+<ol>
+  <li><strong>Busca trabajo en cripto, finanzas o corporativo:</strong> LinkedIn es el canal principal en Zug. También hay comunidades específicas de blockchain jobs y eventos de Crypto Valley Association. Usa el <a href="/trabajo/buscador">buscador de trabajo en Suiza</a>.</li>
+  <li><strong>Permiso de trabajo y residencia:</strong> ciudadanos de la UE obtienen permiso B al empezar a trabajar. Para latinoamericanos, el proceso es previo a la llegada. Consulta la <a href="/herramientas/permiso-trabajo">calculadora de permiso de trabajo</a> y la <a href="/blog/permiso-residencia-suiza-espanoles-latinoamericanos-2026">guía de permisos de residencia</a>.</li>
+  <li><strong>Empadronamiento:</strong> en el Einwohneramt de Zug, dentro de los 14 días de llegada. Documentos: pasaporte, contrato de trabajo y contrato de alquiler.</li>
+  <li><strong>Seguro médico:</strong> el cantón de Zug tiene primas relativamente bajas (≈ 388 CHF/mes). Compara en Comparis.ch. Tienes 3 meses desde la llegada.</li>
+  <li><strong>Cuenta bancaria:</strong> la Zuger Kantonalbank (ZKB) es la referencia local. Los bancos digitales suizos (Neon, Yuh) y los exchanges cripto regulados (Sygnum, SEBA Bank, ambos en Zug) son opciones para el sector blockchain.</li>
+  <li><strong>Vivienda — empieza a buscar antes de llegar:</strong> el mercado de Zug es el más competitivo de Suiza para pisos medianos. Empieza la búsqueda 2-3 meses antes de la llegada y considera opciones en municipios del cantón o en Zúrich como base inicial.</li>
+</ol>
+    `,
+  },
 ];
 
 // ── Índice completo (manuales + auto) ─────────────────────────────────────────
