@@ -23,6 +23,7 @@ export type Ciudad = {
   costeVida: "alto" | "muy-alto" | "moderado";
   emoji: string;
   keywords: string[];
+  seoDescription?: string;
 };
 
 export const ciudades: Ciudad[] = [
@@ -62,6 +63,7 @@ export const ciudades: Ciudad[] = [
     costeVida: "muy-alto",
     emoji: "🏙️",
     keywords: ["vivir en zurich", "españoles zurich", "trabajar zurich", "alquiler zurich", "zurich hispanohablantes", "emigrar zurich suiza"],
+    seoDescription: "Zúrich: la ciudad que mejor paga de Suiza (salario medio 95.000 CHF/año) pero también la más cara. Alquiler 2.000-3.200 CHF/mes. Barrios para familias, para jóvenes y lo que nadie te cuenta antes de llegar.",
   },
   {
     slug: "ginebra",
@@ -99,6 +101,7 @@ export const ciudades: Ciudad[] = [
     costeVida: "muy-alto",
     emoji: "🌍",
     keywords: ["vivir en ginebra", "españoles ginebra", "trabajar ginebra", "ginebra hispanohablantes", "comunidad latina ginebra", "emigrar ginebra suiza"],
+    seoDescription: "Ginebra tiene la mayor comunidad hispanohablante de Suiza y la mayor concentración de organismos internacionales. Alquiler: 1.800-3.000 CHF/mes. La ciudad más internacional de Europa.",
   },
   {
     slug: "basilea",
@@ -134,6 +137,7 @@ export const ciudades: Ciudad[] = [
     costeVida: "alto",
     emoji: "💊",
     keywords: ["vivir en basilea", "españoles basilea", "trabajar basilea pharma", "basilea hispanohablantes", "novartis roche españoles", "emigrar basilea suiza"],
+    seoDescription: "Basilea: alquileres más baratos que Zúrich (1.400-2.100 CHF/mes) y capital farmacéutica mundial con Roche y Novartis. Frontera triple con Alemania y Francia. Ideal para pharma, biotech e investigación.",
   },
   {
     slug: "berna",
@@ -169,6 +173,7 @@ export const ciudades: Ciudad[] = [
     costeVida: "alto",
     emoji: "🏛️",
     keywords: ["vivir en berna", "españoles berna", "trabajar berna", "berna hispanohablantes", "capital suiza vivir", "emigrar berna suiza"],
+    seoDescription: "Berna es la capital política de Suiza: menos frenética que Zúrich pero con el mismo nivel de vida. Alquiler: 1.500-2.400 CHF/mes. Trabajo en administración federal, tecnología y seguros.",
   },
   {
     slug: "lausana",
@@ -204,6 +209,7 @@ export const ciudades: Ciudad[] = [
     costeVida: "alto",
     emoji: "🏅",
     keywords: ["vivir en lausana", "españoles lausana", "trabajar lausana", "lausana hispanohablantes", "EPFL hispanohablantes", "emigrar lausana suiza"],
+    seoDescription: "Lausana: más barata que Ginebra (alquiler 1.500-2.300 CHF/mes) y con más dinámica. Capital olímpica, sede de la EPFL. Francófona — el idioma más fácil de aprender si vienes del español.",
   },
   {
     slug: "lugano",

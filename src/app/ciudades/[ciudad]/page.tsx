@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = getCiudad(ciudad);
   if (!c) return {};
   return buildMetadata({
-    title: `Vivir en ${c.nombre} — Guía para hispanohablantes ${new Date().getFullYear()}`,
-    description: `Todo lo que necesitas saber para vivir en ${c.nombre}: alquiler, salarios, trabajo, barrios y comunidad hispanohablante. Guía actualizada ${new Date().getFullYear()}.`,
+    title: `Vivir en ${c.nombre} ${new Date().getFullYear()}: guía real para hispanohablantes — barrios, trabajo y coste`,
+    description: c.seoDescription ?? `${c.descripcion} Barrios, alquiler, mercado laboral y comunidad hispanohablante. Guía actualizada ${new Date().getFullYear()}.`,
     path: `/ciudades/${ciudad}`,
     ogImage: c.imagen,
     keywords: c.keywords,
