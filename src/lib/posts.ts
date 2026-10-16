@@ -16,6 +16,8 @@ export type Post = {
   faq?: FaqItem[];
   autor?: string;
   fechaModificada?: string;
+  noIndex?: boolean;
+  canonicalSlug?: string;
 };
 
 export const categorias = [
@@ -1043,6 +1045,8 @@ const postsManual: Post[] = [
     descripcion: "Todo sobre los permisos L, B, C y G en Suiza: quién los necesita, cómo tramitarlos, cuánto tardan y qué documentos piden. Actualizado con los cambios de 2026.",
     categoria: "emigrar",
     fecha: "2026-10-14",
+    noIndex: true,
+    canonicalSlug: "permiso-residencia-suiza-tipos-tramites",
     fechaModificada: "2026-10-14",
     tiempoLectura: 11,
     imagen: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=85&auto=format&fit=crop",
@@ -1198,6 +1202,8 @@ const postsManual: Post[] = [
     descripcion: "Si tienes permiso B o G en Suiza, pagas el impuesto a la fuente directamente de tu nómina. Te explicamos los tramos, las diferencias por cantón y cómo pedir la rectificación si pagas de más.",
     categoria: "emigrar",
     fecha: "2026-10-14",
+    noIndex: true,
+    canonicalSlug: "quellensteuer-impuesto-fuente-suiza-guia",
     fechaModificada: "2026-10-14",
     tiempoLectura: 9,
     imagen: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=85&auto=format&fit=crop",
@@ -1673,6 +1679,8 @@ const postsManual: Post[] = [
     descripcion: "Todo lo que necesitas saber para vivir en Berna: mercado laboral, alquileres, coste de vida, comunidad hispanohablante y pasos prácticos para mudarte a la capital federal suiza.",
     categoria: "vida-diaria",
     fecha: "2026-10-14",
+    noIndex: true,
+    canonicalSlug: "vivir-en-berna-espanoles-hispanohablantes",
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1527838832700-5059252407fa?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
@@ -1761,6 +1769,8 @@ const postsManual: Post[] = [
     descripcion: "Guía completa para vivir en Basilea: pharma, frontera tri-nacional, alquileres, coste de vida y todo lo que necesitas saber antes de mudarte a la ciudad de Roche y Novartis.",
     categoria: "vida-diaria",
     fecha: "2026-10-14",
+    noIndex: true,
+    canonicalSlug: "vivir-en-basilea-espanoles-hispanohablantes",
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1584531735573-94af8e4b8a52?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
@@ -1853,6 +1863,8 @@ const postsManual: Post[] = [
     descripcion: "Guía completa para vivir en Lausana: EPFL, startups, COI, coste de vida, alquileres y todo lo que necesitas para mudarte a la ciudad más dinámica de la Suiza francesa.",
     categoria: "vida-diaria",
     fecha: "2026-10-14",
+    noIndex: true,
+    canonicalSlug: "vivir-en-lausana-espanoles-hispanohablantes",
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1601629665203-f9f2b8d07e06?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
@@ -2039,6 +2051,8 @@ const postsManual: Post[] = [
     descripcion: "Guía completa para vivir en Zug: impuestos bajos, crypto valley, finanzas, los alquileres más caros de Suiza, y por qué tantos profesionales internacionales eligen este cantón.",
     categoria: "vida-diaria",
     fecha: "2026-10-14",
+    noIndex: true,
+    canonicalSlug: "vivir-en-zug-espanoles-hispanohablantes",
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85&auto=format&fit=crop",
     destacado: false,

@@ -17,10 +17,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPost(slug);
   if (!post) return {};
 
+  const canonicalPath = post.canonicalSlug
+    ? `/blog/${post.canonicalSlug}`
+    : `/blog/${slug}`;
+
   return buildMetadata({
     title: post.titulo,
     description: post.descripcion,
-    path: `/blog/${slug}`,
+    path: canonicalPath,
     ogType: "article",
     publishedTime: post.fecha,
     modifiedTime: post.fechaModificada ?? post.fecha,
@@ -28,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ogImage: post.imagen?.startsWith("/images/")
       ? `${BASE_URL}${post.imagen}`
       : post.imagen ?? undefined,
+    noIndex: post.noIndex,
   });
 }
 
