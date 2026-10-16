@@ -422,8 +422,8 @@ const postsManual: Post[] = [
   // ─────────────────────────────────────────────────────────
   {
     slug: "coste-vida-zurich-ginebra-berna-comparativa",
-    titulo: "Coste de vida real en Zúrich, Ginebra y Berna: comparativa con datos reales de 2026",
-    descripcion: "Cuánto necesitas ganar para vivir bien en cada ciudad suiza. Alquiler, comida, transporte y ocio con datos actualizados de la comunidad.",
+    titulo: "Coste de vida en Zúrich, Ginebra y Berna 2026: cuánto necesitas ganar en cada ciudad",
+    descripcion: "Zúrich: mínimo 3.800 CHF/mes para vivir bien. Ginebra: 4.200 CHF. Berna: 3.200 CHF. Desglose real por alquiler, comida, transporte y ocio con datos actualizados de residentes.",
     categoria: "vida-diaria",
     fecha: "2026-10-02",
     tiempoLectura: 10,
@@ -767,8 +767,8 @@ const postsManual: Post[] = [
   // ─────────────────────────────────────────────────────────
   {
     slug: "vivir-en-zurich-espanoles-hispanohablantes",
-    titulo: "Vivir en Zúrich siendo español o latinoamericano: barrios, costes y trabajo en 2026",
-    descripcion: "Todo lo que necesitas saber antes de mudarte a Zúrich: barrios donde vivir, coste real de vida, sectores con más trabajo y cómo se vive el día a día.",
+    titulo: "Vivir en Zúrich 2026: barrios, coste real y lo que nadie te cuenta antes de llegar",
+    descripcion: "Zúrich paga los mejores salarios de Suiza pero también es la más cara. Alquiler: 2.000-3.200 CHF/mes. Barrios para familias, para jóvenes y cuánto necesitas ganar para vivir bien.",
     categoria: "vida-diaria",
     fecha: "2026-10-06",
     tiempoLectura: 8,

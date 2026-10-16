@@ -10,14 +10,14 @@ export const postsAuto: Post[] = [
   // ── AUTO-GENERADO 2026-10-05 ──
   {
     slug: "vivir-en-basilea-espanoles-hispanohablantes",
-    titulo: "Vivir en Basilea: la ciudad farmacéutica de Suiza para españoles y latinoamericanos",
-    descripcion: "Basilea es la capital mundial de la industria farmacéutica (Novartis, Roche) y tiene alquileres más asequibles que Zúrich. Barrios, trabajo, coste de vida y comunidad hispana.",
+    titulo: "Vivir en Basilea 2026: alquileres más baratos que Zúrich y trabajo en Roche y Novartis",
+    descripcion: "Basilea: alquiler 1.400-2.100 CHF/mes (vs 2.200 en Zúrich). Capital farmacéutica mundial con Roche y Novartis. Frontera triple con Alemania y Francia, comunidad hispana activa.",
     categoria: "vida-diaria",
     fecha: "2026-10-05",
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
+    fechaModificada: "2026-10-16",
     palabrasClave: ["vivir en basilea", "basilea españoles", "basilea latinoamericanos", "trabajar basilea", "novartis roche basilea", "mudarse basilea suiza"],
     faq: [
     { pregunta: "¿Merece la pena vivir en Basilea para españoles y latinoamericanos?", respuesta: "Sí, Basilea es una excelente opción para hispanohablantes con perfil técnico o científico, especialmente en el sector farmacéutico, donde empresas como Novartis y Roche ofrecen salarios muy competitivos. Los alquileres son entre un 20% y un 30% más baratos que en Zúrich, y la ciudad tiene una comunidad hispanohablante activa y una posición estratégica en la frontera con Francia y Alemania." },
@@ -59,7 +59,7 @@ export const postsAuto: Post[] = [
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
+    fechaModificada: "2026-10-16",
     palabrasClave: ["permiso residencia suiza", "permiso b suiza", "permiso c suiza", "permiso l suiza", "tramitar permiso suiza", "tarjeta residencia suiza"],
     faq: [
     { pregunta: "¿Cuáles son los tipos de permiso de residencia en Suiza y cuál me corresponde?", respuesta: "En Suiza existen cuatro permisos principales: el permiso L (corta duración, hasta 12 meses), el permiso B (residencia temporal renovable anual, el más común para quienes llegan con contrato indefinido), el permiso C (residencia permanente, tras 5 o 10 años según el origen) y el permiso G (para trabajadores fronterizos que viven en un país vecino). El tipo que te corresponde depende de tu nacionalidad, tu contrato de trabajo y el tiempo que llevas residiendo en Suiza." },
@@ -116,14 +116,14 @@ export const postsAuto: Post[] = [
   // ── AUTO-GENERADO 2026-10-05 ──
   {
     slug: "vivir-en-lausana-espanoles-hispanohablantes",
-    titulo: "Vivir en Lausana: la ciudad universitaria francoparlante con vistas al lago Lemán",
-    descripcion: "Lausana acoge la EPFL y la UNIL, dos de las mejores universidades de Europa. Ciudad joven, dinámica, francoparlante y con más variedad cultural que Ginebra.",
+    titulo: "Vivir en Lausana 2026: costes, barrios y trabajo para españoles y latinoamericanos",
+    descripcion: "Lausana: alquiler 1.500-2.300 CHF/mes, más barato que Ginebra. Capital olímpica, sede de la EPFL y empresas internacionales. Lo que nadie te cuenta antes de mudarte.",
     categoria: "vida-diaria",
     fecha: "2026-10-05",
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
+    fechaModificada: "2026-10-16",
     palabrasClave: ["vivir en lausana", "lausana españoles", "lausana hispanohablantes", "trabajar lausana", "epfl lausana", "mudarse lausana suiza"],
     faq: [
     { pregunta: "¿Es buena idea vivir en Lausana siendo hispanohablante?", respuesta: "Sí, Lausana es una excelente opción para hispanohablantes, especialmente para quienes trabajan en tecnología, investigación o el sector salud. Al estar en la Suiza francófona, el idioma es más accesible que el alemán para hispanohablantes, y la ciudad ofrece una calidad de vida muy alta, una comunidad internacional activa y una ubicación privilegiada junto al lago Lemán." },
@@ -159,14 +159,14 @@ export const postsAuto: Post[] = [
 
   {
     slug: "quellensteuer-impuesto-fuente-suiza-guia",
-    titulo: "Quellensteuer en Suiza: cómo funciona el impuesto a la fuente para extranjeros",
-    descripcion: "El Quellensteuer es el impuesto que pagan directamente de tu nómina si tienes permiso B en Suiza. Cómo se calcula, cuándo puedes reclamar, y si compensa pedir la liquidación ordinaria.",
+    titulo: "Quellensteuer 2026: qué es el impuesto a la fuente en Suiza y cómo calcularlo por cantón",
+    descripcion: "Si tienes permiso B o L, tu empleador retiene el Quellensteuer: entre el 11% y el 13% según cantón. Calcula tu retención exacta, deducción por hijos y cuándo puedes pedir la devolución.",
     categoria: "banca",
     fecha: "2026-10-06",
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
+    fechaModificada: "2026-10-16",
     palabrasClave: ["quellensteuer suiza", "impuesto fuente suiza", "retención nómina suiza permiso b", "declaración impuestos suiza extranjero", "quellensteuer devolución suiza"],
     faq: [
       { pregunta: "¿Qué es el Quellensteuer y quién lo paga en Suiza?", respuesta: "El Quellensteuer (impuesto a la fuente) es el sistema por el que el empleador descuenta directamente los impuestos del salario bruto antes de ingresártelo. Lo pagan obligatoriamente las personas residentes en Suiza con permiso B o L que no tienen nacionalidad suiza ni son ciudadanos de la UE sin años de residencia suficientes. También los trabajadores fronterizos con permiso G tributan a la fuente en muchos casos." },
@@ -180,14 +180,14 @@ export const postsAuto: Post[] = [
 
   {
     slug: "wg-piso-compartido-suiza-guia-hispanohablantes",
-    titulo: "WG (piso compartido) en Suiza: guía completa para encontrar habitación",
-    descripcion: "Encontrar WG en Suiza siendo hispanohablante recién llegado puede ser difícil. Aprende a buscar habitación en Zúrich, Ginebra o Berna: portales, documentos, contratos y qué esperar.",
+    titulo: "Piso compartido WG en Suiza 2026: precios, portales y cómo conseguir habitación siendo extranjero",
+    descripcion: "Habitación en WG: Zúrich 900-1.500 CHF/mes, Ginebra 1.000-1.600 CHF, Berna 700-1.100 CHF. Mejores portales (WGZimmer, Homegate), documentos necesarios y cómo evitar estafas.",
     categoria: "vivienda",
     fecha: "2026-10-06",
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
+    fechaModificada: "2026-10-16",
     palabrasClave: ["wg suiza habitacion", "piso compartido suiza", "wg zimmer suiza", "buscar habitacion zurich", "habitacion ginebra suiza", "wg berna suiza hispanohablante"],
     faq: [
       { pregunta: "¿Qué es un WG en Suiza y cómo funciona?", respuesta: "WG viene del alemán Wohngemeinschaft (comunidad de vivienda) y equivale a un piso compartido. En Suiza, el WG es la forma más habitual y asequible de alojarse, especialmente para quienes llegan solos o sin una pareja. Cada habitante suele firmar un subarrendamiento con el inquilino principal (Hauptmieter), aunque también existen WGs donde todos firman el contrato directamente con el propietario." },
@@ -222,14 +222,14 @@ export const postsAuto: Post[] = [
 
   {
     slug: "pilar-3a-suiza-guia-hispanohablantes",
-    titulo: "Pilar 3a en Suiza: la deducción fiscal que pocos hispanohablantes conocen",
-    descripcion: "El Pilar 3a es el plan de pensiones privado suizo que te permite ahorrar hasta 7.056 CHF al año con deducción fiscal directa. Cómo funciona, dónde contratar y cuánto ahorras.",
+    titulo: "Pilar 3a en Suiza 2026: deduce hasta 7.056 CHF en impuestos — cómo y dónde abrirlo",
+    descripcion: "El Pilar 3a reduce tu factura fiscal entre 1.500 y 2.600 CHF/año según tu cantón. Finpension, VIAC o banco: cuál da más rentabilidad y el error que cometen los recién llegados.",
     categoria: "banca",
     fecha: "2026-10-05",
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
+    fechaModificada: "2026-10-16",
     palabrasClave: ["pilar 3a suiza", "pension privada suiza", "ahorro fiscal suiza", "saeule 3a", "plan pensiones suiza expatriado"],
     faq: [
     { pregunta: "¿Qué es el Pilar 3a en Suiza y cuánto puedo deducir en 2026?", respuesta: "El Pilar 3a es el plan de pensiones privado y voluntario de Suiza que permite deducir fiscalmente las aportaciones. En 2026, los empleados con acceso al Pilar 2 pueden aportar y deducir hasta 7.056 CHF anuales, mientras que los autónomos sin Pilar 2 pueden deducir hasta el 20% de sus ingresos netos con un máximo de 35.280 CHF." },
@@ -244,14 +244,14 @@ export const postsAuto: Post[] = [
   // ── AUTO-GENERADO 2026-10-08 ──
   {
     slug: "sistema-salud-suiza-como-funciona-extranjeros",
-    titulo: "Sistema de salud en Suiza: cómo funciona el médico, urgencias y especialistas",
-    descripcion: "Guía completa del sistema sanitario suizo para hispanohablantes: cómo elegir médico de cabecera, qué hacer en urgencias, cómo ir al especialista y cuánto cuesta realmente la sanidad en Suiza.",
+    titulo: "Sanidad en Suiza para extranjeros 2026: no es pública ni gratuita — así funciona realmente",
+    descripcion: "No hay sanidad pública gratuita en Suiza. Prima obligatoria del KVG: 350-500 CHF/mes. Cómo elegir médico de cabecera, qué cubre el seguro, urgencias y cómo reducir el coste.",
     categoria: "seguros",
     fecha: "2026-10-08",
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
+    fechaModificada: "2026-10-16",
     palabrasClave: ["sistema salud suiza", "medico cabecera suiza", "urgencias suiza", "especialista suiza", "sanidad suiza extranjero", "como funciona sanidad suiza"],
     faq: [
       { pregunta: "¿Cómo elijo médico de cabecera en Suiza?", respuesta: "En Suiza no hay asignación automática de médico. Tú eliges libremente un Hausarzt (médico de familia) en tu cantón. Lo más sencillo es buscarlo en el directorio de tu seguro médico o en Doctorfmh.ch. Llamas, pides cita y ya tienes médico. Es recomendable elegir uno que hable español o inglés si tu alemán o francés es limitado. Muchas ciudades tienen médicos hispanohablantes." },
@@ -265,14 +265,14 @@ export const postsAuto: Post[] = [
 
   {
     slug: "transporte-publico-suiza-ga-halbtax-guia",
-    titulo: "Transporte público en Suiza: GA, Halbtax y abonos — ¿cuál compensa?",
-    descripcion: "El transporte público suizo es de los mejores del mundo, pero también de los más caros. Explicamos el GA, el Halbtax, los abonos regionales y cómo calcular cuál te sale más barato según cuánto viajas.",
+    titulo: "GA vs Halbtax en Suiza 2026: cuánto cuestan y cuál te compensa según cuánto viajas",
+    descripcion: "GA (tren+bus ilimitado): 3.860 CHF/año. Halbtax (50% descuento): 185 CHF/año. Con estos números exactos calculamos cuándo compensa cada abono y qué opciones intermedias existen.",
     categoria: "vida-diaria",
     fecha: "2026-10-08",
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1474487548417-781cb6d646b3?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
+    fechaModificada: "2026-10-16",
     palabrasClave: ["transporte publico suiza", "ga suiza", "halbtax suiza", "abono anual suiza", "sbb suiza", "tren suiza precio"],
     faq: [
       { pregunta: "¿Qué es el GA en Suiza y cuánto cuesta en 2026?", respuesta: "El GA (Generalabonnement) es el abono de transporte más completo de Suiza: viajes ilimitados en tren, bus, tranvía, metro y muchos barcos en toda la red nacional durante un año. En 2026 cuesta 3.860 CHF en segunda clase y 6.300 CHF en primera clase para adultos. Hay precios reducidos para jóvenes menores de 25 años (GA Joven: 1.680 CHF) y mayores de 65 años (2.680 CHF)." },
@@ -286,14 +286,14 @@ export const postsAuto: Post[] = [
 
   {
     slug: "vivir-en-zug-espanoles-hispanohablantes",
-    titulo: "Vivir en Zug: la ciudad con los impuestos más bajos de Suiza para hispanohablantes",
-    descripcion: "Zug es el cantón con los impuestos más bajos de Suiza y una economía boyante. Te contamos cómo es vivir allí siendo hispanohablante: alquileres, trabajo, comunidad y trámites.",
+    titulo: "Vivir en Zug 2026: impuestos más bajos de Suiza y capital del cripto europeo",
+    descripcion: "Zug tiene los impuestos cantonales más bajos de Suiza. Alquiler: 1.800-2.800 CHF/mes. Sede de Glencore, Siemens y 200 empresas crypto. Lo que no te dice nadie antes de mudarte.",
     categoria: "vida-diaria",
     fecha: "2026-10-08",
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
+    fechaModificada: "2026-10-16",
     palabrasClave: ["vivir en zug", "zug impuestos bajos", "zug hispanohablantes", "mudarse zug suiza", "zug español", "canton zug suiza"],
     faq: [
       { pregunta: "¿Por qué los impuestos en Zug son tan bajos?", respuesta: "Zug adoptó desde los años 60 una política fiscal muy favorable para atraer empresas y ciudadanos de alto patrimonio. Hoy alberga más de 30.000 empresas registradas (multinacionales, fondos, holdings) para solo 130.000 habitantes. Esta base imponible enorme permite al cantón mantener tipos impositivos muy bajos para todos los residentes." },
@@ -307,14 +307,14 @@ export const postsAuto: Post[] = [
 
   {
     slug: "guarderia-escuela-suiza-hijos-extranjeros",
-    titulo: "Guarderías y escuelas en Suiza: cómo funciona el sistema educativo para familias",
-    descripcion: "Guía completa para familias hispanohablantes: guarderías (Kita), escuela obligatoria, sistema educativo suizo, integración de niños extranjeros y costes reales en 2026.",
+    titulo: "Guarderías Kita y escuelas en Suiza 2026: costes reales y cómo conseguir plaza",
+    descripcion: "Guardería Kita en Suiza: 1.500-2.500 CHF/mes (con subvenciones cantonales hasta 800 CHF). Escuela pública gratuita desde los 4 años. Cómo solicitar plaza y cómo integrar a los niños.",
     categoria: "vida-diaria",
     fecha: "2026-10-08",
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
+    fechaModificada: "2026-10-16",
     palabrasClave: ["guarderia suiza precio", "escuela suiza extranjero", "sistema educativo suiza", "colegio suiza hijos", "kita suiza", "escolarizacion suiza"],
     faq: [
       { pregunta: "¿Cuánto cuesta una guardería (Kita) en Suiza?", respuesta: "Las Kitas en Suiza son privadas o semi-públicas. En Zúrich, el coste completo sin subvención oscila entre 100 y 160 CHF por día por niño (2.000–3.200 CHF al mes para jornada completa). Sin embargo, muchos cantones y municipios ofrecen subvenciones basadas en ingresos que pueden reducir el coste a la mitad o más. En Ginebra y Zúrich las subvenciones son especialmente generosas para familias con ingresos medios." },
@@ -328,14 +328,14 @@ export const postsAuto: Post[] = [
 
   {
     slug: "supermercados-baratos-suiza-donde-comprar",
-    titulo: "Dónde comprar barato en Suiza: supermercados, mercados y trucos para ahorrar",
-    descripcion: "La cesta de la compra en Suiza puede comerse hasta el 20% del presupuesto mensual. Te explicamos qué supermercados usar, cuáles son realmente más baratos y los trucos de los residentes para gastar menos.",
+    titulo: "Supermercados más baratos de Suiza en 2026: Aldi y Lidl vs Migros y Coop — comparativa real",
+    descripcion: "Migros y Coop son caros. Aldi y Lidl ahorran hasta un 35% en productos equivalentes. Comparamos precios reales, qué comprar en cada cadena y cómo recortar 300-400 CHF/mes en la compra.",
     categoria: "vida-diaria",
     fecha: "2026-10-08",
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
+    fechaModificada: "2026-10-16",
     palabrasClave: ["supermercados suiza baratos", "migros suiza", "lidl suiza", "aldi suiza", "comprar barato suiza", "cesta compra suiza precio"],
     faq: [
       { pregunta: "¿Cuál es el supermercado más barato de Suiza?", respuesta: "Lidl y Aldi son consistentemente los supermercados con los precios más bajos en Suiza, entre un 20 y un 30% más baratos que Migros y Coop en productos comparables. Dentro de los grandes supermercados, Migros suele ser algo más económico que Coop en la mayoría de categorías. Denner (filial de Migros) es también una buena opción de precio bajo con mayor cobertura geográfica que Lidl o Aldi." },
@@ -349,14 +349,14 @@ export const postsAuto: Post[] = [
 
   {
     slug: "permiso-c-suiza-residencia-permanente-guia",
-    titulo: "Permiso C en Suiza: cómo conseguir la residencia permanente",
-    descripcion: "El permiso C es la residencia permanente en Suiza. Te explicamos los requisitos, plazos según tu origen, qué documentos necesitas y cómo preparar la solicitud para que te lo aprueben.",
+    titulo: "Permiso C en Suiza 2026: años necesarios según tu origen y cómo no fallar en la solicitud",
+    descripcion: "Españoles: permiso C a los 5 años. Latinoamericanos: 10 años. Requisitos de integración, idioma y antecedentes. Los errores más comunes que retrasan o deniegan la solicitud.",
     categoria: "emigrar",
     fecha: "2026-10-08",
     tiempoLectura: 8,
     imagen: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
+    fechaModificada: "2026-10-16",
     palabrasClave: ["permiso c suiza", "residencia permanente suiza", "niederlassungsbewilligung suiza", "como conseguir permiso c suiza", "permiso c plazo suiza", "nacionalidad suiza"],
     faq: [
       { pregunta: "¿Cuántos años hay que vivir en Suiza para obtener el permiso C?", respuesta: "Depende de tu nacionalidad. Los ciudadanos de la UE/AELE (incluidos españoles) necesitan 5 años de residencia ininterrumpida con permiso B. Los ciudadanos de países terceros necesitan en general 10 años, aunque España tiene un acuerdo bilateral que permite solicitarlo tras 5 años. Para latinoamericanos sin pasaporte europeo el plazo estándar es de 10 años." },
@@ -370,14 +370,14 @@ export const postsAuto: Post[] = [
 
   {
     slug: "traer-mascotas-suiza-perro-gato-guia",
-    titulo: "Traer mascotas a Suiza: todo lo que necesitas saber para viajar con tu perro o gato",
-    descripcion: "Guía completa para traer tu perro o gato a Suiza: requisitos sanitarios, chip, pasaporte de mascotas, trámites en aduana y cómo vivir con mascotas en Suiza.",
+    titulo: "Traer perro o gato a Suiza desde España 2026: sin cuarentena si cumples estos requisitos",
+    descripcion: "Puedes traer tu mascota desde España sin cuarentena. Necesitas: microchip, pasaporte europeo, vacuna antirrábica vigente y desparasitación. El proceso completo paso a paso.",
     categoria: "vida-diaria",
     fecha: "2026-10-08",
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
+    fechaModificada: "2026-10-16",
     palabrasClave: ["traer mascotas suiza", "perro suiza", "gato suiza", "requisitos mascotas suiza", "chip mascotas suiza", "viaje mascotas suiza"],
     faq: [
       { pregunta: "¿Qué documentos necesita mi perro o gato para entrar en Suiza desde España?", respuesta: "Para entrar desde España (país UE) necesitas: microchip ISO 11784/11785, vacuna antirrábica vigente (administrada después del chip, con al menos 21 días de antelación si es la primera vacuna), y el Pasaporte Europeo de Animales de Compañía expedido por un veterinario oficial. Suiza acepta el pasaporte europeo de mascotas y aplica las mismas normas que el Espacio Schengen." },
