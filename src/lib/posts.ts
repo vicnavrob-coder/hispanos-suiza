@@ -1554,17 +1554,17 @@ const postsManual: Post[] = [
   // ─────────────────────────────────────────────────────────
   {
     slug: "conducir-suiza-carnet-espanol-canje",
-    titulo: "Conducir en Suiza con carnet español: canje, plazos y lo que nadie te explica",
-    descripcion: "¿Puedes conducir en Suiza con el carnet de conducir español? Sí, pero con condiciones y plazos que muy poca gente conoce. Guía completa sobre el canje, multas y seguros.",
+    titulo: "Canje carnet de conducir español en Suiza 2026: plazos, documentos y errores que evitar",
+    descripcion: "Tienes 12 meses desde tu llegada para canjear el carnet español por el suizo. Sin examen, sin clases. Documentación, coste (30-100 CHF), dónde hacerlo y qué pasa si se te pasa el plazo.",
     categoria: "vida-diaria",
     fecha: "2026-10-14",
-    fechaModificada: "2026-10-14",
+    fechaModificada: "2026-10-16",
     tiempoLectura: 7,
     imagen: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     palabrasClave: [
-      "carnet conducir suiza", "canje carnet español suiza", "conducir suiza permiso español",
-      "plazo canje carnet suiza", "licencia conducir suiza extranjero", "carnet b suiza",
+      "canje carnet conducir suiza", "carnet conducir suiza español", "conducir suiza permiso español",
+      "plazo canje carnet suiza", "canjear carnet español suiza 2026", "Strassenverkehrsamt carnet",
     ],
     faq: [
       {

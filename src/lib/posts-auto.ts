@@ -391,15 +391,15 @@ export const postsAuto: Post[] = [
 
   {
     slug: "jubilacion-pensiones-suiza-ahv-av-guia",
-    titulo: "Jubilación en Suiza: cómo funciona el sistema AHV/AVS y las 3 columnas",
-    descripcion: "Guía completa sobre el sistema de pensiones suizo para hispanohablantes: los tres pilares, la AHV/AVS, cuánto recibirás al jubilarte, y qué pasa con la pensión si vuelves a tu país.",
+    titulo: "Pensión AHV/AVS en Suiza 2026: cuánto cobrarás y cómo funcionan los 3 pilares",
+    descripcion: "La pensión AHV máxima en Suiza es 2.520 CHF/mes — pero solo si cotizas los años completos. Qué ocurre si vuelves a España, cómo no perder el Pilar 2 y el error que cometen casi todos los recién llegados.",
     categoria: "banca",
     fecha: "2026-10-08",
     tiempoLectura: 9,
     imagen: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
-    fechaModificada: "2026-10-09",
-    palabrasClave: ["jubilacion suiza", "pension suiza", "ahv suiza", "avs suiza", "tres pilares suiza", "pension suiza extranjero", "jubilarse suiza"],
+    fechaModificada: "2026-10-16",
+    palabrasClave: ["pension ahv suiza", "ahv suiza extranjeros", "jubilacion suiza hispanohablantes", "avs suiza", "tres pilares suiza", "pension maxima suiza 2026", "jubilarse suiza espanol"],
     faq: [
       { pregunta: "¿Cuánto se cobra de pensión de la AHV/AVS en Suiza?", respuesta: "La pensión AHV/AVS máxima individual es de 2.520 CHF al mes en 2026, para quien haya cotizado los 44–45 años completos requeridos. La mínima es de 1.260 CHF/mes. Los hispanohablantes que no han cotizado todos los años recibirán una pensión proporcional a los años cotizados en Suiza. La AHV sola es insuficiente para mantener el nivel de vida en Suiza; de ahí que los Pilares 2 y 3 sean esenciales." },
       { pregunta: "¿A qué edad se jubila en Suiza?", respuesta: "En 2026, la edad de jubilación ordinaria es de 65 años tanto para hombres como para mujeres (equiparación completada en 2024 con la reforma AHV 21). Es posible anticipar 1 o 2 años con reducción de la pensión, o retrasar hasta 5 años para cobrar más. La jubilación flexible entre los 63 y 70 años es posible." },
