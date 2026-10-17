@@ -1,0 +1,25 @@
+name: Setup Vercel Environment Variables
+on:
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set GITHUB_TOKEN env var in Vercel
+        run: |
+          # Add GITHUB_TOKEN to Vercel project (all environments)
+          curl -s -X POST "https://api.vercel.com/v10/projects/${{ secrets.VERCEL_PROJECT_ID }}/env" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "key": "GITHUB_TOKEN",
+              "value": "${{ secrets.GH_PAT_TOKEN }}",
+              "type": "encrypted",
+              "target": ["production", "preview", "development"]
+            }' | jq .
+
+      - name: Verify
+        run: |
+          curl -s "https://api.vercel.com/v9/projects/${{ secrets.VERCEL_PROJECT_ID }}/env" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" | jq '[.envs[] | select(.key == "GITHUB_TOKEN") | {key, target}]'

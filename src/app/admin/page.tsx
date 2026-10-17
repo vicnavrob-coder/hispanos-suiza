@@ -1,41 +1,7 @@
-import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { getSubscribers, type Subscriber } from '@/lib/subscribers'
 
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || process.env.CRON_SECRET || 'hispanos-admin-2026'
-const BREVO_API_KEY = process.env.BREVO_API_KEY || ''
-const BREVO_LIST_ID = process.env.BREVO_LIST_ID || '2'
-
-interface BrevoContact {
-  email: string
-  createdAt?: string
-  emailBlacklisted?: boolean
-  attributes?: Record<string, string | number | undefined>
-}
-
-async function getContacts(): Promise<BrevoContact[]> {
-  const contacts: BrevoContact[] = []
-  let offset = 0
-  while (true) {
-    const res = await fetch(
-      `https://api.brevo.com/v3/contacts?listIds=${BREVO_LIST_ID}&limit=100&offset=${offset}&sort=desc`,
-      { headers: { 'api-key': BREVO_API_KEY }, next: { revalidate: 120 } }
-    )
-    const data = await res.json()
-    const batch: BrevoContact[] = data.contacts || []
-    contacts.push(...batch)
-    if (batch.length < 100 || contacts.length >= 500) break
-    offset += 100
-  }
-  return contacts
-}
-
-async function getListInfo() {
-  const res = await fetch(
-    `https://api.brevo.com/v3/contacts/lists/${BREVO_LIST_ID}`,
-    { headers: { 'api-key': BREVO_API_KEY }, next: { revalidate: 120 } }
-  )
-  return res.json()
-}
 
 function emailDots(step: number, startStr: string) {
   const steps = [
@@ -61,7 +27,7 @@ function emailDots(step: number, startStr: string) {
       if (diff > 0) nextInfo = `<span style="color:#94a3b8;font-size:11px">→ ${next.label} en ${diff}d</span>`
       else if (diff === 0) nextInfo = `<span style="color:#f59e0b;font-size:11px;font-weight:700">→ HOY</span>`
       else nextInfo = `<span style="color:#ef4444;font-size:11px">→ pendiente</span>`
-    } catch {}
+    } catch { /* ignore */ }
   }
 
   const dots = steps.map(s => {
@@ -85,14 +51,13 @@ export default async function AdminPage({
     redirect('/admin?token=')
   }
 
-  const [contacts, listInfo] = await Promise.all([getContacts(), getListInfo()])
+  const contacts = await getSubscribers()
 
   const now = new Date().toLocaleString('es-ES', { timeZone: 'Europe/Zurich' })
   const total = contacts.length
   const stepDist: Record<number, number> = {}
   for (const c of contacts) {
-    const s = Number(c.attributes?.WELCOME_STEP || 0)
-    stepDist[s] = (stepDist[s] || 0) + 1
+    stepDist[c.welcomeStep] = (stepDist[c.welcomeStep] || 0) + 1
   }
   const completed = stepDist[5] || 0
   const inProgress = Object.entries(stepDist).filter(([k]) => Number(k) > 0 && Number(k) < 5).reduce((a, [, v]) => a + v, 0)
@@ -118,6 +83,7 @@ export default async function AdminPage({
                   box-shadow: 0 1px 3px rgba(0,0,0,.06); text-align: center; }
           .stat-val { font-size: 28px; font-weight: 800; }
           .stat-lbl { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+          .badge { display:inline-block;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:700;background:#dcfce7;color:#166534; }
           table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px;
                   overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
           th { background: #f8fafc; padding: 9px 12px; text-align: left; font-size: 10px;
@@ -135,7 +101,7 @@ export default async function AdminPage({
       <body>
         <div className="header">
           <h1>🇨🇭 HispanosEnSuiza — Admin</h1>
-          <div className="ts">Actualizado: {now} · {total} suscriptores</div>
+          <div className="ts">Actualizado: {now} · {total} suscriptores · <span className="badge">Gmail directo</span></div>
         </div>
         <div className="container">
           <div className="stats">
@@ -162,27 +128,19 @@ export default async function AdminPage({
               <tr>
                 <th>Email</th>
                 <th className="hide-mobile">Nombre</th>
-                <th className="hide-mobile">País</th>
                 <th>Registro</th>
                 <th>Emails (1→5)</th>
               </tr>
             </thead>
             <tbody>
-              {contacts.map((c) => {
-                const attrs = c.attributes || {}
-                const nombre = (attrs.NOMBRE as string) || '—'
-                const pais = (attrs.PAIS as string) || '—'
-                const step = Number(attrs.WELCOME_STEP || 0)
-                const start = (attrs.WELCOME_START as string) || ''
-                const created = (c.createdAt || '').slice(0, 10)
-                const blocked = c.emailBlacklisted ? ' 🚫' : ''
+              {contacts.map((c: Subscriber) => {
+                const blocked = c.blacklisted ? ' 🚫' : ''
                 return (
                   <tr key={c.email}>
-                    <td style={{ maxWidth: 180 }}>{c.email}{blocked}</td>
-                    <td className="hide-mobile">{nombre}</td>
-                    <td className="hide-mobile">{pais}</td>
-                    <td style={{ whiteSpace: 'nowrap' }}>{created}</td>
-                    <td dangerouslySetInnerHTML={{ __html: emailDots(step, start) }} />
+                    <td style={{ maxWidth: 200 }}>{c.email}{blocked}</td>
+                    <td className="hide-mobile">{c.nombre || '—'}</td>
+                    <td style={{ whiteSpace: 'nowrap' }}>{c.createdAt?.slice(0, 10) || '—'}</td>
+                    <td dangerouslySetInnerHTML={{ __html: emailDots(c.welcomeStep, c.welcomeStart) }} />
                   </tr>
                 )
               })}
@@ -190,7 +148,7 @@ export default async function AdminPage({
           </table>
 
           <div style={{ marginTop: 12, fontSize: 11, color: '#94a3b8', textAlign: 'center' }}>
-            ● enviado &nbsp; ◌ próximo &nbsp; ○ pendiente &nbsp;·&nbsp; se actualiza cada 2 min
+            ● enviado &nbsp; ◌ próximo &nbsp; ○ pendiente &nbsp;·&nbsp; Almacenamiento: GitHub Gist · Envíos: Gmail SMTP
           </div>
         </div>
       </body>
