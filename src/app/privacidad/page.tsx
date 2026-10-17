@@ -79,7 +79,7 @@ export default function PrivacidadPage() {
           Los datos de registro de cuenta se almacenan <strong>localmente en tu navegador</strong> (localStorage) y no se transmiten a ningún servidor externo. Esto significa que los datos son accesibles únicamente desde el dispositivo donde te registraste.
         </p>
         <p>
-          Los datos del newsletter se almacenan en los servidores de <strong>Brevo (Sendinblue)</strong>, nuestro proveedor de email marketing, ubicados en la Unión Europea. Puedes consultar su política de privacidad en brevo.com/legal/privacypolicy.
+          Los datos del newsletter (email y nombre) se almacenan de forma segura y se gestionan directamente por el equipo de HispanosEnSuiza. Los correos se envían desde nuestra cuenta oficial <strong>hispanosensuiza@gmail.com</strong> a través de los servidores de Google (Gmail). Puedes consultar la política de privacidad de Google en policies.google.com/privacy.
         </p>
 
         <h2>6. Conservación de los datos</h2>
