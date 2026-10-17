@@ -12,14 +12,20 @@ export interface Subscriber {
   email: string;
   nombre: string;
   source: string;
-  welcomeStep: number;      // 0 = not started, 1-5 = email sent
+  welcomeStep: number;      // 0 = not started, 1 = welcome sent, 2-5 = follow-ups
   welcomeStart: string;     // YYYY-MM-DD
   createdAt: string;        // ISO string
   blacklisted: boolean;
+  lastEmailAt?: string;     // ISO string — prevents duplicate sends
 }
 
 /** Read all subscribers from the Gist */
 export async function getSubscribers(): Promise<Subscriber[]> {
+  if (!GITHUB_TOKEN) {
+    console.error("[subscribers] GITHUB_TOKEN not set");
+    return [];
+  }
+
   const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
     headers: {
       Authorization: `token ${GITHUB_TOKEN}`,
@@ -46,6 +52,8 @@ export async function getSubscribers(): Promise<Subscriber[]> {
 
 /** Write all subscribers back to the Gist */
 export async function saveSubscribers(subs: Subscriber[]): Promise<boolean> {
+  if (!GITHUB_TOKEN) return false;
+
   const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
     method: "PATCH",
     headers: {
@@ -69,44 +77,63 @@ export async function saveSubscribers(subs: Subscriber[]): Promise<boolean> {
   return true;
 }
 
-/** Add a new subscriber (returns false if already exists) */
+/** Add a new subscriber. Returns already:true if exists. Does NOT add duplicates. */
 export async function addSubscriber(
   email: string,
   nombre: string,
   source = "footer-hispanosensuiza",
 ): Promise<{ ok: boolean; already: boolean }> {
   const subs = await getSubscribers();
-  const existing = subs.find((s) => s.email === email);
 
+  // Guard: if read failed (empty token, network error), don't create a "new" sub
+  // that would overwrite all existing data on save
+  if (subs.length === 0 && !GITHUB_TOKEN) {
+    return { ok: false, already: false };
+  }
+
+  const existing = subs.find((s) => s.email === email);
   if (existing) {
     return { ok: true, already: true };
   }
 
-  const today = new Date().toISOString().split("T")[0];
-
+  const now = new Date();
   subs.push({
     email,
     nombre,
     source,
     welcomeStep: 1,
-    welcomeStart: today,
-    createdAt: new Date().toISOString(),
+    welcomeStart: now.toISOString().split("T")[0],
+    createdAt: now.toISOString(),
     blacklisted: false,
+    lastEmailAt: now.toISOString(),
   });
 
   const saved = await saveSubscribers(subs);
   return { ok: saved, already: false };
 }
 
-/** Update a subscriber's welcome step */
-export async function updateWelcomeStep(
+/**
+ * Atomically update a single subscriber's step AFTER sending an email.
+ * Re-reads from Gist to avoid overwriting concurrent changes.
+ * Returns false if save failed (email will NOT be re-sent thanks to time guard).
+ */
+export async function markEmailSent(
   email: string,
   step: number,
 ): Promise<boolean> {
+  // Fresh read to avoid stale data
   const subs = await getSubscribers();
   const sub = subs.find((s) => s.email === email);
   if (!sub) return false;
 
   sub.welcomeStep = step;
+  sub.lastEmailAt = new Date().toISOString();
   return saveSubscribers(subs);
+}
+
+/** Check if enough time has passed since last email to prevent duplicates */
+export function canSendEmail(sub: Subscriber): boolean {
+  if (!sub.lastEmailAt) return true;
+  const hoursSinceLastEmail = (Date.now() - new Date(sub.lastEmailAt).getTime()) / 3_600_000;
+  return hoursSinceLastEmail >= 20; // Minimum 20 hours between emails
 }

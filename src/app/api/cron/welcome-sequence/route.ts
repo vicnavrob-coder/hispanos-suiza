@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { getSubscribers, saveSubscribers } from "@/lib/subscribers";
+import { getSubscribers, markEmailSent, canSendEmail } from "@/lib/subscribers";
 import { EMAIL_TEMPLATES } from "@/lib/email-templates";
 
 export const runtime = "nodejs";
@@ -46,11 +46,15 @@ export async function GET(req: NextRequest) {
   const transporter = getTransporter();
   let totalSent = 0;
   const errors: string[] = [];
-  let modified = false;
 
   for (const sub of subs) {
     // Saltar si secuencia completa, no iniciada, o blacklisted
     if (!sub.welcomeStart || sub.welcomeStep === 0 || sub.welcomeStep >= 5 || sub.blacklisted) {
+      continue;
+    }
+
+    // Guard: no enviar si se envió hace menos de 20 horas (previene duplicados)
+    if (!canSendEmail(sub)) {
       continue;
     }
 
@@ -72,18 +76,18 @@ export async function GET(req: NextRequest) {
         html: template.html(sub.nombre),
       });
 
-      sub.welcomeStep = nextStep;
-      modified = true;
+      // Guardar INMEDIATAMENTE después de cada envío (no batch)
+      // Re-lee el Gist para evitar sobreescribir cambios concurrentes
+      const saved = await markEmailSent(sub.email, nextStep);
+      if (!saved) {
+        errors.push(`${sub.email}: email sent but step update failed`);
+      }
+
       totalSent++;
       console.log(`[welcome-cron] Sent email ${nextStep} to ${sub.email}`);
     } catch (e) {
       errors.push(`${sub.email}: ${String(e)}`);
     }
-  }
-
-  // Guardar cambios si hubo envíos
-  if (modified) {
-    await saveSubscribers(subs);
   }
 
   console.log(`[welcome-cron] Sent: ${totalSent}, Errors: ${errors.length}`);
