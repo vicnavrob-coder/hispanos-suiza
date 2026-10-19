@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { buildMetadata, BASE_URL, breadcrumbSchema, faqSchema, howToSchema } from "@/lib/seo";
+import { buildMetadata, BASE_URL, breadcrumbSchema, faqSchema, howToSchema, serviceSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "UNIA Suiza: qué es, cuánto cuesta y cómo afiliarse en 2026",
+  title: "UNIA Suiza: qué es, cuánto cuesta, cómo afiliarse y pedir cita 2026",
   description:
-    "Guía completa sobre la UNIA, el principal sindicato de Suiza. Qué protege, cuánto cuesta (~1% salario), período de espera, CCT y cómo afiliarte desde España o Latinoamérica.",
+    "Guía completa UNIA, el principal sindicato de Suiza. Solicita cita gratuita con asesor, conoce precios (~1% salario), derechos laborales, CCT y cómo afiliarte desde España o Latinoamérica.",
   path: "/trabajo/unia",
   ogImage:
     "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=85&auto=format&fit=crop",
@@ -23,10 +23,21 @@ export const metadata: Metadata = buildMetadata({
     "sindicato suiza hispanohablantes",
     "unia periodo espera",
     "cct suiza convenio colectivo trabajo",
+    "cita unia suiza",
+    "consulta sindical suiza",
+    "asesoramiento laboral suiza gratis",
+    "abogado laboral suiza español",
+    "ayuda despido suiza",
+    "reclamar salario suiza",
   ],
 });
 
 const faqs = [
+  {
+    pregunta: "¿Cómo puedo pedir una cita con UNIA en español?",
+    respuesta:
+      "En HispanosEnSuiza facilitamos citas gratuitas con asesores de UNIA que hablan español. Solo tienes que registrarte en nuestra web, clicar en 'Solicitar cita con UNIA' y en 24-48h recibirás propuestas de horarios. Eliges el que mejor te convenga y recibes confirmación inmediata. Es gratis y sin compromiso.",
+  },
   {
     pregunta: "¿Qué es la UNIA y para qué sirve en Suiza?",
     respuesta:
@@ -95,6 +106,13 @@ export default function UniaLayout({ children }: { children: React.ReactNode }) 
       description: "Proceso paso a paso para afiliarte al principal sindicato suizo y proteger tus derechos laborales.",
       steps: howToSteps,
       totalTime: "PT15M",
+    }),
+    serviceSchema({
+      name: "Citas gratuitas con asesores UNIA en español",
+      description: "Servicio gratuito de coordinación de citas con asesores sindicales de UNIA para hispanohablantes en Suiza. Asesoramiento laboral, revisión de contratos, defensa ante despidos y reclamaciones salariales.",
+      provider: "HispanosEnSuiza",
+      serviceType: "LegalService",
+      url: `${BASE_URL}/trabajo/unia`,
     }),
   ];
 

@@ -259,6 +259,42 @@ export function howToSchema(opts: {
   };
 }
 
+/** Service — servicios ofrecidos */
+export function serviceSchema(opts: {
+  name: string;
+  description: string;
+  provider: string;
+  areaServed?: string;
+  serviceType?: string;
+  url: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: opts.name,
+    description: opts.description,
+    provider: {
+      "@type": "Organization",
+      name: opts.provider,
+      url: BASE_URL,
+    },
+    areaServed: opts.areaServed ?? "Switzerland",
+    serviceType: opts.serviceType ?? "Consulting",
+    url: opts.url,
+    isRelatedTo: {
+      "@type": "Organization",
+      name: "UNIA Suiza",
+      url: "https://www.unia.ch",
+    },
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "CHF",
+      description: "Servicio gratuito de coordinación de citas",
+    },
+  };
+}
+
 // ─────────────────────────────────────────────
 // Helper — renderiza múltiples schemas en un <script>
 // ─────────────────────────────────────────────
