@@ -5,9 +5,7 @@ import { emailConfirmacionUsuario, emailConfirmacionUnia } from "@/lib/email-tem
 
 const GMAIL_USER = process.env.NEWSLETTER_GMAIL_USER ?? "";
 const GMAIL_PASS = process.env.NEWSLETTER_GMAIL_PASS ?? "";
-// TEST MODE: Victor as UNIA, Oscar as user
-// PRODUCTION: Change to "adriana.taddeo@uni.ch"
-const UNIA_CONTACT_EMAIL = "vic_nav@hotmail.com";
+const UNIA_CONTACT_EMAIL = "adriana.taddeo@unia.ch";
 
 function getTransporter() {
   return nodemailer.createTransport({
