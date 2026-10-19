@@ -2,6 +2,11 @@ import { redirect } from 'next/navigation'
 import { getSubscribers, type Subscriber } from '@/lib/subscribers'
 import { getCitas } from '@/lib/unia-citas'
 
+export const metadata = {
+  title: 'Admin · HispanosEnSuiza',
+  robots: { index: false, follow: false },
+}
+
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || process.env.CRON_SECRET || 'hispanos-admin-2026'
 
 function emailDots(step: number, startStr: string) {
@@ -73,131 +78,117 @@ export default async function AdminPage({
   const inProgress = Object.entries(stepDist).filter(([k]) => Number(k) > 0 && Number(k) < 5).reduce((a, [, v]) => a + v, 0)
   const notStarted = stepDist[0] || 0
 
+  const styles = `
+    .admin-page { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f1f5f9; color: #1e293b; font-size: 14px; min-height: 100vh; }
+    .admin-header { background: linear-gradient(135deg, #c8102e 0%, #0032a0 100%); color: white; padding: 16px 20px; }
+    .admin-header h1 { font-size: 18px; font-weight: 700; margin: 0; }
+    .admin-header .ts { font-size: 11px; opacity: 0.75; margin-top: 2px; }
+    .admin-container { max-width: 900px; margin: 0 auto; padding: 16px; }
+    .admin-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
+    .admin-stat { background: white; border-radius: 10px; padding: 12px 14px; box-shadow: 0 1px 3px rgba(0,0,0,.06); text-align: center; }
+    .admin-stat-val { font-size: 28px; font-weight: 800; }
+    .admin-stat-lbl { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+    .admin-badge { display:inline-block;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:700;background:#dcfce7;color:#166534; }
+    .admin-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+    .admin-table th { background: #f8fafc; padding: 9px 12px; text-align: left; font-size: 10px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; border-bottom: 1px solid #e2e8f0; }
+    .admin-table td { padding: 9px 12px; border-top: 1px solid #f1f5f9; font-size: 12px; overflow: hidden; text-overflow: ellipsis; }
+    .admin-table tr:hover td { background: #f8fafc; }
+    @media (max-width: 600px) {
+      .admin-stats { grid-template-columns: repeat(2, 1fr); }
+      .hide-mobile { display: none; }
+    }
+  `
+
   return (
-    <html>
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Admin · HispanosEnSuiza</title>
-        <style>{`
-          * { box-sizing: border-box; margin: 0; padding: 0; }
-          body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-                 background: #f1f5f9; color: #1e293b; font-size: 14px; }
-          .header { background: linear-gradient(135deg, #c8102e 0%, #0032a0 100%);
-                    color: white; padding: 16px 20px; }
-          .header h1 { font-size: 18px; font-weight: 700; }
-          .header .ts { font-size: 11px; opacity: 0.75; margin-top: 2px; }
-          .container { max-width: 900px; margin: 0 auto; padding: 16px; }
-          .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
-          .stat { background: white; border-radius: 10px; padding: 12px 14px;
-                  box-shadow: 0 1px 3px rgba(0,0,0,.06); text-align: center; }
-          .stat-val { font-size: 28px; font-weight: 800; }
-          .stat-lbl { font-size: 11px; color: #94a3b8; margin-top: 2px; }
-          .badge { display:inline-block;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:700;background:#dcfce7;color:#166534; }
-          table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px;
-                  overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
-          th { background: #f8fafc; padding: 9px 12px; text-align: left; font-size: 10px;
-               color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
-               border-bottom: 1px solid #e2e8f0; }
-          td { padding: 9px 12px; border-top: 1px solid #f1f5f9; font-size: 12px;
-               overflow: hidden; text-overflow: ellipsis; }
-          tr:hover td { background: #f8fafc; }
-          @media (max-width: 600px) {
-            .stats { grid-template-columns: repeat(2, 1fr); }
-            .hide-mobile { display: none; }
-          }
-        `}</style>
-      </head>
-      <body>
-        <div className="header">
-          <h1>🇨🇭 HispanosEnSuiza — Admin</h1>
-          <div className="ts">Actualizado: {now} · {total} suscriptores · <span className="badge">Gmail directo</span></div>
-        </div>
-        <div className="container">
-          {/* UNIA Citas Panel */}
-          <a href={`/admin/citas?token=${ADMIN_TOKEN}`} style={{ textDecoration: 'none' }}>
+    <div className="admin-page">
+      <style dangerouslySetInnerHTML={{ __html: styles }} />
+      <div className="admin-header">
+        <h1>🇨🇭 HispanosEnSuiza — Admin</h1>
+        <div className="ts">Actualizado: {now} · {total} suscriptores · <span className="admin-badge">Gmail directo</span></div>
+      </div>
+      <div className="admin-container">
+        {/* UNIA Citas Panel */}
+        <a href={`/admin/citas?token=${ADMIN_TOKEN}`} style={{ textDecoration: 'none' }}>
+          <div style={{
+            background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
+            borderRadius: 12,
+            padding: '14px 18px',
+            marginBottom: 16,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            border: '1px solid #fcd34d',
+            cursor: 'pointer',
+          }}>
+            <div>
+              <div style={{ fontWeight: 700, color: '#92400e', fontSize: 14 }}>⚖️ Citas UNIA</div>
+              <div style={{ fontSize: 12, color: '#a16207', marginTop: 2 }}>
+                {citasStats.pendientes > 0 && <span style={{ fontWeight: 700 }}>{citasStats.pendientes} pendientes · </span>}
+                {citasStats.propuestas > 0 && <span>{citasStats.propuestas} esperando usuario · </span>}
+                {citasStats.confirmadas > 0 && <span style={{ color: '#166534' }}>{citasStats.confirmadas} confirmadas</span>}
+                {citasStats.total === 0 && <span>Sin citas todavía</span>}
+              </div>
+            </div>
             <div style={{
-              background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
-              borderRadius: 12,
-              padding: '14px 18px',
-              marginBottom: 16,
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              border: '1px solid #fcd34d',
-              cursor: 'pointer',
-              transition: 'transform 0.1s',
+              background: '#92400e',
+              color: 'white',
+              padding: '6px 12px',
+              borderRadius: 8,
+              fontSize: 12,
+              fontWeight: 700
             }}>
-              <div>
-                <div style={{ fontWeight: 700, color: '#92400e', fontSize: 14 }}>⚖️ Citas UNIA</div>
-                <div style={{ fontSize: 12, color: '#a16207', marginTop: 2 }}>
-                  {citasStats.pendientes > 0 && <span style={{ fontWeight: 700 }}>{citasStats.pendientes} pendientes · </span>}
-                  {citasStats.propuestas > 0 && <span>{citasStats.propuestas} esperando usuario · </span>}
-                  {citasStats.confirmadas > 0 && <span style={{ color: '#166534' }}>{citasStats.confirmadas} confirmadas</span>}
-                  {citasStats.total === 0 && <span>Sin citas todavía</span>}
-                </div>
-              </div>
-              <div style={{
-                background: '#92400e',
-                color: 'white',
-                padding: '6px 12px',
-                borderRadius: 8,
-                fontSize: 12,
-                fontWeight: 700
-              }}>
-                Ver todas ({citasStats.total}) →
-              </div>
-            </div>
-          </a>
-
-          <div className="stats">
-            <div className="stat">
-              <div className="stat-val" style={{ color: '#6366f1' }}>{total}</div>
-              <div className="stat-lbl">Total</div>
-            </div>
-            <div className="stat">
-              <div className="stat-val" style={{ color: '#3b82f6' }}>{inProgress}</div>
-              <div className="stat-lbl">En secuencia</div>
-            </div>
-            <div className="stat">
-              <div className="stat-val" style={{ color: '#16a34a' }}>{completed}</div>
-              <div className="stat-lbl">Completados</div>
-            </div>
-            <div className="stat">
-              <div className="stat-val" style={{ color: '#94a3b8' }}>{notStarted}</div>
-              <div className="stat-lbl">Sin iniciar</div>
+              Ver todas ({citasStats.total}) →
             </div>
           </div>
+        </a>
 
-          <table>
-            <thead>
-              <tr>
-                <th>Email</th>
-                <th className="hide-mobile">Nombre</th>
-                <th>Registro</th>
-                <th>Emails (1→5)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {contacts.map((c: Subscriber) => {
-                const blocked = c.blacklisted ? ' 🚫' : ''
-                return (
-                  <tr key={c.email}>
-                    <td style={{ maxWidth: 200 }}>{c.email}{blocked}</td>
-                    <td className="hide-mobile">{c.nombre || '—'}</td>
-                    <td style={{ whiteSpace: 'nowrap' }}>{c.createdAt?.slice(0, 10) || '—'}</td>
-                    <td dangerouslySetInnerHTML={{ __html: emailDots(c.welcomeStep, c.welcomeStart) }} />
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-
-          <div style={{ marginTop: 12, fontSize: 11, color: '#94a3b8', textAlign: 'center' }}>
-            ● enviado &nbsp; ◌ próximo &nbsp; ○ pendiente &nbsp;·&nbsp; Almacenamiento: GitHub Gist · Envíos: Gmail SMTP
+        <div className="admin-stats">
+          <div className="admin-stat">
+            <div className="admin-stat-val" style={{ color: '#6366f1' }}>{total}</div>
+            <div className="admin-stat-lbl">Total</div>
+          </div>
+          <div className="admin-stat">
+            <div className="admin-stat-val" style={{ color: '#3b82f6' }}>{inProgress}</div>
+            <div className="admin-stat-lbl">En secuencia</div>
+          </div>
+          <div className="admin-stat">
+            <div className="admin-stat-val" style={{ color: '#16a34a' }}>{completed}</div>
+            <div className="admin-stat-lbl">Completados</div>
+          </div>
+          <div className="admin-stat">
+            <div className="admin-stat-val" style={{ color: '#94a3b8' }}>{notStarted}</div>
+            <div className="admin-stat-lbl">Sin iniciar</div>
           </div>
         </div>
-      </body>
-    </html>
+
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th className="hide-mobile">Nombre</th>
+              <th>Registro</th>
+              <th>Emails (1→5)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {contacts.map((c: Subscriber) => {
+              const blocked = c.blacklisted ? ' 🚫' : ''
+              return (
+                <tr key={c.email}>
+                  <td style={{ maxWidth: 200 }}>{c.email}{blocked}</td>
+                  <td className="hide-mobile">{c.nombre || '—'}</td>
+                  <td style={{ whiteSpace: 'nowrap' }}>{c.createdAt?.slice(0, 10) || '—'}</td>
+                  <td dangerouslySetInnerHTML={{ __html: emailDots(c.welcomeStep, c.welcomeStart) }} />
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+
+        <div style={{ marginTop: 12, fontSize: 11, color: '#94a3b8', textAlign: 'center' }}>
+          ● enviado &nbsp; ◌ próximo &nbsp; ○ pendiente &nbsp;·&nbsp; Almacenamiento: GitHub Gist · Envíos: Gmail SMTP
+        </div>
+      </div>
+    </div>
   )
 }
