@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { getSubscribers, type Subscriber } from '@/lib/subscribers'
+import { getCitas } from '@/lib/unia-citas'
 
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || process.env.CRON_SECRET || 'hispanos-admin-2026'
 
@@ -52,8 +53,17 @@ export default async function AdminPage({
   }
 
   const contacts = (await getSubscribers()) ?? []
+  const citas = (await getCitas()) ?? []
 
   const now = new Date().toLocaleString('es-ES', { timeZone: 'Europe/Zurich' })
+
+  // UNIA stats
+  const citasStats = {
+    total: citas.length,
+    pendientes: citas.filter(c => c.status === 'solicitud').length,
+    propuestas: citas.filter(c => c.status === 'propuesta').length,
+    confirmadas: citas.filter(c => c.status === 'confirmada').length,
+  }
   const total = contacts.length
   const stepDist: Record<number, number> = {}
   for (const c of contacts) {
@@ -104,6 +114,42 @@ export default async function AdminPage({
           <div className="ts">Actualizado: {now} · {total} suscriptores · <span className="badge">Gmail directo</span></div>
         </div>
         <div className="container">
+          {/* UNIA Citas Panel */}
+          <a href={`/admin/citas?token=${ADMIN_TOKEN}`} style={{ textDecoration: 'none' }}>
+            <div style={{
+              background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
+              borderRadius: 12,
+              padding: '14px 18px',
+              marginBottom: 16,
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              border: '1px solid #fcd34d',
+              cursor: 'pointer',
+              transition: 'transform 0.1s',
+            }}>
+              <div>
+                <div style={{ fontWeight: 700, color: '#92400e', fontSize: 14 }}>⚖️ Citas UNIA</div>
+                <div style={{ fontSize: 12, color: '#a16207', marginTop: 2 }}>
+                  {citasStats.pendientes > 0 && <span style={{ fontWeight: 700 }}>{citasStats.pendientes} pendientes · </span>}
+                  {citasStats.propuestas > 0 && <span>{citasStats.propuestas} esperando usuario · </span>}
+                  {citasStats.confirmadas > 0 && <span style={{ color: '#166534' }}>{citasStats.confirmadas} confirmadas</span>}
+                  {citasStats.total === 0 && <span>Sin citas todavía</span>}
+                </div>
+              </div>
+              <div style={{
+                background: '#92400e',
+                color: 'white',
+                padding: '6px 12px',
+                borderRadius: 8,
+                fontSize: 12,
+                fontWeight: 700
+              }}>
+                Ver todas ({citasStats.total}) →
+              </div>
+            </div>
+          </a>
+
           <div className="stats">
             <div className="stat">
               <div className="stat-val" style={{ color: '#6366f1' }}>{total}</div>
