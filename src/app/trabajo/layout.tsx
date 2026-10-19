@@ -31,6 +31,9 @@ export const metadata: Metadata = buildMetadata({
     "trabajo suiza latinoamericano", "jobs.ch español", "trabajo suiza sin alemán",
     "ofertas trabajo zurich ginebra basilea", "trabajar suiza desde españa",
     "trabajo suiza limpieza construccion hosteleria",
+    "contrato trabajo suiza modelo", "permiso trabajo suiza español",
+    "cuanto gana enfermera suiza", "trabajo remoto desde suiza",
+    "primer empleo suiza recien llegado",
   ],
 });
 

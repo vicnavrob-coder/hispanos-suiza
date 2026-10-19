@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/aviso-legal`,        lastModified: now, changeFrequency: "yearly",  priority: 0.2 },
     { url: `${BASE_URL}/cookies`,            lastModified: now, changeFrequency: "yearly",  priority: 0.2 },
     { url: `${BASE_URL}/afiliados`,          lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
+    { url: `${BASE_URL}/precios`,            lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/ciudades`,           lastModified: now, changeFrequency: "monthly", priority: 0.8 },
   ];
 

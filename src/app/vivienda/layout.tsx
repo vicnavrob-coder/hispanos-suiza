@@ -30,6 +30,9 @@ export const metadata: Metadata = buildMetadata({
     "alquilar piso suiza", "homegate suiza", "flatfox suiza", "immoScout suiza",
     "piso compartido suiza", "kaution alquiler suiza", "betreibungsregister suiza",
     "cómo alquilar piso suiza extranjero", "wg zimmer suiza",
+    "alquiler zurich precio 2026", "piso barato ginebra basilea",
+    "vivir suiza coste mensual", "deposito alquiler suiza devolucion",
+    "carta presentacion piso suiza español", "requisitos alquilar suiza extranjero",
   ],
 });
 
