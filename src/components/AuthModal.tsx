@@ -38,6 +38,7 @@ export default function AuthModal() {
   // Reset al abrir
   useEffect(() => {
     if (showModal) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Modal reset pattern
       setEmailOpen(false);
       setIsLogin(false);
       setError("");
@@ -85,6 +86,7 @@ export default function AuthModal() {
     if (!showModal || !GA_CLIENT_ID) return;
 
     if (window.google) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- External SDK init
       initGoogle();
     } else {
       // Esperar a que el script cargue (max 3 segundos, luego fallback a email)

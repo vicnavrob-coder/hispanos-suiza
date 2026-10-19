@@ -120,7 +120,7 @@ export default function AfiliadosPage() {
           Esta política cumple con los requisitos de transparencia de la <strong>FTC</strong> (Federal Trade Commission de EE.UU.), las directrices de la <strong>Comisión Europea</strong> sobre prácticas comerciales desleales y las recomendaciones de la <strong>IAB Europe</strong> para publicidad digital.
         </p>
         <p>
-          Los enlaces de afiliado se identifican técnicamente con el atributo <code>rel="sponsored"</code> en el HTML, conforme a las directrices de Google.
+          Los enlaces de afiliado se identifican técnicamente con el atributo <code>rel=&quot;sponsored&quot;</code> en el HTML, conforme a las directrices de Google.
         </p>
 
         <h2>¿Tienes preguntas?</h2>

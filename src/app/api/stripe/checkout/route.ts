@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,6 +15,8 @@ export async function POST(req: NextRequest) {
     const priceId = process.env.STRIPE_PRICE_ID_PREMIUM!;
 
     const origin = req.headers.get("origin") || "https://hispanosensuiza.ch";
+
+    const stripe = getStripe();
 
     // Check if customer already exists in Stripe
     const existing = await stripe.customers.list({ email, limit: 1 });

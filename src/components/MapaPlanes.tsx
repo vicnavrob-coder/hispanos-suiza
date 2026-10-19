@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type * as L from "leaflet";
 
 type Actividad = {
   slug: string;
@@ -32,17 +33,17 @@ const TIPO_COLOR: Record<string, string> = {
 
 export default function MapaPlanes({ actividades }: { actividades: Actividad[] }) {
   const mapRef = useRef<HTMLDivElement>(null);
-  const leafletMapRef = useRef<any>(null);
-  const markersRef = useRef<any[]>([]);
+  const leafletMapRef = useRef<L.Map | null>(null);
+  const markersRef = useRef<L.Marker[]>([]);
 
   useEffect(() => {
     if (!mapRef.current) return;
 
-    let L: any;
-    let map: any;
+    let Leaflet: typeof L;
+    let map: L.Map;
 
     async function initMap() {
-      L = (await import("leaflet")).default;
+      Leaflet = (await import("leaflet")).default;
       await import("leaflet/dist/leaflet.css");
 
       if (leafletMapRef.current) {
@@ -50,7 +51,7 @@ export default function MapaPlanes({ actividades }: { actividades: Actividad[] }
         leafletMapRef.current = null;
       }
 
-      map = L.map(mapRef.current!, {
+      map = Leaflet.map(mapRef.current!, {
         center: [46.8182, 8.2275],
         zoom: 8,
         zoomControl: true,
@@ -58,7 +59,7 @@ export default function MapaPlanes({ actividades }: { actividades: Actividad[] }
 
       leafletMapRef.current = map;
 
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a>',
         maxZoom: 18,
       }).addTo(map);
@@ -76,7 +77,7 @@ export default function MapaPlanes({ actividades }: { actividades: Actividad[] }
         const color = TIPO_COLOR[a.tipo] || "#C8102E";
         const emoji = TIPO_EMOJI[a.tipo] || "📍";
 
-        const icon = L.divIcon({
+        const icon = Leaflet.divIcon({
           className: "",
           html: `<div style="
             background: ${color};
@@ -117,7 +118,7 @@ export default function MapaPlanes({ actividades }: { actividades: Actividad[] }
           </div>
         `;
 
-        const marker = L.marker([a.coordenadas.lat, a.coordenadas.lng], { icon })
+        const marker = Leaflet.marker([a.coordenadas.lat, a.coordenadas.lng], { icon })
           .bindPopup(popup, { maxWidth: 240 })
           .addTo(map);
 
@@ -126,7 +127,7 @@ export default function MapaPlanes({ actividades }: { actividades: Actividad[] }
 
       // Fit bounds if there are markers
       if (markersRef.current.length > 0) {
-        const group = L.featureGroup(markersRef.current);
+        const group = Leaflet.featureGroup(markersRef.current);
         map.fitBounds(group.getBounds().pad(0.1));
       }
     }

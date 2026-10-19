@@ -118,7 +118,7 @@ export default function HistoriasRealesPage() {
             <h2 className="text-lg font-bold text-gray-800 mb-3 leading-snug">{h.resumen}</h2>
 
             <blockquote className="border-l-4 border-amber-400 bg-amber-50 pl-4 py-3 pr-3 rounded-r-lg mb-4 italic text-gray-600 text-sm leading-relaxed">
-              "{h.extracto}"
+              «{h.extracto}»
             </blockquote>
 
             <div className="flex flex-wrap gap-2">

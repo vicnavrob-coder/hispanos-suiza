@@ -119,7 +119,7 @@ export default function CookiesPage() {
           <li><strong>Solo esenciales:</strong> activa únicamente las cookies necesarias para que el sitio funcione. No se cargará Google Analytics.</li>
         </ul>
         <p>
-          Puedes cambiar tu elección en cualquier momento desde el enlace "Gestionar cookies" en el pie de página.
+          Puedes cambiar tu elección en cualquier momento desde el enlace «Gestionar cookies» en el pie de página.
         </p>
 
         <h2>Cómo eliminar las cookies</h2>

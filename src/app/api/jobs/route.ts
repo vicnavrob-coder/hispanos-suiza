@@ -61,13 +61,6 @@ const LINKEDIN_CITY: Record<string, string> = Object.fromEntries([
   ...Object.entries(CITY_SEARCH).map(([k, v]) => [k, `${v}, Switzerland`]),
 ]);
 
-// Mapeo código ISO idioma → nombre en español
-const LANG_NAMES: Record<string, string> = {
-  de: "Alemán", fr: "Francés", it: "Italiano",
-  en: "Inglés", es: "Español", pt: "Portugués",
-  rm: "Romanche", nl: "Holandés",
-};
-
 // ── Motor de traducción de títulos (Alemán/Inglés → Español) ─────────────────
 
 // Cada entrada: [palabras clave a detectar en el título], título ES, sector ES

@@ -162,7 +162,7 @@ export default function VolverEspanaDesdeSuizaPage() {
             <li className="flex gap-2"><span className="text-green-600 font-bold flex-shrink-0">✓</span><span><strong>AHV:</strong> años cotizados en Suiza cuentan para la pensión española (convenio bilateral)</span></li>
             <li className="flex gap-2"><span className="text-green-600 font-bold flex-shrink-0">✓</span><span><strong>Paro:</strong> exportable a España 3 meses máximo con el formulario U2</span></li>
             <li className="flex gap-2"><span className="text-amber-500 font-bold flex-shrink-0">!</span><span><strong>LAMal:</strong> avisa con <strong>3 meses de antelación</strong> al fin de trimestre</span></li>
-            <li className="flex gap-2"><span className="text-amber-500 font-bold flex-shrink-0">!</span><span><strong>Baja municipal:</strong> obligatoria. Sin ella tu permiso sigue "activo" en el sistema</span></li>
+            <li className="flex gap-2"><span className="text-amber-500 font-bold flex-shrink-0">!</span><span><strong>Baja municipal:</strong> obligatoria. Sin ella tu permiso sigue «activo» en el sistema</span></li>
             <li className="flex gap-2"><span className="text-green-600 font-bold flex-shrink-0">✓</span><span>Al llegar a España: empadronarse + inscribirse en SEPE (si exportas paro) en los 7 primeros días</span></li>
           </ul>
         </div>
@@ -174,7 +174,7 @@ export default function VolverEspanaDesdeSuizaPage() {
             <p>
               El <strong>segundo pilar</strong> (BVG en alemán, LPP en francés) es la pensión profesional que
               tu empresa descuenta de tu nómina y complementa con su propia aportación. En el recibo de sueldo
-              aparece como "BVG" o "Pensionskasse". Es dinero que en teoría es tuyo, pero su retirada tiene reglas.
+              aparece como «BVG» o «Pensionskasse». Es dinero que en teoría es tuyo, pero su retirada tiene reglas.
             </p>
           </div>
           <div className="space-y-3 mt-4">
@@ -208,7 +208,7 @@ export default function VolverEspanaDesdeSuizaPage() {
           <div className="prose max-w-none">
             <p>
               La <strong>AHV</strong> (Alters- und Hinterlassenenversicherung) es la seguridad social suiza —
-              el equivalente a la Seguridad Social española. Aparece en tu nómina como "AHV/IV/EO".
+              el equivalente a la Seguridad Social española. Aparece en tu nómina como «AHV/IV/EO».
             </p>
             <p>
               Al contrario que el segundo pilar, las cotizaciones a la AHV <strong>no se pueden retirar</strong>.
@@ -264,7 +264,7 @@ export default function VolverEspanaDesdeSuizaPage() {
               El plazo es antes de salir o en los días inmediatamente posteriores.
             </p>
             <p>
-              Consecuencias de no hacerlo: tu permiso de residencia sigue "activo" en el sistema, lo que
+              Consecuencias de no hacerlo: tu permiso de residencia sigue «activo» en el sistema, lo que
               puede generar reclamaciones de seguro médico LAMal o problemas al intentar obtener un nuevo
               permiso si vuelves a Suiza en el futuro.
             </p>

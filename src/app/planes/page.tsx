@@ -4,7 +4,9 @@ import { useState, useMemo, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { cantones, type TipoActividad, type Temporada, type Dificultad } from "@/lib/planes";
+import { cantones, type TipoActividad, type Temporada, type Dificultad, type Actividad } from "@/lib/planes";
+
+type ActividadConCanton = Actividad & { cantonSlug: string; cantonNombre: string };
 
 const MapaPlanes = dynamic(() => import("@/components/MapaPlanes"), { ssr: false, loading: () => (
   <div className="flex items-center justify-center h-full bg-gray-100 rounded-2xl">
@@ -70,6 +72,7 @@ function useLocalFavoritos() {
   useEffect(() => {
     try {
       const saved = localStorage.getItem("planes-favoritos");
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Client-only localStorage
       if (saved) setFavoritos(new Set(JSON.parse(saved)));
     } catch {}
   }, []);
@@ -425,7 +428,7 @@ export default function PlanesPage() {
 
 // ─── Componentes ──────────────────────────────────────────────────────────────
 
-function MiniCard({ a, esFav, onToggleFav }: { a: any; esFav: boolean; onToggleFav: (id: string) => void }) {
+function MiniCard({ a, esFav, onToggleFav }: { a: ActividadConCanton; esFav: boolean; onToggleFav: (id: string) => void }) {
   const id = `${a.cantonSlug}/${a.slug}`;
   return (
     <div className="relative group">
@@ -447,7 +450,7 @@ function MiniCard({ a, esFav, onToggleFav }: { a: any; esFav: boolean; onToggleF
 }
 
 function ActividadCard({ a, esFav, onToggleFav, vista }: {
-  a: any; esFav: boolean; onToggleFav: (id: string) => void; vista: "cuadricula" | "lista"
+  a: ActividadConCanton; esFav: boolean; onToggleFav: (id: string) => void; vista: "cuadricula" | "lista"
 }) {
   const id = `${a.cantonSlug}/${a.slug}`;
   const tipoEmoji = TIPOS.find(t => t.value === a.tipo)?.emoji ?? "📍";

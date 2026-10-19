@@ -1,20 +1,17 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense } from "react";
 
 function SuccessContent() {
   const params = useSearchParams();
   const router = useRouter();
-  const [verified, setVerified] = useState(false);
-
   useEffect(() => {
     const sessionId = params.get("session_id");
     if (sessionId) {
       // Clear subscription cache so next check is fresh
       const keys = Object.keys(localStorage).filter(k => k.startsWith("hs_sub_"));
       keys.forEach(k => localStorage.removeItem(k));
-      setVerified(true);
     }
   }, [params]);
 

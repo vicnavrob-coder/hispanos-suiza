@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { addSubscriber } from "@/lib/subscribers";
+import { addSubscriber, markEmailSent } from "@/lib/subscribers";
 import { EMAIL_TEMPLATES } from "@/lib/email-templates";
 
 const GMAIL_USER = process.env.NEWSLETTER_GMAIL_USER ?? "";
@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Email inválido" }, { status: 400 });
   }
 
-  // ── Guardar suscriptor ──
+  // ── Guardar suscriptor (welcomeStep: 0 = email pendiente) ──
   const { ok, already } = await addSubscriber(email, nombre);
 
   if (!ok) {
@@ -46,9 +46,12 @@ export async function POST(req: NextRequest) {
         subject: template.subject,
         html: template.html(nombre),
       });
+
+      // Solo marcar como enviado DESPUÉS de enviar exitosamente
+      await markEmailSent(email, 1);
       console.log(`[newsletter] Welcome email sent to ${email}`);
     } catch (err) {
-      // El suscriptor ya está guardado — el email se intentará en el cron
+      // Email NO enviado — welcomeStep queda en 0 → el cron lo reintentará
       console.error("[newsletter] Failed to send welcome email:", err);
     }
   }

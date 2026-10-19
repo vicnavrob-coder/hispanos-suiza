@@ -29,13 +29,6 @@ function loadJson(path, fallback = []) {
   catch { return fallback; }
 }
 
-function escapeTemplate(str) {
-  return str
-    .replace(/\\/g, "\\\\")
-    .replace(/`/g, "\\`")
-    .replace(/\$\{/g, "\\${");
-}
-
 // ── Cargar estado ────────────────────────────────────────────────────────────
 const queue = loadJson(QUEUE_FILE);
 const done = loadJson(DONE_FILE);
@@ -186,21 +179,7 @@ if (newPosts.length === 0) {
 }
 
 // ── Cargar posts auto existentes ─────────────────────────────────────────────
-let existingPosts = [];
-if (existsSync(POSTS_AUTO_FILE)) {
-  // Extraer posts del archivo existente (simple: parseamos entre los arrays)
-  try {
-    const match = existingAuto.match(/export const postsAuto: Post\[\] = \[([\s\S]*)\];/);
-    if (match) {
-      // Los posts están como objetos TS — no podemos parsearlos fácilmente.
-      // En su lugar, siempre escribimos el archivo completo con todos los posts.
-      // Extraemos los slugs ya presentes para no duplicar.
-      const slugMatches = [...existingAuto.matchAll(/slug: "([^"]+)"/g)];
-      const existingSlugs = new Set(slugMatches.map(m => m[1]));
-      // Los posts del archivo existente los preservamos tal cual en el archivo
-    }
-  } catch {}
-}
+// Los posts del archivo existente se preservan tal cual en el archivo
 
 // ── Escribir posts-auto.ts ───────────────────────────────────────────────────
 // Leer el archivo existente para preservar posts anteriores

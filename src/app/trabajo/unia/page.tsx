@@ -1,5 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import { BASE_URL } from "@/lib/seo";
+import { useAuth } from "@/contexts/AuthContext";
+import UniaAppointmentModal from "@/components/UniaAppointmentModal";
 
 const ACCENT = "#C8102E";
 
@@ -84,6 +88,17 @@ const FAQS = [
 ];
 
 export default function UniaPage() {
+  const { user, openModal: openAuthModal } = useAuth();
+  const [citaModalOpen, setCitaModalOpen] = useState(false);
+
+  const handleRequestCita = () => {
+    if (!user) {
+      openAuthModal(() => setCitaModalOpen(true));
+    } else {
+      setCitaModalOpen(true);
+    }
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
 
@@ -114,6 +129,17 @@ export default function UniaPage() {
           te asesora en conflictos con el empleador y controla que se cumpla el convenio colectivo
           en tu sector — aunque trabajes con permiso B y lleves solo un mes en el país.
         </p>
+
+        {/* CTA: Solicitar cita */}
+        <button
+          onClick={handleRequestCita}
+          className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-bold text-sm hover:opacity-90 transition-all shadow-lg hover:shadow-xl active:scale-[0.98]"
+          style={{ background: ACCENT }}
+        >
+          <span>📅</span>
+          <span>Solicitar cita gratuita con UNIA</span>
+          <span>→</span>
+        </button>
       </div>
 
       {/* ── Cuadro resumen rápido ── */}
@@ -428,6 +454,11 @@ export default function UniaPage() {
         </div>
       </section>
 
+      {/* ── Modal de cita UNIA ── */}
+      <UniaAppointmentModal
+        open={citaModalOpen}
+        onClose={() => setCitaModalOpen(false)}
+      />
     </div>
   );
 }

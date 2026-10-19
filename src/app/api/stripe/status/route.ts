@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 
 export async function GET(req: NextRequest) {
   const email = req.nextUrl.searchParams.get("email");
   if (!email) return NextResponse.json({ active: false });
 
   try {
+    const stripe = getStripe();
     const customers = await stripe.customers.list({ email, limit: 1 });
     if (!customers.data.length) return NextResponse.json({ active: false });
 

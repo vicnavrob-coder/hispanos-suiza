@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 
 export async function POST(req: NextRequest) {
   try {
@@ -8,6 +8,7 @@ export async function POST(req: NextRequest) {
 
     const origin = req.headers.get("origin") || "https://hispanosensuiza.ch";
 
+    const stripe = getStripe();
     const customers = await stripe.customers.list({ email, limit: 1 });
     if (!customers.data.length) {
       return NextResponse.json({ error: "No se encontró tu cuenta" }, { status: 404 });

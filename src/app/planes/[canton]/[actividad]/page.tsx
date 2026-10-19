@@ -85,7 +85,7 @@ export default async function ActividadPage({ params }: Props) {
         "Se recomienda experiencia previa y equipamiento adecuado."
       }`,
     }] : []),
-    ...((a as any).aptoNinos ? [{
+    ...(a.aptoNinos ? [{
       pregunta: `¿Es ${a.nombre} apto para niños?`,
       respuesta: `Sí, ${a.nombre} es apto para familias con niños. ${a.dificultad === "facil" ? "El acceso es fácil y no requiere esfuerzo físico especial." : "Recomendable para niños a partir de 6-8 años con buena condición física."}`,
     }] : []),
@@ -109,7 +109,7 @@ export default async function ActividadPage({ params }: Props) {
       touristType: TIPO_LABEL[a.tipo],
       availableLanguage: "Spanish",
       containedInPlace: { "@type": "State", name: c.nombre },
-      isAccessibleForFree: (a as any).gratuito ?? !a.precio,
+      isAccessibleForFree: a.gratuito ?? !a.precio,
       ...(a.precio ? {
         offers: {
           "@type": "Offer",
@@ -119,17 +119,15 @@ export default async function ActividadPage({ params }: Props) {
           description: `Precio aproximado: ${a.precio}`,
         },
       } : {}),
-      ...((a as any).coordenadas ? {
+      ...(a.coordenadas ? {
         geo: {
           "@type": "GeoCoordinates",
-          latitude: (a as any).coordenadas.lat,
-          longitude: (a as any).coordenadas.lng,
+          latitude: a.coordenadas.lat,
+          longitude: a.coordenadas.lng,
         }
       } : {}),
     },
   ];
-
-  const actividadExt = a as any;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
@@ -165,16 +163,16 @@ export default async function ActividadPage({ params }: Props) {
                   {DIFICULTAD_LABEL[a.dificultad]}
                 </span>
               )}
-              {actividadExt.gratuito && (
+              {a.gratuito && (
                 <span className="text-xs font-bold bg-green-600 text-white px-3 py-1 rounded-full">🆓 Gratis</span>
               )}
             </div>
             {/* Badges en la parte inferior de la imagen */}
             <div className="absolute bottom-4 right-4 flex gap-2">
-              {actividadExt.aptoNinos && (
+              {a.aptoNinos && (
                 <span className="text-xs font-bold bg-blue-600 text-white px-2 py-1 rounded-full">👶 Niños</span>
               )}
-              {actividadExt.aptoPerros && (
+              {a.aptoPerros && (
                 <span className="text-xs font-bold bg-amber-600 text-white px-2 py-1 rounded-full">🐕 Perros</span>
               )}
             </div>
@@ -192,10 +190,10 @@ export default async function ActividadPage({ params }: Props) {
               a.duracion   && { label: "Duración",  value: a.duracion,           emoji: "⏱️" },
               a.distancia  && { label: "Distancia", value: a.distancia,          emoji: "📏" },
               a.desnivel   && { label: "Desnivel",  value: a.desnivel,           emoji: "📈" },
-              actividadExt.altitud && { label: "Altitud",   value: actividadExt.altitud, emoji: "⛰️" },
+              a.altitud && { label: "Altitud",   value: a.altitud, emoji: "⛰️" },
               a.precio     && { label: "Precio",    value: a.precio,             emoji: "💰" },
-              (!a.precio && actividadExt.gratuito) && { label: "Precio",    value: "Gratuito",           emoji: "🆓" },
-            ].filter(Boolean).slice(0, 4).map((stat: any) => (
+              (!a.precio && a.gratuito) && { label: "Precio",    value: "Gratuito",           emoji: "🆓" },
+            ].filter((s): s is { label: string; value: string; emoji: string } => Boolean(s)).slice(0, 4).map((stat) => (
               <div key={stat.label} className="bg-gray-50 rounded-xl p-3 text-center">
                 <div className="text-xl mb-1">{stat.emoji}</div>
                 <div className="font-bold text-gray-800 text-sm">{stat.value}</div>
@@ -217,13 +215,13 @@ export default async function ActividadPage({ params }: Props) {
           </div>
 
           {/* Equipamiento necesario */}
-          {actividadExt.equipamiento && actividadExt.equipamiento.length > 0 && (
+          {a.equipamiento && a.equipamiento.length > 0 && (
             <div className="bg-green-50 border border-green-100 rounded-xl p-5 mb-6">
               <h2 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
                 <span>🎒</span> Qué llevar
               </h2>
               <div className="flex flex-wrap gap-2">
-                {actividadExt.equipamiento.map((item: string, i: number) => (
+                {a.equipamiento.map((item: string, i: number) => (
                   <span key={i} className="text-sm bg-white text-gray-700 px-3 py-1.5 rounded-lg border border-green-200 flex items-center gap-1.5">
                     <span className="text-green-500">✓</span> {item}
                   </span>
@@ -242,7 +240,7 @@ export default async function ActividadPage({ params }: Props) {
               <p className="text-xs text-gray-500 mb-3">📍 Referencia: {a.cercaDe}</p>
             )}
             <a
-              href={actividadExt.urlSBB || "https://www.sbb.ch/es/horarios.html"}
+              href={a.urlSBB || "https://www.sbb.ch/es/horarios.html"}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-red-700 hover:bg-red-600 text-white text-xs font-semibold px-4 py-2 rounded-full transition-colors"
@@ -252,17 +250,17 @@ export default async function ActividadPage({ params }: Props) {
           </div>
 
           {/* Mapa mini si hay coordenadas */}
-          {actividadExt.coordenadas && (
+          {a.coordenadas && (
             <div className="mb-6">
               <h2 className="font-bold text-gray-800 mb-2 text-base">📍 Ubicación</h2>
               <a
-                href={`https://www.openstreetmap.org/?mlat=${actividadExt.coordenadas.lat}&mlon=${actividadExt.coordenadas.lng}&zoom=13`}
+                href={`https://www.openstreetmap.org/?mlat=${a.coordenadas.lat}&mlon=${a.coordenadas.lng}&zoom=13`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block bg-gray-100 rounded-xl overflow-hidden hover:opacity-90 transition-opacity"
               >
                 <img
-                  src={`https://staticmap.openstreetmap.de/staticmap.php?center=${actividadExt.coordenadas.lat},${actividadExt.coordenadas.lng}&zoom=12&size=800x200&markers=${actividadExt.coordenadas.lat},${actividadExt.coordenadas.lng},red`}
+                  src={`https://staticmap.openstreetmap.de/staticmap.php?center=${a.coordenadas.lat},${a.coordenadas.lng}&zoom=12&size=800x200&markers=${a.coordenadas.lat},${a.coordenadas.lng},red`}
                   alt={`Mapa de ${a.nombre}`}
                   className="w-full h-40 object-cover"
                   loading="lazy"
@@ -351,16 +349,16 @@ export default async function ActividadPage({ params }: Props) {
                     <span>💰</span>
                     <span className="text-gray-700 font-medium">{a.precio}</span>
                   </div>
-                ) : actividadExt.gratuito && (
+                ) : a.gratuito && (
                   <div className="flex items-center gap-2">
                     <span>🆓</span>
                     <span className="text-green-700 font-medium">Gratuito</span>
                   </div>
                 )}
-                {actividadExt.altitud && (
+                {a.altitud && (
                   <div className="flex items-center gap-2">
                     <span>⛰️</span>
-                    <span className="text-gray-600">{actividadExt.altitud}</span>
+                    <span className="text-gray-600">{a.altitud}</span>
                   </div>
                 )}
                 <div className="flex items-center gap-2">
@@ -371,10 +369,10 @@ export default async function ActividadPage({ params }: Props) {
 
               {/* Aptitudes */}
               <div className="flex flex-wrap gap-2 mt-3 pt-3 border-t border-gray-50">
-                {actividadExt.aptoNinos && (
+                {a.aptoNinos && (
                   <span className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full border border-blue-100">👶 Apto niños</span>
                 )}
-                {actividadExt.aptoPerros && (
+                {a.aptoPerros && (
                   <span className="text-xs bg-amber-50 text-amber-700 px-2 py-1 rounded-full border border-amber-100">🐕 Perros OK</span>
                 )}
               </div>
@@ -392,7 +390,7 @@ export default async function ActividadPage({ params }: Props) {
                         {TIPO_EMOJI[r.tipo]} {r.nombre}
                       </Link>
                       {r.precio && <span className="text-xs text-gray-400">{r.precio}</span>}
-                      {!r.precio && (r as any).gratuito && <span className="text-xs text-green-600">Gratis</span>}
+                      {!r.precio && r.gratuito && <span className="text-xs text-green-600">Gratis</span>}
                     </li>
                   ))}
                 </ul>

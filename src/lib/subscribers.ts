@@ -12,41 +12,44 @@ export interface Subscriber {
   email: string;
   nombre: string;
   source: string;
-  welcomeStep: number;      // 0 = not started, 1 = welcome sent, 2-5 = follow-ups
+  welcomeStep: number;      // 0 = signed up but no email sent yet, 1-5 = email N sent
   welcomeStart: string;     // YYYY-MM-DD
   createdAt: string;        // ISO string
   blacklisted: boolean;
   lastEmailAt?: string;     // ISO string — prevents duplicate sends
 }
 
-/** Read all subscribers from the Gist */
-export async function getSubscribers(): Promise<Subscriber[]> {
+/**
+ * Read all subscribers from the Gist.
+ * Returns null on error (NOT empty array) so callers can distinguish
+ * "no subscribers" from "read failed".
+ */
+export async function getSubscribers(): Promise<Subscriber[] | null> {
   if (!GITHUB_TOKEN) {
     console.error("[subscribers] GITHUB_TOKEN not set");
-    return [];
+    return null;
   }
-
-  const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
-    headers: {
-      Authorization: `token ${GITHUB_TOKEN}`,
-      Accept: "application/vnd.github.v3+json",
-    },
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    console.error("[subscribers] Failed to read gist:", res.status);
-    return [];
-  }
-
-  const gist = await res.json();
-  const content = gist.files?.[FILE_NAME]?.content ?? "[]";
 
   try {
+    const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+        Accept: "application/vnd.github.v3+json",
+      },
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      console.error("[subscribers] Failed to read gist:", res.status);
+      return null;
+    }
+
+    const gist = await res.json();
+    const content = gist.files?.[FILE_NAME]?.content ?? "[]";
     return JSON.parse(content) as Subscriber[];
-  } catch {
-    console.error("[subscribers] Failed to parse gist content");
-    return [];
+  } catch (e) {
+    console.error("[subscribers] Gist read error:", e);
+    return null;
   }
 }
 
@@ -54,30 +57,39 @@ export async function getSubscribers(): Promise<Subscriber[]> {
 export async function saveSubscribers(subs: Subscriber[]): Promise<boolean> {
   if (!GITHUB_TOKEN) return false;
 
-  const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
-    method: "PATCH",
-    headers: {
-      Authorization: `token ${GITHUB_TOKEN}`,
-      "Content-Type": "application/json",
-      Accept: "application/vnd.github.v3+json",
-    },
-    body: JSON.stringify({
-      files: {
-        [FILE_NAME]: {
-          content: JSON.stringify(subs, null, 2),
-        },
+  try {
+    const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+        "Content-Type": "application/json",
+        Accept: "application/vnd.github.v3+json",
       },
-    }),
-  });
+      body: JSON.stringify({
+        files: {
+          [FILE_NAME]: {
+            content: JSON.stringify(subs, null, 2),
+          },
+        },
+      }),
+    });
 
-  if (!res.ok) {
-    console.error("[subscribers] Failed to save gist:", res.status);
+    if (!res.ok) {
+      console.error("[subscribers] Failed to save gist:", res.status);
+      return false;
+    }
+    return true;
+  } catch (e) {
+    console.error("[subscribers] Gist write error:", e);
     return false;
   }
-  return true;
 }
 
-/** Add a new subscriber. Returns already:true if exists. Does NOT add duplicates. */
+/**
+ * Add a new subscriber. Sets welcomeStep: 0 (email NOT yet sent).
+ * The newsletter route sends the email and then calls markEmailSent.
+ * Returns { ok: false } if Gist read fails — NEVER overwrites existing data.
+ */
 export async function addSubscriber(
   email: string,
   nombre: string,
@@ -85,9 +97,8 @@ export async function addSubscriber(
 ): Promise<{ ok: boolean; already: boolean }> {
   const subs = await getSubscribers();
 
-  // Guard: if read failed (empty token, network error), don't create a "new" sub
-  // that would overwrite all existing data on save
-  if (subs.length === 0 && !GITHUB_TOKEN) {
+  // If read failed, refuse to write (would destroy existing data)
+  if (subs === null) {
     return { ok: false, already: false };
   }
 
@@ -101,11 +112,10 @@ export async function addSubscriber(
     email,
     nombre,
     source,
-    welcomeStep: 1,
+    welcomeStep: 0,             // NOT yet sent — cron or route will send and update
     welcomeStart: now.toISOString().split("T")[0],
     createdAt: now.toISOString(),
     blacklisted: false,
-    lastEmailAt: now.toISOString(),
   });
 
   const saved = await saveSubscribers(subs);
@@ -115,14 +125,14 @@ export async function addSubscriber(
 /**
  * Atomically update a single subscriber's step AFTER sending an email.
  * Re-reads from Gist to avoid overwriting concurrent changes.
- * Returns false if save failed (email will NOT be re-sent thanks to time guard).
  */
 export async function markEmailSent(
   email: string,
   step: number,
 ): Promise<boolean> {
-  // Fresh read to avoid stale data
   const subs = await getSubscribers();
+  if (subs === null) return false;
+
   const sub = subs.find((s) => s.email === email);
   if (!sub) return false;
 

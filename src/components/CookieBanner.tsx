@@ -22,6 +22,7 @@ export default function CookieBanner() {
 
   useEffect(() => {
     const stored = localStorage.getItem(CONSENT_KEY);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Client-only localStorage check
     if (!stored) setVisible(true);
   }, []);
 

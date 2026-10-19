@@ -514,7 +514,7 @@ const itinerarios: Itinerario[] = [
 
 // ─── Componentes ──────────────────────────────────────────────────────────────
 
-function ItinerarioCard({ it, expanded = false }: { it: Itinerario; expanded?: boolean }) {
+function ItinerarioCard({ it }: { it: Itinerario }) {
   return (
     <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative h-48">
@@ -567,8 +567,6 @@ function ItinerarioCard({ it, expanded = false }: { it: Itinerario; expanded?: b
 
 export default function ItinerariosPage() {
   const esqui = itinerarios.find(i => i.slug === "ruta-del-esqui");
-  const familia = itinerarios.find(i => i.slug === "suiza-en-familia");
-  const resto = itinerarios.filter(i => i.slug !== "ruta-del-esqui" && i.slug !== "suiza-en-familia");
 
   const schemas = [
     breadcrumbSchema([

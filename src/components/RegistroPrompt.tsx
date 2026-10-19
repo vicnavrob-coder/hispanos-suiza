@@ -13,6 +13,7 @@ export default function RegistroPrompt() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Hydration pattern
     setMounted(true);
 
     // No mostrar si ya está logueado o ya lo descartó esta sesión

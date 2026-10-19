@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SEGUROS_ASEGURADORAS, SEGUROS_FRANQUICIAS, SEGUROS_MODELOS } from "@/lib/data";
+import { SEGUROS_ASEGURADORAS, SEGUROS_FRANQUICIAS } from "@/lib/data";
 import { buildMetadata, BASE_URL, breadcrumbSchema, webAppSchema, faqSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({

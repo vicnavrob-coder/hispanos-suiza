@@ -8,8 +8,12 @@ export const runtime = "nodejs";
 const GMAIL_USER = process.env.NEWSLETTER_GMAIL_USER ?? "";
 const GMAIL_PASS = process.env.NEWSLETTER_GMAIL_PASS ?? "";
 
+// The cron secret is hardcoded in vercel.json — match it here as fallback
+const CRON_SECRET = process.env.CRON_SECRET || "UI8li2hDfIaZ3cP_SLI4HQp6mw8P36gpboeFD8lIUOQ";
+
 // Días de espera desde WELCOME_START para cada email
 const SCHEDULE: Record<number, number> = {
+  1: 0,   // Email 1 (bienvenida) → día 0 (retry si falló en signup)
   2: 3,   // Email 2 → día 3
   3: 7,   // Email 3 → día 7
   4: 14,  // Email 4 → día 14
@@ -30,7 +34,7 @@ function getTransporter() {
 
 export async function GET(req: NextRequest) {
   const secret = req.nextUrl.searchParams.get("secret");
-  if (secret !== process.env.CRON_SECRET) {
+  if (secret !== CRON_SECRET) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -39,6 +43,9 @@ export async function GET(req: NextRequest) {
   }
 
   const subs = await getSubscribers();
+  if (subs === null) {
+    return NextResponse.json({ error: "Failed to read subscribers" }, { status: 500 });
+  }
   if (subs.length === 0) {
     return NextResponse.json({ sent: 0, errors: [], message: "No subscribers" });
   }
@@ -48,19 +55,17 @@ export async function GET(req: NextRequest) {
   const errors: string[] = [];
 
   for (const sub of subs) {
-    // Saltar si secuencia completa, no iniciada, o blacklisted
-    if (!sub.welcomeStart || sub.welcomeStep === 0 || sub.welcomeStep >= 5 || sub.blacklisted) {
-      continue;
-    }
+    if (sub.blacklisted) continue;
 
-    // Guard: no enviar si se envió hace menos de 20 horas (previene duplicados)
-    if (!canSendEmail(sub)) {
-      continue;
-    }
+    // Guard: no enviar si se envió hace menos de 20 horas
+    if (!canSendEmail(sub)) continue;
 
+    // Determinar el siguiente email a enviar
     const nextStep = sub.welcomeStep + 1;
+    if (nextStep > 5) continue; // Secuencia completa
+
     const minDays = SCHEDULE[nextStep];
-    if (!minDays) continue;
+    if (minDays === undefined) continue;
 
     // ¿Han pasado suficientes días?
     if (daysSince(sub.welcomeStart) < minDays) continue;
@@ -76,11 +81,10 @@ export async function GET(req: NextRequest) {
         html: template.html(sub.nombre),
       });
 
-      // Guardar INMEDIATAMENTE después de cada envío (no batch)
-      // Re-lee el Gist para evitar sobreescribir cambios concurrentes
+      // Guardar INMEDIATAMENTE después de cada envío
       const saved = await markEmailSent(sub.email, nextStep);
       if (!saved) {
-        errors.push(`${sub.email}: email sent but step update failed`);
+        errors.push(`${sub.email}: email ${nextStep} sent but step update failed`);
       }
 
       totalSent++;

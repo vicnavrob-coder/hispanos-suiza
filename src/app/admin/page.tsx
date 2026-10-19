@@ -51,7 +51,7 @@ export default async function AdminPage({
     redirect('/admin?token=')
   }
 
-  const contacts = await getSubscribers()
+  const contacts = (await getSubscribers()) ?? []
 
   const now = new Date().toLocaleString('es-ES', { timeZone: 'Europe/Zurich' })
   const total = contacts.length

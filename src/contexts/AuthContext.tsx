@@ -3,7 +3,7 @@ import {
   createContext, useContext, useState, useEffect, useCallback, type ReactNode,
 } from "react";
 import {
-  getUser, saveUser, clearUser, register, login, loginWithGoogle,
+  getUser, clearUser, register, login, loginWithGoogle,
   decodeGoogleJwt, type AuthUser,
 } from "@/lib/auth";
 
@@ -28,6 +28,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [pendingCallback, setPendingCallback] = useState<(() => void) | null>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Client-only auth state
     setUser(getUser());
     setLoading(false);
   }, []);

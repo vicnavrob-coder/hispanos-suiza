@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { buildMetadata, BASE_URL } from "@/lib/seo";
+import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Buscador de trabajo Suiza 2026 — Ofertas reales por sector y ciudad",

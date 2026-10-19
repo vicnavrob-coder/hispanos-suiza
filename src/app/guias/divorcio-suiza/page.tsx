@@ -323,7 +323,7 @@ export default function DivorcioSuizaPage() {
               <p>
                 El divorcio pronunciado en Suiza es <strong>automáticamente reconocido en España</strong>
                 en virtud del Reglamento Bruselas II bis (Reglamento CE 2201/2003) y del acuerdo bilateral
-                España-Suiza. No necesitas un proceso de "exequátur" para que sea válido.
+                España-Suiza. No necesitas un proceso de «exequátur» para que sea válido.
               </p>
               <p>Sin embargo, sí debes inscribirlo en el Registro Civil español para que quede constancia en tus registros:</p>
               <ol>

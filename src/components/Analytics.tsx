@@ -10,6 +10,7 @@ export default function Analytics() {
   const [consent, setConsent] = useState<ConsentValue>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Client-only consent check
     setConsent(getConsent());
 
     const handler = (e: Event) => {

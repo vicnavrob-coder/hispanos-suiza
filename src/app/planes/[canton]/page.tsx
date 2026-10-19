@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { cantones } from "@/lib/planes";
+import { cantones, type Actividad } from "@/lib/planes";
 import { BASE_URL, buildMetadata, breadcrumbSchema, itemListSchema } from "@/lib/seo";
 
 type Props = { params: Promise<{ canton: string }> };
@@ -69,8 +69,8 @@ export default async function CantonPlanesPage({ params }: Props) {
   if (!c) notFound();
 
   const destacados = c.actividades.filter(a => a.destacado);
-  const gratuitos  = c.actividades.filter(a => (a as any).gratuito);
-  const paraFamilias = c.actividades.filter(a => (a as any).aptoNinos);
+  const gratuitos  = c.actividades.filter(a => a.gratuito);
+  const paraFamilias = c.actividades.filter(a => a.aptoNinos);
 
   const porTipo = c.actividades.reduce((acc, a) => {
     if (!acc[a.tipo]) acc[a.tipo] = [];
@@ -210,7 +210,7 @@ export default async function CantonPlanesPage({ params }: Props) {
   );
 }
 
-function ActividadCard({ a, cantonSlug }: { a: any; cantonSlug: string }) {
+function ActividadCard({ a, cantonSlug }: { a: Actividad; cantonSlug: string }) {
   return (
     <Link href={`/planes/${cantonSlug}/${a.slug}`}
       className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
@@ -246,7 +246,7 @@ function ActividadCard({ a, cantonSlug }: { a: any; cantonSlug: string }) {
   );
 }
 
-function CompactCard({ a, cantonSlug }: { a: any; cantonSlug: string }) {
+function CompactCard({ a, cantonSlug }: { a: Actividad; cantonSlug: string }) {
   return (
     <Link href={`/planes/${cantonSlug}/${a.slug}`}
       className="group flex gap-3 bg-white border border-gray-100 rounded-xl p-3 hover:border-red-200 hover:shadow-sm transition-all">

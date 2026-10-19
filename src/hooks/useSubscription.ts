@@ -20,6 +20,7 @@ export function useSubscription(): SubscriptionStatus {
   useEffect(() => {
     const user = getUser();
     if (!user?.email) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Client-only auth check
       setStatus({ loading: false, active: false, plan: null, renewsAt: null });
       return;
     }
