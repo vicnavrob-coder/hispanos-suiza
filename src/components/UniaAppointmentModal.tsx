@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 
 interface Props {
@@ -19,14 +19,21 @@ export default function UniaAppointmentModal({ open, onClose }: Props) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  // Reset state when modal opens
+  // Track previous open state to reset only on open transition
+  const wasOpen = useRef(false);
+
   useEffect(() => {
-    if (open) {
-      setTelefono("");
-      setMensaje("");
-      setSuccess(false);
-      setError("");
+    // Reset form only when transitioning from closed to open
+    if (open && !wasOpen.current) {
+      // Use requestAnimationFrame to avoid synchronous setState in effect
+      requestAnimationFrame(() => {
+        setTelefono("");
+        setMensaje("");
+        setSuccess(false);
+        setError("");
+      });
     }
+    wasOpen.current = open;
   }, [open]);
 
   async function handleSubmit(e: React.FormEvent) {
