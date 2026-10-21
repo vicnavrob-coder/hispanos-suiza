@@ -66,6 +66,7 @@ const SOURCE_STYLE: Record<string, { bg: string; color: string; label: string }>
   "JobScout24":  { bg: "#f0fdf4", color: "#15803d", label: "JobScout24" },
   "Jobup":       { bg: "#faf5ff", color: "#7c3aed", label: "Jobup.ch" },
   "job-room":    { bg: "#eff6ff", color: "#1e40af", label: "RAV job-room" },
+  "Adzuna":      { bg: "#ecfdf5", color: "#059669", label: "Adzuna" },
 };
 
 function salaryLabel(cat: JobCategory): string {
@@ -89,8 +90,17 @@ export default function TrabajoPage() {
   const [loading, setLoading]     = useState(false);
   const [buscado, setBuscado]     = useState(false);
   const [error, setError]         = useState("");
-  const [sources, setSources] = useState<{ jobsCh: number; linkedin: number; tempservice: number; tempoX: number; jobScout24: number; jobup: number; jobRoom: number } | null>(null);
+  const [sources, setSources] = useState<{ jobsCh: number; linkedin: number; tempservice: number; tempoX: number; jobScout24: number; jobup: number; jobRoom: number; adzuna: number } | null>(null);
+  const [filterContact, setFilterContact] = useState(false);
+  const [filterSalary, setFilterSalary] = useState(false);
   const { user, openModal }       = useAuth();
+
+  // Aplicar filtros a los jobs
+  const filteredJobs = jobs.filter((j) => {
+    if (filterContact && !j.applyEmail && !j.applyPhone) return false;
+    if (filterSalary && !j.salary) return false;
+    return true;
+  });
 
   async function buscar() {
     if (!categoria && !customTerm.trim()) return;
@@ -101,6 +111,8 @@ export default function TrabajoPage() {
     setJobs([]);
     setError("");
     setSources(null);
+    setFilterContact(false);
+    setFilterSalary(false);
 
     try {
       // Término principal: texto libre si se escribió, sino terms[0] del sector
@@ -149,13 +161,13 @@ export default function TrabajoPage() {
                 Buscador de trabajo en Suiza
               </h1>
               <p className="text-gray-500 text-sm max-w-xl">
-                Ofertas en tiempo real de 7 fuentes: jobs.ch, JobScout24, Jobup.ch, RAV job-room, LinkedIn, Tempservice y tempoX. Más 13 agencias ETT directas.
+                Ofertas en tiempo real de 8 fuentes: jobs.ch, JobScout24, Jobup.ch, RAV job-room, LinkedIn, Adzuna, Tempservice y tempoX. Más 13 agencias ETT directas.
               </p>
             </div>
             <div className="flex gap-5 text-center flex-shrink-0">
               {[
                 { n: "11", l: "sectores" },
-                { n: "7",  l: "fuentes live" },
+                { n: "8",  l: "fuentes live" },
                 { n: "13", l: "ETTs listadas" },
               ].map((s) => (
                 <div key={s.l} className="text-center">
@@ -350,7 +362,7 @@ export default function TrabajoPage() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
                 </svg>
-                <span>Buscando en 7 fuentes: jobs.ch, LinkedIn, JobScout24, jobup, RAV, Tempservice, tempoX…</span>
+                <span>Buscando en 8 fuentes: jobs.ch, LinkedIn, JobScout24, jobup, RAV, Adzuna, ETTs…</span>
               </>
             ) : (categoria || customTerm.trim()) && !user ? (
               <>
@@ -406,9 +418,20 @@ export default function TrabajoPage() {
                     <span className="text-green-700 font-semibold text-sm">{jobs.length} ofertas</span>
                   </>
                 )}
+                {jobs.length > 0 && (() => {
+                  const withContact = jobs.filter(j => j.applyEmail || j.applyPhone).length;
+                  const withSalary = jobs.filter(j => j.salary).length;
+                  return withContact > 0 || withSalary > 0 ? (
+                    <span className="text-xs ml-2">
+                      {withContact > 0 && <span className="text-green-600 font-semibold">{withContact} con contacto</span>}
+                      {withContact > 0 && withSalary > 0 && <span className="text-gray-400"> · </span>}
+                      {withSalary > 0 && <span className="text-blue-600 font-semibold">{withSalary} con salario</span>}
+                    </span>
+                  ) : null;
+                })()}
                 {sources && (
                   <span className="text-gray-400 text-xs ml-2">
-                    (jobs.ch: {sources.jobsCh} · Scout24: {sources.jobScout24} · jobup: {sources.jobup} · RAV: {sources.jobRoom} · ETT: {sources.tempservice + sources.tempoX} · LinkedIn: {sources.linkedin})
+                    (jobs.ch: {sources.jobsCh} · Scout24: {sources.jobScout24} · jobup: {sources.jobup} · RAV: {sources.jobRoom} · Adzuna: {sources.adzuna} · ETT: {sources.tempservice + sources.tempoX} · LinkedIn: {sources.linkedin})
                   </span>
                 )}
               </div>
@@ -420,23 +443,67 @@ export default function TrabajoPage() {
               </button>
             </div>
 
+            {/* Filtros rápidos */}
+            {jobs.length > 0 && (
+              <div className="flex items-center gap-2 flex-wrap py-3 border-b border-gray-100">
+                <span className="text-xs text-gray-500 font-medium">Filtros:</span>
+                <button
+                  onClick={() => setFilterContact(!filterContact)}
+                  className={`text-xs px-3 py-1.5 rounded-full border font-medium transition-all flex items-center gap-1.5 ${
+                    filterContact
+                      ? "bg-green-100 border-green-300 text-green-700"
+                      : "bg-white border-gray-200 text-gray-600 hover:border-green-300"
+                  }`}
+                >
+                  <span>📬</span>
+                  Solo con contacto directo
+                  {filterContact && <span className="ml-1">✓</span>}
+                </button>
+                <button
+                  onClick={() => setFilterSalary(!filterSalary)}
+                  className={`text-xs px-3 py-1.5 rounded-full border font-medium transition-all flex items-center gap-1.5 ${
+                    filterSalary
+                      ? "bg-blue-100 border-blue-300 text-blue-700"
+                      : "bg-white border-gray-200 text-gray-600 hover:border-blue-300"
+                  }`}
+                >
+                  <span>💰</span>
+                  Solo con salario visible
+                  {filterSalary && <span className="ml-1">✓</span>}
+                </button>
+                {(filterContact || filterSalary) && (
+                  <button
+                    onClick={() => { setFilterContact(false); setFilterSalary(false); }}
+                    className="text-xs text-gray-400 hover:text-red-600 underline ml-2"
+                  >
+                    Quitar filtros
+                  </button>
+                )}
+                {(filterContact || filterSalary) && filteredJobs.length !== jobs.length && (
+                  <span className="text-xs text-gray-400 ml-auto">
+                    Mostrando {filteredJobs.length} de {jobs.length}
+                  </span>
+                )}
+              </div>
+            )}
+
             {/* Ofertas reales */}
-            {jobs.length > 0 ? (
+            {filteredJobs.length > 0 ? (
               <section>
                 <div className="flex items-center gap-3 mb-4 flex-wrap">
                   <div className="w-1 h-6 rounded-full" style={{ background: ACCENT }} />
                   <h2 className="text-lg font-bold text-gray-800">Ofertas en tiempo real</h2>
                   <span className="text-xs bg-green-100 text-green-700 font-semibold px-2 py-0.5 rounded-full">
-                    {jobs.length} ofertas
+                    {filteredJobs.length} ofertas
                   </span>
-                  {jobs.some(j => j.isEtt) && (
+                  {filteredJobs.some(j => j.isEtt) && (
                     <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-orange-100 text-orange-700">
-                      🏭 {jobs.filter(j => j.isEtt).length} de agencias ETT
+                      🏭 {filteredJobs.filter(j => j.isEtt).length} de agencias ETT
                     </span>
                   )}
                 </div>
                 <div className="flex flex-col gap-4">
-                  {jobs.map((job, i) => {
+                  {filteredJobs.map((job, i) => {
                     const src      = SOURCE_STYLE[job.source] ?? SOURCE_STYLE["LinkedIn"];
                     const expanded = expandedJobs.has(i);
                     const hasContact = job.applyEmail || job.applyPhone;
@@ -650,6 +717,19 @@ export default function TrabajoPage() {
                   })}
                 </div>
               </section>
+            ) : jobs.length > 0 && filteredJobs.length === 0 ? (
+              <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5 text-center">
+                <p className="text-blue-800 font-semibold mb-1">🔍 Ninguna oferta coincide con los filtros</p>
+                <p className="text-blue-700 text-sm mb-3">
+                  Hay {jobs.length} ofertas disponibles pero ninguna cumple los filtros seleccionados.
+                </p>
+                <button
+                  onClick={() => { setFilterContact(false); setFilterSalary(false); }}
+                  className="text-sm bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Quitar filtros y ver todas
+                </button>
+              </div>
             ) : error ? (
               <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 text-center">
                 <p className="text-amber-800 font-semibold mb-1">⚠ {error}</p>

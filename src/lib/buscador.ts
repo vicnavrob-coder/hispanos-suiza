@@ -16,100 +16,208 @@ export const JOB_CATEGORIES: JobCategory[] = [
     label: "Informática / IT",
     icono: "💻",
     salarioMin: 7000, salarioMax: 10000,
-    description: "Empresas tecnológicas que pueden necesitar: desarrolladores backend/frontend/fullstack, DevOps, ingenieros de datos, administradores de sistemas y analistas de ciberseguridad.",
-    terms: ["software developer", "backend developer", "frontend developer", "devops engineer", "data engineer", "fullstack developer", "cloud engineer", "cybersecurity analyst"],
+    description: "Empresas tecnológicas: desarrolladores, DevOps, ingenieros de datos, administradores de sistemas.",
+    terms: [
+      // Inglés (principal en IT)
+      "software developer", "software engineer", "backend developer", "frontend developer",
+      "fullstack developer", "devops engineer", "data engineer", "cloud engineer",
+      "web developer", "java developer", "python developer", "react developer",
+      // Alemán
+      "Softwareentwickler", "Informatiker", "Programmierer", "IT Support",
+      // Genéricos
+      "developer", "engineer IT", "programmer",
+    ],
   },
   {
     slug: "sanidad",
     label: "Sanidad / Cuidados",
     icono: "🏥",
     salarioMin: 5800, salarioMax: 8000,
-    description: "Residencias, clínicas y servicios de atención domiciliaria que pueden buscar: enfermeros, auxiliares de enfermería, cuidadores de ancianos, fisioterapeutas y técnicos sanitarios.",
-    terms: ["enfermero", "auxiliar de enfermería", "cuidador de ancianos", "fisioterapeuta", "técnico sanitario", "asistente sanitario"],
+    description: "Residencias, clínicas, hospitales: enfermeros, auxiliares, cuidadores, fisioterapeutas.",
+    terms: [
+      // Alemán (prioritario)
+      "Pflegefachfrau", "Pflegefachmann", "Krankenschwester", "Krankenpfleger",
+      "Fachfrau Gesundheit", "Fachmann Gesundheit", "FaGe", "Altenpfleger",
+      "Spitex", "Physiotherapeut", "Pflegeassistent", "Betreuung",
+      // Francés
+      "infirmier", "infirmière", "aide-soignant", "soins",
+      // Inglés
+      "nurse", "caregiver", "healthcare assistant", "physiotherapist",
+    ],
   },
   {
     slug: "electricidad",
     label: "Electricidad",
     icono: "⚡",
     salarioMin: 5200, salarioMax: 6800,
-    description: "Empresas de instalaciones eléctricas que pueden buscar: electricistas industriales, instaladores, técnicos de mantenimiento eléctrico y automatistas.",
-    terms: ["electricista", "técnico electricista", "instalador eléctrico", "electricista industrial", "electricista de mantenimiento", "automatista"],
+    description: "Instalaciones eléctricas: electricistas industriales, instaladores, técnicos, automatistas.",
+    terms: [
+      // Alemán (prioritario)
+      "Elektriker", "Elektromonteur", "Elektroinstallateur", "Elektroniker",
+      "Elektrotechniker", "Automatiker", "Montage-Elektriker", "Servicetechniker Elektro",
+      // Francés
+      "électricien", "monteur électricien", "installateur électricien",
+      // Inglés
+      "electrician", "electrical installer", "automation technician",
+    ],
   },
   {
     slug: "fontaneria",
-    label: "Fontanería / Instalaciones",
+    label: "Fontanería / HVAC",
     icono: "🔧",
     salarioMin: 5200, salarioMax: 6800,
-    description: "Empresas de fontanería, calefacción y gas que pueden necesitar: fontaneros, técnicos sanitarios, calefactores e instaladores de climatización (HVAC).",
-    terms: ["fontanero", "instalador de fontanería", "técnico sanitario", "calefactor", "instalador HVAC", "instalador de gas"],
+    description: "Fontanería, calefacción, climatización: instaladores sanitarios, técnicos HVAC.",
+    terms: [
+      // Alemán (prioritario)
+      "Sanitärinstallateur", "Sanitärmonteur", "Heizungsinstallateur", "Heizungsmonteur",
+      "Lüftungsmonteur", "Klimatechniker", "HLKS", "Gebäudetechniker",
+      "Spengler", "Servicemonteur Heizung",
+      // Francés
+      "plombier", "installateur sanitaire", "chauffagiste", "frigoriste",
+      // Inglés
+      "plumber", "HVAC technician", "heating installer",
+    ],
   },
   {
     slug: "soldadura",
     label: "Soldadura / Metal",
     icono: "🔩",
     salarioMin: 5000, salarioMax: 6500,
-    description: "Talleres y empresas metalúrgicas que pueden buscar: soldadores TIG/MIG/MAG, caldereros, chapistas y montadores de estructuras metálicas.",
-    terms: ["soldador", "soldador TIG", "soldador MIG", "calderero", "chapista", "montador metálico"],
+    description: "Talleres metalúrgicos: soldadores TIG/MIG/MAG, caldereros, chapistas, montadores.",
+    terms: [
+      // Alemán (prioritario)
+      "Schweisser", "Metallbauer", "Schlosser", "Konstruktionsschlosser",
+      "Anlagebauer", "Stahlbaumonteur", "Spengler", "Blechbearbeiter",
+      "Polymechaniker", "Produktionsmechaniker",
+      // Francés
+      "soudeur", "métallier", "chaudronnier", "serrurier",
+      // Inglés
+      "welder", "metal worker", "steel fixer",
+    ],
   },
   {
     slug: "mecanica",
     label: "Mecánica / Automoción",
     icono: "🚗",
     salarioMin: 5000, salarioMax: 6500,
-    description: "Talleres mecánicos y concesionarios que pueden necesitar: mecánicos de coches, técnicos de automoción, chapistas pintores y electricistas de vehículos.",
-    terms: ["mecánico", "mecánico de coches", "técnico de automoción", "chapista pintor", "electricista de vehículos"],
+    description: "Talleres mecánicos: mecánicos de coches, técnicos automoción, carroceros.",
+    terms: [
+      // Alemán (prioritario)
+      "Automechaniker", "Automobil-Mechatroniker", "KFZ-Mechaniker", "Fahrzeugmechaniker",
+      "Carrossier", "Lackierer", "Servicetechniker Auto", "Landmaschinenmechaniker",
+      // Francés
+      "mécanicien automobile", "carrossier", "garagiste",
+      // Inglés
+      "car mechanic", "automotive technician",
+    ],
   },
   {
     slug: "construccion",
     label: "Construcción",
     icono: "🏗️",
     salarioMin: 4800, salarioMax: 6500,
-    description: "Empresas de obra civil y edificación que pueden necesitar: albañiles, encofradores, peones, gruistas, ferrallistas, soladores y yeseros.",
-    terms: ["albañil", "peón de construcción", "encofrador", "ferrallista", "solador", "gruista", "oficial de construcción"],
+    description: "Obra civil y edificación: albañiles, encofradores, peones, gruistas, soladores.",
+    terms: [
+      // Alemán (prioritario)
+      "Maurer", "Bauarbeiter", "Polier", "Bauleiter", "Vorarbeiter Bau",
+      "Schalungsbauer", "Betonbauer", "Eisenleger", "Bodenleger",
+      "Plattenleger", "Gipser", "Maler", "Dachdecker", "Zimmermann",
+      "Hilfsarbeiter Bau", "Bauhelfer", "Fassadenbauer",
+      // Francés
+      "maçon", "coffreur", "carreleur", "plâtrier", "peintre en bâtiment",
+      // Inglés
+      "construction worker", "bricklayer", "site manager",
+    ],
   },
   {
     slug: "logistica",
     label: "Logística / Transporte",
     icono: "🚛",
     salarioMin: 4800, salarioMax: 6200,
-    description: "Empresas de transporte y almacén que pueden buscar: conductores de camión, carretilleros, mozos de almacén, repartidores y preparadores de pedidos.",
-    terms: ["conductor de camión", "chófer", "repartidor", "carretillero", "mozo de almacén", "preparador de pedidos"],
+    description: "Transporte y almacén: conductores, carretilleros, mozos de almacén, repartidores.",
+    terms: [
+      // Alemán (prioritario)
+      "Chauffeur", "LKW-Fahrer", "Lastwagenchauffeur", "Staplerfahrer",
+      "Logistiker", "Lagerist", "Kommissionierer", "Lagermitarbeiter",
+      "Kurier", "Lieferfahrer", "Versandmitarbeiter", "Paketbote",
+      // Francés
+      "chauffeur poids lourd", "cariste", "magasinier", "livreur",
+      // Inglés
+      "truck driver", "forklift operator", "warehouse worker", "delivery driver",
+    ],
   },
   {
     slug: "hosteleria",
     label: "Hostelería / Restauración",
     icono: "🍽️",
     salarioMin: 4200, salarioMax: 5800,
-    description: "Restaurantes, hoteles y caterings que pueden necesitar: cocineros, ayudantes de cocina, camareros, barmans y recepcionistas de hotel.",
-    terms: ["cocinero", "ayudante de cocina", "jefe de cocina", "camarero", "barman", "recepcionista de hotel", "pastelero"],
+    description: "Restaurantes, hoteles, catering: cocineros, camareros, recepcionistas.",
+    terms: [
+      // Alemán (prioritario)
+      "Koch", "Köchin", "Küchenchef", "Sous Chef", "Commis de Cuisine",
+      "Servicefachangestellter", "Servicemitarbeiter", "Kellner", "Barkeeper",
+      "Hotelfachmann", "Rezeptionist", "Hauswirtschaft", "Küchenhilfe",
+      // Francés
+      "cuisinier", "chef de cuisine", "commis", "serveur", "serveuse", "réceptionniste",
+      // Inglés
+      "chef", "cook", "waiter", "waitress", "bartender", "hotel receptionist",
+    ],
   },
   {
     slug: "limpieza",
     label: "Limpieza / Mantenimiento",
     icono: "🧹",
     salarioMin: 3800, salarioMax: 4800,
-    description: "Empresas de limpieza y mantenimiento de edificios que pueden buscar: operarios de limpieza, técnicos de mantenimiento y conserjes.",
-    terms: ["limpiador", "operario de limpieza", "técnico de mantenimiento", "conserje", "auxiliar de mantenimiento"],
+    description: "Limpieza de edificios, mantenimiento: operarios, técnicos, conserjes.",
+    terms: [
+      // Alemán (prioritario)
+      "Reinigungskraft", "Reiniger", "Raumpfleger", "Gebäudereiniger",
+      "Hauswart", "Hausmeister", "Facility Manager", "Haustechniker",
+      "Unterhaltsreinigung", "Reinigungsmitarbeiter",
+      // Francés
+      "agent de nettoyage", "technicien de surface", "concierge",
+      // Inglés
+      "cleaner", "cleaning staff", "janitor", "maintenance worker",
+    ],
   },
   {
     slug: "agricultura",
     label: "Agricultura / Campo",
     icono: "🌾",
     salarioMin: 3800, salarioMax: 4800,
-    description: "Explotaciones agrícolas y viveros que pueden necesitar: temporeros, recolectores, tractoristas, jardineros y viñadores.",
-    terms: ["temporero agrícola", "recolector", "operario agrícola", "tractorista", "jardinero", "viñador"],
+    description: "Explotaciones agrícolas: temporeros, recolectores, tractoristas, jardineros.",
+    terms: [
+      // Alemán (prioritario)
+      "Landwirt", "Landwirtschaftshelfer", "Erntehelfer", "Gärtner",
+      "Traktorfahrer", "Winzer", "Obstbauer", "Gemüsebauer",
+      "Landschaftsgärtner", "Tierpfleger",
+      // Francés
+      "agriculteur", "ouvrier agricole", "jardinier", "viticulteur",
+      // Inglés
+      "farm worker", "agricultural worker", "gardener", "vineyard worker",
+    ],
   },
 ];
 
 export const CIUDADES_SUIZA = [
   "Toda Suiza",
-  // Grandes ciudades
+  // ── Top 10 ciudades (más empleo) ──────────────────────────────────────
   "Zürich", "Geneva", "Basel", "Bern", "Lausanne",
-  "Lugano", "Winterthur", "St. Gallen", "Lucerne", "Zug",
-  // Ciudades medianas y cantones importantes
-  "Aarau", "Biel/Bienne", "Fribourg", "Solothurn", "Neuchâtel",
-  "Sion", "Chur", "Bellinzona", "Thun", "Schaffhausen",
-  "Olten", "Baden", "Frauenfeld", "Herisau",
+  "Winterthur", "Lucerne", "St. Gallen", "Lugano", "Zug",
+  // ── Ciudades medianas con mucho empleo ────────────────────────────────
+  "Biel/Bienne", "Thun", "Köniz", "La Chaux-de-Fonds", "Fribourg",
+  "Schaffhausen", "Chur", "Neuchâtel", "Sion", "Uster",
+  // ── Zonas industriales importantes ────────────────────────────────────
+  "Aarau", "Baden", "Olten", "Solothurn", "Wetzikon",
+  "Dübendorf", "Dietikon", "Wädenswil", "Horgen", "Rapperswil",
+  // ── Regiones francófonas ──────────────────────────────────────────────
+  "Montreux", "Vevey", "Yverdon", "Nyon", "Morges",
+  // ── Ticino (italiano) ─────────────────────────────────────────────────
+  "Bellinzona", "Locarno", "Mendrisio", "Chiasso",
+  // ── Otras ciudades con empleo ─────────────────────────────────────────
+  "Frauenfeld", "Kreuzlingen", "Wil", "Gossau", "Herisau",
+  "Langenthal", "Burgdorf", "Emmen", "Kriens", "Schwyz",
+  "Grenchen", "Delémont", "Martigny", "Sierre",
 ];
 
 export const PORTALES_EMPLEO_BUSQUEDA = [
