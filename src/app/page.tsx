@@ -547,6 +547,92 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════
+          RECURSOS DESCARGABLES - Lead Magnets
+      ══════════════════════════════════════════ */}
+      <section className="max-w-[1200px] mx-auto px-6 py-14">
+        <div className="text-center mb-10">
+          <h2
+            className="font-bold"
+            style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A", fontSize: "1.5rem" }}
+          >
+            Recursos gratuitos para empezar
+          </h2>
+          <p style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", fontSize: "0.875rem", marginTop: 6 }}>
+            Descarga guías prácticas en español para tu mudanza a Suiza
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          {[
+            {
+              href: "/recursos/primer-mes",
+              icon: "📋",
+              titulo: "Checklist: Tu Primer Mes",
+              desc: "25 tareas esenciales organizadas por categoría para que no se te olvide nada en tu primer mes.",
+              tag: "Gratis",
+              tagColor: "#059669",
+              tagBg: "#D1FAE5",
+              accent: "#C8102E",
+            },
+            {
+              href: "/recursos/guia-salarios",
+              icon: "💰",
+              titulo: "Guía de Salarios 2026",
+              desc: "Rangos salariales reales por sector: IT, Sanidad, Finanzas, Hostelería y más de 25 puestos.",
+              tag: "Actualizado",
+              tagColor: "#1d4ed8",
+              tagBg: "#DBEAFE",
+              accent: "#0032A0",
+            },
+          ].map((r) => (
+            <Link
+              key={r.href}
+              href={r.href}
+              className="group bg-white rounded-2xl p-6 flex items-start gap-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+              style={{ border: "1px solid #E8E5E0", borderLeft: `4px solid ${r.accent}` }}
+            >
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0" style={{ background: "#F8F6F3" }}>
+                {r.icon}
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <span
+                    className="text-xs font-semibold px-2 py-0.5 rounded-full"
+                    style={{ background: r.tagBg, color: r.tagColor }}
+                  >
+                    {r.tag}
+                  </span>
+                </div>
+                <h3
+                  className="font-bold mb-1 group-hover:text-[#C8102E] transition-colors"
+                  style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A" }}
+                >
+                  {r.titulo}
+                </h3>
+                <p style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", fontSize: "0.875rem", lineHeight: 1.5 }}>
+                  {r.desc}
+                </p>
+                <span
+                  className="inline-block mt-3 text-sm font-semibold"
+                  style={{ color: r.accent, fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
+                >
+                  Descargar gratis →
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className="text-center mt-6">
+          <Link
+            href="/recursos"
+            className="text-sm font-medium hover:underline"
+            style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#C8102E" }}
+          >
+            Ver todos los recursos →
+          </Link>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
           ARTÍCULOS RECIENTES
       ══════════════════════════════════════════ */}
       <section style={{ background: "#F8F6F3", borderTop: "1px solid #E8E5E0" }}>

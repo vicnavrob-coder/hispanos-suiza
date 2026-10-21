@@ -4,14 +4,15 @@ export const PLANS = {
     name: "Premium",
     price_chf: 9,
     features: [
-      "Acceso completo a todas las herramientas",
-      "Guías PDF descargables",
-      "Calculadora de salario neto CHF",
-      "Comparador de ciudades completo",
+      "Calculadora de salario neto ilimitada",
+      "Comparador completo de 11 ciudades",
       "Buscador de empleo con filtros avanzados",
+      "Guías PDF descargables",
+      "Citas con UNIA (asesoría laboral)",
       "Soporte prioritario por email",
-      "Sin anuncios",
+      "Sin anuncios ni límites",
     ],
+    highlight: "Ahorra +100 CHF/año en decisiones mejor informadas",
   },
 } as const;
 

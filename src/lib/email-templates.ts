@@ -46,9 +46,16 @@ export const EMAIL_TEMPLATES: Record<number, { subject: string; html: (nombre?: 
     subject: "Bienvenido a HispanosEnSuiza 🇨🇭 — tu guía empieza aquí",
     html: (nombre) => layout("¡Bienvenido a la comunidad!", [
       p(`Hola${nombre ? ` ${nombre}` : ""},`),
-      p("Acabas de unirte a la comunidad de hispanohablantes que viven (o quieren vivir) en Suiza. Cada semana te enviaremos lo más útil: guías prácticas, herramientas y consejos que no encontrarás en ningún otro sitio."),
-      p("<strong>Para empezar, esta herramienta te va a encantar:</strong>"),
-      p("Nuestra calculadora de salario neto te dice cuánto te queda en mano después de impuestos, cotizaciones y seguros. Introduce tu salario bruto y cantón, y listo."),
+      p("Acabas de unirte a <strong>+5.000 hispanohablantes</strong> que viven (o quieren vivir) en Suiza. Cada semana te enviaremos lo más útil: guías prácticas, herramientas y consejos que no encontrarás en ningún otro sitio."),
+      p("<strong>🎁 Tu regalo de bienvenida:</strong>"),
+      `<table width="100%" cellpadding="0" cellspacing="0" style="margin:12px 0 20px">
+        <tr><td style="padding:14px;background:#fef2f2;border-radius:8px;border-left:4px solid #C8102E">
+          <strong style="color:#991b1b">📋 Checklist: Tu Primer Mes en Suiza</strong><br>
+          <span style="font-size:14px;color:#7f1d1d">25 tareas esenciales organizadas por categoría para que no se te olvide nada.</span><br>
+          <a href="${SITE}/recursos/primer-mes" style="color:${BRAND_COLOR};font-size:13px;font-weight:600">Descargar gratis →</a>
+        </td></tr>
+      </table>`,
+      p("También puedes usar nuestra calculadora de salario neto para saber cuánto te queda en mano después de impuestos, cotizaciones y seguros."),
       cta("Calcular mi salario neto →", `${SITE}/herramientas/salario-neto`),
       p("Nos vemos pronto con más contenido útil."),
       p("Un abrazo,<br><strong>El equipo de HispanosEnSuiza</strong>"),
@@ -69,6 +76,13 @@ export const EMAIL_TEMPLATES: Record<number, { subject: string; html: (nombre?: 
         <li>Abono de transporte mensual: 70-120 CHF</li>
       </ul>`,
       p("Pero ojo: los salarios también son proporcionales. Un enfermero gana 75.000 CHF/año, un ingeniero 100.000+."),
+      `<table width="100%" cellpadding="0" cellspacing="0" style="margin:12px 0 20px">
+        <tr><td style="padding:14px;background:#eff6ff;border-radius:8px;border-left:4px solid #0032A0">
+          <strong style="color:#1e3a8a">💰 Guía de Salarios Suiza 2026</strong><br>
+          <span style="font-size:14px;color:#1e40af">Rangos salariales reales por sector y puesto: IT, Sanidad, Finanzas y más.</span><br>
+          <a href="${SITE}/recursos/guia-salarios" style="color:${BRAND_COLOR};font-size:13px;font-weight:600">Descargar gratis →</a>
+        </td></tr>
+      </table>`,
       cta("Leer la comparativa completa →", `${SITE}/blog/coste-vida-suiza-vs-espana-comparativa`),
       p("Mañana no, pero en unos días te mando algo sobre herramientas que te van a ahorrar horas de búsqueda."),
       p("¡Hasta pronto!<br><strong>Equipo HispanosEnSuiza</strong>"),
@@ -138,6 +152,13 @@ export const EMAIL_TEMPLATES: Record<number, { subject: string; html: (nombre?: 
         <li><strong>Suiza vs España en impuestos</strong> — la diferencia real, con números. <a href="${SITE}/blog/impuestos-suiza-vs-espana-comparativa-2026" style="color:${BRAND_COLOR}">Comparativa →</a></li>
       </ol>`,
       cta("Usar la calculadora de impuesto fuente →", `${SITE}/herramientas/impuesto-fuente`),
+      `<table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0">
+        <tr><td style="padding:16px;background:#fef3c7;border-radius:8px;border:1px solid #fde68a">
+          <strong style="color:#92400e">⚖️ ¿Problemas con tu contrato de trabajo?</strong><br>
+          <span style="font-size:14px;color:#78350f">UNIA, el mayor sindicato de Suiza, ofrece asesoramiento laboral gratuito para hispanohablantes. Puedes pedir cita directamente desde nuestra web.</span><br>
+          <a href="${SITE}/trabajo/unia" style="color:${BRAND_COLOR};font-size:13px;font-weight:600;display:inline-block;margin-top:8px">Más info sobre UNIA →</a>
+        </td></tr>
+      </table>`,
       p("A partir de ahora te llegarán nuestras newsletters semanales con lo más relevante. Si alguna vez necesitas algo específico, responde a este email directamente."),
       p("Ha sido un placer tenerte en la serie de bienvenida. ¡Mucho éxito en Suiza!"),
       p("<strong>Equipo HispanosEnSuiza</strong>"),

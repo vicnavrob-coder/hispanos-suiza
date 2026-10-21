@@ -58,6 +58,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/guias/volver-espana-desde-suiza`,    lastModified: now, changeFrequency: "monthly", priority: 0.8 },
   ];
 
+  // Recursos descargables (lead magnets)
+  const recursosPages: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/recursos`,                           lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE_URL}/recursos/primer-mes`,                lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}/recursos/guia-salarios`,             lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+  ];
+
   // Artículos del blog (prioridad por destacado)
   const postPages: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
@@ -102,5 +109,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ),
   ];
 
-  return [...staticPages, ...toolPages, ...latinoPages, ...guiasPages, ...postPages, ...categoriaPages, ...ciudadPages, ...planesPages];
+  return [...staticPages, ...toolPages, ...latinoPages, ...guiasPages, ...recursosPages, ...postPages, ...categoriaPages, ...ciudadPages, ...planesPages];
 }

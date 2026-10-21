@@ -403,6 +403,52 @@ export default function UniaPage() {
         </div>
       </section>
 
+      {/* ── Testimonios ── */}
+      <section className="mb-10">
+        <h2 className="text-2xl font-black text-gray-900 mb-6">Lo que dicen otros hispanohablantes</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            {
+              texto: "Llevaba 6 meses sin cobrar horas extra. UNIA habló con mi empleador y en 2 semanas tenía los CHF 1.800 que me debían en mi cuenta.",
+              nombre: "Jorge L.",
+              ubicacion: "Construcción · Zúrich",
+              emoji: "🇪🇸",
+            },
+            {
+              texto: "Me despidieron sin preaviso. UNIA revisó mi caso y conseguimos que me pagaran los 2 meses de preaviso más una compensación.",
+              nombre: "María C.",
+              ubicacion: "Hostelería · Ginebra",
+              emoji: "🇨🇴",
+            },
+            {
+              texto: "No sabía que mi contrato estaba mal. Un asesor de UNIA lo revisó y me dijo que me estaban pagando CHF 400 menos del mínimo del CCT.",
+              nombre: "Roberto S.",
+              ubicacion: "Logística · Basilea",
+              emoji: "🇲🇽",
+            },
+            {
+              texto: "Tuve un accidente laboral y SUVA no quería pagar. UNIA se encargó del papeleo y conseguí la indemnización completa.",
+              nombre: "Ana P.",
+              ubicacion: "Industria · Lucerna",
+              emoji: "🇦🇷",
+            },
+          ].map((t) => (
+            <div key={t.nombre} className="bg-white rounded-2xl p-5 border border-gray-100">
+              <p className="text-gray-600 text-sm mb-4 leading-relaxed italic">
+                &ldquo;{t.texto}&rdquo;
+              </p>
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">{t.emoji}</span>
+                <div>
+                  <p className="font-semibold text-gray-800 text-sm">{t.nombre}</p>
+                  <p className="text-xs text-gray-400">{t.ubicacion}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ── FAQ ── */}
       <section className="mb-10">
         <h2 className="text-2xl font-black text-gray-900 mb-6">Preguntas frecuentes sobre la UNIA</h2>

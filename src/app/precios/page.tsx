@@ -76,11 +76,14 @@ export default function PreciosPage() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
+          <span className="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-4">
+            +5.000 hispanohablantes confían en nosotros
+          </span>
           <h1 className="text-4xl font-bold text-[#1a1a2e] mb-4" style={{ fontFamily: "Playfair Display, serif" }}>
-            Accede a todo lo que necesitas
+            Toma mejores decisiones en Suiza
           </h1>
           <p className="text-lg text-gray-600 max-w-xl mx-auto">
-            Todo el contenido, herramientas y guías para vivir bien en Suiza. Sin límites.
+            Herramientas, guías y asesoramiento para que tu vida en Suiza sea más fácil desde el primer día.
           </p>
         </div>
 
@@ -173,11 +176,45 @@ export default function PreciosPage() {
           {[
             "🔒 Pago seguro con Stripe",
             "✅ Cancela en cualquier momento",
-            "💳 Visa, Mastercard, PayPal",
+            "💳 Visa, Mastercard, PostFinance",
             "🇨🇭 Precios en CHF",
           ].map((t) => (
             <span key={t}>{t}</span>
           ))}
+        </div>
+
+        {/* Testimonials */}
+        <div className="mt-16 max-w-2xl mx-auto">
+          <h3 className="text-xl font-bold text-[#1a1a2e] mb-6 text-center">
+            Lo que dicen nuestros usuarios
+          </h3>
+          <div className="space-y-4">
+            {[
+              {
+                text: "La calculadora de salario neto me ahorró horas de búsqueda. Negocié mi contrato con los números claros y conseguí un mejor salario.",
+                name: "Carlos M.",
+                location: "Madrid → Zúrich",
+                emoji: "🇪🇸",
+              },
+              {
+                text: "La cita con UNIA fue clave. Me ayudaron a reclamar horas extra que no me pagaban. Recuperé casi 2.000 CHF.",
+                name: "Ana L.",
+                location: "Bogotá → Ginebra",
+                emoji: "🇨🇴",
+              },
+            ].map((t) => (
+              <div key={t.name} className="bg-white rounded-xl p-5 border border-gray-100">
+                <p className="text-gray-600 text-sm mb-3 italic">&ldquo;{t.text}&rdquo;</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">{t.emoji}</span>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">{t.name}</p>
+                    <p className="text-xs text-gray-500">{t.location}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* FAQ */}
