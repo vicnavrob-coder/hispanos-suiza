@@ -3,7 +3,7 @@ import { buildMetadata, BASE_URL, webAppSchema, breadcrumbSchema, faqSchema } fr
 
 export const metadata: Metadata = buildMetadata({
   title: "Calculadora de seguros médicos en Suiza — KVG y suplementarios",
-  description: "Calcula el coste de tu seguro médico obligatorio (KVG/LAMal) en Suiza por cantón, edad y franquicia. Compara aseguradoras y ahorra hasta 1.200 CHF al año.",
+  description: "Calcula el coste de tu seguro médico obligatorio (KVG/LAMal) en Suiza por cantón, edad y franquicia. Compara aseguradoras y habla con un asesor en español gratis.",
   path: "/seguros",
   ogImage: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=85&auto=format&fit=crop",
   keywords: [
@@ -12,6 +12,7 @@ export const metadata: Metadata = buildMetadata({
     "cuanto cuesta seguro medico suiza 2026", "krankenversicherung suiza",
     "seguro obligatorio suiza hispanohablante", "franquicia seguro suiza",
     "diferencia kvg lamal suiza", "aseguradoras baratas suiza",
+    "asesor seguros suiza español", "consulta seguro medico español",
   ],
 });
 

@@ -119,6 +119,24 @@ export default function SegurosPage() {
         </div>
       </section>
 
+      {/* ── BANNER ASESOR ────────────────────────────────────── */}
+      <div className="bg-green-600 text-white">
+        <div className="max-w-5xl mx-auto px-4 py-2.5 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5">
+            <span className="text-lg flex-shrink-0">🧑‍💼</span>
+            <p className="text-sm">
+              <strong>¿Dudas?</strong> Habla con José, asesor español — <span className="text-green-200">videollamada gratis de 15 min</span>
+            </p>
+          </div>
+          <Link
+            href="/seguros/asesoria"
+            className="flex-shrink-0 bg-white text-green-700 text-xs font-bold px-3 py-1.5 rounded-full hover:bg-green-50 transition-colors"
+          >
+            Reservar cita →
+          </Link>
+        </div>
+      </div>
+
       {/* ── ALERTA OBLIGATORIO ───────────────────────────────── */}
       <div className="bg-amber-50 border-b border-amber-200">
         <div className="max-w-5xl mx-auto px-4 py-2.5 flex items-center gap-2.5">
@@ -485,6 +503,38 @@ export default function SegurosPage() {
               >
                 Abrir priminfo.admin.ch →
               </a>
+            </div>
+
+            {/* CTA José - Asesor */}
+            <div
+              className="rounded-2xl p-5 text-white relative overflow-hidden"
+              style={{ background: "linear-gradient(135deg, #059669, #047857)" }}
+            >
+              <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+              <div className="flex flex-col sm:flex-row items-start gap-4">
+                <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center text-2xl flex-shrink-0 border-2 border-white/30">
+                  🧑‍💼
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="bg-yellow-400 text-yellow-900 text-[10px] font-bold px-2 py-0.5 rounded-full">GRATIS</span>
+                    <span className="text-green-200 text-xs">Asesor en español</span>
+                  </div>
+                  <h3 className="font-bold text-lg mb-1">¿Dudas? Habla con José</h3>
+                  <p className="text-green-100 text-sm mb-3">
+                    José es español y experto en seguros suizos. Videollamada gratuita de 15 min para resolver tus dudas.
+                  </p>
+                  <a
+                    href="https://calendar.app.google/pZrPbwRThpDsRW3z5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-white text-green-700 font-bold px-5 py-2.5 rounded-full text-sm hover:bg-green-50 transition-colors"
+                  >
+                    <span>📅</span>
+                    <span>Reservar cita gratuita</span>
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* CTAs cruzados */}

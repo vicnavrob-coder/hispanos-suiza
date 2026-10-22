@@ -364,6 +364,53 @@ export default function SegurosMedicosPage() {
           </p>
         </section>
 
+        {/* CTA José - Asesor de seguros */}
+        <section className="mb-12" id="asesor">
+          <div
+            className="rounded-2xl p-6 text-white relative overflow-hidden"
+            style={{ background: "linear-gradient(135deg, #059669, #047857)" }}
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
+            <div className="relative flex flex-col md:flex-row items-start gap-5">
+              <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center text-4xl flex-shrink-0 border-2 border-white/30">
+                🧑‍💼
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="bg-white/20 text-white text-xs font-bold px-2.5 py-1 rounded-full">ASESOR EN ESPAÑOL</span>
+                  <span className="bg-yellow-400 text-yellow-900 text-xs font-bold px-2.5 py-1 rounded-full">GRATIS</span>
+                </div>
+                <h2 className="font-bold text-xl mb-2">¿Prefieres que te lo explique una persona?</h2>
+                <p className="text-green-100 text-sm mb-4 leading-relaxed">
+                  <strong>José</strong> es español, vive en Suiza y lleva años ayudando a hispanohablantes
+                  a entender y elegir su seguro médico. Reserva una videollamada gratuita de 15 minutos
+                  para resolver todas tus dudas: qué aseguradora elegir, qué franquicia te conviene,
+                  cómo ahorrar en la prima, y si necesitas seguro complementario.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href="https://calendar.app.google/pZrPbwRThpDsRW3z5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 bg-white text-green-700 font-bold px-6 py-3 rounded-full text-sm hover:bg-green-50 transition-colors shadow-lg"
+                  >
+                    <span>📅</span>
+                    <span>Reservar cita con José</span>
+                  </a>
+                  <div className="flex items-center gap-2 text-green-200 text-xs">
+                    <span>✓ Sin compromiso</span>
+                    <span>·</span>
+                    <span>✓ 15 min videollamada</span>
+                    <span>·</span>
+                    <span>✓ En español</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Expat Savvy afiliado */}
         <section className="mb-12">
           <div
