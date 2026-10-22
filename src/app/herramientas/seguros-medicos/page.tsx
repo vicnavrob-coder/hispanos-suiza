@@ -384,9 +384,9 @@ export default function SegurosMedicosPage() {
                 <h2 className="font-bold text-xl mb-2">¿Prefieres que te lo explique una persona?</h2>
                 <p className="text-green-100 text-sm mb-4 leading-relaxed">
                   <strong>José</strong> es español, vive en Suiza y lleva años ayudando a hispanohablantes
-                  a entender y elegir su seguro médico. Reserva una videollamada gratuita de 15 minutos
-                  para resolver todas tus dudas: qué aseguradora elegir, qué franquicia te conviene,
-                  cómo ahorrar en la prima, y si necesitas seguro complementario.
+                  a entender y elegir su seguro médico. Reserva una videollamada gratuita de <strong>45 minutos</strong>
+                  donde te lo explica todo con calma, resuelves todas tus dudas, y si llegáis a un acuerdo,
+                  puedes contratar el seguro directamente con él.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <a
@@ -399,9 +399,9 @@ export default function SegurosMedicosPage() {
                     <span>Reservar cita con José</span>
                   </a>
                   <div className="flex items-center gap-2 text-green-200 text-xs">
-                    <span>✓ Sin compromiso</span>
+                    <span>✓ 45 min completos</span>
                     <span>·</span>
-                    <span>✓ 15 min videollamada</span>
+                    <span>✓ Puedes contratar</span>
                     <span>·</span>
                     <span>✓ En español</span>
                   </div>

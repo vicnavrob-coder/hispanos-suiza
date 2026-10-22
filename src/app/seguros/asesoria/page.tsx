@@ -4,7 +4,7 @@ import { buildMetadata, BASE_URL, breadcrumbSchema, faqSchema } from "@/lib/seo"
 
 export const metadata: Metadata = buildMetadata({
   title: "Asesor de seguros en español en Suiza | Consulta gratuita con José",
-  description: "Habla con José, asesor español experto en seguros médicos suizos. Videollamada gratuita de 15 minutos. Te ayuda a elegir aseguradora, franquicia y ahorrar en tu prima LAMal/KVG.",
+  description: "Habla con José, asesor español experto en seguros médicos suizos. Videollamada gratuita de 45 minutos donde te explica todo, resuelve tus dudas y puedes contratar tu seguro LAMal/KVG.",
   path: "/seguros/asesoria",
   ogImage: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&q=85&auto=format&fit=crop",
   keywords: [
@@ -30,15 +30,15 @@ const schemas = [
   faqSchema([
     {
       pregunta: "¿La consulta con José es realmente gratuita?",
-      respuesta: "Sí, la primera consulta de 15 minutos por videollamada es completamente gratuita y sin compromiso. José te ayuda a entender las opciones y resolver tus dudas básicas sobre el seguro médico suizo.",
+      respuesta: "Sí, la consulta de 40-45 minutos por videollamada es completamente gratuita. José te explica todo con calma, resuelve todas tus dudas y, si llegáis a un acuerdo, puedes contratar el seguro directamente con él.",
     },
     {
       pregunta: "¿Qué puedo preguntar en la consulta?",
       respuesta: "Puedes preguntar sobre qué aseguradora elegir, qué franquicia te conviene según tu situación, cómo funciona el sistema LAMal/KVG, si necesitas seguro complementario, cómo cambiar de aseguradora, y cualquier duda sobre el seguro médico en Suiza.",
     },
     {
-      pregunta: "¿José es un agente de seguros?",
-      respuesta: "José es un asesor independiente español residente en Suiza que ayuda a hispanohablantes a entender el sistema de seguros suizo. Su objetivo es orientarte de forma imparcial para que tomes la mejor decisión.",
+      pregunta: "¿Puedo contratar el seguro con José?",
+      respuesta: "Sí. Si después de la explicación decides contratar, José puede gestionar la contratación directamente durante la llamada o ayudarte con los trámites. Todo en español y sin complicaciones.",
     },
     {
       pregunta: "¿Cómo reservo la cita?",
@@ -49,7 +49,7 @@ const schemas = [
     "@context": "https://schema.org",
     "@type": "Service",
     name: "Asesoría gratuita de seguros médicos en Suiza",
-    description: "Consulta gratuita de 15 minutos con José, asesor español experto en seguros médicos suizos LAMal/KVG",
+    description: "Consulta gratuita de 45 minutos con José, asesor español experto en seguros médicos suizos LAMal/KVG. Explicación completa y posibilidad de contratar directamente.",
     provider: {
       "@type": "Person",
       name: "José",
@@ -68,7 +68,7 @@ const schemas = [
       "@type": "Offer",
       price: "0",
       priceCurrency: "CHF",
-      description: "Primera consulta gratuita de 15 minutos",
+      description: "Consulta gratuita de 45 minutos con posibilidad de contratación",
     },
     url: `${BASE_URL}/seguros/asesoria`,
   },
@@ -81,9 +81,9 @@ const VENTAJAS = [
     descripcion: "Sin barreras de idioma. José te explica todo en tu lengua, con paciencia y claridad.",
   },
   {
-    icono: "🎯",
-    titulo: "Asesoría imparcial",
-    descripcion: "José no trabaja para ninguna aseguradora. Te recomienda lo mejor para ti, no lo que le conviene a él.",
+    icono: "⏱️",
+    titulo: "45 minutos completos",
+    descripcion: "Tiempo suficiente para explicarte todo bien, resolver todas tus dudas y no quedarte con ninguna pregunta.",
   },
   {
     icono: "💰",
@@ -91,14 +91,14 @@ const VENTAJAS = [
     descripcion: "Elegir bien la franquicia y el modelo puede ahorrarte cientos de francos al año.",
   },
   {
-    icono: "⏱️",
-    titulo: "15 minutos que valen oro",
-    descripcion: "En una videollamada rápida resuelves todas tus dudas y sales con las ideas claras.",
+    icono: "✍️",
+    titulo: "Contrata directamente",
+    descripcion: "Si llegáis a un acuerdo, puedes contratar el seguro en la misma llamada. Sin papeleo extra.",
   },
   {
     icono: "🆓",
     titulo: "Totalmente gratis",
-    descripcion: "La primera consulta es gratuita y sin compromiso. Nada que perder, mucho que ganar.",
+    descripcion: "La consulta es gratuita y sin compromiso. Nada que perder, mucho que ganar.",
   },
   {
     icono: "🏔️",
@@ -147,7 +147,8 @@ export default function AsesoriaPage() {
               </h1>
               <p className="text-lg text-green-100 mb-6 max-w-xl">
                 Habla con <strong>José</strong>, asesor español que vive en Suiza y te explica todo
-                en tu idioma. <strong>15 minutos de videollamada gratis</strong> para resolver tus dudas.
+                en tu idioma. <strong>45 minutos de videollamada gratis</strong> donde resuelves todas tus dudas
+                y puedes contratar tu seguro directamente.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <a
@@ -185,10 +186,10 @@ export default function AsesoriaPage() {
         <div className="max-w-5xl mx-auto px-4 py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { valor: "Gratis", label: "Primera consulta" },
-              { valor: "15 min", label: "Videollamada" },
+              { valor: "Gratis", label: "Consulta completa" },
+              { valor: "45 min", label: "Videollamada" },
               { valor: "100%", label: "En español" },
-              { valor: "0 CHF", label: "Sin compromiso" },
+              { valor: "Directo", label: "Contrata en la llamada" },
             ].map(({ valor, label }) => (
               <div key={label}>
                 <div className="text-2xl md:text-3xl font-black text-green-700">{valor}</div>
@@ -222,7 +223,7 @@ export default function AsesoriaPage() {
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">¿Qué puedes preguntarle?</h2>
           <p className="text-gray-500 text-center mb-8">
-            En 15 minutos puedes resolver dudas como estas:
+            En 45 minutos José te explica todo y resuelve dudas como estas:
           </p>
           <div className="bg-green-50 rounded-2xl p-6 md:p-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -256,7 +257,7 @@ export default function AsesoriaPage() {
               {
                 n: "3",
                 titulo: "Habla con José",
-                descripcion: "15 minutos donde resuelves todas tus dudas. Sales con las ideas claras.",
+                descripcion: "45 minutos donde te lo explica todo, resuelves dudas y puedes contratar.",
                 icono: "💬",
               },
             ].map((paso) => (
@@ -291,7 +292,7 @@ export default function AsesoriaPage() {
               <span>Reservar cita con José</span>
             </a>
             <p className="text-green-200 text-sm mt-4">
-              ✓ Gratuito · ✓ 15 minutos · ✓ Por videollamada · ✓ En español
+              ✓ Gratuito · ✓ 45 minutos · ✓ Por videollamada · ✓ Puedes contratar directamente
             </p>
           </div>
         </section>
@@ -303,19 +304,19 @@ export default function AsesoriaPage() {
             {[
               {
                 q: "¿La consulta es realmente gratuita?",
-                a: "Sí, la primera consulta de 15 minutos es completamente gratuita y sin ningún compromiso. José te ayuda a entender tus opciones de forma desinteresada.",
+                a: "Sí, la consulta de 45 minutos es completamente gratuita. José te explica todo con calma y sin presiones. Si decides contratar, lo hacéis en la misma llamada.",
               },
               {
-                q: "¿José es un agente de seguros?",
-                a: "José es un asesor independiente español que vive en Suiza. No trabaja para ninguna aseguradora, así que te puede dar una opinión imparcial sobre qué te conviene más.",
+                q: "¿Puedo contratar el seguro con José?",
+                a: "Sí. José te asesora y, si llegáis a un acuerdo sobre qué seguro te conviene, puedes contratarlo directamente durante la videollamada. Todo en español y sin complicaciones.",
               },
               {
-                q: "¿Qué pasa después de la consulta?",
-                a: "Nada obligatorio. Con la información que te da José, tú decides qué hacer. Puedes contratar el seguro por tu cuenta directamente con la aseguradora que elijas.",
+                q: "¿Y si no quiero contratar en la llamada?",
+                a: "Sin problema. La consulta es sin compromiso. José te da toda la información y tú decides cuándo y cómo contratar. No hay ninguna presión.",
               },
               {
                 q: "¿Puedo hablar con José si ya tengo seguro?",
-                a: "Por supuesto. Muchas personas quieren saber si están pagando de más o si les conviene cambiar de aseguradora o franquicia. José te puede orientar.",
+                a: "Por supuesto. Muchas personas quieren saber si están pagando de más o si les conviene cambiar de aseguradora o franquicia. José te puede orientar y ayudarte a cambiar si quieres.",
               },
             ].map(({ q, a }) => (
               <div key={q} className="bg-white rounded-xl p-5 border border-gray-100">

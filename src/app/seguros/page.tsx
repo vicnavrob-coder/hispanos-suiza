@@ -125,7 +125,7 @@ export default function SegurosPage() {
           <div className="flex items-center gap-2.5">
             <span className="text-lg flex-shrink-0">🧑‍💼</span>
             <p className="text-sm">
-              <strong>¿Dudas?</strong> Habla con José, asesor español — <span className="text-green-200">videollamada gratis de 15 min</span>
+              <strong>¿Dudas?</strong> José te lo explica todo y puedes contratar — <span className="text-green-200">45 min gratis</span>
             </p>
           </div>
           <Link
@@ -522,7 +522,7 @@ export default function SegurosPage() {
                   </div>
                   <h3 className="font-bold text-lg mb-1">¿Dudas? Habla con José</h3>
                   <p className="text-green-100 text-sm mb-3">
-                    José es español y experto en seguros suizos. Videollamada gratuita de 15 min para resolver tus dudas.
+                    José te lo explica todo en 45 min, resuelve tus dudas y puedes contratar directamente si quieres.
                   </p>
                   <a
                     href="https://calendar.app.google/pZrPbwRThpDsRW3z5"
