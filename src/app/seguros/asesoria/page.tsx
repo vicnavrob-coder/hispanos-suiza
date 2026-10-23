@@ -152,9 +152,7 @@ export default function AsesoriaPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <a
-                  href="https://calendar.app.google/pZrPbwRThpDsRW3z5"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/api/seguros/jose-clic?source=asesoria-hero"
                   className="inline-flex items-center justify-center gap-2 bg-white text-green-700 font-bold px-8 py-4 rounded-full text-lg hover:bg-green-50 transition-colors shadow-xl"
                 >
                   <span>📅</span>
@@ -283,9 +281,7 @@ export default function AsesoriaPage() {
               Reserva tu cita gratuita ahora. Sin compromiso, sin coste, sin letra pequeña.
             </p>
             <a
-              href="https://calendar.app.google/pZrPbwRThpDsRW3z5"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/api/seguros/jose-clic?source=asesoria-cta"
               className="inline-flex items-center justify-center gap-2 bg-white text-green-700 font-bold px-10 py-4 rounded-full text-lg hover:bg-green-50 transition-colors shadow-xl"
             >
               <span>📅</span>

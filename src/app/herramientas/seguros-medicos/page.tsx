@@ -390,9 +390,7 @@ export default function SegurosMedicosPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <a
-                    href="https://calendar.app.google/pZrPbwRThpDsRW3z5"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/api/seguros/jose-clic?source=guia-seguros"
                     className="inline-flex items-center justify-center gap-2 bg-white text-green-700 font-bold px-6 py-3 rounded-full text-sm hover:bg-green-50 transition-colors shadow-lg"
                   >
                     <span>📅</span>

@@ -525,9 +525,7 @@ export default function SegurosPage() {
                     José te lo explica todo en 45 min, resuelve tus dudas y puedes contratar directamente si quieres.
                   </p>
                   <a
-                    href="https://calendar.app.google/pZrPbwRThpDsRW3z5"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/api/seguros/jose-clic?source=seguros-calculadora"
                     className="inline-flex items-center gap-2 bg-white text-green-700 font-bold px-5 py-2.5 rounded-full text-sm hover:bg-green-50 transition-colors"
                   >
                     <span>📅</span>
