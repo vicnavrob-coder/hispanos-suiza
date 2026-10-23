@@ -346,13 +346,37 @@ export const SALARY_IT_ANUAL = {
   DevOps: { junior: "85K–95K", mid: "105K–130K", senior: "130K–160K" },
 };
 
+// 26 cantones de Suiza con tasas de impuesto a la fuente aproximadas (soltero, sin hijos, renta media)
 export const CANTONES = [
-  { slug: "zurich",   nombre: "Zúrich",         tasa: 0.118, idioma: "Alemán",  sector: "Tech, finanzas, seguros" },
-  { slug: "ginebra",  nombre: "Ginebra",         tasa: 0.132, idioma: "Francés", sector: "Org. internacionales, finanzas, lujo" },
-  { slug: "berna",    nombre: "Berna",           tasa: 0.124, idioma: "Alemán",  sector: "Adm. pública, IT" },
-  { slug: "basilea",  nombre: "Basilea-Ciudad",  tasa: 0.115, idioma: "Alemán",  sector: "Farmacéutica, química" },
-  { slug: "lausana",  nombre: "Lausana (Vaud)",  tasa: 0.128, idioma: "Francés", sector: "Investigación, startups" },
-  { slug: "lugano",   nombre: "Lugano (Ticino)", tasa: 0.121, idioma: "Italiano",sector: "Finanzas, turismo" },
+  // Suiza alemana
+  { slug: "zurich",      nombre: "Zúrich (ZH)",              tasa: 0.118, idioma: "Alemán",   sector: "Tech, finanzas, seguros" },
+  { slug: "berna",       nombre: "Berna (BE)",               tasa: 0.124, idioma: "Alemán",   sector: "Adm. pública, IT" },
+  { slug: "lucerna",     nombre: "Lucerna (LU)",             tasa: 0.124, idioma: "Alemán",   sector: "Turismo, servicios" },
+  { slug: "uri",         nombre: "Uri (UR)",                 tasa: 0.108, idioma: "Alemán",   sector: "Industria, turismo" },
+  { slug: "schwyz",      nombre: "Schwyz (SZ)",              tasa: 0.095, idioma: "Alemán",   sector: "Finanzas, servicios" },
+  { slug: "obwalden",    nombre: "Obwalden (OW)",            tasa: 0.098, idioma: "Alemán",   sector: "Turismo, industria" },
+  { slug: "nidwalden",   nombre: "Nidwalden (NW)",           tasa: 0.096, idioma: "Alemán",   sector: "Finanzas, turismo" },
+  { slug: "glarus",      nombre: "Glarus (GL)",              tasa: 0.115, idioma: "Alemán",   sector: "Industria, textil" },
+  { slug: "zug",         nombre: "Zug (ZG)",                 tasa: 0.088, idioma: "Alemán",   sector: "Holdings, crypto, finanzas" },
+  { slug: "solothurn",   nombre: "Solothurn (SO)",           tasa: 0.125, idioma: "Alemán",   sector: "Industria, relojería" },
+  { slug: "basilea-ciudad", nombre: "Basilea-Ciudad (BS)",   tasa: 0.115, idioma: "Alemán",   sector: "Farmacéutica, química" },
+  { slug: "basilea-campina", nombre: "Basilea-Campiña (BL)", tasa: 0.125, idioma: "Alemán",   sector: "Farmacéutica, logística" },
+  { slug: "schaffhausen", nombre: "Schaffhausen (SH)",       tasa: 0.118, idioma: "Alemán",   sector: "Industria, comercio" },
+  { slug: "appenzell-ar", nombre: "Appenzell Ausserrhoden (AR)", tasa: 0.115, idioma: "Alemán", sector: "Textil, turismo" },
+  { slug: "appenzell-ai", nombre: "Appenzell Innerrhoden (AI)", tasa: 0.108, idioma: "Alemán", sector: "Turismo, artesanía" },
+  { slug: "san-galo",    nombre: "San Galo (SG)",            tasa: 0.125, idioma: "Alemán",   sector: "Textil, finanzas, tech" },
+  { slug: "grisones",    nombre: "Grisones (GR)",            tasa: 0.118, idioma: "Alemán/Romanche", sector: "Turismo, energía" },
+  { slug: "argovia",     nombre: "Argovia (AG)",             tasa: 0.120, idioma: "Alemán",   sector: "Industria, tech, farmacéutica" },
+  { slug: "turgovia",    nombre: "Turgovia (TG)",            tasa: 0.118, idioma: "Alemán",   sector: "Agricultura, industria" },
+  // Suiza italiana
+  { slug: "ticino",      nombre: "Ticino (TI)",              tasa: 0.121, idioma: "Italiano", sector: "Finanzas, turismo, comercio" },
+  // Suiza francesa (Romandie)
+  { slug: "friburgo",    nombre: "Friburgo (FR)",            tasa: 0.128, idioma: "Francés/Alemán", sector: "Alimentación (Nestlé), tech" },
+  { slug: "vaud",        nombre: "Vaud (VD)",                tasa: 0.128, idioma: "Francés",  sector: "EPFL, startups, turismo" },
+  { slug: "valais",      nombre: "Valais (VS)",              tasa: 0.118, idioma: "Francés/Alemán", sector: "Turismo, energía, vino" },
+  { slug: "neuchatel",   nombre: "Neuchâtel (NE)",           tasa: 0.130, idioma: "Francés",  sector: "Relojería, microtecnología" },
+  { slug: "ginebra",     nombre: "Ginebra (GE)",             tasa: 0.132, idioma: "Francés",  sector: "Org. internacionales, banca, lujo" },
+  { slug: "jura",        nombre: "Jura (JU)",                tasa: 0.128, idioma: "Francés",  sector: "Relojería, industria" },
 ];
 
 export const COSTE_VIDA_ZURICH = [

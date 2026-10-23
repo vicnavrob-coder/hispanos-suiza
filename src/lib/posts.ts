@@ -2156,7 +2156,7 @@ const postsManual: Post[] = [
       { pregunta: "¿Qué portales de empleo usan en Suiza?", respuesta: "Los principales son jobs.ch (el más grande), LinkedIn, JobScout24, Jobup (Suiza francesa) y job-room.ch (portal oficial del gobierno). También las ETTs como Adecco, Randstad y Manpower tienen muchas ofertas temporales." },
       { pregunta: "¿Se necesita saber alemán para trabajar en Suiza?", respuesta: "Depende del sector y la región. En IT, finanzas internacionales y hostelería turística puedes trabajar solo con inglés. En construcción, sanidad y comercio local necesitarás alemán (Suiza alemana) o francés (Suiza romanda). Cuanto mejor tu nivel de idioma, más opciones y mejor salario." },
     ],
-    contenido: \`
+    contenido: `
 <h2>Por qué cada vez más españoles trabajan en Suiza</h2>
 <p>Suiza es el destino número uno para los españoles que buscan mejores salarios y calidad de vida. Según el INE, más de 85.000 españoles viven actualmente en Suiza, y la cifra sigue creciendo. Los motivos son claros: salarios 3-4 veces superiores a España, tasa de paro inferior al 2%, y un sistema que premia el trabajo cualificado.</p>
 <p>Pero trabajar en Suiza no es simplemente "enviar CVs y esperar". El mercado laboral suizo tiene sus propias reglas, y conocerlas marca la diferencia entre encontrar trabajo en semanas o en meses.</p>
@@ -2257,7 +2257,7 @@ const postsManual: Post[] = [
   <li><a href="/trabajo">Busca ofertas</a> en nuestro buscador (7 portales a la vez)</li>
   <li><a href="/herramientas/salario-neto">Calcula tu salario neto</a> para saber cuánto ganarás realmente</li>
 </ol>
-    \`,
+    `,
   },
 ];
 
