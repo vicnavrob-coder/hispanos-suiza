@@ -2136,6 +2136,129 @@ const postsManual: Post[] = [
 </ol>
     `,
   },
+
+  // ─────────────────────────────────────────────────────────
+  // TRABAJAR EN SUIZA SIENDO ESPAÑOL — artículo SEO
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "trabajar-en-suiza-siendo-espanol-guia-2026",
+    titulo: "Trabajar en Suiza siendo español: guía completa 2026 con requisitos, salarios y ofertas",
+    descripcion: "Todo lo que necesitas saber para trabajar en Suiza como español: permisos, portales de empleo, salarios por sector, CV suizo y errores a evitar.",
+    categoria: "trabajo",
+    fecha: "2026-10-23",
+    tiempoLectura: 15,
+    imagen: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1200&q=85&auto=format&fit=crop",
+    destacado: true,
+    palabrasClave: ["trabajar en suiza siendo español", "trabajo en suiza para españoles", "empleo suiza españoles", "buscar trabajo suiza", "salario suiza", "permiso trabajo suiza"],
+    faq: [
+      { pregunta: "¿Necesito permiso de trabajo para trabajar en Suiza siendo español?", respuesta: "No necesitas visado previo gracias a la libre circulación UE-Suiza. Puedes entrar y buscar trabajo durante 90 días. Al conseguir empleo, obtienes automáticamente el permiso B al registrarte en tu comuna." },
+      { pregunta: "¿Cuánto se gana en Suiza siendo español?", respuesta: "El salario medio en Suiza es de 6.665 CHF/mes brutos. Los sectores mejor pagados son banca (8.000-15.000 CHF), IT (7.000-12.000 CHF) y farmacéutica (7.500-11.000 CHF). Los sueldos varían mucho por cantón: Zúrich paga un 15% más que la media." },
+      { pregunta: "¿Qué portales de empleo usan en Suiza?", respuesta: "Los principales son jobs.ch (el más grande), LinkedIn, JobScout24, Jobup (Suiza francesa) y job-room.ch (portal oficial del gobierno). También las ETTs como Adecco, Randstad y Manpower tienen muchas ofertas temporales." },
+      { pregunta: "¿Se necesita saber alemán para trabajar en Suiza?", respuesta: "Depende del sector y la región. En IT, finanzas internacionales y hostelería turística puedes trabajar solo con inglés. En construcción, sanidad y comercio local necesitarás alemán (Suiza alemana) o francés (Suiza romanda). Cuanto mejor tu nivel de idioma, más opciones y mejor salario." },
+    ],
+    contenido: \`
+<h2>Por qué cada vez más españoles trabajan en Suiza</h2>
+<p>Suiza es el destino número uno para los españoles que buscan mejores salarios y calidad de vida. Según el INE, más de 85.000 españoles viven actualmente en Suiza, y la cifra sigue creciendo. Los motivos son claros: salarios 3-4 veces superiores a España, tasa de paro inferior al 2%, y un sistema que premia el trabajo cualificado.</p>
+<p>Pero trabajar en Suiza no es simplemente "enviar CVs y esperar". El mercado laboral suizo tiene sus propias reglas, y conocerlas marca la diferencia entre encontrar trabajo en semanas o en meses.</p>
+
+<h2>Requisitos legales para españoles: más fácil de lo que piensas</h2>
+<p>Como ciudadano de la UE, tienes derecho a la <strong>libre circulación</strong>. Esto significa:</p>
+<ul>
+  <li><strong>No necesitas visado</strong> para entrar en Suiza</li>
+  <li>Puedes buscar trabajo durante <strong>90 días</strong> como turista</li>
+  <li>Al conseguir empleo, obtienes automáticamente el <strong>permiso B</strong></li>
+  <li>El permiso B se renueva cada 5 años mientras tengas trabajo</li>
+</ul>
+<p>El proceso real: llegas a Suiza, encuentras trabajo, firmas contrato, te registras en la Gemeinde (ayuntamiento) de tu municipio con el contrato en mano, y te dan el permiso B. Así de simple para españoles.</p>
+
+<h2>Dónde buscar trabajo: los 7 portales que funcionan</h2>
+<p>Olvídate de InfoJobs o Indeed España. En Suiza se usan portales específicos:</p>
+<ol>
+  <li><strong>jobs.ch</strong> — el más grande de Suiza, con miles de ofertas diarias</li>
+  <li><strong>LinkedIn</strong> — imprescindible para perfiles cualificados y networking</li>
+  <li><strong>JobScout24</strong> — fuerte en Suiza alemana</li>
+  <li><strong>Jobup.ch</strong> — líder en la Suiza francesa (Ginebra, Lausana)</li>
+  <li><strong>job-room.ch</strong> — portal oficial del gobierno suizo (RAV)</li>
+  <li><strong>Tempservice.ch / TempoX</strong> — trabajo temporal y ETTs</li>
+  <li><strong>Glassdoor</strong> — útil para ver salarios y opiniones de empresas</li>
+</ol>
+<p>Prueba nuestro <a href="/trabajo">buscador de empleo</a> que consulta todos estos portales a la vez.</p>
+
+<h2>El CV suizo: diferente al español</h2>
+<p>El CV que usas en España no funciona en Suiza. Las diferencias clave:</p>
+<ul>
+  <li><strong>Foto profesional obligatoria</strong> — sí, en Suiza se pone foto</li>
+  <li><strong>Máximo 2 páginas</strong> — conciso y directo</li>
+  <li><strong>Datos personales completos</strong> — fecha de nacimiento, nacionalidad, estado civil</li>
+  <li><strong>Referencias</strong> — incluye 2-3 referencias de antiguos jefes con teléfono</li>
+  <li><strong>Certificados adjuntos</strong> — títulos, cartas de recomendación, certificados de trabajo</li>
+</ul>
+<p>En Suiza se envía un "dossier de candidatura" completo, no solo el CV. Incluye: carta de motivación personalizada (1 página), CV (2 páginas), copias de títulos y certificados de trabajo anteriores.</p>
+
+<h2>Salarios reales por sector en 2026</h2>
+<p>Los salarios en Suiza son los más altos de Europa, pero varían mucho por sector y cantón:</p>
+<table>
+  <tr><th>Sector</th><th>Salario mensual bruto (CHF)</th></tr>
+  <tr><td>Banca y seguros</td><td>8.000 - 15.000</td></tr>
+  <tr><td>IT y tecnología</td><td>7.000 - 12.000</td></tr>
+  <tr><td>Farmacéutica</td><td>7.500 - 11.000</td></tr>
+  <tr><td>Ingeniería</td><td>6.500 - 10.000</td></tr>
+  <tr><td>Sanidad (enfermería)</td><td>5.500 - 7.500</td></tr>
+  <tr><td>Hostelería</td><td>4.200 - 5.500</td></tr>
+  <tr><td>Construcción</td><td>5.000 - 7.000</td></tr>
+  <tr><td>Comercio/retail</td><td>4.500 - 6.000</td></tr>
+</table>
+<p>Usa nuestra <a href="/herramientas/salario-neto">calculadora de salario neto</a> para ver cuánto te queda después de impuestos y seguros.</p>
+
+<h2>El idioma: ¿inglés o alemán?</h2>
+<p>Suiza tiene 4 idiomas oficiales: alemán (63%), francés (23%), italiano (8%) y romanche (0.5%). La mayoría del país habla alemán, pero no el alemán estándar sino Schwyzerdütsch (suizo-alemán).</p>
+<p><strong>Sectores donde puedes trabajar solo con inglés:</strong></p>
+<ul>
+  <li>IT y startups (especialmente en Zúrich)</li>
+  <li>Banca internacional</li>
+  <li>Organizaciones internacionales (Ginebra)</li>
+  <li>Farmacéuticas multinacionales (Basilea)</li>
+  <li>Hostelería turística de lujo</li>
+</ul>
+<p><strong>Sectores donde necesitas alemán/francés:</strong></p>
+<ul>
+  <li>Sanidad y hospitales públicos</li>
+  <li>Administración pública</li>
+  <li>Comercio local</li>
+  <li>Construcción y oficios</li>
+  <li>Atención al cliente</li>
+</ul>
+
+<h2>Las ETTs: tu puerta de entrada</h2>
+<p>Las Empresas de Trabajo Temporal son una de las mejores formas de entrar en el mercado suizo. Las principales:</p>
+<ul>
+  <li><strong>Adecco</strong> — la más grande de Suiza, todos los sectores</li>
+  <li><strong>Randstad</strong> — fuerte en industria y logística</li>
+  <li><strong>Manpower</strong> — IT, industria, administración</li>
+  <li><strong>Kelly Services</strong> — perfiles científicos y técnicos</li>
+  <li><strong>Michael Page</strong> — perfiles directivos y finanzas</li>
+</ul>
+<p>Ventajas de empezar con ETT: entras rápido al mercado, conoces empresas, y muchos contratos temporales se convierten en fijos.</p>
+
+<h2>Errores comunes que debes evitar</h2>
+<ol>
+  <li><strong>Enviar el CV español tal cual</strong> — adáptalo al formato suizo</li>
+  <li><strong>No incluir carta de motivación</strong> — en Suiza es obligatoria</li>
+  <li><strong>Pedir salario español</strong> — los salarios suizos son 3-4x mayores</li>
+  <li><strong>No negociar</strong> — en Suiza se negocia el salario</li>
+  <li><strong>Ignorar el 13º sueldo</strong> — la mayoría de empresas lo pagan</li>
+  <li><strong>Llegar sin ahorros</strong> — necesitas 5.000-10.000 CHF para los primeros meses</li>
+</ol>
+
+<h2>Siguiente paso: empieza a buscar</h2>
+<p>Ahora que conoces el sistema, es momento de actuar:</p>
+<ol>
+  <li><a href="/recursos/checklist-emigrar">Descarga el checklist</a> con todos los pasos</li>
+  <li><a href="/trabajo">Busca ofertas</a> en nuestro buscador (7 portales a la vez)</li>
+  <li><a href="/herramientas/salario-neto">Calcula tu salario neto</a> para saber cuánto ganarás realmente</li>
+</ol>
+    \`,
+  },
 ];
 
 // ── Índice completo (manuales + auto) ─────────────────────────────────────────
