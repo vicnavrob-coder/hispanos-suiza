@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { getSubscribers, type Subscriber } from '@/lib/subscribers'
 import { getCitas } from '@/lib/unia-citas'
+import { getUsers, type User } from '@/lib/users'
 
 export const metadata = {
   title: 'Admin · HispanosEnSuiza',
@@ -59,8 +60,24 @@ export default async function AdminPage({
 
   const contacts = (await getSubscribers()) ?? []
   const citas = (await getCitas()) ?? []
+  const usersData = await getUsers()
+  const users = usersData?.users ?? []
 
   const now = new Date().toLocaleString('es-ES', { timeZone: 'Europe/Zurich' })
+
+  // Users stats
+  const todayStart = new Date()
+  todayStart.setHours(0, 0, 0, 0)
+  const weekStart = new Date(todayStart)
+  weekStart.setDate(weekStart.getDate() - 7)
+
+  const usersStats = {
+    total: users.length,
+    google: users.filter(u => u.provider === 'google').length,
+    email: users.filter(u => u.provider === 'email').length,
+    today: users.filter(u => new Date(u.createdAt) >= todayStart).length,
+    thisWeek: users.filter(u => new Date(u.createdAt) >= weekStart).length,
+  }
 
   // UNIA stats
   const citasStats = {
@@ -69,6 +86,8 @@ export default async function AdminPage({
     propuestas: citas.filter(c => c.status === 'propuesta').length,
     confirmadas: citas.filter(c => c.status === 'confirmada').length,
   }
+
+  // Subscribers stats (email sequence)
   const total = contacts.length
   const stepDist: Record<number, number> = {}
   for (const c of contacts) {
@@ -104,7 +123,7 @@ export default async function AdminPage({
       <style dangerouslySetInnerHTML={{ __html: styles }} />
       <div className="admin-header">
         <h1>🇨🇭 HispanosEnSuiza — Admin</h1>
-        <div className="ts">Actualizado: {now} · {total} suscriptores · <span className="admin-badge">Gmail directo</span></div>
+        <div className="ts">Actualizado: {now} · {usersStats.total} usuarios · {total} suscriptores email</div>
       </div>
       <div className="admin-container">
         {/* UNIA Citas Panel */}
@@ -142,10 +161,45 @@ export default async function AdminPage({
           </div>
         </a>
 
+        {/* Users Panel */}
+        <div style={{
+          background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
+          borderRadius: 12,
+          padding: '14px 18px',
+          marginBottom: 16,
+          border: '1px solid #93c5fd',
+        }}>
+          <div style={{ fontWeight: 700, color: '#1e40af', fontSize: 14, marginBottom: 10 }}>👥 Usuarios Registrados</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 10 }}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: 24, fontWeight: 800, color: '#1e40af' }}>{usersStats.total}</div>
+              <div style={{ fontSize: 10, color: '#3b82f6' }}>Total</div>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: 24, fontWeight: 800, color: '#dc2626' }}>{usersStats.google}</div>
+              <div style={{ fontSize: 10, color: '#64748b' }}>Google</div>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: 24, fontWeight: 800, color: '#7c3aed' }}>{usersStats.email}</div>
+              <div style={{ fontSize: 10, color: '#64748b' }}>Email</div>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: 24, fontWeight: 800, color: '#16a34a' }}>{usersStats.today}</div>
+              <div style={{ fontSize: 10, color: '#64748b' }}>Hoy</div>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: 24, fontWeight: 800, color: '#0891b2' }}>{usersStats.thisWeek}</div>
+              <div style={{ fontSize: 10, color: '#64748b' }}>Esta semana</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Email Subscribers Stats */}
+        <div style={{ fontSize: 12, fontWeight: 700, color: '#64748b', marginBottom: 8, marginTop: 20 }}>📧 SECUENCIA DE EMAILS</div>
         <div className="admin-stats">
           <div className="admin-stat">
             <div className="admin-stat-val" style={{ color: '#6366f1' }}>{total}</div>
-            <div className="admin-stat-lbl">Total</div>
+            <div className="admin-stat-lbl">Suscriptores</div>
           </div>
           <div className="admin-stat">
             <div className="admin-stat-val" style={{ color: '#3b82f6' }}>{inProgress}</div>
@@ -187,6 +241,51 @@ export default async function AdminPage({
 
         <div style={{ marginTop: 12, fontSize: 11, color: '#94a3b8', textAlign: 'center' }}>
           ● enviado &nbsp; ◌ próximo &nbsp; ○ pendiente &nbsp;·&nbsp; Almacenamiento: GitHub Gist · Envíos: Gmail SMTP
+        </div>
+
+        {/* Users Table */}
+        {users.length > 0 && (
+          <>
+            <div style={{ fontSize: 12, fontWeight: 700, color: '#64748b', marginBottom: 8, marginTop: 24 }}>👥 TODOS LOS USUARIOS REGISTRADOS</div>
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th className="hide-mobile">Nombre</th>
+                  <th>Método</th>
+                  <th>Registro</th>
+                  <th className="hide-mobile">Logins</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.slice().reverse().map((u: User) => (
+                  <tr key={u.email}>
+                    <td style={{ maxWidth: 200 }}>{u.email}</td>
+                    <td className="hide-mobile">{u.nombre || '—'}</td>
+                    <td>
+                      <span style={{
+                        display: 'inline-block',
+                        padding: '2px 8px',
+                        borderRadius: 12,
+                        fontSize: 10,
+                        fontWeight: 700,
+                        background: u.provider === 'google' ? '#fee2e2' : '#ede9fe',
+                        color: u.provider === 'google' ? '#dc2626' : '#7c3aed',
+                      }}>
+                        {u.provider === 'google' ? '🔴 Google' : '🟣 Email'}
+                      </span>
+                    </td>
+                    <td style={{ whiteSpace: 'nowrap' }}>{u.createdAt?.slice(0, 10) || '—'}</td>
+                    <td className="hide-mobile" style={{ textAlign: 'center' }}>{u.loginCount || 1}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
+
+        <div style={{ marginTop: 16, fontSize: 11, color: '#94a3b8', textAlign: 'center' }}>
+          Datos almacenados en GitHub Gist · users.json + subscribers.json
         </div>
       </div>
     </div>
