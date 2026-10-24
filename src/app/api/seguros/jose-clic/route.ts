@@ -27,15 +27,19 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  // Track the referral (fire and forget - don't block redirect)
-  addJoseReferido({
-    userEmail: email,
-    userName: name,
-    source,
-    ipHash,
-  }).catch((err) => {
+  // Track the referral BEFORE redirecting (must complete before response)
+  try {
+    await addJoseReferido({
+      userEmail: email,
+      userName: name,
+      source,
+      ipHash,
+    });
+    console.log(`[jose-clic] Tracked: ${source}${email ? ` (${email})` : ""}`);
+  } catch (err) {
     console.error("[jose-clic] Failed to track referral:", err);
-  });
+    // Continue to redirect even if tracking fails
+  }
 
   // Redirect to José's calendar
   return NextResponse.redirect(JOSE_CALENDAR_URL, 302);
