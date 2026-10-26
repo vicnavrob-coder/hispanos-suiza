@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SEGUROS_ASEGURADORAS, SEGUROS_FRANQUICIAS } from "@/lib/data";
 import { buildMetadata, BASE_URL, breadcrumbSchema, webAppSchema, faqSchema } from "@/lib/seo";
+import { JoseContactButton } from "@/components/JoseContactButton";
 
 export const metadata: Metadata = buildMetadata({
   title: "Guía del seguro médico suizo (KVG/LAMal) 2026",
@@ -389,13 +390,13 @@ export default function SegurosMedicosPage() {
                   puedes contratar el seguro directamente con él.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href="/api/seguros/jose-clic?source=guia-seguros"
+                  <JoseContactButton
+                    source="guia-seguros"
                     className="inline-flex items-center justify-center gap-2 bg-white text-green-700 font-bold px-6 py-3 rounded-full text-sm hover:bg-green-50 transition-colors shadow-lg"
                   >
                     <span>📅</span>
                     <span>Reservar cita con José</span>
-                  </a>
+                  </JoseContactButton>
                   <div className="flex items-center gap-2 text-green-200 text-xs">
                     <span>✓ 45 min completos</span>
                     <span>·</span>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata, BASE_URL, breadcrumbSchema, faqSchema } from "@/lib/seo";
+import { JoseContactButton } from "@/components/JoseContactButton";
 
 export const metadata: Metadata = buildMetadata({
   title: "Asesor de seguros en español en Suiza | Consulta gratuita con José",
@@ -151,13 +152,13 @@ export default function AsesoriaPage() {
                 y puedes contratar tu seguro directamente.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <a
-                  href="/api/seguros/jose-clic?source=asesoria-hero"
+                <JoseContactButton
+                  source="asesoria-hero"
                   className="inline-flex items-center justify-center gap-2 bg-white text-green-700 font-bold px-8 py-4 rounded-full text-lg hover:bg-green-50 transition-colors shadow-xl"
                 >
                   <span>📅</span>
                   <span>Reservar cita gratuita</span>
-                </a>
+                </JoseContactButton>
                 <Link
                   href="/seguros"
                   className="inline-flex items-center justify-center gap-2 bg-green-700/50 text-white font-semibold px-6 py-4 rounded-full hover:bg-green-700 transition-colors"
@@ -280,13 +281,13 @@ export default function AsesoriaPage() {
             <p className="text-green-100 mb-6 max-w-xl mx-auto">
               Reserva tu cita gratuita ahora. Sin compromiso, sin coste, sin letra pequeña.
             </p>
-            <a
-              href="/api/seguros/jose-clic?source=asesoria-cta"
+            <JoseContactButton
+              source="asesoria-cta"
               className="inline-flex items-center justify-center gap-2 bg-white text-green-700 font-bold px-10 py-4 rounded-full text-lg hover:bg-green-50 transition-colors shadow-xl"
             >
               <span>📅</span>
               <span>Reservar cita con José</span>
-            </a>
+            </JoseContactButton>
             <p className="text-green-200 text-sm mt-4">
               ✓ Gratuito · ✓ 45 minutos · ✓ Por videollamada · ✓ Puedes contratar directamente
             </p>

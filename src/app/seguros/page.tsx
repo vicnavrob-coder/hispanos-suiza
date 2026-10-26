@@ -7,6 +7,7 @@ import {
 } from "@/lib/buscador";
 import { SEGUROS_ASEGURADORAS, SEGUROS_FRANQUICIAS, SEGUROS_MODELOS } from "@/lib/data";
 import { useAuth } from "@/contexts/AuthContext";
+import { JoseContactButton } from "@/components/JoseContactButton";
 
 const FRANQUICIAS_OPCIONES = [300, 500, 1000, 1500, 2000, 2500] as const;
 
@@ -569,13 +570,13 @@ export default function SegurosPage() {
                   <p className="text-green-100 text-sm mb-3">
                     José te lo explica todo en 45 min, resuelve tus dudas y puedes contratar directamente si quieres.
                   </p>
-                  <a
-                    href="/api/seguros/jose-clic?source=seguros-calculadora"
+                  <JoseContactButton
+                    source="seguros-calculadora"
                     className="inline-flex items-center gap-2 bg-white text-green-700 font-bold px-5 py-2.5 rounded-full text-sm hover:bg-green-50 transition-colors"
                   >
                     <span>📅</span>
                     <span>Reservar cita gratuita</span>
-                  </a>
+                  </JoseContactButton>
                 </div>
               </div>
             </div>
