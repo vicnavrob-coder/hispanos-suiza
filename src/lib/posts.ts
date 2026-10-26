@@ -2259,6 +2259,266 @@ const postsManual: Post[] = [
 </ol>
     `,
   },
+
+  // ─────────────────────────────────────────────────────────
+  // NUEVO: 14 ERRORES DE HISPANOHABLANTES EN SUIZA
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "errores-hispanohablantes-suiza-evitar",
+    titulo: "14 errores que cometen los hispanohablantes al llegar a Suiza (y cómo evitarlos)",
+    descripcion: "Desde saludar mal hasta elegir el seguro médico equivocado. Los errores más comunes que cometemos los hispanohablantes en Suiza y cómo evitarlos para no perder dinero ni pasar vergüenza.",
+    categoria: "vida-diaria",
+    fecha: "2026-10-26",
+    tiempoLectura: 10,
+    imagen: "https://images.unsplash.com/photo-1527576539890-dfa815648363?w=1200&q=85&auto=format&fit=crop",
+    destacado: true,
+    palabrasClave: ["errores suiza", "errores expatriados suiza", "cultura suiza", "normas suiza", "adaptarse suiza", "hispanohablantes suiza errores"],
+    faq: [
+      { pregunta: "¿Cuál es el error más caro que cometen los hispanohablantes en Suiza?", respuesta: "Elegir mal el seguro médico. Con franquicia baja (300 CHF) y modelo estándar puedes pagar 200-300 CHF/mes de más. Con franquicia alta (2.500 CHF) y modelo Telmed ahorras 1.200-1.800 CHF/año." },
+      { pregunta: "¿Por qué es importante saludar individualmente en Suiza?", respuesta: "En Suiza se considera maleducado dar un 'hola' general a un grupo. Debes saludar a cada persona individualmente, dando la mano o con tres besos según la región. No hacerlo te marca como descortés." },
+      { pregunta: "¿Puedo usar la lavadora del edificio cuando quiera?", respuesta: "No. En la mayoría de edificios suizos hay turnos estrictos para la lavadora comunitaria. Usar la lavadora fuera de tu turno puede generar conflictos serios con los vecinos e incluso quejas formales al casero." },
+    ],
+    contenido: `
+<h2>Por qué Suiza tiene reglas que no esperas</h2>
+<p>Suiza funciona con un sistema de normas no escritas que los suizos aprenden desde pequeños. Como hispanohablantes, muchas de estas reglas nos parecen absurdas o innecesarias — hasta que las rompemos y sufrimos las consecuencias.</p>
+<p>Este artículo recoge los errores más comunes que cometemos los hispanohablantes al llegar, basados en experiencias reales de la comunidad. Algunos te costarán dinero, otros te harán quedar mal socialmente, y algunos te complicarán la vida durante meses.</p>
+
+<h2>Errores sociales y culturales</h2>
+
+<h3>1. Saludar "al grupo" en vez de individualmente</h3>
+<p>En España y Latinoamérica es normal entrar a un sitio y decir "¡Hola a todos!". En Suiza esto se considera <strong>maleducado</strong>. Debes saludar a cada persona individualmente, dando la mano en contextos formales o tres besos (en la Suiza francesa) en contextos informales.</p>
+<p><strong>Solución:</strong> Tómate tu tiempo al llegar a cualquier reunión social o laboral. Saluda persona por persona, mira a los ojos y di su nombre si lo conoces.</p>
+
+<h3>2. Cruzar en rojo "porque no vienen coches"</h3>
+<p>Los suizos esperan al semáforo verde aunque no venga ningún coche. Cruzar en rojo está mal visto socialmente y puede suponer una multa de hasta 250 CHF. Además, si hay niños presentes, recibirás miradas de desaprobación.</p>
+<p><strong>Solución:</strong> Espera al verde siempre. Es una de esas normas que los suizos toman muy en serio.</p>
+
+<h3>3. Hacer ruido los domingos</h3>
+<p>El domingo en Suiza es sagrado. Está <strong>prohibido</strong> cortar el césped, taladrar, poner música alta o hacer cualquier ruido que moleste a los vecinos. Muchos edificios tienen normas adicionales que prohíben incluso pasar la aspiradora.</p>
+<p><strong>Solución:</strong> Revisa el reglamento de tu edificio (Hausordnung). Deja las tareas ruidosas para días laborables.</p>
+
+<h3>4. Usar la lavadora fuera de tu turno</h3>
+<p>La mayoría de edificios suizos tienen lavadora comunitaria en el sótano con turnos asignados. Usar la lavadora fuera de tu día/hora asignado es una de las mayores faltas de respeto que puedes cometer en un edificio suizo.</p>
+<p><strong>Solución:</strong> Respeta tu turno religiosamente. Si necesitas lavar fuera de horario, pregunta a tus vecinos si pueden intercambiar.</p>
+
+<h3>5. Llegar tarde (incluso 5 minutos)</h3>
+<p>La puntualidad suiza no es un estereotipo — es realidad. Llegar 5 minutos tarde a una cita se considera descortés. Llegar 10+ minutos tarde sin avisar es una ofensa seria, especialmente en contextos laborales.</p>
+<p><strong>Solución:</strong> Llega siempre 5 minutos antes. Si vas a retrasarte, avisa inmediatamente por mensaje.</p>
+
+<h2>Errores financieros</h2>
+
+<h3>6. Elegir el seguro médico más barato sin entender las opciones</h3>
+<p>Muchos hispanohablantes eligen la franquicia más baja (300 CHF) pensando que es lo "más seguro". Error: si eres joven y sano, estás tirando entre <strong>1.200 y 1.800 CHF al año</strong>.</p>
+<ul>
+  <li><strong>Franquicia 2.500 CHF:</strong> Pagas menos mensualmente, solo la usas si tienes gastos médicos altos</li>
+  <li><strong>Modelo Telmed/HMO:</strong> Ahorra 10-25% adicional con el mismo servicio básico</li>
+  <li><strong>Excluir accidente:</strong> Si trabajas +8h/semana, ya estás cubierto por tu empresa</li>
+</ul>
+<p><strong>Solución:</strong> Usa nuestra <a href="/herramientas/seguros-medicos">calculadora de seguros</a> antes de contratar. Compara modelos y franquicias.</p>
+
+<h3>7. No comprar el Halbtax (abono de medio precio)</h3>
+<p>El transporte público en Suiza es excelente pero caro. El abono Halbtax cuesta 185 CHF/año y te da <strong>50% de descuento en todos los trenes y transportes públicos</strong>. Se amortiza en 2-3 viajes entre ciudades.</p>
+<p><strong>Solución:</strong> Compra el Halbtax en cualquier estación SBB o en sbb.ch el primer mes que llegues.</p>
+
+<h3>8. Comprar solo en Coop y Migros premium</h3>
+<p>Coop y Migros son los supermercados principales, pero tienen líneas premium caras. Existen alternativas mucho más baratas:</p>
+<ul>
+  <li><strong>Denner:</strong> El "discount" de Migros, 20-30% más barato</li>
+  <li><strong>Aldi y Lidl:</strong> Precios alemanes, calidad decente</li>
+  <li><strong>Líneas M-Budget (Migros) y Prix Garantie (Coop):</strong> Productos básicos a mitad de precio</li>
+</ul>
+<p><strong>Solución:</strong> Combina tiendas. Productos frescos en Migros/Coop, básicos en Denner/Lidl.</p>
+
+<h3>9. No pedir el subsidio de seguro médico (Prämienverbilligung)</h3>
+<p>Muchos cantones ofrecen subsidios para el seguro médico si tu renta es baja o media. En Zúrich puedes recibirlo con ingresos de hasta 54.000 CHF/año. Muchos hispanohablantes no lo saben y no lo piden.</p>
+<p><strong>Solución:</strong> Busca "Prämienverbilligung + [tu cantón]" y solicítalo en cuanto tengas tu declaración de impuestos.</p>
+
+<h2>Errores prácticos del día a día</h2>
+
+<h3>10. Olvidar que los domingos todo está cerrado</h3>
+<p>Los supermercados, tiendas y la mayoría de comercios cierran el domingo. Solo las tiendas de estaciones de tren y aeropuertos abren. Si no has comprado el sábado, te quedas sin provisiones.</p>
+<p><strong>Solución:</strong> Haz la compra grande el sábado. Ten siempre reservas básicas en casa.</p>
+
+<h3>11. Intentar comer fuera de horario</h3>
+<p>Los restaurantes suizos tienen horarios estrictos. La cocina cierra típicamente entre 14:00-18:00. Intentar pedir comida a las 15:30 suele ser inútil.</p>
+<p><strong>Solución:</strong> Come entre 12:00-14:00 y cena entre 18:30-21:00. O acostúmbrate a los kebabs y pizzerías que tienen horario continuo.</p>
+
+<h3>12. No tener el nombre en el buzón</h3>
+<p>El correo suizo es muy literal. Si tu nombre no está en el buzón, <strong>no te entregarán nada</strong>. Ni cartas, ni paquetes, ni la documentación del permiso de residencia.</p>
+<p><strong>Solución:</strong> Pon tu nombre completo en el buzón el mismo día que llegas.</p>
+
+<h3>13. No registrarte en los 14 días tras la mudanza</h3>
+<p>Tienes <strong>14 días</strong> desde que llegas a un nuevo municipio para registrarte en la Gemeinde/Commune (ayuntamiento). No hacerlo puede suponer multas y retrasos en tu permiso de residencia.</p>
+<p><strong>Solución:</strong> Agenda cita en el Einwohneramt/Contrôle des habitants la primera semana. Lleva pasaporte, contrato de alquiler y contrato de trabajo.</p>
+
+<h3>14. Tirar basura sin separar (o en el día equivocado)</h3>
+<p>Suiza tiene uno de los sistemas de reciclaje más estrictos del mundo. Cada tipo de residuo tiene su día de recogida y su contenedor. Tirar bolsas sin la pegatina oficial (Gebührensack) es ilegal y puede suponer multas de hasta 10.000 CHF si te pillan.</p>
+<p><strong>Solución:</strong> Compra las bolsas oficiales de basura (cuestan ~2 CHF cada una), separa vidrio, papel, cartón, PET y aluminio, y aprende los días de recogida de tu edificio.</p>
+
+<h2>Resumen: los más caros vs los más vergonzosos</h2>
+<table>
+  <tr><th>Error</th><th>Coste/Consecuencia</th></tr>
+  <tr><td>Seguro médico mal elegido</td><td>1.200-1.800 CHF/año</td></tr>
+  <tr><td>No tener Halbtax</td><td>500-1.000 CHF/año</td></tr>
+  <tr><td>Basura sin bolsa oficial</td><td>Multa hasta 10.000 CHF</td></tr>
+  <tr><td>Cruzar en rojo</td><td>Multa 250 CHF</td></tr>
+  <tr><td>Usar lavadora fuera de turno</td><td>Conflicto con vecinos, posible no renovación de contrato</td></tr>
+  <tr><td>Saludar "al grupo"</td><td>Te marcan como maleducado</td></tr>
+</table>
+
+<h2>Siguiente paso</h2>
+<p>Ahora que conoces los errores más comunes, evítalos desde el primer día. Y si acabas de llegar, consulta nuestra <a href="/blog/guia-emigrar-suiza-espanoles-2026">guía completa para emigrar a Suiza</a> con todos los pasos ordenados.</p>
+    `
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // NUEVO: PRESUPUESTO PRIMER MES EN SUIZA
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "presupuesto-primer-mes-suiza-2026",
+    titulo: "Presupuesto real para tu primer mes en Suiza: cuánto necesitas y en qué lo gastarás",
+    descripcion: "Desglose exacto de gastos del primer mes en Suiza: fianza, seguro, transporte, comida. Con ejemplos reales para Zúrich, Ginebra y ciudades más baratas.",
+    categoria: "emigrar",
+    fecha: "2026-10-26",
+    tiempoLectura: 8,
+    imagen: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=85&auto=format&fit=crop",
+    destacado: false,
+    palabrasClave: ["presupuesto suiza", "cuanto dinero suiza", "gastos primer mes suiza", "ahorro emigrar suiza", "coste mudarse suiza"],
+    faq: [
+      { pregunta: "¿Cuánto dinero necesito para emigrar a Suiza?", respuesta: "Para el primer mes necesitas entre 5.000 y 12.000 CHF dependiendo de la ciudad. Zúrich/Ginebra: 9.000-12.000 CHF. Ciudades medianas: 6.000-8.000 CHF. Esto incluye fianza (3 meses), primer mes de alquiler, seguro y gastos de instalación." },
+      { pregunta: "¿Cuándo cobro el primer sueldo en Suiza?", respuesta: "Normalmente entre el día 25 del mes que empiezas y el día 5 del mes siguiente. Si empiezas el 1 de octubre, cobras entre el 25 de octubre y el 5 de noviembre. Planifica tus ahorros para cubrir 4-5 semanas sin ingresos." },
+      { pregunta: "¿Puedo emigrar a Suiza con 3.000 euros?", respuesta: "Es muy justo y arriesgado. Solo sería posible si tienes alojamiento temporal gratuito (amigo/familiar), el empleador adelanta la fianza, y empiezas a trabajar inmediatamente. Lo recomendable es tener al menos 5.000-6.000 CHF." },
+    ],
+    contenido: `
+<h2>La realidad del primer mes en Suiza</h2>
+<p>Uno de los mayores errores de los hispanohablantes es llegar a Suiza sin suficiente dinero. "Ya cobraré el primer mes" es una frase que hemos escuchado muchas veces — y que suele acabar en problemas.</p>
+<p>La realidad es que el sistema suizo exige pagos por adelantado que no existen en España ni Latinoamérica: fianzas de 3 meses, seguros desde el día 1, y un coste de vida que puede sorprender incluso a los más preparados.</p>
+
+<h2>Gastos fijos del primer mes</h2>
+
+<h3>1. Fianza del piso (Kaution/Dépôt)</h3>
+<p>El gasto más grande y que más sorprende. En Suiza la fianza equivale a <strong>2-3 meses de alquiler</strong>, depositados en una cuenta bloqueada.</p>
+<table>
+  <tr><th>Ciudad</th><th>Alquiler medio (1 hab)</th><th>Fianza (3 meses)</th></tr>
+  <tr><td>Zúrich</td><td>2.200 CHF</td><td>6.600 CHF</td></tr>
+  <tr><td>Ginebra</td><td>2.000 CHF</td><td>6.000 CHF</td></tr>
+  <tr><td>Basilea</td><td>1.600 CHF</td><td>4.800 CHF</td></tr>
+  <tr><td>Berna</td><td>1.400 CHF</td><td>4.200 CHF</td></tr>
+  <tr><td>Lucerna</td><td>1.500 CHF</td><td>4.500 CHF</td></tr>
+</table>
+<p><strong>Alternativa:</strong> Algunas empresas ofrecen garantías de alquiler (SwissCaution, Firstcaution) por ~5% anual del importe. Así no inmovilizas tanto capital.</p>
+
+<h3>2. Primer mes de alquiler</h3>
+<p>Se paga por adelantado. Usando los mismos ejemplos:</p>
+<ul>
+  <li><strong>Zúrich:</strong> 2.200 CHF</li>
+  <li><strong>Ginebra:</strong> 2.000 CHF</li>
+  <li><strong>Ciudades medianas:</strong> 1.400-1.600 CHF</li>
+</ul>
+
+<h3>3. Seguro médico obligatorio (primer mes)</h3>
+<p>Debes contratarlo en los primeros 3 meses, pero es retroactivo al día de llegada. Mejor contratarlo desde el principio.</p>
+<ul>
+  <li><strong>Franquicia 2.500 CHF + Telmed:</strong> 280-350 CHF/mes</li>
+  <li><strong>Franquicia 300 CHF + estándar:</strong> 450-550 CHF/mes</li>
+</ul>
+<p>Usa nuestra <a href="/herramientas/seguros-medicos">calculadora de seguros</a> para ver el precio exacto en tu cantón y edad.</p>
+
+<h3>4. Transporte (abono mensual + Halbtax)</h3>
+<ul>
+  <li><strong>Halbtax (anual):</strong> 185 CHF — imprescindible, te ahorra cientos de francos al año</li>
+  <li><strong>Abono mensual Zúrich (zona 110):</strong> 89 CHF</li>
+  <li><strong>Abono mensual Ginebra:</strong> 70 CHF</li>
+</ul>
+
+<h3>5. Gastos de instalación</h3>
+<p>Cosas que necesitarás comprar al llegar:</p>
+<ul>
+  <li>Ropa de cama, toallas: 100-200 CHF</li>
+  <li>Utensilios cocina básicos: 100-150 CHF</li>
+  <li>Adaptadores de enchufe (tipo J suizo): 20 CHF</li>
+  <li>Tarjeta SIM suiza: 20-40 CHF</li>
+  <li>Productos limpieza: 30-50 CHF</li>
+</ul>
+<p><strong>Total instalación:</strong> 250-450 CHF (más si el piso viene sin muebles)</p>
+
+<h3>6. Comida del primer mes</h3>
+<p>El coste de alimentación en Suiza es alto pero manejable si sabes dónde comprar:</p>
+<ul>
+  <li><strong>Cocinando en casa (Lidl/Aldi/Denner):</strong> 400-500 CHF/mes</li>
+  <li><strong>Cocinando en casa (Coop/Migros):</strong> 500-700 CHF/mes</li>
+  <li><strong>Comiendo fuera frecuentemente:</strong> 800-1.200 CHF/mes</li>
+</ul>
+
+<h2>Presupuesto total: tres escenarios</h2>
+
+<h3>Escenario 1: Zúrich/Ginebra — Presupuesto completo</h3>
+<table>
+  <tr><th>Concepto</th><th>Importe</th></tr>
+  <tr><td>Fianza (3 meses)</td><td>6.000-6.600 CHF</td></tr>
+  <tr><td>Primer alquiler</td><td>2.000-2.200 CHF</td></tr>
+  <tr><td>Seguro médico</td><td>350-450 CHF</td></tr>
+  <tr><td>Transporte + Halbtax</td><td>275 CHF</td></tr>
+  <tr><td>Instalación</td><td>300-400 CHF</td></tr>
+  <tr><td>Comida</td><td>500-600 CHF</td></tr>
+  <tr><td><strong>TOTAL</strong></td><td><strong>9.500-12.000 CHF</strong></td></tr>
+</table>
+
+<h3>Escenario 2: Ciudad mediana (Berna, Lucerna, Basilea)</h3>
+<table>
+  <tr><th>Concepto</th><th>Importe</th></tr>
+  <tr><td>Fianza (3 meses)</td><td>4.200-4.800 CHF</td></tr>
+  <tr><td>Primer alquiler</td><td>1.400-1.600 CHF</td></tr>
+  <tr><td>Seguro médico</td><td>300-400 CHF</td></tr>
+  <tr><td>Transporte + Halbtax</td><td>250 CHF</td></tr>
+  <tr><td>Instalación</td><td>300 CHF</td></tr>
+  <tr><td>Comida</td><td>450-550 CHF</td></tr>
+  <tr><td><strong>TOTAL</strong></td><td><strong>7.000-8.500 CHF</strong></td></tr>
+</table>
+
+<h3>Escenario 3: Mínimo absoluto (con ayuda)</h3>
+<p>Solo posible si: tienes alojamiento temporal (amigo/familiar), empiezas a trabajar inmediatamente, y puedes recibir dinero de emergencia desde casa.</p>
+<table>
+  <tr><th>Concepto</th><th>Importe</th></tr>
+  <tr><td>Alojamiento temporal (habitación WG)</td><td>800-1.000 CHF</td></tr>
+  <tr><td>Seguro médico</td><td>300 CHF</td></tr>
+  <tr><td>Transporte</td><td>100 CHF</td></tr>
+  <tr><td>Comida</td><td>400 CHF</td></tr>
+  <tr><td>Margen emergencias</td><td>500 CHF</td></tr>
+  <tr><td><strong>TOTAL MÍNIMO</strong></td><td><strong>2.100-2.300 CHF</strong></td></tr>
+</table>
+<p><strong>Importante:</strong> Este escenario es arriesgado. Cualquier imprevisto (retraso en contrato, gasto médico, problema con el piso) te deja sin margen.</p>
+
+<h2>Cuándo llega el primer sueldo</h2>
+<p>En Suiza los sueldos se pagan mensualmente, normalmente entre el día 25 del mes trabajado y el día 5 del mes siguiente. Esto significa:</p>
+<ul>
+  <li>Si empiezas el <strong>1 de octubre</strong>: cobras entre el 25 de octubre y el 5 de noviembre</li>
+  <li>Si empiezas el <strong>15 de octubre</strong>: cobras lo mismo, pero solo medio mes (prorrateado)</li>
+</ul>
+<p><strong>Planifica para 4-5 semanas sin ingresos</strong> desde tu llegada hasta el primer sueldo completo.</p>
+
+<h2>Cómo reducir el presupuesto inicial</h2>
+<ol>
+  <li><strong>Garantía de alquiler:</strong> SwissCaution o Firstcaution en vez de depositar 3 meses</li>
+  <li><strong>Habitación WG al principio:</strong> 700-1.200 CHF/mes sin fianza grande</li>
+  <li><strong>Franquicia alta en seguro:</strong> Ahorra 100-150 CHF/mes</li>
+  <li><strong>Comprar en Lidl/Aldi:</strong> 30-40% más barato que Coop/Migros</li>
+  <li><strong>Segunda mano:</strong> Facebook Marketplace y tutti.ch para muebles</li>
+</ol>
+
+<h2>Checklist de dinero antes de emigrar</h2>
+<ul>
+  <li>☐ Tener al menos 5.000 CHF líquidos (ideal: 8.000-10.000 CHF)</li>
+  <li>☐ Cuenta Wise o Revolut activada con tarjeta</li>
+  <li>☐ Tarjeta de crédito con límite suficiente para emergencias</li>
+  <li>☐ Documento del banco español que demuestre solvencia (algunos caseros lo piden)</li>
+  <li>☐ Copia de las últimas 3 nóminas del trabajo anterior</li>
+</ul>
+
+<h2>Siguiente paso</h2>
+<p>Ya sabes cuánto necesitas. Ahora calcula cuánto ganarás realmente con nuestra <a href="/herramientas/salario-neto">calculadora de salario neto</a> y empieza a buscar trabajo en nuestro <a href="/trabajo">buscador de empleo</a>.</p>
+    `
+  },
 ];
 
 // ── Índice completo (manuales + auto) ─────────────────────────────────────────

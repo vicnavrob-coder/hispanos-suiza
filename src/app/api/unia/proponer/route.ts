@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+
+// nodemailer requiere Node.js runtime (no funciona en Edge)
+export const runtime = "nodejs";
+
 import { getCitaByToken, updateCitaByToken, type CitaFormato, type HorariosPropuestos } from "@/lib/unia-citas";
 import { emailHorariosUsuario } from "@/lib/email-templates-unia";
 

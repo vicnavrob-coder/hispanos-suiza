@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+
+// nodemailer requiere Node.js runtime (no funciona en Edge)
+export const runtime = "nodejs";
 import { addSubscriber, markEmailSent } from "@/lib/subscribers";
 import { EMAIL_TEMPLATES } from "@/lib/email-templates";
 

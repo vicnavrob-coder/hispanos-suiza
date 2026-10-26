@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
-  CIUDADES_SUIZA, TIPOS_VIVIENDA, type TipoVivienda,
+  CIUDADES_SUIZA, CIUDAD_EMOJIS, TIPOS_VIVIENDA, type TipoVivienda,
 } from "@/lib/buscador";
 import type { ViviendaItem, PortalInfo } from "@/app/api/vivienda/route";
 import { useAuth } from "@/contexts/AuthContext";
@@ -13,19 +13,6 @@ const fmt = (n: number) =>
 const ACCENT      = "#1d4ed8";
 const ACCENT_DARK = "#1e3a8a";
 
-const CIUDAD_EMOJIS: Record<string, string> = {
-  "Toda Suiza":  "🇨🇭",
-  "Zürich":      "🏔️",
-  "Geneva":      "🌊",
-  "Basel":       "🏛️",
-  "Bern":        "🐻",
-  "Lausanne":    "🎓",
-  "Lugano":      "☀️",
-  "Winterthur":  "🌿",
-  "St. Gallen":  "📚",
-  "Lucerne":     "🌉",
-  "Zug":         "💼",
-};
 
 // Precios máximos para el filtro (según tipo)
 const PRICE_STEPS: Record<string, number[]> = {

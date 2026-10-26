@@ -199,6 +199,36 @@ export const JOB_CATEGORIES: JobCategory[] = [
   },
 ];
 
+// ─── EMOJIS POR CIUDAD ──────────────────────────────────────────────────────
+
+export const CIUDAD_EMOJIS: Record<string, string> = {
+  "Toda Suiza":   "🇨🇭",
+  "Zürich":       "🏔️",
+  "Geneva":       "🌊",
+  "Basel":        "🏛️",
+  "Bern":         "🐻",
+  "Lausanne":     "🎓",
+  "Lugano":       "☀️",
+  "Winterthur":   "🌿",
+  "St. Gallen":   "📚",
+  "Lucerne":      "🌉",
+  "Zug":          "💼",
+  "Aarau":        "🏭",
+  "Biel/Bienne":  "⌚",
+  "Fribourg":     "🏰",
+  "Solothurn":    "🏛️",
+  "Neuchâtel":    "🍷",
+  "Sion":         "🏔️",
+  "Chur":         "🏔️",
+  "Bellinzona":   "🏰",
+  "Thun":         "🏞️",
+  "Schaffhausen": "💧",
+  "Olten":        "🚂",
+  "Baden":        "♨️",
+  "Frauenfeld":   "🌾",
+  "Herisau":      "🏡",
+};
+
 export const CIUDADES_SUIZA = [
   "Toda Suiza",
   // ── Top 10 ciudades (más empleo) ──────────────────────────────────────

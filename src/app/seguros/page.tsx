@@ -485,6 +485,51 @@ export default function SegurosPage() {
               </div>
             </section>
 
+            {/* Tips de ahorro */}
+            <section className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">💰</span>
+                <h2 className="text-lg font-bold text-gray-800">Cómo ahorrar hasta 1.800 CHF/año en tu seguro</h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-white rounded-xl p-4 border border-green-100">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-green-600 font-bold text-lg">1.</span>
+                    <h3 className="font-bold text-gray-800">Franquicia alta (2.500 CHF)</h3>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-2">Si eres joven y sano, la franquicia alta te ahorra 100-150 CHF/mes. Solo la usas si tienes gastos médicos altos.</p>
+                  <p className="text-green-700 font-semibold text-sm">Ahorro: ~1.200-1.800 CHF/año</p>
+                </div>
+                <div className="bg-white rounded-xl p-4 border border-green-100">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-green-600 font-bold text-lg">2.</span>
+                    <h3 className="font-bold text-gray-800">Modelo Telmed o HMO</h3>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-2">Mismo servicio básico, 15-25% más barato. Telmed: llamas antes de ir. HMO: centro médico asignado.</p>
+                  <p className="text-green-700 font-semibold text-sm">Ahorro: ~500-900 CHF/año</p>
+                </div>
+                <div className="bg-white rounded-xl p-4 border border-green-100">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-green-600 font-bold text-lg">3.</span>
+                    <h3 className="font-bold text-gray-800">Excluir accidente (si trabajas)</h3>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-2">Si trabajas +8h/semana, tu empresa ya te cubre accidentes. Exclúyelo del seguro básico.</p>
+                  <p className="text-green-700 font-semibold text-sm">Ahorro: ~5-10% adicional</p>
+                </div>
+                <div className="bg-white rounded-xl p-4 border border-green-100">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-green-600 font-bold text-lg">4.</span>
+                    <h3 className="font-bold text-gray-800">Pide el subsidio (Prämienverbilligung)</h3>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-2">Según cantón, puedes recibirlo con ingresos de hasta 54.000 CHF/año (Zúrich). Muchos no lo saben.</p>
+                  <p className="text-green-700 font-semibold text-sm">Ahorro: hasta 200+ CHF/mes</p>
+                </div>
+              </div>
+              <p className="text-xs text-gray-500 mt-4 text-center">
+                * Combina varias estrategias. Ejemplo: franquicia 2.500 + Telmed + excluir accidente = ahorro máximo.
+              </p>
+            </section>
+
             {/* CTA oficial */}
             <div
               style={{ background: `linear-gradient(135deg, ${ACCENT}, ${ACCENT_DARK})` }}

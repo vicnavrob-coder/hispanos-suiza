@@ -2,12 +2,14 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import {
-  JOB_CATEGORIES, CIUDADES_SUIZA,
+  JOB_CATEGORIES, CIUDADES_SUIZA, CIUDAD_EMOJIS,
   PORTALES_EMPLEO_BUSQUEDA, AGENCIAS_ETT, PORTALES_PUBLICOS,
   buildUrl, type JobCategory,
 } from "@/lib/buscador";
 import type { JobItem } from "@/app/api/jobs/route";
 import { useAuth } from "@/contexts/AuthContext";
+
+// Metadata se define en layout o en un archivo metadata.ts separado porque esta página es "use client"
 
 // Formateador consistente server/client (sin Intl.NumberFormat que produce \xa0 distinto por entorno)
 const fmt = (n: number) =>
@@ -30,33 +32,6 @@ function timeAgo(dateStr: string): string {
 const ACCENT      = "#C0392B";
 const ACCENT_DARK = "#96281B";
 
-const CIUDAD_EMOJIS: Record<string, string> = {
-  "Toda Suiza":   "🇨🇭",
-  "Zürich":       "🏔️",
-  "Geneva":       "🌊",
-  "Basel":        "🏛️",
-  "Bern":         "🐻",
-  "Lausanne":     "🎓",
-  "Lugano":       "☀️",
-  "Winterthur":   "🌿",
-  "St. Gallen":   "📚",
-  "Lucerne":      "🌉",
-  "Zug":          "💼",
-  "Aarau":        "🏭",
-  "Biel/Bienne":  "⌚",
-  "Fribourg":     "🏰",
-  "Solothurn":    "🏛️",
-  "Neuchâtel":    "🍷",
-  "Sion":         "🏔️",
-  "Chur":         "🏔️",
-  "Bellinzona":   "🏰",
-  "Thun":         "🏞️",
-  "Schaffhausen": "💧",
-  "Olten":        "🚂",
-  "Baden":        "♨️",
-  "Frauenfeld":   "🌾",
-  "Herisau":      "🏡",
-};
 
 const SOURCE_STYLE: Record<string, { bg: string; color: string; label: string }> = {
   "jobs.ch":     { bg: "#e0f2fe", color: "#0369a1", label: "jobs.ch" },
