@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { PDFParse } from "pdf-parse";
 import mammoth from "mammoth";
+import { canUserTranslate, recordTranslation } from "@/lib/cv-usage";
 
 export const runtime = "nodejs";
 export const maxDuration = 60; // Allow up to 60s for AI processing
@@ -188,6 +189,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Email required" }, { status: 400 });
     }
 
+    // Check if user can translate (has free credit or subscription)
+    const usageCheck = await canUserTranslate(email);
+    if (!usageCheck.allowed) {
+      return NextResponse.json(
+        {
+          error: "limit_reached",
+          message: "Ya has usado tu traducción gratuita. Suscríbete para traducir más CVs.",
+          freeUsed: usageCheck.freeUsed,
+          pricing: {
+            monthly: { price: 9.90, currency: "CHF" },
+            yearly: { price: 79, currency: "CHF" },
+            perCv: { price: 4.90, currency: "CHF" },
+          },
+        },
+        { status: 402 } // Payment Required
+      );
+    }
+
     // Validate file type
     const fileName = file.name.toLowerCase();
     const isPDF = fileName.endsWith(".pdf");
@@ -236,12 +255,16 @@ export async function POST(req: NextRequest) {
     // Translate and structure with AI
     const cvData = await translateAndStructureCV(rawText);
 
-    // TODO: Track usage in Gist (email, date, free/paid)
+    // Record usage (free or paid based on subscription status)
+    const isPaid = usageCheck.hasSubscription;
+    const usageRecord = await recordTranslation(email, isPaid);
 
     return NextResponse.json({
       ok: true,
       cv: cvData,
       originalLength: rawText.length,
+      translationId: usageRecord.translationId,
+      usedFreeCredit: !isPaid,
     });
   } catch (e) {
     console.error("CV translation error:", e);

@@ -4,7 +4,13 @@ import { useState, useRef } from "react";
 import Link from "next/link";
 import type { CVData } from "@/app/api/cv-translator/route";
 
-type Step = "upload" | "processing" | "preview" | "error";
+type Step = "upload" | "processing" | "preview" | "error" | "paywall";
+
+interface Pricing {
+  monthly: { price: number; currency: string };
+  yearly: { price: number; currency: string; savings?: string };
+  perCv: { price: number; currency: string };
+}
 
 export default function TraductorCVPage() {
   const [step, setStep] = useState<Step>("upload");
@@ -13,18 +19,18 @@ export default function TraductorCVPage() {
   const [error, setError] = useState("");
   const [cvData, setCvData] = useState<CVData | null>(null);
   const [downloadingPdf, setDownloadingPdf] = useState(false);
+  const [usedFreeCredit, setUsedFreeCredit] = useState(false);
+  const [pricing, setPricing] = useState<Pricing | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0];
     if (selected) {
-      // Validate type
       const name = selected.name.toLowerCase();
       if (!name.endsWith(".pdf") && !name.endsWith(".docx")) {
         setError("Solo se aceptan archivos PDF o DOCX");
         return;
       }
-      // Validate size (5MB)
       if (selected.size > 5 * 1024 * 1024) {
         setError("El archivo es demasiado grande (máx. 5MB)");
         return;
@@ -71,11 +77,19 @@ export default function TraductorCVPage() {
 
       const data = await res.json();
 
+      // Handle payment required (limit reached)
+      if (res.status === 402) {
+        setPricing(data.pricing);
+        setStep("paywall");
+        return;
+      }
+
       if (!res.ok) {
-        throw new Error(data.error || "Error al procesar el CV");
+        throw new Error(data.error || data.message || "Error al procesar el CV");
       }
 
       setCvData(data.cv);
+      setUsedFreeCredit(data.usedFreeCredit ?? false);
       setStep("preview");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error desconocido");
@@ -112,6 +126,14 @@ export default function TraductorCVPage() {
     } finally {
       setDownloadingPdf(false);
     }
+  };
+
+  const handleSubscribe = async (plan: "monthly" | "yearly" | "single") => {
+    // TODO: Integrate with Stripe checkout
+    // For now, show a message that subscription is coming soon
+    alert(
+      `Suscripción ${plan} - Próximamente disponible.\n\nContacta con nosotros en info@hispanosensui.za para acceso anticipado.`
+    );
   };
 
   const resetForm = () => {
@@ -292,13 +314,116 @@ export default function TraductorCVPage() {
             </div>
           )}
 
+          {/* Paywall Step */}
+          {step === "paywall" && (
+            <div className="p-6 md:p-8">
+              <div className="text-center mb-8">
+                <div className="text-5xl mb-4">🔒</div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                  Ya usaste tu traducción gratuita
+                </h2>
+                <p className="text-gray-600">
+                  Suscríbete para traducir CVs ilimitados o compra una traducción individual.
+                </p>
+              </div>
+
+              {/* Pricing Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                {/* Single CV */}
+                <div className="border border-gray-200 rounded-xl p-5 text-center">
+                  <div className="text-sm text-gray-500 mb-1">1 traducción</div>
+                  <div className="text-3xl font-bold text-gray-800 mb-2">
+                    {pricing?.perCv.price ?? 4.90} <span className="text-lg">CHF</span>
+                  </div>
+                  <ul className="text-sm text-gray-600 mb-4 space-y-1">
+                    <li>✓ 1 CV traducido</li>
+                    <li>✓ Formato suizo profesional</li>
+                    <li>✓ Descarga PDF inmediata</li>
+                  </ul>
+                  <button
+                    onClick={() => handleSubscribe("single")}
+                    className="w-full py-2 border border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition"
+                  >
+                    Comprar
+                  </button>
+                </div>
+
+                {/* Monthly */}
+                <div className="border-2 border-blue-600 rounded-xl p-5 text-center relative">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                    POPULAR
+                  </div>
+                  <div className="text-sm text-gray-500 mb-1">Mensual</div>
+                  <div className="text-3xl font-bold text-gray-800 mb-2">
+                    {pricing?.monthly.price ?? 9.90} <span className="text-lg">CHF/mes</span>
+                  </div>
+                  <ul className="text-sm text-gray-600 mb-4 space-y-1">
+                    <li>✓ CVs ilimitados</li>
+                    <li>✓ Todas las plantillas</li>
+                    <li>✓ Soporte prioritario</li>
+                    <li>✓ Cancela cuando quieras</li>
+                  </ul>
+                  <button
+                    onClick={() => handleSubscribe("monthly")}
+                    className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
+                  >
+                    Suscribirme
+                  </button>
+                </div>
+
+                {/* Yearly */}
+                <div className="border border-gray-200 rounded-xl p-5 text-center relative">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                    AHORRA 33%
+                  </div>
+                  <div className="text-sm text-gray-500 mb-1">Anual</div>
+                  <div className="text-3xl font-bold text-gray-800 mb-2">
+                    {pricing?.yearly.price ?? 79} <span className="text-lg">CHF/año</span>
+                  </div>
+                  <ul className="text-sm text-gray-600 mb-4 space-y-1">
+                    <li>✓ CVs ilimitados</li>
+                    <li>✓ Todas las plantillas</li>
+                    <li>✓ Soporte prioritario</li>
+                    <li>✓ 4 meses gratis</li>
+                  </ul>
+                  <button
+                    onClick={() => handleSubscribe("yearly")}
+                    className="w-full py-2 border border-green-600 text-green-600 font-semibold rounded-lg hover:bg-green-50 transition"
+                  >
+                    Suscribirme
+                  </button>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <button
+                  onClick={resetForm}
+                  className="text-gray-500 hover:text-gray-700 text-sm"
+                >
+                  ← Volver al inicio
+                </button>
+              </div>
+
+              <p className="text-center text-xs text-gray-400 mt-6">
+                Pago seguro con Stripe. Puedes cancelar en cualquier momento.
+              </p>
+            </div>
+          )}
+
           {/* Preview Step */}
           {step === "preview" && cvData && (
             <div className="p-6 md:p-8">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-gray-800">
-                  Tu Lebenslauf está listo
-                </h2>
+                <div>
+                  <h2 className="text-xl font-bold text-gray-800">
+                    Tu Lebenslauf está listo
+                  </h2>
+                  {usedFreeCredit && (
+                    <p className="text-sm text-green-600">
+                      Has usado tu traducción gratuita
+                    </p>
+                  )}
+                </div>
                 <button
                   onClick={resetForm}
                   className="text-gray-500 hover:text-gray-700 text-sm"
@@ -451,7 +576,7 @@ export default function TraductorCVPage() {
               },
               {
                 q: "¿Es realmente gratis?",
-                a: "Tu primer CV es 100% gratis. Para traducciones adicionales o funciones premium (más plantillas, revisión manual), ofrecemos una suscripción opcional.",
+                a: "Tu primer CV es 100% gratis. Para traducciones adicionales puedes suscribirte (9.90 CHF/mes ilimitado) o comprar traducciones individuales (4.90 CHF cada una).",
               },
               {
                 q: "¿Qué calidad tiene la traducción?",
