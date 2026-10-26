@@ -5,12 +5,12 @@ import { buildMetadata, BASE_URL, breadcrumbSchema, itemListSchema } from "@/lib
 
 export const metadata: Metadata = buildMetadata({
   title: "Herramientas gratuitas para vivir en Suiza — Calculadoras y comparadores",
-  description: "5 calculadoras y herramientas gratuitas para hispanohablantes en Suiza: salario neto por cantón, comparador de salarios por profesión, seguros médicos, comparador de ciudades y más.",
+  description: "7 herramientas gratuitas para hispanohablantes en Suiza: traductor de CV al alemán, salario neto, comparador de salarios, seguros médicos, comparador de ciudades, permisos y más.",
   path: "/herramientas",
   ogImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=85&auto=format&fit=crop",
   keywords: [
     "herramientas suiza", "calculadora suiza gratis", "calculadora salario suiza",
-    "comparador seguros suiza", "herramientas expat suiza",
+    "comparador seguros suiza", "herramientas expat suiza", "traductor cv aleman",
     "calculadora impuestos suiza", "coste vida suiza calculadora",
     "salario neto suiza 2026", "comparador salarios suiza ciudad",
     "permiso trabajo suiza calculadora", "salario por profesion suiza",
@@ -18,6 +18,15 @@ export const metadata: Metadata = buildMetadata({
 });
 
 const herramientas = [
+  {
+    icono: "📝",
+    titulo: "Traductor de CV al alemán",
+    descripcion: "Sube tu currículum en español y descarga un Lebenslauf profesional traducido al alemán y adaptado al formato suizo estándar. Tu primer CV es gratis.",
+    estado: "disponible",
+    href: "/herramientas/traductor-cv",
+    color: "bg-indigo-50 border-indigo-200",
+    btnColor: "bg-indigo-700",
+  },
   {
     icono: "💰",
     titulo: "Calculadora de salario neto suizo",
