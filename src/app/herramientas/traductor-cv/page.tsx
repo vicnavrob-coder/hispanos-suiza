@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import type { CVData } from "@/app/api/cv-translator/route";
 
-type Step = "upload" | "processing" | "preview" | "error" | "paywall";
+type Step = "upload" | "queued" | "preview" | "error" | "paywall";
 
 interface Pricing {
   monthly: { price: number; currency: string };
@@ -19,9 +19,38 @@ export default function TraductorCVPage() {
   const [error, setError] = useState("");
   const [cvData, setCvData] = useState<CVData | null>(null);
   const [downloadingPdf, setDownloadingPdf] = useState(false);
-  const [usedFreeCredit, setUsedFreeCredit] = useState(false);
   const [pricing, setPricing] = useState<Pricing | null>(null);
+  const [queueId, setQueueId] = useState<string | null>(null);
+  const [queueStatus, setQueueStatus] = useState<string>("pending");
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Poll for queue status
+  useEffect(() => {
+    if (step !== "queued" || !queueId) return;
+
+    const pollInterval = setInterval(async () => {
+      try {
+        const res = await fetch(`/api/cv-translator?id=${queueId}`);
+        const data = await res.json();
+
+        setQueueStatus(data.status);
+
+        if (data.status === "completed" && data.cv) {
+          setCvData(data.cv);
+          setStep("preview");
+          clearInterval(pollInterval);
+        } else if (data.status === "error") {
+          setError(data.error || "Error al procesar el CV");
+          setStep("error");
+          clearInterval(pollInterval);
+        }
+      } catch (e) {
+        console.error("Polling error:", e);
+      }
+    }, 10000); // Poll every 10 seconds
+
+    return () => clearInterval(pollInterval);
+  }, [step, queueId]);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0];
@@ -62,7 +91,6 @@ export default function TraductorCVPage() {
     e.preventDefault();
     if (!file || !email) return;
 
-    setStep("processing");
     setError("");
 
     try {
@@ -85,12 +113,13 @@ export default function TraductorCVPage() {
       }
 
       if (!res.ok) {
-        throw new Error(data.error || data.message || "Error al procesar el CV");
+        throw new Error(data.error || data.message || "Error al enviar el CV");
       }
 
-      setCvData(data.cv);
-      setUsedFreeCredit(data.usedFreeCredit ?? false);
-      setStep("preview");
+      // CV queued successfully
+      setQueueId(data.queueId);
+      setQueueStatus("pending");
+      setStep("queued");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error desconocido");
       setStep("error");
@@ -129,11 +158,28 @@ export default function TraductorCVPage() {
   };
 
   const handleSubscribe = async (plan: "monthly" | "yearly" | "single") => {
-    // TODO: Integrate with Stripe checkout
-    // For now, show a message that subscription is coming soon
-    alert(
-      `Suscripción ${plan} - Próximamente disponible.\n\nContacta con nosotros en info@hispanosensui.za para acceso anticipado.`
-    );
+    // Redirect to Stripe checkout
+    try {
+      const res = await fetch("/api/stripe/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          plan: plan === "single" ? "cv-single" : plan === "yearly" ? "cv-yearly" : "cv-monthly",
+          returnUrl: window.location.href,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        setError("Error al procesar el pago. Por favor, contacta con info@hispanosensuiza.ch");
+      }
+    } catch {
+      setError("Error de conexión. Por favor, inténtalo de nuevo.");
+    }
   };
 
   const resetForm = () => {
@@ -141,6 +187,7 @@ export default function TraductorCVPage() {
     setFile(null);
     setCvData(null);
     setError("");
+    setQueueId(null);
   };
 
   return (
@@ -178,9 +225,9 @@ export default function TraductorCVPage() {
               desc: "Estructura cronológica inversa estándar",
             },
             {
-              icon: "⚡",
-              title: "Listo en segundos",
-              desc: "IA procesa y traduce automáticamente",
+              icon: "🧑‍💻",
+              title: "Revisión humana",
+              desc: "Cada CV es revisado por un experto",
             },
           ].map((b, i) => (
             <div
@@ -212,7 +259,7 @@ export default function TraductorCVPage() {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
                 <p className="text-xs text-gray-500 mt-1">
-                  Para enviarte el CV si cierras la página
+                  Te avisaremos cuando tu CV esté listo
                 </p>
               </div>
 
@@ -280,37 +327,55 @@ export default function TraductorCVPage() {
                 disabled={!file || !email}
                 className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Traducir y adaptar al formato suizo
+                Enviar CV para traducción
               </button>
 
               <p className="text-center text-xs text-gray-500 mt-4">
-                Tu primer CV es gratis. No compartimos tus datos.
+                Tu primer CV es gratis. Tiempo de entrega: 5-15 minutos.
               </p>
             </form>
           )}
 
-          {/* Processing Step */}
-          {step === "processing" && (
+          {/* Queued Step */}
+          {step === "queued" && (
             <div className="p-8 md:p-12 text-center">
-              <div className="animate-spin text-5xl mb-4">⚙️</div>
-              <h2 className="text-xl font-bold text-gray-800 mb-2">
-                Traduciendo tu CV...
+              <div className="text-6xl mb-6">📨</div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-3">
+                CV recibido correctamente
               </h2>
-              <p className="text-gray-500">
-                Extrayendo contenido, traduciendo al alemán y adaptando al formato
-                suizo. Esto puede tardar 15-30 segundos.
+              <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                Tu CV está siendo procesado por nuestro equipo. Te notificaremos
+                a <strong>{email}</strong> cuando esté listo.
               </p>
-              <div className="mt-6 flex justify-center gap-2">
-                {["Extrayendo texto", "Traduciendo", "Formateando"].map((s, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full animate-pulse"
-                    style={{ animationDelay: `${i * 0.3}s` }}
-                  >
-                    {s}
+
+              <div className="bg-blue-50 rounded-xl p-6 mb-6 max-w-sm mx-auto">
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                  <span className="font-semibold text-blue-800">
+                    {queueStatus === "pending" && "En cola"}
+                    {queueStatus === "processing" && "Procesando..."}
                   </span>
-                ))}
+                </div>
+                <p className="text-sm text-blue-600">
+                  Tiempo estimado: 5-15 minutos
+                </p>
+                <p className="text-xs text-blue-500 mt-2">
+                  ID: {queueId}
+                </p>
               </div>
+
+              <p className="text-sm text-gray-500 mb-4">
+                Esta página se actualizará automáticamente cuando tu CV esté listo.
+                <br />
+                También puedes cerrarla y volver más tarde.
+              </p>
+
+              <button
+                onClick={resetForm}
+                className="text-gray-500 hover:text-gray-700 text-sm"
+              >
+                ← Enviar otro CV
+              </button>
             </div>
           )}
 
@@ -329,7 +394,6 @@ export default function TraductorCVPage() {
 
               {/* Pricing Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                {/* Single CV */}
                 <div className="border border-gray-200 rounded-xl p-5 text-center">
                   <div className="text-sm text-gray-500 mb-1">1 traducción</div>
                   <div className="text-3xl font-bold text-gray-800 mb-2">
@@ -348,7 +412,6 @@ export default function TraductorCVPage() {
                   </button>
                 </div>
 
-                {/* Monthly */}
                 <div className="border-2 border-blue-600 rounded-xl p-5 text-center relative">
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
                     POPULAR
@@ -371,7 +434,6 @@ export default function TraductorCVPage() {
                   </button>
                 </div>
 
-                {/* Yearly */}
                 <div className="border border-gray-200 rounded-xl p-5 text-center relative">
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">
                     AHORRA 33%
@@ -403,10 +465,6 @@ export default function TraductorCVPage() {
                   ← Volver al inicio
                 </button>
               </div>
-
-              <p className="text-center text-xs text-gray-400 mt-6">
-                Pago seguro con Stripe. Puedes cancelar en cualquier momento.
-              </p>
             </div>
           )}
 
@@ -418,11 +476,9 @@ export default function TraductorCVPage() {
                   <h2 className="text-xl font-bold text-gray-800">
                     Tu Lebenslauf está listo
                   </h2>
-                  {usedFreeCredit && (
-                    <p className="text-sm text-green-600">
-                      Has usado tu traducción gratuita
-                    </p>
-                  )}
+                  <p className="text-sm text-green-600">
+                    Traducido y adaptado al formato suizo
+                  </p>
                 </div>
                 <button
                   onClick={resetForm}
@@ -434,7 +490,6 @@ export default function TraductorCVPage() {
 
               {/* CV Preview */}
               <div className="bg-gray-50 rounded-xl p-6 mb-6 border border-gray-200">
-                {/* Header */}
                 <div className="border-b-2 border-blue-600 pb-4 mb-4">
                   <h3 className="text-2xl font-bold text-blue-800">
                     {cvData.personalInfo.fullName}
@@ -452,7 +507,6 @@ export default function TraductorCVPage() {
                   </div>
                 </div>
 
-                {/* Summary */}
                 {cvData.professionalSummary && (
                   <div className="mb-4">
                     <h4 className="font-bold text-blue-700 uppercase text-sm mb-2">
@@ -464,7 +518,6 @@ export default function TraductorCVPage() {
                   </div>
                 )}
 
-                {/* Experience */}
                 {cvData.workExperience && cvData.workExperience.length > 0 && (
                   <div className="mb-4">
                     <h4 className="font-bold text-blue-700 uppercase text-sm mb-2">
@@ -479,13 +532,6 @@ export default function TraductorCVPage() {
                           </span>
                         </div>
                         <div className="text-gray-600 text-sm">{exp.company}</div>
-                        {exp.responsibilities && exp.responsibilities.length > 0 && (
-                          <ul className="list-disc list-inside text-sm text-gray-600 mt-1">
-                            {exp.responsibilities.slice(0, 2).map((r, j) => (
-                              <li key={j}>{r}</li>
-                            ))}
-                          </ul>
-                        )}
                       </div>
                     ))}
                     {cvData.workExperience.length > 2 && (
@@ -496,7 +542,6 @@ export default function TraductorCVPage() {
                   </div>
                 )}
 
-                {/* Languages */}
                 {cvData.skills?.languages && cvData.skills.languages.length > 0 && (
                   <div>
                     <h4 className="font-bold text-blue-700 uppercase text-sm mb-2">
@@ -516,7 +561,6 @@ export default function TraductorCVPage() {
                 )}
               </div>
 
-              {/* Download Button */}
               <button
                 onClick={handleDownloadPdf}
                 disabled={downloadingPdf}
@@ -534,10 +578,6 @@ export default function TraductorCVPage() {
                   </>
                 )}
               </button>
-
-              <p className="text-center text-xs text-gray-500 mt-4">
-                PDF listo para enviar a empresas suizas
-              </p>
             </div>
           )}
 
@@ -567,20 +607,20 @@ export default function TraductorCVPage() {
           <div className="space-y-4">
             {[
               {
-                q: "¿Qué formato de CV suizo usáis?",
-                a: "Usamos el formato estándar DACH (Alemania, Austria, Suiza): cronológico inverso, con datos personales completos, niveles de idioma según el Marco Europeo, y terminología profesional alemana.",
+                q: "¿Cuánto tarda la traducción?",
+                a: "Normalmente entre 5 y 15 minutos. Te enviaremos un email cuando esté listo.",
               },
               {
-                q: "¿Qué pasa con el diseño de mi CV original?",
-                a: "Extraemos todo el contenido y lo volcamos en una plantilla profesional suiza. El diseño original no se mantiene, pero el resultado es más apropiado para el mercado laboral suizo.",
+                q: "¿Qué formato de CV suizo usáis?",
+                a: "Usamos el formato estándar DACH (Alemania, Austria, Suiza): cronológico inverso, con datos personales completos, niveles de idioma según el Marco Europeo, y terminología profesional alemana.",
               },
               {
                 q: "¿Es realmente gratis?",
                 a: "Tu primer CV es 100% gratis. Para traducciones adicionales puedes suscribirte (9.90 CHF/mes ilimitado) o comprar traducciones individuales (4.90 CHF cada una).",
               },
               {
-                q: "¿Qué calidad tiene la traducción?",
-                a: "Usamos IA avanzada (Claude de Anthropic) para traducir. La calidad es profesional, pero siempre recomendamos revisar el resultado, especialmente en términos técnicos de tu sector.",
+                q: "¿Quién traduce mi CV?",
+                a: "Cada CV es procesado con IA avanzada y revisado por nuestro equipo para garantizar la calidad y adaptación al mercado suizo.",
               },
             ].map((faq, i) => (
               <details
@@ -599,32 +639,61 @@ export default function TraductorCVPage() {
           </div>
         </div>
 
-        {/* Cross-sell */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Link
-            href="/trabajo"
-            className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition flex items-center gap-4"
-          >
-            <span className="text-3xl">💼</span>
-            <div>
-              <div className="font-bold text-gray-800">Buscar trabajo</div>
-              <div className="text-sm text-gray-500">
-                8 portales + 13 ETTs en un solo buscador
+        {/* Herramientas relacionadas */}
+        <div className="mt-12">
+          <h2 className="text-xl font-bold text-gray-800 mb-6 text-center">
+            Herramientas relacionadas
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Link
+              href="/trabajo"
+              className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md hover:border-blue-200 transition flex items-center gap-4"
+            >
+              <span className="text-3xl">💼</span>
+              <div>
+                <div className="font-bold text-gray-800">Buscar trabajo</div>
+                <div className="text-sm text-gray-500">
+                  8 portales + 13 ETTs en un solo buscador
+                </div>
               </div>
-            </div>
-          </Link>
-          <Link
-            href="/recursos/guia-salarios"
-            className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition flex items-center gap-4"
-          >
-            <span className="text-3xl">💰</span>
-            <div>
-              <div className="font-bold text-gray-800">Guía de salarios</div>
-              <div className="text-sm text-gray-500">
-                Cuánto se gana en Suiza por sector
+            </Link>
+            <Link
+              href="/herramientas/salario-neto"
+              className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md hover:border-blue-200 transition flex items-center gap-4"
+            >
+              <span className="text-3xl">🧮</span>
+              <div>
+                <div className="font-bold text-gray-800">Calculadora salario neto</div>
+                <div className="text-sm text-gray-500">
+                  Cuánto cobrarás realmente en Suiza
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+            <Link
+              href="/herramientas/impuesto-fuente"
+              className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md hover:border-blue-200 transition flex items-center gap-4"
+            >
+              <span className="text-3xl">💸</span>
+              <div>
+                <div className="font-bold text-gray-800">Calculadora Quellensteuer</div>
+                <div className="text-sm text-gray-500">
+                  Impuesto a la fuente por cantón
+                </div>
+              </div>
+            </Link>
+            <Link
+              href="/herramientas/comparador-ciudades"
+              className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md hover:border-blue-200 transition flex items-center gap-4"
+            >
+              <span className="text-3xl">🏙️</span>
+              <div>
+                <div className="font-bold text-gray-800">Comparador de ciudades</div>
+                <div className="text-sm text-gray-500">
+                  Coste de vida por ciudad suiza
+                </div>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </main>

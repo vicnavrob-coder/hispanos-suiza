@@ -320,7 +320,7 @@ export default function ImpuestoFuentePage() {
           </div>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-3 mb-6">
             <Link
               href="/herramientas/salario-neto"
               className="flex-1 bg-red-700 text-white text-sm font-semibold px-5 py-3 rounded-full text-center hover:bg-red-800 transition-colors"
@@ -333,6 +333,33 @@ export default function ImpuestoFuentePage() {
             >
               Comparar coste de vida por ciudad
             </Link>
+          </div>
+
+          {/* Herramientas relacionadas */}
+          <div className="border border-gray-200 rounded-2xl p-5">
+            <h3 className="font-semibold text-gray-800 mb-3 text-sm">Otras herramientas útiles</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Link
+                href="/herramientas/traductor-cv"
+                className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors"
+              >
+                <span className="text-xl">📄</span>
+                <div>
+                  <div className="font-medium text-gray-800 text-sm">Traductor de CV al alemán</div>
+                  <div className="text-xs text-gray-500">Lebenslauf formato suizo</div>
+                </div>
+              </Link>
+              <Link
+                href="/trabajo"
+                className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors"
+              >
+                <span className="text-xl">💼</span>
+                <div>
+                  <div className="font-medium text-gray-800 text-sm">Buscador de trabajo</div>
+                  <div className="text-xs text-gray-500">Ofertas de empleo en Suiza</div>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       )}

@@ -1,20 +1,53 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 
+// Plan configuration with Stripe price IDs
+const PLANS: Record<string, { priceId: string; mode: "subscription" | "payment"; successPath: string }> = {
+  // General premium subscription
+  premium: {
+    priceId: process.env.STRIPE_PRICE_ID_PREMIUM || "",
+    mode: "subscription",
+    successPath: "/suscripcion/exito",
+  },
+  // CV Translator plans
+  "cv-single": {
+    priceId: process.env.STRIPE_PRICE_ID_CV_SINGLE || "",
+    mode: "payment",
+    successPath: "/herramientas/traductor-cv?payment=success",
+  },
+  "cv-monthly": {
+    priceId: process.env.STRIPE_PRICE_ID_CV_MONTHLY || "",
+    mode: "subscription",
+    successPath: "/herramientas/traductor-cv?payment=success",
+  },
+  "cv-yearly": {
+    priceId: process.env.STRIPE_PRICE_ID_CV_YEARLY || "",
+    mode: "subscription",
+    successPath: "/herramientas/traductor-cv?payment=success",
+  },
+};
+
 export async function POST(req: NextRequest) {
   try {
-    const { email, nombre, plan = "premium" } = await req.json();
+    const { email, nombre, plan = "premium", returnUrl } = await req.json();
 
     if (!email) {
       return NextResponse.json({ error: "Email requerido" }, { status: 400 });
     }
 
-    if (plan !== "premium") {
+    const planConfig = PLANS[plan];
+    if (!planConfig) {
       return NextResponse.json({ error: "Plan no válido" }, { status: 400 });
     }
-    const priceId = process.env.STRIPE_PRICE_ID_PREMIUM!;
+
+    if (!planConfig.priceId) {
+      console.error(`[stripe/checkout] Missing price ID for plan: ${plan}`);
+      return NextResponse.json({ error: "Configuración de plan incompleta" }, { status: 500 });
+    }
 
     const origin = req.headers.get("origin") || "https://hispanosensuiza.ch";
+    const successUrl = returnUrl || `${origin}${planConfig.successPath}`;
+    const cancelUrl = returnUrl || `${origin}/precios`;
 
     const stripe = getStripe();
 
@@ -33,28 +66,51 @@ export async function POST(req: NextRequest) {
       customerId = customer.id;
     }
 
-    const session = await stripe.checkout.sessions.create({
+    // Build session config based on mode
+    const sessionConfig: Parameters<typeof stripe.checkout.sessions.create>[0] = {
       customer: customerId,
       line_items: [
         {
-          price: priceId,
+          price: planConfig.priceId,
           quantity: 1,
         },
       ],
-      mode: "subscription",
-      success_url: `${origin}/suscripcion/exito?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/precios`,
+      mode: planConfig.mode,
+      success_url: `${successUrl}${successUrl.includes("?") ? "&" : "?"}session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: cancelUrl,
       locale: "es",
-      subscription_data: {
+      allow_promotion_codes: true,
+      billing_address_collection: "auto",
+      metadata: {
+        email,
+        plan,
+        source: "hispanosensuiza.ch",
+      },
+    };
+
+    // Add subscription metadata for subscription mode
+    if (planConfig.mode === "subscription") {
+      sessionConfig.subscription_data = {
         metadata: {
           email,
           plan,
           source: "hispanosensuiza.ch",
         },
-      },
-      allow_promotion_codes: true,
-      billing_address_collection: "auto",
-    });
+      };
+    }
+
+    // Add payment intent metadata for payment mode
+    if (planConfig.mode === "payment") {
+      sessionConfig.payment_intent_data = {
+        metadata: {
+          email,
+          plan,
+          source: "hispanosensuiza.ch",
+        },
+      };
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionConfig);
 
     return NextResponse.json({ url: session.url });
   } catch (err: unknown) {

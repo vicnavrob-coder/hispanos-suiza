@@ -1,15 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
 import { PDFParse } from "pdf-parse";
 import mammoth from "mammoth";
 import { canUserTranslate, recordTranslation } from "@/lib/cv-usage";
+import { addToQueue, getQueueItem } from "@/lib/cv-queue";
 
 export const runtime = "nodejs";
-export const maxDuration = 60; // Allow up to 60s for AI processing
-
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+export const maxDuration = 30;
 
 // Structured CV data for Swiss-style CV
 export interface CVData {
@@ -21,7 +17,7 @@ export interface CVData {
     address?: string;
     phone?: string;
     email?: string;
-    photo?: string; // URL or base64
+    photo?: string;
   };
   professionalSummary: string;
   workExperience: Array<{
@@ -29,7 +25,7 @@ export interface CVData {
     company: string;
     location?: string;
     startDate: string;
-    endDate: string; // or "Present" / "Heute"
+    endDate: string;
     responsibilities: string[];
   }>;
   education: Array<{
@@ -53,130 +49,14 @@ export interface CVData {
   interests?: string[];
 }
 
-async function extractTextFromPDF(buffer: Buffer): Promise<string> {
-  const parser = new PDFParse({ data: buffer });
-  const result = await parser.getText();
-  return result.text;
-}
-
-async function extractTextFromDOCX(buffer: Buffer): Promise<string> {
-  const result = await mammoth.extractRawText({ buffer });
-  return result.value;
-}
-
-async function translateAndStructureCV(rawText: string): Promise<CVData> {
-  const systemPrompt = `Eres un experto en recursos humanos especializado en CVs para el mercado laboral suizo/alemán.
-
-Tu tarea es:
-1. Extraer toda la información del CV proporcionado
-2. Traducir TODO al alemán (Hochdeutsch)
-3. Estructurar según el formato suizo estándar
-4. Adaptar la terminología al mercado laboral suizo/alemán
-
-IMPORTANTE sobre el estilo suizo:
-- Formato cronológico inverso (más reciente primero)
-- Fechas en formato: MM/YYYY o "Heute" para presente
-- Niveles de idioma según Marco Común Europeo: Muttersprache, C2, C1, B2, B1, A2, A1
-- Títulos académicos adaptados al sistema DACH (Bachelor, Master, Doktor, etc.)
-- Cargos laborales en alemán estándar
-
-Devuelve SOLO un JSON válido con esta estructura exacta (sin markdown, sin explicaciones):
-{
-  "personalInfo": {
-    "fullName": "string",
-    "dateOfBirth": "string o null",
-    "nationality": "string o null",
-    "maritalStatus": "string o null (ledig/verheiratet/geschieden)",
-    "address": "string o null",
-    "phone": "string o null",
-    "email": "string o null"
-  },
-  "professionalSummary": "string - resumen profesional en alemán, 2-3 frases",
-  "workExperience": [
-    {
-      "position": "cargo en alemán",
-      "company": "nombre empresa",
-      "location": "ciudad, país",
-      "startDate": "MM/YYYY",
-      "endDate": "MM/YYYY o Heute",
-      "responsibilities": ["responsabilidad 1 en alemán", "..."]
-    }
-  ],
-  "education": [
-    {
-      "degree": "título en alemán",
-      "institution": "nombre institución",
-      "location": "ciudad, país",
-      "startDate": "MM/YYYY o null",
-      "endDate": "MM/YYYY",
-      "details": "detalles adicionales o null"
-    }
-  ],
-  "skills": {
-    "languages": [
-      {"language": "Spanisch", "level": "Muttersprache"},
-      {"language": "Deutsch", "level": "B2"}
-    ],
-    "technical": ["habilidad técnica 1", "..."],
-    "soft": ["habilidad blanda en alemán", "..."]
-  },
-  "certifications": [
-    {
-      "name": "nombre certificación",
-      "issuer": "emisor o null",
-      "date": "MM/YYYY o null"
-    }
-  ],
-  "interests": ["interés en alemán", "..."]
-}
-
-Si algún campo no está en el CV original, usa null o array vacío según corresponda.
-Traduce TODO al alemán, incluyendo nombres de habilidades, responsabilidades, etc.`;
-
-  const response = await anthropic.messages.create({
-    model: "claude-sonnet-4-20250514",
-    max_tokens: 4000,
-    messages: [
-      {
-        role: "user",
-        content: `Aquí está el CV a traducir y adaptar al formato suizo:\n\n${rawText}`,
-      },
-    ],
-    system: systemPrompt,
-  });
-
-  // Extract text from response
-  const textContent = response.content.find((c) => c.type === "text");
-  if (!textContent || textContent.type !== "text") {
-    throw new Error("No text response from AI");
-  }
-
-  // Parse JSON from response
-  let jsonStr = textContent.text.trim();
-
-  // Remove markdown code blocks if present
-  if (jsonStr.startsWith("```")) {
-    jsonStr = jsonStr.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "");
-  }
-
-  try {
-    return JSON.parse(jsonStr) as CVData;
-  } catch (e) {
-    console.error("Failed to parse CV JSON:", jsonStr);
-    throw new Error("Failed to parse AI response as JSON");
-  }
-}
-
+/**
+ * POST /api/cv-translator
+ *
+ * Adds CV to processing queue. CVs are processed by Nexus (Claude) manually.
+ * Returns a queue ID for polling status.
+ */
 export async function POST(req: NextRequest) {
   try {
-    // Check API key
-    if (!process.env.ANTHROPIC_API_KEY) {
-      return NextResponse.json(
-        { error: "AI service not configured" },
-        { status: 500 }
-      );
-    }
-
     const formData = await req.formData();
     const file = formData.get("file") as File | null;
     const email = formData.get("email") as string | null;
@@ -203,7 +83,7 @@ export async function POST(req: NextRequest) {
             perCv: { price: 4.90, currency: "CHF" },
           },
         },
-        { status: 402 } // Payment Required
+        { status: 402 }
       );
     }
 
@@ -227,50 +107,84 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Extract text from file
+    // Get file buffer
     const buffer = Buffer.from(await file.arrayBuffer());
-    let rawText: string;
 
-    try {
-      if (isPDF) {
-        rawText = await extractTextFromPDF(buffer);
-      } else {
-        rawText = await extractTextFromDOCX(buffer);
-      }
-    } catch (e) {
-      console.error("Text extraction error:", e);
+    // Add to processing queue
+    const queueResult = await addToQueue(
+      email,
+      file.name,
+      isPDF ? "pdf" : "docx",
+      buffer
+    );
+
+    if (!queueResult.ok || !queueResult.id) {
       return NextResponse.json(
-        { error: "Could not read file content" },
-        { status: 400 }
+        { error: "Failed to queue CV for processing" },
+        { status: 500 }
       );
     }
 
-    if (!rawText || rawText.trim().length < 50) {
-      return NextResponse.json(
-        { error: "Could not extract enough text from file. Is it a valid CV?" },
-        { status: 400 }
-      );
-    }
-
-    // Translate and structure with AI
-    const cvData = await translateAndStructureCV(rawText);
-
-    // Record usage (free or paid based on subscription status)
+    // Record usage (free tier used)
     const isPaid = usageCheck.hasSubscription;
-    const usageRecord = await recordTranslation(email, isPaid);
+    await recordTranslation(email, isPaid);
 
     return NextResponse.json({
       ok: true,
-      cv: cvData,
-      originalLength: rawText.length,
-      translationId: usageRecord.translationId,
-      usedFreeCredit: !isPaid,
+      status: "queued",
+      queueId: queueResult.id,
+      message: "Tu CV está en cola. Se procesará en unos minutos.",
+      estimatedTime: "5-15 minutos",
     });
   } catch (e) {
-    console.error("CV translation error:", e);
+    console.error("CV queue error:", e);
     return NextResponse.json(
-      { error: "Failed to process CV. Please try again." },
+      { error: "Failed to process request" },
       { status: 500 }
     );
   }
+}
+
+/**
+ * GET /api/cv-translator?id=...
+ *
+ * Check status of a queued CV translation
+ */
+export async function GET(req: NextRequest) {
+  const id = req.nextUrl.searchParams.get("id");
+
+  if (!id) {
+    return NextResponse.json({ error: "Queue ID required" }, { status: 400 });
+  }
+
+  const item = await getQueueItem(id);
+
+  if (!item) {
+    return NextResponse.json({ error: "CV not found" }, { status: 404 });
+  }
+
+  // Don't expose file content in response
+  const response: {
+    id: string;
+    status: string;
+    createdAt: string;
+    processedAt?: string;
+    cv?: CVData;
+    error?: string;
+  } = {
+    id: item.id,
+    status: item.status,
+    createdAt: item.createdAt,
+    processedAt: item.processedAt,
+  };
+
+  if (item.status === "completed" && item.result) {
+    response.cv = item.result.cv;
+  }
+
+  if (item.status === "error") {
+    response.error = item.error;
+  }
+
+  return NextResponse.json(response);
 }

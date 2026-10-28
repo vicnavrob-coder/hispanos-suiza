@@ -736,6 +736,45 @@ export default function ComparadorCiudadesPage() {
           </Link>
         </div>
       </div>
+
+      {/* Herramientas relacionadas */}
+      <div className="mt-8 bg-white rounded-2xl p-6" style={{ border: "1px solid #E8E5E0" }}>
+        <h3 className="font-bold text-[#0A0A0A] mb-4" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+          Otras herramientas útiles
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <Link
+            href="/herramientas/impuesto-fuente"
+            className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#F8F6F3] transition-colors"
+          >
+            <span className="text-2xl">💸</span>
+            <div>
+              <div className="font-semibold text-sm text-[#0A0A0A]">Calculadora Quellensteuer</div>
+              <div className="text-xs text-[#9CA3AF]">Impuesto a la fuente por cantón</div>
+            </div>
+          </Link>
+          <Link
+            href="/herramientas/traductor-cv"
+            className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#F8F6F3] transition-colors"
+          >
+            <span className="text-2xl">📄</span>
+            <div>
+              <div className="font-semibold text-sm text-[#0A0A0A]">Traductor de CV al alemán</div>
+              <div className="text-xs text-[#9CA3AF]">Lebenslauf formato suizo</div>
+            </div>
+          </Link>
+          <Link
+            href="/latinoamericanos"
+            className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#F8F6F3] transition-colors"
+          >
+            <span className="text-2xl">🌎</span>
+            <div>
+              <div className="font-semibold text-sm text-[#0A0A0A]">Guía para latinoamericanos</div>
+              <div className="text-xs text-[#9CA3AF]">Emigrar a Suiza desde tu país</div>
+            </div>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

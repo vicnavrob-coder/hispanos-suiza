@@ -2519,6 +2519,129 @@ const postsManual: Post[] = [
 <p>Ya sabes cuánto necesitas. Ahora calcula cuánto ganarás realmente con nuestra <a href="/herramientas/salario-neto">calculadora de salario neto</a> y empieza a buscar trabajo en nuestro <a href="/trabajo">buscador de empleo</a>.</p>
     `
   },
+
+  // ─────────────────────────────────────────────────────────
+  // ENTREVISTA DE TRABAJO EN SUIZA
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "entrevista-trabajo-suiza-como-preparar",
+    titulo: "Cómo preparar una entrevista de trabajo en Suiza: preguntas, cultura y errores que evitar",
+    descripcion: "Las entrevistas en Suiza son diferentes. Te explicamos qué preguntan, cómo vestir, la puntualidad suiza, negociar salario y los errores que cometen los hispanohablantes.",
+    categoria: "trabajo",
+    fecha: "2026-10-27",
+    tiempoLectura: 10,
+    imagen: "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?w=1200&q=85&auto=format&fit=crop",
+    destacado: true,
+    fechaModificada: "2026-10-27",
+    palabrasClave: [
+      "entrevista trabajo suiza",
+      "preparar entrevista suiza",
+      "preguntas entrevista suiza",
+      "negociar salario suiza",
+      "entrevista empresa suiza",
+      "como vestir entrevista suiza",
+      "cultura laboral suiza",
+    ],
+    faq: [
+      { pregunta: "¿Cómo son las entrevistas de trabajo en Suiza?", respuesta: "Las entrevistas suizas son formales, estructuradas y valoran mucho la puntualidad y la preparación. Suelen durar 45-90 minutos y a menudo incluyen 2-3 rondas: con RRHH, con el jefe directo y a veces con el equipo. Las preguntas son directas y esperan respuestas concretas con ejemplos." },
+      { pregunta: "¿Qué preguntas hacen en una entrevista en Suiza?", respuesta: "Preguntas típicas: '¿Por qué quiere trabajar en Suiza?', '¿Qué sabe de nuestra empresa?', '¿Cuáles son sus expectativas salariales?', '¿Cómo maneja los conflictos?', y preguntas técnicas del puesto. También preguntan sobre tu nivel de idiomas y disponibilidad para empezar." },
+      { pregunta: "¿Cómo negociar el salario en una entrevista en Suiza?", respuesta: "En Suiza se espera que negocies. Investiga los salarios del sector en Lohnrechner.ch o Salarium.ch antes de la entrevista. Da un rango (ej: 85.000-95.000 CHF anuales) y justifícalo con tu experiencia. Nunca aceptes la primera oferta sin negociar; los suizos lo esperan y lo respetan." },
+      { pregunta: "¿Cómo vestir para una entrevista en Suiza?", respuesta: "Formal y sobrio. Para hombres: traje o chaqueta con pantalón de vestir, corbata opcional según sector. Para mujeres: traje de chaqueta, vestido formal o blusa con pantalón. Colores neutros. En tech y startups es más casual, pero siempre mejor pasarse de formal que quedarse corto." },
+    ],
+    contenido: `
+<h2>Las entrevistas en Suiza: más formales de lo que esperas</h2>
+<p>Si vienes de España o Latinoamérica, las entrevistas en Suiza te van a sorprender. La cultura laboral suiza es directa, estructurada y valora la precisión. No hay improvisación: los entrevistadores llevan un guion de preguntas y esperan respuestas concretas con ejemplos reales.</p>
+<p>Esto no significa que sean frías — los suizos valoran la autenticidad y el profesionalismo. Pero hay reglas no escritas que pueden costarte el puesto si no las conoces.</p>
+
+<h2>La puntualidad suiza: llega 10 minutos antes</h2>
+<p>En Suiza, llegar puntual significa llegar 5-10 minutos antes. Llegar justo a la hora se considera casi tarde. Y llegar tarde sin aviso previo prácticamente descarta tu candidatura.</p>
+<p>Si vas a llegar tarde por cualquier motivo (tren retrasado, accidente), llama inmediatamente para avisar. Los suizos entienden los imprevistos del transporte público, pero no entienden no ser avisados.</p>
+<blockquote>"Llegué 3 minutos tarde a mi primera entrevista en Zúrich. El entrevistador empezó diciéndome 'en Suiza valoramos mucho la puntualidad'. Conseguí el trabajo, pero esa frase me persigue." — Ana, Madrid → Zúrich</blockquote>
+
+<h2>Estructura típica de una entrevista en Suiza</h2>
+<p>El proceso suele incluir varias rondas:</p>
+<ol>
+  <li><strong>Entrevista telefónica o video (20-30 min):</strong> Filtro inicial con RRHH. Preguntas básicas sobre tu experiencia, motivación y nivel de idiomas.</li>
+  <li><strong>Entrevista presencial con RRHH (45-60 min):</strong> Profundizan en tu CV, expectativas salariales, disponibilidad y fit cultural.</li>
+  <li><strong>Entrevista técnica con el jefe directo (60-90 min):</strong> Preguntas específicas del puesto. Pueden incluir casos prácticos o pruebas técnicas.</li>
+  <li><strong>Entrevista con el equipo (opcional):</strong> En algunas empresas te presentan al equipo para evaluar el encaje personal.</li>
+</ol>
+<p>El proceso completo puede durar 2-6 semanas. Los suizos no tienen prisa en contratar — prefieren estar seguros.</p>
+
+<h2>Las preguntas que siempre hacen</h2>
+<p>Prepara respuestas sólidas para estas preguntas, que aparecen en casi todas las entrevistas:</p>
+<ul>
+  <li><strong>"¿Por qué quiere trabajar en Suiza?"</strong> — Evita hablar solo de dinero. Menciona la calidad de vida, el desarrollo profesional, la estabilidad.</li>
+  <li><strong>"¿Qué sabe de nuestra empresa?"</strong> — Investiga a fondo: historia, productos, valores, noticias recientes. Los suizos valoran que hayas hecho los deberes.</li>
+  <li><strong>"¿Cuáles son sus expectativas salariales?"</strong> — Nunca digas "lo que ustedes ofrezcan". Da un rango investigado y justificado.</li>
+  <li><strong>"¿Cuál es su nivel de alemán/francés?"</strong> — Sé honesto. Exagerar te pasará factura el primer día de trabajo.</li>
+  <li><strong>"¿Cuándo podría incorporarse?"</strong> — Si estás trabajando, respeta el período de preaviso de tu contrato actual (típicamente 1-3 meses).</li>
+  <li><strong>"Describa una situación difícil y cómo la resolvió"</strong> — Usa el método STAR: Situación, Tarea, Acción, Resultado.</li>
+</ul>
+
+<h2>Cómo negociar el salario sin quedar mal</h2>
+<p>En Suiza se espera que negocies. Aceptar la primera oferta sin discutir puede incluso verse como falta de confianza en ti mismo.</p>
+<p><strong>Paso 1: Investiga antes</strong></p>
+<ul>
+  <li><a href="https://www.lohnrechner.ch" target="_blank" rel="noopener">Lohnrechner.ch</a> — Calculadora oficial de salarios por sector y cantón</li>
+  <li><a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/arbeit-erwerb/loehne-erwerbseinkommen-arbeitskosten/lohnniveau-schweiz/salarium.html" target="_blank" rel="noopener">Salarium.ch</a> — Herramienta del gobierno suizo</li>
+  <li>Glassdoor.ch — Salarios reportados por empleados</li>
+</ul>
+<p><strong>Paso 2: Da un rango, no una cifra</strong></p>
+<p>Ejemplo: "Basándome en mi experiencia y en los estándares del mercado para este perfil, mis expectativas están entre 90.000 y 100.000 CHF brutos anuales."</p>
+<p><strong>Paso 3: Justifica tu pedido</strong></p>
+<p>Menciona años de experiencia, certificaciones, habilidades específicas o idiomas. Los suizos respetan los argumentos basados en datos.</p>
+<p><strong>Paso 4: Negocia más que el salario</strong></p>
+<p>Si el salario base no es negociable, pregunta por: días de vacaciones adicionales (el mínimo legal son 20), home office, formación pagada, bonus anual, o contribución extra al tercer pilar.</p>
+
+<h2>Cómo vestir: la regla de oro</h2>
+<p>Mejor pasarse de formal que quedarse corto. La imagen cuenta mucho en Suiza.</p>
+<ul>
+  <li><strong>Banca, seguros, consultoría:</strong> Traje completo. Colores sobrios (azul marino, gris, negro).</li>
+  <li><strong>Industria y farmacéuticas:</strong> Smart casual. Chaqueta sin corbata o camisa formal.</li>
+  <li><strong>Tech y startups:</strong> Business casual. Sin traje, pero nada de camisetas con logos o zapatillas deportivas.</li>
+  <li><strong>Hostelería:</strong> Ropa limpia, bien planchada, profesional. No necesitas traje.</li>
+</ul>
+<p>En caso de duda, pregunta a RRHH antes de la entrevista: "¿Cuál es el código de vestimenta de la empresa?"</p>
+
+<h2>Errores que cometen los hispanohablantes</h2>
+<ol>
+  <li><strong>Interrumpir al entrevistador:</strong> En nuestra cultura es señal de entusiasmo; en Suiza es mala educación. Espera a que termine de hablar.</li>
+  <li><strong>Hablar demasiado:</strong> Los suizos valoran la concisión. Respuestas de 1-2 minutos máximo. Nada de monólogos.</li>
+  <li><strong>No preparar preguntas:</strong> Siempre te preguntarán "¿Tiene alguna pregunta?". Llevar 2-3 preguntas preparadas demuestra interés real.</li>
+  <li><strong>Criticar al empleador anterior:</strong> Nunca hables mal de tu jefe o empresa anterior. Suena poco profesional.</li>
+  <li><strong>Exagerar el nivel de idiomas:</strong> Si dices que hablas alemán B2 y no puedes mantener una conversación fluida, quedas muy mal.</li>
+  <li><strong>No enviar email de agradecimiento:</strong> Envía un email breve el mismo día o al día siguiente agradeciendo la oportunidad. Es estándar en Suiza.</li>
+</ol>
+
+<h2>El email de seguimiento: obligatorio</h2>
+<p>Después de la entrevista, envía un email en las siguientes 24 horas. Breve, profesional:</p>
+<blockquote>
+"Estimado/a [nombre],<br><br>
+Gracias por la entrevista de hoy. Ha sido un placer conocer más sobre [empresa] y el puesto de [título]. Me entusiasma la posibilidad de contribuir a [algo específico que comentaron].<br><br>
+Quedo a su disposición para cualquier información adicional.<br><br>
+Un cordial saludo,<br>
+[Tu nombre]"
+</blockquote>
+
+<h2>Cuánto tardan en responder</h2>
+<p>El proceso de contratación en Suiza es lento comparado con España o Latinoamérica:</p>
+<ul>
+  <li><strong>Respuesta tras primera entrevista:</strong> 1-2 semanas</li>
+  <li><strong>Proceso completo:</strong> 3-8 semanas desde primera entrevista hasta oferta</li>
+  <li><strong>Si no tienes noticias en 2 semanas:</strong> Envía un email de seguimiento preguntando por el estado del proceso</li>
+</ul>
+<p>Si te dicen que "contactarán pronto" y pasan semanas sin noticias, no significa rechazo — los procesos suizos simplemente son lentos.</p>
+
+<h2>Recursos para prepararte</h2>
+<ul>
+  <li><a href="/herramientas/salario-neto">Calculadora de salario neto</a> — Sabe cuánto te quedará realmente</li>
+  <li><a href="/trabajo">Buscador de trabajo en Suiza</a> — 8 portales + 13 ETTs</li>
+  <li><a href="/herramientas/traductor-cv">Traductor de CV al alemán</a> — Adapta tu currículum al formato suizo</li>
+  <li><a href="/blog/cv-suizo-como-adaptar-curriculum-espanol">Cómo adaptar tu CV al formato suizo</a> — Guía completa</li>
+</ul>
+    `
+  },
 ];
 
 // ── Índice completo (manuales + auto) ─────────────────────────────────────────

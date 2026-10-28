@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { buildMetadata, BASE_URL, breadcrumbSchema } from "@/lib/seo";
+import { buildMetadata, BASE_URL, breadcrumbSchema, webAppSchema, faqSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Calculadora impuesto a la fuente Suiza 2026 — Quellensteuer por cantón",
@@ -22,42 +22,31 @@ export const metadata: Metadata = buildMetadata({
   ],
 });
 
-const breadcrumb = breadcrumbSchema([
-  { name: "Inicio", url: BASE_URL },
-  { name: "Herramientas", url: `${BASE_URL}/herramientas` },
-  {
-    name: "Calculadora impuesto a la fuente",
-    url: `${BASE_URL}/herramientas/impuesto-fuente`,
-  },
-]);
-
-const webApp = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  name: "Calculadora impuesto a la fuente Suiza 2026",
-  url: `${BASE_URL}/herramientas/impuesto-fuente`,
-  applicationCategory: "FinanceApplication",
-  operatingSystem: "Web",
-  description:
-    "Calcula el Quellensteuer según cantón, estado civil, hijos y salario bruto.",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "CHF",
-  },
-};
-
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const schemas = [
+    breadcrumbSchema([
+      { name: "Inicio", url: BASE_URL },
+      { name: "Herramientas", url: `${BASE_URL}/herramientas` },
+      { name: "Calculadora impuesto a la fuente", url: `${BASE_URL}/herramientas/impuesto-fuente` },
+    ]),
+    webAppSchema({
+      name: "Calculadora impuesto a la fuente Suiza 2026",
+      description: "Calcula el Quellensteuer según cantón, estado civil, hijos y salario bruto.",
+      path: "/herramientas/impuesto-fuente",
+      applicationCategory: "FinanceApplication",
+    }),
+    faqSchema([
+      { pregunta: "¿Qué es el Quellensteuer o impuesto a la fuente?", respuesta: "El Quellensteuer es un impuesto que se retiene directamente del salario de trabajadores extranjeros sin permiso C en Suiza. Lo descuenta el empleador y varía según el cantón, estado civil y número de hijos." },
+      { pregunta: "¿Quién paga el impuesto a la fuente en Suiza?", respuesta: "Pagan el impuesto a la fuente los trabajadores extranjeros con permiso B, L o G que no tienen el permiso de establecimiento (permiso C). Una vez obtienes el permiso C, pasas a declarar impuestos como los suizos." },
+      { pregunta: "¿Cómo puedo recuperar parte del Quellensteuer?", respuesta: "Puedes solicitar una corrección del impuesto a la fuente si tienes gastos deducibles como el tercer pilar (3a), gastos de formación, o contribuciones a la pensión. Debes solicitarlo antes del 31 de marzo del año siguiente." },
+    ]),
+  ];
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApp) }}
-      />
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
       {children}
     </>
   );

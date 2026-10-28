@@ -368,6 +368,53 @@ export default function SalarioNetoPage() {
             💡 <strong>Tip:</strong> Los impuestos varían hasta un 15% entre cantones.
             Zug y Schwyz son los más ventajosos; Ginebra y Vaud los más elevados para sueldos medios.
           </div>
+
+          {/* Herramientas relacionadas */}
+          <div className="mt-8">
+            <h2 className="text-lg font-bold text-gray-800 mb-4">Herramientas relacionadas</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Link
+                href="/herramientas/impuesto-fuente"
+                className="bg-white border border-gray-100 rounded-xl p-4 hover:border-red-200 hover:shadow-sm transition-all flex items-center gap-3"
+              >
+                <span className="text-2xl">💸</span>
+                <div>
+                  <div className="font-semibold text-gray-800 text-sm">Calculadora Quellensteuer</div>
+                  <div className="text-xs text-gray-500">Impuesto a la fuente por cantón</div>
+                </div>
+              </Link>
+              <Link
+                href="/herramientas/comparador-ciudades"
+                className="bg-white border border-gray-100 rounded-xl p-4 hover:border-red-200 hover:shadow-sm transition-all flex items-center gap-3"
+              >
+                <span className="text-2xl">🏙️</span>
+                <div>
+                  <div className="font-semibold text-gray-800 text-sm">Comparador de ciudades</div>
+                  <div className="text-xs text-gray-500">Coste de vida y calidad por ciudad</div>
+                </div>
+              </Link>
+              <Link
+                href="/herramientas/traductor-cv"
+                className="bg-white border border-gray-100 rounded-xl p-4 hover:border-red-200 hover:shadow-sm transition-all flex items-center gap-3"
+              >
+                <span className="text-2xl">📄</span>
+                <div>
+                  <div className="font-semibold text-gray-800 text-sm">Traductor de CV al alemán</div>
+                  <div className="text-xs text-gray-500">Lebenslauf formato suizo</div>
+                </div>
+              </Link>
+              <Link
+                href="/trabajo"
+                className="bg-white border border-gray-100 rounded-xl p-4 hover:border-red-200 hover:shadow-sm transition-all flex items-center gap-3"
+              >
+                <span className="text-2xl">💼</span>
+                <div>
+                  <div className="font-semibold text-gray-800 text-sm">Buscador de trabajo</div>
+                  <div className="text-xs text-gray-500">Ofertas de empleo en Suiza</div>
+                </div>
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* ── Salarios de referencia ─────────────────────────────────────── */}

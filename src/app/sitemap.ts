@@ -34,6 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/herramientas/comparador-salarios`,   lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/herramientas/permiso-trabajo`,       lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/herramientas/impuesto-fuente`,       lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}/herramientas/traductor-cv`,          lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/trabajo/buscador`,                   lastModified: now, changeFrequency: "daily",   priority: 0.8 },
     { url: `${BASE_URL}/trabajo/unia`,                       lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/trabajo/esqui-suiza`,                lastModified: now, changeFrequency: "monthly", priority: 0.8 },
