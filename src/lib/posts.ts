@@ -429,7 +429,7 @@ const postsManual: Post[] = [
     categoria: "vida-diaria",
     fecha: "2026-10-02",
     tiempoLectura: 10,
-    imagen: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=85&auto=format&fit=crop",
+    imagen: "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=1200&q=85&auto=format&fit=crop",
     destacado: false,
     fechaModificada: "2026-10-09",
     palabrasClave: ["coste vida suiza", "coste vida zurich", "coste vida ginebra", "precio alquiler zurich", "salario minimo suiza", "cuanto cuesta vivir en suiza"],

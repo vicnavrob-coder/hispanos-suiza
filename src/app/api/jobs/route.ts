@@ -8,7 +8,7 @@ export type JobItem = {
   description: string;       // extracto corto (220 chars)
   descriptionFull?: string;  // descripción completa
   pubDate: string;
-  source: "jobs.ch" | "LinkedIn" | "Tempservice" | "tempoX" | "JobScout24" | "Jobup" | "Indeed" | "job-room" | "Adzuna";
+  source: "jobs.ch" | "LinkedIn" | "Tempservice" | "tempoX" | "JobScout24" | "Jobup" | "Indeed" | "job-room" | "Adzuna" | "Jobchannel";
   contractType?: string;
   workload?: string;
   salary?: string;
@@ -267,6 +267,58 @@ const TITLE_PATTERNS: TitlePattern[] = [
                                              es: "Responsable de marketing", sector: "Marketing" },
   { kw: ["content manager", "redakteur", "rédacteur", "copywriter"],
                                              es: "Redactor/a de contenidos", sector: "Marketing" },
+  { kw: ["social media", "community manager"],
+                                             es: "Social Media Manager",    sector: "Marketing" },
+  { kw: ["seo", "sem", "digital marketing"], es: "Especialista SEO/SEM",    sector: "Marketing" },
+
+  // ── Oficios adicionales ─────────────────────────────────────────────────
+  { kw: ["bäcker", "boulanger", "baker"],    es: "Panadero/a",              sector: "Hostelería" },
+  { kw: ["metzger", "fleischer", "boucher", "butcher"], es: "Carnicero/a",  sector: "Hostelería" },
+  { kw: ["friseur", "coiffeur", "hairdresser"], es: "Peluquero/a",          sector: "Servicios" },
+  { kw: ["kosmetiker", "estheticien"],       es: "Esteticista",             sector: "Servicios" },
+  { kw: ["schneider", "couturier", "tailor"],es: "Sastre/Modista",          sector: "Textil" },
+  { kw: ["optiker", "opticien"],             es: "Óptico",                  sector: "Sanidad" },
+  { kw: ["zahntechniker", "dental techniker"], es: "Técnico dental",        sector: "Sanidad" },
+  { kw: ["laborant", "laborassistent"],      es: "Técnico de laboratorio",  sector: "Sanidad" },
+  { kw: ["tierarzt", "vétérinaire"],         es: "Veterinario",             sector: "Sanidad" },
+
+  // ── Retail / Comercio ───────────────────────────────────────────────────
+  { kw: ["kassierer", "caissier", "cashier"],es: "Cajero/a",                sector: "Comercio" },
+  { kw: ["verkäufer", "vendeur", "sales assistant", "retail"],
+                                             es: "Dependiente/a",           sector: "Comercio" },
+  { kw: ["filialleiter", "store manager"],   es: "Encargado/a de tienda",   sector: "Comercio" },
+
+  // ── Producción / Industria ──────────────────────────────────────────────
+  { kw: ["produktionsmitarbeiter", "production worker", "opérateur"],
+                                             es: "Operario de producción",  sector: "Industria" },
+  { kw: ["qualitätsprüfer", "quality", "contrôleur"],
+                                             es: "Control de calidad",      sector: "Industria" },
+  { kw: ["verpackung", "emballage", "packaging"],
+                                             es: "Operario de empaquetado", sector: "Logística" },
+
+  // ── Seguridad ───────────────────────────────────────────────────────────
+  { kw: ["sicherheitsmitarbeiter", "security", "wachmann"],
+                                             es: "Vigilante de seguridad",  sector: "Seguridad" },
+  { kw: ["empfang", "réception", "front desk"],
+                                             es: "Recepcionista",           sector: "Administración" },
+
+  // ── Call Center / Atención al cliente ───────────────────────────────────
+  { kw: ["call center", "callcenter", "kundendienst", "customer service"],
+                                             es: "Atención al cliente",     sector: "Servicios" },
+  { kw: ["helpdesk", "it support", "support technician"],
+                                             es: "Soporte técnico",         sector: "Servicios" },
+
+  // ── Transporte especializado ────────────────────────────────────────────
+  { kw: ["busfahrer", "bus driver", "chauffeur bus"],
+                                             es: "Conductor de autobús",    sector: "Transporte" },
+  { kw: ["taxifahrer", "taxi driver"],       es: "Taxista",                 sector: "Transporte" },
+  { kw: ["kranführer", "grutier", "crane operator"],
+                                             es: "Gruista",                 sector: "Construcción" },
+  { kw: ["baggerfahrer", "excavator"],       es: "Operador de excavadora",  sector: "Construcción" },
+
+  // ── Alimentación ────────────────────────────────────────────────────────
+  { kw: ["lebensmittel", "food production"], es: "Industria alimentaria",   sector: "Alimentación" },
+  { kw: ["traiteur", "caterer", "catering"], es: "Catering / Banquetes",    sector: "Hostelería" },
 ];
 
 /**
@@ -544,7 +596,7 @@ async function fetchJobsCh(term: string, city: string): Promise<JobItem[]> {
   try {
     const res = await fetch(url, { headers: HEADERS, next: { revalidate: 600 } });
     if (!res.ok) return [];
-    return parseJobsChHTML(await res.text()).slice(0, 20);
+    return parseJobsChHTML(await res.text()).slice(0, 30);
   } catch { return []; }
 }
 
@@ -557,7 +609,7 @@ async function fetchJobScout24(term: string, city: string): Promise<JobItem[]> {
     const res = await fetch(url, { headers: HEADERS, next: { revalidate: 600 } });
     if (!res.ok) return [];
     const jobs = parseJobsChHTML(await res.text());
-    return jobs.map(j => ({ ...j, source: "JobScout24" as const })).slice(0, 15);
+    return jobs.map(j => ({ ...j, source: "JobScout24" as const })).slice(0, 25);
   } catch { return []; }
 }
 
@@ -570,7 +622,7 @@ async function fetchJobup(term: string, city: string): Promise<JobItem[]> {
     const res = await fetch(url, { headers: HEADERS, next: { revalidate: 600 } });
     if (!res.ok) return [];
     const jobs = parseJobsChHTML(await res.text());
-    return jobs.map(j => ({ ...j, source: "Jobup" as const })).slice(0, 15);
+    return jobs.map(j => ({ ...j, source: "Jobup" as const })).slice(0, 25);
   } catch { return []; }
 }
 
@@ -593,7 +645,7 @@ async function fetchJobRoom(term: string, city: string): Promise<JobItem[]> {
     searchText: term,
     ...(cityParam ? { locationKeyword: cityParam } : {}),
     page: "0",
-    pageSize: "20",
+    pageSize: "30",
     sort: "date",
   });
   const url = `https://www.job-room.ch/jobsearch/api/v1/jobs?${params}`;
@@ -630,7 +682,7 @@ async function fetchJobRoom(term: string, city: string): Promise<JobItem[]> {
         applyPhone:      ct.phone,
         companyWebsite:  ct.companyWeb,
       };
-    }).filter(j => j.title && j.url).slice(0, 15);
+    }).filter(j => j.title && j.url).slice(0, 25);
   } catch { return []; }
 }
 
@@ -665,7 +717,7 @@ async function fetchAdzuna(term: string, city: string): Promise<JobItem[]> {
   if (!appId || !appKey) return [];
 
   const cityParam = city === "Toda Suiza" ? "Switzerland" : (CITY_SEARCH[city] ?? city);
-  const url = `https://api.adzuna.com/v1/api/jobs/ch/search/1?app_id=${appId}&app_key=${appKey}&what=${encodeURIComponent(term)}&where=${encodeURIComponent(cityParam)}&results_per_page=20&content-type=application/json`;
+  const url = `https://api.adzuna.com/v1/api/jobs/ch/search/1?app_id=${appId}&app_key=${appKey}&what=${encodeURIComponent(term)}&where=${encodeURIComponent(cityParam)}&results_per_page=30&content-type=application/json`;
 
   try {
     const res = await fetch(url, {
@@ -722,7 +774,7 @@ async function fetchAdzuna(term: string, city: string): Promise<JobItem[]> {
         applyPhone:      ct.phone,
         companyWebsite:  ct.companyWeb,
       };
-    }).filter(j => j.title && j.url).slice(0, 20);
+    }).filter(j => j.title && j.url).slice(0, 30);
   } catch { return []; }
 }
 
@@ -801,7 +853,7 @@ async function fetchTempservice(term: string, city: string): Promise<JobItem[]> 
       })
       .filter((j) => j.title && j.url)
       .filter((j) => city === "Toda Suiza" || j.location.toLowerCase().includes(cityLower) || j.location === "Suiza")
-      .slice(0, 15);
+      .slice(0, 25);
   } catch { return []; }
 }
 
@@ -819,8 +871,8 @@ type WPJob = {
 };
 
 async function fetchTempoX(_term: string, _city: string): Promise<JobItem[]> {
-  // WordPress REST API — trae los últimos 20 trabajos (títulos en alemán, sin filtro por término)
-  const url = `https://tempox.ch/wp-json/wp/v2/job_listing?per_page=20&orderby=date&order=desc`;
+  // WordPress REST API — trae los últimos 30 trabajos (títulos en alemán, sin filtro por término)
+  const url = `https://tempox.ch/wp-json/wp/v2/job_listing?per_page=30&orderby=date&order=desc`;
   try {
     const res = await fetch(url, {
       headers: { ...HEADERS, Accept: "application/json" },
@@ -862,6 +914,89 @@ function parseWPJobs(data: WPJob[], company: string): JobItem[] {
     .filter((j) => j.title && j.url);
 }
 
+// ── Indeed.ch — HTML scraping ─────────────────────────────────────────────────
+
+async function fetchIndeed(term: string, city: string): Promise<JobItem[]> {
+  const cityParam = city === "Toda Suiza" ? "Switzerland" : (CITY_SEARCH[city] ?? city);
+  const url = `https://ch.indeed.com/jobs?q=${encodeURIComponent(term)}&l=${encodeURIComponent(cityParam)}&sort=date&limit=30`;
+  try {
+    const res = await fetch(url, {
+      headers: { ...HEADERS, Accept: "text/html" },
+      next: { revalidate: 600 },
+    });
+    if (!res.ok) return [];
+    const html = await res.text();
+    return parseIndeedHTML(html);
+  } catch { return []; }
+}
+
+function parseIndeedHTML(html: string): JobItem[] {
+  const jobs: JobItem[] = [];
+
+  // Indeed usa JSON-LD en algunos casos
+  const ldMatches = html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g);
+  for (const [, content] of ldMatches) {
+    try {
+      const parsed: unknown = JSON.parse(content);
+      if (Array.isArray(parsed)) {
+        for (const item of parsed as Record<string, unknown>[]) {
+          if (item["@type"] === "JobPosting") {
+            const j = item as JsonLdJobPosting;
+            const rawDesc = String(j.description ?? "");
+            const descFull = htmlToStructured(rawDesc);
+            const ct = extractContact(descFull);
+            jobs.push({
+              title: String(j.title ?? ""),
+              company: j.hiringOrganization?.name ?? "",
+              location: j.jobLocation?.address?.addressLocality ?? "Suiza",
+              url: String(j.url ?? ""),
+              description: descFull.replace(/\n/g, " ").slice(0, 280),
+              descriptionFull: descFull,
+              pubDate: String(j.datePosted ?? ""),
+              source: "Indeed",
+              contractType: mapEmploymentType(j.employmentType),
+              applyEmail: ct.email,
+              applyPhone: ct.phone,
+              companyWebsite: ct.companyWeb,
+              requirements: extractRequirements(descFull),
+            });
+          }
+        }
+      }
+    } catch { /* continuar */ }
+  }
+
+  // Fallback: HTML parsing si no hay JSON-LD
+  if (jobs.length === 0) {
+    // Patrón para extraer ofertas de Indeed HTML
+    const titleMatches = [...html.matchAll(/class="[^"]*jobTitle[^"]*"[^>]*>[\s\S]*?<span[^>]*>([^<]+)<\/span>/g)];
+    const companyMatches = [...html.matchAll(/data-testid="company-name"[^>]*>([^<]+)</g)];
+    const locationMatches = [...html.matchAll(/data-testid="text-location"[^>]*>([^<]+)</g)];
+    const linkMatches = [...html.matchAll(/href="(\/rc\/clk\?jk=[^"]+)"/g)];
+
+    const minLen = Math.min(titleMatches.length, linkMatches.length);
+    for (let i = 0; i < minLen && i < 30; i++) {
+      const title = titleMatches[i]?.[1]?.trim() ?? "";
+      const company = companyMatches[i]?.[1]?.trim() ?? "";
+      const location = locationMatches[i]?.[1]?.trim() ?? "Suiza";
+      const relUrl = linkMatches[i]?.[1] ?? "";
+      if (title && relUrl) {
+        jobs.push({
+          title,
+          company,
+          location,
+          url: `https://ch.indeed.com${relUrl}`,
+          description: "",
+          pubDate: "",
+          source: "Indeed",
+        });
+      }
+    }
+  }
+
+  return jobs.filter(j => j.title && j.url).slice(0, 30);
+}
+
 // ── LinkedIn ─────────────────────────────────────────────────────────────────
 
 function extractAll(html: string, pattern: RegExp): string[] {
@@ -900,12 +1035,12 @@ function parseLinkedInHTML(html: string): JobItem[] {
       source:   "LinkedIn",
     });
   }
-  return jobs.slice(0, 20);
+  return jobs.slice(0, 30);
 }
 
 async function fetchLinkedIn(term: string, city: string): Promise<JobItem[]> {
   const location = LINKEDIN_CITY[city] ?? `${city}, Switzerland`;
-  const url = `https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=${encodeURIComponent(term)}&location=${encodeURIComponent(location)}&start=0&count=25`;
+  const url = `https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=${encodeURIComponent(term)}&location=${encodeURIComponent(location)}&start=0&count=35`;
   try {
     const res = await fetch(url, {
       headers: { ...HEADERS, Referer: "https://www.linkedin.com/jobs/" },
@@ -938,53 +1073,90 @@ const SLUG_TO_SECTORS: Record<string, string[]> = {
 /**
  * Términos en alemán para buscar en jobs.ch (portal principalmente alemán).
  * Usamos términos amplios que capturen más ofertas del sector.
+ * IMPORTANTE: múltiples sinónimos para maximizar resultados.
  */
 const SLUG_TERM_DE: Record<string, string> = {
-  "limpieza":     "Reinigung Hauswart",
-  "hosteleria":   "Koch Küche Service",
-  "electricidad": "Elektriker Elektro",
-  "construccion": "Bau Maurer Bauarbeiter",
-  "soldadura":    "Schweisser Metallbau Schlosser",
-  "mecanica":     "Mechaniker Auto KFZ",
-  "logistica":    "Chauffeur Lager Logistik",
-  "sanidad":      "Pflege Gesundheit Spitex",
-  "informatica":  "Software Developer IT",
-  "fontaneria":   "Sanitär Heizung HLKS",
-  "agricultura":  "Gärtner Landwirt",
+  "limpieza":     "Reinigung Hauswart Gebäudereinigung",
+  "hosteleria":   "Koch Küche Service Restaurant",
+  "electricidad": "Elektriker Elektro Elektroinstallateur",
+  "construccion": "Bau Maurer Bauarbeiter Baustelle",
+  "soldadura":    "Schweisser Metallbau Schlosser MIG MAG",
+  "mecanica":     "Mechaniker Auto KFZ Werkstatt",
+  "logistica":    "Chauffeur Lager Logistik Transport",
+  "sanidad":      "Pflege Gesundheit Spitex Krankenhaus",
+  "informatica":  "Software Developer IT Programmierer",
+  "fontaneria":   "Sanitär Heizung HLKS Installation",
+  "agricultura":  "Gärtner Landwirt Landwirtschaft",
 };
 
 /**
  * Términos alternativos alemán para segunda búsqueda (term2).
+ * Oficios específicos adicionales para ampliar cobertura.
  */
 const SLUG_TERM_DE_ALT: Record<string, string> = {
-  "limpieza":     "Facility Gebäudereinigung",
-  "hosteleria":   "Hotel Restaurant Gastro",
-  "electricidad": "Montage-Elektriker Automatiker",
-  "construccion": "Polier Zimmermann Gipser",
-  "soldadura":    "Polymechaniker Anlagebauer",
-  "mecanica":     "Carrossier Fahrzeug",
-  "logistica":    "LKW Staplerfahrer Kommissionierer",
-  "sanidad":      "Krankenpfleger FaGe Betreuung",
-  "informatica":  "Entwickler Programmierer DevOps",
-  "fontaneria":   "Installateur Klima Spengler",
-  "agricultura":  "Winzer Landschaftsgärtner",
+  "limpieza":     "Facility Putzfrau Reinigungsmitarbeiter",
+  "hosteleria":   "Hotel Gastro Kellner Barkeeper",
+  "electricidad": "Montage-Elektriker Automatiker Telematiker",
+  "construccion": "Polier Zimmermann Gipser Dachdecker Maler",
+  "soldadura":    "Polymechaniker Anlagebauer CNC Dreher",
+  "mecanica":     "Carrossier Fahrzeug Servicetechniker",
+  "logistica":    "LKW Staplerfahrer Kommissionierer Kurier",
+  "sanidad":      "Krankenpfleger FaGe Betreuung Arzt",
+  "informatica":  "Entwickler DevOps Cloud Backend Frontend",
+  "fontaneria":   "Installateur Klima Spengler Lüftung",
+  "agricultura":  "Winzer Landschaftsgärtner Erntehelfer",
+};
+
+/**
+ * Tercer conjunto de términos alemanes para búsquedas adicionales.
+ */
+const SLUG_TERM_DE_ALT2: Record<string, string> = {
+  "limpieza":     "Unterhaltsreinigung Fensterreinigung",
+  "hosteleria":   "Sous-Chef Küchenhilfe Bäcker Konditor",
+  "electricidad": "Netzwerktechniker Servicemonteur",
+  "construccion": "Bodenleger Fassadenbauer Tiefbau",
+  "soldadura":    "WIG TIG Rohrschlosser Konstrukteur",
+  "mecanica":     "Landmaschinenmechaniker Nutzfahrzeug",
+  "logistica":    "Spedition Versand Lagerist",
+  "sanidad":      "Physiotherapeut Zahnarzt Altenpflege",
+  "informatica":  "Systemadministrator Data Engineer",
+  "fontaneria":   "Wärmepumpe Solar Kälteanlagen",
+  "agricultura":  "Tierpfleger Forstwirt Bauer",
 };
 
 /**
  * Términos en inglés para buscar en LinkedIn (internacional).
+ * Ampliado con más variaciones.
  */
 const SLUG_TERM_EN: Record<string, string> = {
-  "limpieza":     "cleaner facility maintenance",
-  "hosteleria":   "chef cook hospitality hotel",
-  "electricidad": "electrician electrical technician",
-  "construccion": "construction worker builder site",
-  "soldadura":    "welder metal fabrication",
-  "mecanica":     "mechanic automotive technician",
-  "logistica":    "driver logistics warehouse",
-  "sanidad":      "nurse healthcare caregiver",
-  "informatica":  "software developer engineer",
-  "fontaneria":   "plumber HVAC technician",
-  "agricultura":  "agriculture farm gardener",
+  "limpieza":     "cleaner facility maintenance janitor",
+  "hosteleria":   "chef cook hospitality hotel restaurant",
+  "electricidad": "electrician electrical technician installer",
+  "construccion": "construction worker builder carpenter mason",
+  "soldadura":    "welder metal fabrication metalworker",
+  "mecanica":     "mechanic automotive technician service",
+  "logistica":    "driver logistics warehouse forklift",
+  "sanidad":      "nurse healthcare caregiver medical",
+  "informatica":  "software developer engineer programmer",
+  "fontaneria":   "plumber HVAC technician installer",
+  "agricultura":  "agriculture farm gardener landscaping",
+};
+
+/**
+ * Términos alternativos en inglés para segunda búsqueda LinkedIn.
+ */
+const SLUG_TERM_EN_ALT: Record<string, string> = {
+  "limpieza":     "housekeeping cleaning service office",
+  "hosteleria":   "kitchen waiter bartender catering",
+  "electricidad": "automation control systems",
+  "construccion": "site manager scaffolding roofing",
+  "soldadura":    "CNC machinist fabricator",
+  "mecanica":     "diesel heavy equipment repair",
+  "logistica":    "supply chain shipping courier",
+  "sanidad":      "physiotherapy pharmacy dentist",
+  "informatica":  "DevOps cloud backend frontend data",
+  "fontaneria":   "heating ventilation air conditioning",
+  "agricultura":  "vineyard forestry horticulture",
 };
 
 /**
@@ -1103,33 +1275,56 @@ export async function GET(request: Request) {
   //   jobs.ch es portal alemán → buscar en alemán
   //   LinkedIn es portal inglés → buscar en inglés
   //   Si es búsqueda libre (sin sectorFilter) usar el término tal cual
-  const termJobsCh   = sectorFilter ? (SLUG_TERM_DE[sectorFilter] ?? term) : term;
-  const termJobsChAlt = sectorFilter ? (SLUG_TERM_DE_ALT[sectorFilter] ?? "") : "";
-  const termLinkedIn = sectorFilter ? (SLUG_TERM_EN[sectorFilter] ?? term) : term;
+  const termJobsCh     = sectorFilter ? (SLUG_TERM_DE[sectorFilter] ?? term) : term;
+  const termJobsChAlt  = sectorFilter ? (SLUG_TERM_DE_ALT[sectorFilter] ?? "") : "";
+  const termJobsChAlt2 = sectorFilter ? (SLUG_TERM_DE_ALT2[sectorFilter] ?? "") : "";
+  const termLinkedIn   = sectorFilter ? (SLUG_TERM_EN[sectorFilter] ?? term) : term;
+  const termLinkedInAlt = sectorFilter ? (SLUG_TERM_EN_ALT[sectorFilter] ?? "") : "";
 
-  // Lanzar las 8 fuentes en paralelo con AMBOS términos para más resultados
-  const searches = [
-    fetchJobsCh(termJobsCh, city),
-    fetchLinkedIn(termLinkedIn, city),
-    fetchTempservice(termJobsCh, city),  // Usar término alemán
-    fetchTempoX(term, city),
-    fetchJobScout24(termJobsCh, city),
-    fetchJobup(termLinkedIn, city),
-    fetchJobRoom(termJobsCh, city),      // Usar término alemán
-    fetchAdzuna(termLinkedIn, city),     // Usar término inglés
+  // Lanzar TODAS las fuentes en paralelo para maximizar resultados
+  // 10 fuentes principales + búsquedas alternativas
+  const searches: Promise<JobItem[]>[] = [
+    // Fuentes principales (0-9)
+    fetchJobsCh(termJobsCh, city),         // 0
+    fetchLinkedIn(termLinkedIn, city),     // 1
+    fetchTempservice(termJobsCh, city),    // 2
+    fetchTempoX(term, city),               // 3
+    fetchJobScout24(termJobsCh, city),     // 4
+    fetchJobup(termLinkedIn, city),        // 5
+    fetchJobRoom(termJobsCh, city),        // 6
+    fetchAdzuna(termLinkedIn, city),       // 7
+    fetchIndeed(termJobsCh, city),         // 8 - NUEVO: Indeed alemán
+    fetchIndeed(termLinkedIn, city),       // 9 - NUEVO: Indeed inglés
   ];
 
-  // Si hay término alternativo, añadir búsquedas adicionales
-  if (termJobsChAlt) {
-    searches.push(
-      fetchJobsCh(termJobsChAlt, city),
-      fetchJobScout24(termJobsChAlt, city),
-      fetchJobRoom(termJobsChAlt, city),
-    );
+  // Búsquedas alternativas para ampliar cobertura (10+)
+  if (sectorFilter) {
+    // Términos alternativos alemanes
+    if (termJobsChAlt) {
+      searches.push(
+        fetchJobsCh(termJobsChAlt, city),      // 10
+        fetchJobScout24(termJobsChAlt, city),  // 11
+        fetchJobRoom(termJobsChAlt, city),     // 12
+      );
+    }
+    if (termJobsChAlt2) {
+      searches.push(
+        fetchJobsCh(termJobsChAlt2, city),     // 13
+        fetchJobRoom(termJobsChAlt2, city),    // 14
+      );
+    }
+    // Términos alternativos ingleses
+    if (termLinkedInAlt) {
+      searches.push(
+        fetchLinkedIn(termLinkedInAlt, city), // 15
+        fetchAdzuna(termLinkedInAlt, city),   // 16
+      );
+    }
   }
 
   const results = await Promise.allSettled(searches);
 
+  // Extraer resultados de fuentes principales
   const jobsCh      = results[0].status === "fulfilled" ? results[0].value : [];
   const linkedin    = results[1].status === "fulfilled" ? results[1].value : [];
   const tempservice = results[2].status === "fulfilled" ? results[2].value : [];
@@ -1138,13 +1333,18 @@ export async function GET(request: Request) {
   const jobup       = results[5].status === "fulfilled" ? results[5].value : [];
   const jobRoom     = results[6].status === "fulfilled" ? results[6].value : [];
   const adzuna      = results[7].status === "fulfilled" ? results[7].value : [];
+  const indeedDe    = results[8].status === "fulfilled" ? results[8].value : [];
+  const indeedEn    = results[9].status === "fulfilled" ? results[9].value : [];
 
-  // Resultados de búsquedas alternativas
-  const jobsChAlt     = results[8]?.status  === "fulfilled" ? results[8].value  : [];
-  const jobScout24Alt = results[9]?.status  === "fulfilled" ? results[9].value  : [];
-  const jobRoomAlt    = results[10]?.status === "fulfilled" ? results[10].value : [];
+  // Extraer resultados alternativos (índices 10+)
+  const altResults: JobItem[][] = [];
+  for (let i = 10; i < results.length; i++) {
+    if (results[i]?.status === "fulfilled") {
+      altResults.push((results[i] as PromiseFulfilledResult<JobItem[]>).value);
+    }
+  }
 
-  // Bug fix: tempoX siempre devuelve los 20 últimos trabajos sin filtrar por término.
+  // Bug fix: tempoX siempre devuelve los últimos trabajos sin filtrar por término.
   // Enriquecer y filtrar por relevancia ANTES del merge para evitar resultados irrelevantes.
   const termLower = term.toLowerCase();
   const termJobsChLower = termJobsCh.toLowerCase();
@@ -1158,23 +1358,32 @@ export async function GET(request: Request) {
 
   // Segundo término adicional si se pasó explícitamente
   let jobsCh2: JobItem[] = [];
-  if (term2 && jobsCh.length < 15) {
+  if (term2 && jobsCh.length < 20) {
     try { jobsCh2 = await fetchJobsCh(term2, city); } catch { /* ignorar */ }
   }
 
-  // Merge: ETT primero (más especializadas y exclusivas), luego portales, luego LinkedIn
+  // Merge: ETT primero (más especializadas), luego portales principales, luego LinkedIn
   // tempoX ya está enriquecido + filtrado; el resto se enriquece aquí.
-  // Incluir resultados de búsquedas alternativas para ampliar cobertura.
+  // Incluir todos los resultados de búsquedas alternativas para máxima cobertura.
   const seen   = new Set<string>();
   const merged: JobItem[] = [];
   const preEnrichedSet = new Set(tempoX); // evitar double-enrichment
+
+  // Combinar todas las fuentes principales + Indeed + alternativas
   const allJobs = [
-    ...tempservice, ...tempoX, ...adzuna,
-    ...jobsCh, ...jobsChAlt, ...jobsCh2,
-    ...jobScout24, ...jobScout24Alt,
+    // ETTs primero
+    ...tempservice, ...tempoX,
+    // Portales con datos de salario/contacto
+    ...adzuna, ...indeedDe, ...indeedEn,
+    // Portales principales suizos
+    ...jobsCh, ...jobsCh2,
+    ...jobScout24,
     ...jobup,
-    ...jobRoom, ...jobRoomAlt,
+    ...jobRoom,
+    // LinkedIn al final (menos datos de contacto)
     ...linkedin,
+    // Resultados de búsquedas alternativas
+    ...altResults.flat(),
   ];
   for (const job of allJobs) {
     const enriched = preEnrichedSet.has(job) ? job : enrichJob(job);
@@ -1217,7 +1426,7 @@ export async function GET(request: Request) {
   );
 
   return NextResponse.json({
-    jobs:    filtered.slice(0, 60),
+    jobs:    filtered.slice(0, 100), // Aumentado de 60 a 100 resultados
     total:   filtered.length,
     sources: {
       jobsCh:      jobsCh.length + jobsCh2.length,
@@ -1228,6 +1437,8 @@ export async function GET(request: Request) {
       jobup:       jobup.length,
       jobRoom:     jobRoom.length,
       adzuna:      adzuna.length,
+      indeed:      indeedDe.length + indeedEn.length,
+      alternative: altResults.flat().length,
     },
   });
 }

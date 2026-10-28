@@ -180,7 +180,7 @@ const cantones: Canton[] = [
         urlSBB: "https://www.sbb.ch/es/horarios.html",
       },
       {
-        slug: "viñedos-sion",
+        slug: "vinedos-sion",
         nombre: "Ruta del vino en Sion",
         tipo: "gastronomia",
         descripcion: "Los viñedos más altos de Europa producen el famoso Fendant y Dôle. Paseo entre bodegas centenarias.",
@@ -2503,7 +2503,7 @@ const cantones: Canton[] = [
     coordenadas: { lat: 47.3663, lng: 9.3023 },
     actividades: [
       {
-        slug: "santis-teleférico",
+        slug: "santis-teleferico",
         nombre: "Säntis (2.502m) — El pico de los Alpes de Appenzell",
         tipo: "teleferico",
         descripcion: "Teleférico hasta la cumbre del Säntis con vistas a los lagos del Bodensee y los seis países que se divisan en días claros.",
@@ -2757,7 +2757,7 @@ const cantones: Canton[] = [
     coordenadas: { lat: 47.5333, lng: 9.1000 },
     actividades: [
       {
-        slug: "lago-constanza-ciclovía",
+        slug: "lago-constanza-ciclovia",
         nombre: "Ciclismo por las orillas del lago de Constanza",
         tipo: "ciclismo",
         descripcion: "La ruta ciclista del Bodensee (273 km totales) recorre las orillas del lago a través de Suiza, Alemania y Austria.",
