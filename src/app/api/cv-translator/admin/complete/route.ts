@@ -1,6 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import { markCompleted, markError } from "@/lib/cv-queue";
+import nodemailer from "nodemailer";
+import { markCompleted, markError, getQueueItem } from "@/lib/cv-queue";
+import { emailCVCompletado } from "@/lib/email-templates";
 import type { CVData } from "@/app/api/cv-translator/route";
+
+export const runtime = "nodejs";
+
+const GMAIL_USER = process.env.NEWSLETTER_GMAIL_USER ?? "";
+const GMAIL_PASS = process.env.NEWSLETTER_GMAIL_PASS ?? "";
+const SITE = "https://hispanosensuiza.ch";
+
+function getTransporter() {
+  return nodemailer.createTransport({
+    service: "gmail",
+    auth: { user: GMAIL_USER, pass: GMAIL_PASS },
+  });
+}
 
 /**
  * POST /api/cv-translator/admin/complete
@@ -42,6 +57,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Get queue item to retrieve user email
+    const queueItem = await getQueueItem(id);
+    if (!queueItem) {
+      return NextResponse.json(
+        { error: "CV not found in queue" },
+        { status: 404 }
+      );
+    }
+
     // Mark as completed with result
     const result = {
       cv: cv as CVData,
@@ -57,10 +81,34 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Send notification email to user
+    let emailSent = false;
+    if (GMAIL_USER && GMAIL_PASS && queueItem.email) {
+      try {
+        const cvUrl = `${SITE}/herramientas/traductor-cv?id=${id}`;
+        const userName = cv.personalInfo?.fullName?.split(" ")[0] || "Usuario";
+
+        await getTransporter().sendMail({
+          from: `"HispanosEnSuiza" <${GMAIL_USER}>`,
+          to: queueItem.email,
+          subject: "Tu CV traducido está listo 📄",
+          html: emailCVCompletado(userName, cvUrl),
+        });
+
+        emailSent = true;
+        console.log(`[cv-translator] Email sent to ${queueItem.email} for CV ${id}`);
+      } catch (err) {
+        console.error("[cv-translator] Failed to send notification email:", err);
+      }
+    } else {
+      console.warn("[cv-translator] Gmail credentials not configured, email not sent");
+    }
+
     return NextResponse.json({
       ok: true,
       action: "completed",
       id,
+      emailSent,
     });
   } catch (e) {
     console.error("Admin complete error:", e);

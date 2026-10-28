@@ -39,6 +39,32 @@ function p(text: string): string {
   return `<p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#374151">${text}</p>`;
 }
 
+// CV Translation notification email
+export function emailCVCompletado(nombre: string, cvUrl: string): string {
+  return layout("Tu CV traducido está listo", [
+    p(`Hola ${nombre},`),
+    p("¡Buenas noticias! <strong>Tu CV ya ha sido traducido</strong> al formato estándar suizo."),
+    p("Tu nuevo CV incluye:"),
+    `<ul style="margin:0 0 14px;padding-left:20px;font-size:15px;line-height:1.8;color:#374151">
+      <li>Formato profesional suizo (Lebenslauf)</li>
+      <li>Estructura clara: datos personales, experiencia, formación, idiomas</li>
+      <li>Optimizado para ATS (sistemas de seguimiento de candidatos)</li>
+      <li>Descarga en PDF listo para enviar</li>
+    </ul>`,
+    cta("Ver y descargar mi CV →", cvUrl),
+    p("El enlace estará disponible durante 30 días."),
+    `<table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0">
+      <tr><td style="padding:14px;background:#eff6ff;border-radius:8px;border-left:4px solid #0032A0">
+        <strong style="color:#1e3a8a">💼 ¿Buscando trabajo en Suiza?</strong><br>
+        <span style="font-size:14px;color:#1e40af">Usa nuestro buscador de empleo con ofertas de jobs.ch, LinkedIn, Indeed y más.</span><br>
+        <a href="${SITE}/trabajo/buscador" style="color:${BRAND_COLOR};font-size:13px;font-weight:600">Buscar ofertas →</a>
+      </td></tr>
+    </table>`,
+    p("¡Mucho éxito en tu búsqueda!"),
+    p("<strong>Equipo HispanosEnSuiza</strong>"),
+  ].join(""));
+}
+
 export const EMAIL_TEMPLATES: Record<number, { subject: string; html: (nombre?: string) => string }> = {
 
   // ── Email 1: Bienvenida (Día 0) ──
