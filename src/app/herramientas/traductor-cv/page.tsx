@@ -24,11 +24,20 @@ export default function TraductorCVPage() {
   const [queueStatus, setQueueStatus] = useState<string>("pending");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Poll for queue status
+  // Poll for queue status with exponential backoff
   useEffect(() => {
     if (step !== "queued" || !queueId) return;
 
-    const pollInterval = setInterval(async () => {
+    let pollCount = 0;
+    let timeoutId: NodeJS.Timeout;
+
+    const getNextDelay = () => {
+      // Exponential backoff: 10s, 20s, 40s, 60s (max)
+      const delays = [10000, 20000, 40000, 60000];
+      return delays[Math.min(pollCount, delays.length - 1)];
+    };
+
+    const poll = async () => {
       try {
         const res = await fetch(`/api/cv-translator?id=${queueId}`);
         const data = await res.json();
@@ -38,18 +47,32 @@ export default function TraductorCVPage() {
         if (data.status === "completed" && data.cv) {
           setCvData(data.cv);
           setStep("preview");
-          clearInterval(pollInterval);
+          return; // Stop polling
         } else if (data.status === "error") {
           setError(data.error || "Error al procesar el CV");
           setStep("error");
-          clearInterval(pollInterval);
+          return; // Stop polling
+        }
+
+        // Continue polling with backoff (max 100 attempts = ~2 hours at max interval)
+        pollCount++;
+        if (pollCount < 100) {
+          timeoutId = setTimeout(poll, getNextDelay());
         }
       } catch (e) {
         console.error("Polling error:", e);
+        // Retry on network error with backoff
+        pollCount++;
+        if (pollCount < 100) {
+          timeoutId = setTimeout(poll, getNextDelay());
+        }
       }
-    }, 10000); // Poll every 10 seconds
+    };
 
-    return () => clearInterval(pollInterval);
+    // Start first poll after 10s
+    timeoutId = setTimeout(poll, 10000);
+
+    return () => clearTimeout(timeoutId);
   }, [step, queueId]);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -331,7 +354,7 @@ export default function TraductorCVPage() {
               </button>
 
               <p className="text-center text-xs text-gray-500 mt-4">
-                Tu primer CV es gratis. Tiempo de entrega: 5-15 minutos.
+                Tu primer CV es gratis. Revisado por nuestro equipo (1-4h en horario laboral).
               </p>
             </form>
           )}
@@ -357,7 +380,7 @@ export default function TraductorCVPage() {
                   </span>
                 </div>
                 <p className="text-sm text-blue-600">
-                  Tiempo estimado: 5-15 minutos
+                  Tiempo estimado: 1-4 horas (horario laboral)
                 </p>
                 <p className="text-xs text-blue-500 mt-2">
                   ID: {queueId}
@@ -608,7 +631,7 @@ export default function TraductorCVPage() {
             {[
               {
                 q: "¿Cuánto tarda la traducción?",
-                a: "Normalmente entre 5 y 15 minutos. Te enviaremos un email cuando esté listo.",
+                a: "Entre 1 y 4 horas en horario laboral. Tu CV es revisado por nuestro equipo para garantizar la calidad. Te enviaremos un email cuando esté listo.",
               },
               {
                 q: "¿Qué formato de CV suizo usáis?",

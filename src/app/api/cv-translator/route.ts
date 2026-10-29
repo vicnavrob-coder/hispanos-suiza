@@ -125,16 +125,16 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Record usage (free tier used)
-    const isPaid = usageCheck.hasSubscription;
+    // Record usage - isPaid if subscription OR if they already used their free one
+    const isPaid = usageCheck.hasSubscription || usageCheck.freeUsed > 0;
     await recordTranslation(email, isPaid);
 
     return NextResponse.json({
       ok: true,
       status: "queued",
       queueId: queueResult.id,
-      message: "Tu CV está en cola. Se procesará en unos minutos.",
-      estimatedTime: "5-15 minutos",
+      message: "Tu CV está en cola. Te notificaremos por email cuando esté listo.",
+      estimatedTime: "1-4 horas (horario laboral)",
     });
   } catch (e) {
     console.error("CV queue error:", e);

@@ -56,7 +56,7 @@ export default function OgImage() {
       <div style={{ display: "flex", gap: 24 }}>
         {[
           { icon: "📄", text: "Formato suizo" },
-          { icon: "⚡", text: "5-15 minutos" },
+          { icon: "👨‍💼", text: "Revisado por expertos" },
           { icon: "✨", text: "1º CV gratis" },
         ].map((f) => (
           <div

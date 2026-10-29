@@ -3,6 +3,10 @@
     {
       "path": "/api/cron/welcome-sequence?secret=UI8li2hDfIaZ3cP_SLI4HQp6mw8P36gpboeFD8lIUOQ",
       "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/cv-translator/process-pending?secret=cv-admin-hispanos-2026",
+      "schedule": "*/5 * * * *"
     }
   ]
 }
