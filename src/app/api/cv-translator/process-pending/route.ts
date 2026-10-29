@@ -22,16 +22,39 @@ function getTransporter() {
 
 /**
  * Extract text from base64 PDF/DOCX content
+ * Uses pdfjs-dist directly for better serverless compatibility
  */
 async function extractText(fileContent: string, fileType: "pdf" | "docx"): Promise<string> {
   const buffer = Buffer.from(fileContent, "base64");
 
   if (fileType === "pdf") {
-    // Dynamic import for pdf-parse (uses PDFParse class)
-    const { PDFParse } = await import("pdf-parse");
-    const pdfParser = new PDFParse({ data: buffer });
-    const result = await pdfParser.getText();
-    return result.text;
+    try {
+      // Use pdfjs-dist directly for serverless compatibility
+      const pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs");
+
+      // Disable worker to avoid issues in serverless
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "";
+
+      const uint8Array = new Uint8Array(buffer);
+      const loadingTask = pdfjsLib.getDocument({ data: uint8Array });
+      const pdf = await loadingTask.promise;
+
+      let fullText = "";
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const textContent = await page.getTextContent();
+        const pageText = textContent.items
+          .map((item) => ("str" in item ? (item as { str: string }).str : ""))
+          .filter(Boolean)
+          .join(" ");
+        fullText += pageText + "\n";
+      }
+
+      return fullText.trim();
+    } catch (pdfError) {
+      console.error("[process-pending] PDF parsing error:", pdfError);
+      throw new Error(`PDF parsing failed: ${pdfError instanceof Error ? pdfError.message : 'Unknown error'}`);
+    }
   } else {
     // Dynamic import for mammoth
     const mammoth = await import("mammoth");
