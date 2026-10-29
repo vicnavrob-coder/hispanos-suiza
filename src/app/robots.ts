@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { BASE_URL } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,10 +7,16 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/"],
+        disallow: [
+          "/api/",
+          "/_next/",
+          "/admin/",
+          "/unia/proponer/",
+          "/unia/elegir/",
+        ],
       },
     ],
-    sitemap: "https://hispanosensuiza.ch/sitemap.xml",
-    host: "https://hispanosensuiza.ch",
+    sitemap: `${BASE_URL}/sitemap.xml`,
+    host: BASE_URL,
   };
 }

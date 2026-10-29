@@ -10,7 +10,7 @@ export const maxDuration = 300; // 5 minutes max for processing multiple CVs
 const GMAIL_USER = process.env.NEWSLETTER_GMAIL_USER ?? "";
 const GMAIL_PASS = process.env.NEWSLETTER_GMAIL_PASS ?? "";
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY ?? "";
-const CV_PROCESS_SECRET = process.env.CV_PROCESS_SECRET ?? process.env.CV_ADMIN_KEY ?? "";
+const CV_PROCESS_SECRET = process.env.CRON_SECRET ?? process.env.CV_ADMIN_KEY ?? "";
 const SITE = "https://hispanosensuiza.ch";
 
 function getTransporter() {
@@ -210,9 +210,14 @@ async function sendCompletionEmail(
  * Called by Vercel Cron or manually by admin.
  */
 export async function GET(req: NextRequest) {
-  const secret = req.nextUrl.searchParams.get("secret");
+  // Vercel Cron sends Authorization header, also allow query param for manual testing
+  const authHeader = req.headers.get("authorization");
+  const secretParam = req.nextUrl.searchParams.get("secret");
+  const isAuthorized =
+    (authHeader === `Bearer ${CV_PROCESS_SECRET}`) ||
+    (secretParam && secretParam === CV_PROCESS_SECRET);
 
-  if (!secret || secret !== CV_PROCESS_SECRET) {
+  if (!CV_PROCESS_SECRET || !isAuthorized) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

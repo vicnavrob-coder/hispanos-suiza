@@ -7,9 +7,7 @@ export const runtime = "nodejs";
 
 const GMAIL_USER = process.env.NEWSLETTER_GMAIL_USER ?? "";
 const GMAIL_PASS = process.env.NEWSLETTER_GMAIL_PASS ?? "";
-
-// The cron secret is hardcoded in vercel.json — match it here as fallback
-const CRON_SECRET = process.env.CRON_SECRET || "UI8li2hDfIaZ3cP_SLI4HQp6mw8P36gpboeFD8lIUOQ";
+const CRON_SECRET = process.env.CRON_SECRET ?? "";
 
 // Días de espera desde WELCOME_START para cada email
 const SCHEDULE: Record<number, number> = {
@@ -33,8 +31,14 @@ function getTransporter() {
 }
 
 export async function GET(req: NextRequest) {
-  const secret = req.nextUrl.searchParams.get("secret");
-  if (secret !== CRON_SECRET) {
+  // Vercel Cron sends Authorization header, also allow query param for manual testing
+  const authHeader = req.headers.get("authorization");
+  const secretParam = req.nextUrl.searchParams.get("secret");
+  const isAuthorized =
+    (authHeader === `Bearer ${CRON_SECRET}`) ||
+    (secretParam && secretParam === CRON_SECRET);
+
+  if (!CRON_SECRET || !isAuthorized) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
