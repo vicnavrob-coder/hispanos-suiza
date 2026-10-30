@@ -5,6 +5,27 @@ import { getPost, allPosts as posts, allPosts, categorias } from "@/lib/posts";
 import { BASE_URL, buildMetadata, articleSchema, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import RespuestaRapida from "@/components/RespuestaRapida";
 import NewsletterForm from "@/components/NewsletterForm";
+import BlogCTAInline from "@/components/BlogCTAInline";
+
+/**
+ * Inserta el CTA inline después del segundo <h2> del contenido
+ * para captar suscriptores antes de que abandonen el artículo
+ */
+function insertCTAInContent(html: string): { before: string; after: string } | null {
+  const h2Regex = /<h2[\s>]/gi;
+  const matches = [...html.matchAll(h2Regex)];
+
+  // Solo insertar si hay al menos 2 h2s (artículo suficientemente largo)
+  if (matches.length < 2) return null;
+
+  const insertPoint = matches[1].index;
+  if (insertPoint === undefined) return null;
+
+  return {
+    before: html.slice(0, insertPoint),
+    after: html.slice(insertPoint),
+  };
+}
 
 type Props = PageProps<"/blog/[slug]">;
 
@@ -115,12 +136,34 @@ export default async function PostPage({ params }: Props) {
             />
           )}
 
-          {/* Contenido */}
+          {/* Contenido con CTA inline */}
           {post.contenido ? (
-            <div
-              className="prose max-w-none text-gray-700"
-              dangerouslySetInnerHTML={{ __html: post.contenido }}
-            />
+            (() => {
+              const split = insertCTAInContent(post.contenido);
+              if (split) {
+                // Artículo largo: insertar CTA en medio
+                return (
+                  <>
+                    <div
+                      className="prose max-w-none text-gray-700"
+                      dangerouslySetInnerHTML={{ __html: split.before }}
+                    />
+                    <BlogCTAInline variant={post.categoria === "emigrar" ? "checklist" : "newsletter"} />
+                    <div
+                      className="prose max-w-none text-gray-700"
+                      dangerouslySetInnerHTML={{ __html: split.after }}
+                    />
+                  </>
+                );
+              }
+              // Artículo corto: renderizar normal
+              return (
+                <div
+                  className="prose max-w-none text-gray-700"
+                  dangerouslySetInnerHTML={{ __html: post.contenido }}
+                />
+              );
+            })()
           ) : (
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 text-center">
               <p className="text-amber-700 font-medium">Artículo completo próximamente.</p>
