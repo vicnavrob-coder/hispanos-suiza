@@ -122,19 +122,44 @@ export default async function HistoriasRealesPage() {
       </div>
 
       {/* Historias de la comunidad (nuevas) */}
-      {historiasComunidad.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2">
-            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-            Historias recientes de la comunidad
+      <div className="mb-10">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+            <span className="text-2xl">💬</span>
+            Historias de la comunidad
           </h2>
+          <span className="text-sm text-gray-500">{historiasComunidad.length} publicadas</span>
+        </div>
+
+        {historiasComunidad.length > 0 ? (
           <div className="flex flex-col gap-4">
             {historiasComunidad.map((historia) => (
               <HistoriaCard key={historia.id} historia={historia} />
             ))}
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-2xl p-8 text-center">
+            <div className="text-5xl mb-4">✍️</div>
+            <h3 className="text-lg font-bold text-gray-800 mb-2">
+              ¡Sé el primero en compartir tu historia!
+            </h3>
+            <p className="text-gray-600 mb-6 max-w-md mx-auto">
+              Tu experiencia viviendo en Suiza puede ayudar a miles de hispanohablantes.
+              Cuéntanos cómo fue tu llegada, qué aprendiste, qué consejos darías.
+            </p>
+            <Link
+              href="/historias-reales/nueva"
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full transition-colors"
+            >
+              <span>+</span>
+              <span>Escribir mi historia</span>
+            </Link>
+            <p className="text-xs text-gray-400 mt-4">
+              Se publicará en la web y en nuestras redes sociales
+            </p>
+          </div>
+        )}
+      </div>
 
       {/* Historias destacadas (legacy) */}
       <div>
