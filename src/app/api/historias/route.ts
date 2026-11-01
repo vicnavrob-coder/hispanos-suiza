@@ -2,8 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   getHistorias,
   createHistoria,
+  updateSocialPosts,
   type CreateHistoriaInput,
 } from "@/lib/historias-comunidad";
+import { publishToAllSocials } from "@/lib/social-media";
 
 // ─────────────────────────────────────────────────────────────
 // GET /api/historias - Listar todas las historias
@@ -86,8 +88,31 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // TODO: Publicar en redes sociales (Fase 2)
-    // await publishToSocialMedia(result.historia);
+    // Publicar en redes sociales automáticamente
+    // Se ejecuta en background para no bloquear la respuesta
+    if (result.historia) {
+      publishToAllSocials(result.historia)
+        .then(async (socialPosts) => {
+          // Guardar referencias a los posts en redes sociales
+          if (socialPosts.facebook || socialPosts.instagram) {
+            await updateSocialPosts(result.historia!.id, {
+              facebook: socialPosts.facebook ? {
+                postId: socialPosts.facebook.postId,
+                url: socialPosts.facebook.url,
+              } : undefined,
+              instagram: socialPosts.instagram ? {
+                postId: socialPosts.instagram.postId,
+                url: socialPosts.instagram.url,
+              } : undefined,
+            });
+            console.log(`[historias] Published to social media: ${result.historia!.slug}`);
+          }
+        })
+        .catch((err) => {
+          console.error("[historias] Social media publish failed:", err);
+          // No bloqueamos la respuesta si falla RRSS
+        });
+    }
 
     return NextResponse.json({
       ok: true,
