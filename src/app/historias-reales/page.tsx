@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata, BASE_URL, breadcrumbSchema, itemListSchema } from "@/lib/seo";
+import { getHistorias } from "@/lib/historias-comunidad";
+import HistoriaCard from "@/components/HistoriaCard";
 
 export const metadata: Metadata = buildMetadata({
   title: "Historias reales — Experiencias sin filtros de hispanohablantes en Suiza",
@@ -14,7 +16,8 @@ export const metadata: Metadata = buildMetadata({
   ],
 });
 
-const historias = [
+// Historias hardcodeadas (legado)
+const historiasLegacy = [
   {
     nombre: "Carlos G.",
     origen: "Valencia, España",
@@ -57,19 +60,29 @@ const historias = [
   },
 ];
 
-export default function HistoriasRealesPage() {
+export default async function HistoriasRealesPage() {
+  // Cargar historias de la comunidad del Gist
+  const historiasComunidad = await getHistorias() ?? [];
+
   const schemas = [
     breadcrumbSchema([
       { name: "Inicio", url: BASE_URL },
       { name: "Historias reales", url: `${BASE_URL}/historias-reales` },
     ]),
-    itemListSchema(
-      historias.map((h, i) => ({
+    itemListSchema([
+      // Historias de la comunidad primero
+      ...historiasComunidad.map((h) => ({
+        name: `${h.autorNombre} — ${h.titulo}`,
+        url: `${BASE_URL}/historias-reales/${h.slug}`,
+        description: h.contenido.slice(0, 120),
+      })),
+      // Luego las legacy
+      ...historiasLegacy.map((h, i) => ({
         name: `${h.nombre} — ${h.resumen.slice(0, 60)}`,
-        url: `${BASE_URL}/historias-reales#historia-${i + 1}`,
+        url: `${BASE_URL}/historias-reales#historia-legacy-${i + 1}`,
         description: h.extracto.slice(0, 120),
-      }))
-    ),
+      })),
+    ]),
   ];
 
   return (
@@ -78,10 +91,21 @@ export default function HistoriasRealesPage() {
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
       ))}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">Historias reales</h1>
-        <p className="text-gray-500">
-          Lo que no encuentras en ninguna guía. Experiencias sin filtros de hispanohablantes que ya viven en Suiza.
-        </p>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-800 mb-2">Historias reales</h1>
+            <p className="text-gray-500">
+              Lo que no encuentras en ninguna guía. Experiencias sin filtros de hispanohablantes que ya viven en Suiza.
+            </p>
+          </div>
+          <Link
+            href="/historias-reales/nueva"
+            className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2.5 rounded-full transition-colors whitespace-nowrap"
+          >
+            <span>+</span>
+            <span>Compartir historia</span>
+          </Link>
+        </div>
       </div>
 
       {/* Por qué importa */}
@@ -97,52 +121,44 @@ export default function HistoriasRealesPage() {
         </div>
       </div>
 
-      {/* Historias */}
-      <div className="flex flex-col gap-6">
-        {historias.map((h, i) => (
-          <article key={i} className="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-sm transition-shadow">
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-9 h-9 rounded-full bg-red-100 flex items-center justify-center text-red-700 font-bold text-sm">
-                    {h.nombre.charAt(0)}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-800 text-sm">{h.nombre}</div>
-                    <div className="text-xs text-gray-400">{h.origen} → {h.ciudad} · {h.trabajo} · {h.anio}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      {/* Historias de la comunidad (nuevas) */}
+      {historiasComunidad.length > 0 && (
+        <div className="mb-8">
+          <h2 className="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2">
+            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+            Historias recientes de la comunidad
+          </h2>
+          <div className="flex flex-col gap-4">
+            {historiasComunidad.map((historia) => (
+              <HistoriaCard key={historia.id} historia={historia} />
+            ))}
+          </div>
+        </div>
+      )}
 
-            <h2 className="text-lg font-bold text-gray-800 mb-3 leading-snug">{h.resumen}</h2>
-
-            <blockquote className="border-l-4 border-amber-400 bg-amber-50 pl-4 py-3 pr-3 rounded-r-lg mb-4 italic text-gray-600 text-sm leading-relaxed">
-              «{h.extracto}»
-            </blockquote>
-
-            <div className="flex flex-wrap gap-2">
-              {h.tags.map((tag) => (
-                <span key={tag} className="text-xs bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full">
-                  #{tag}
-                </span>
-              ))}
-            </div>
-          </article>
-        ))}
+      {/* Historias destacadas (legacy) */}
+      <div>
+        <h2 className="text-lg font-semibold text-gray-700 mb-4">
+          Historias destacadas
+        </h2>
+        <div className="flex flex-col gap-4">
+          {historiasLegacy.map((historia, i) => (
+            <HistoriaCard key={`legacy-${i}`} historia={historia} />
+          ))}
+        </div>
       </div>
 
       {/* CTA para compartir historia */}
       <div style={{ background: "linear-gradient(135deg, #C0392B, #96281B)" }} className="text-white rounded-2xl p-8 mt-10 text-center">
         <h2 className="text-xl font-bold mb-2">¿Vives en Suiza? Comparte tu historia</h2>
         <p className="text-red-100 text-sm mb-5">
-          Tu experiencia puede ayudar a miles de personas que están donde tú estabas. Publicamos tu historia (con el anonimato que quieras).
+          Tu experiencia puede ayudar a miles de personas que están donde tú estabas. Se publicará con tu nombre en la web y en nuestras redes sociales.
         </p>
         <Link
-          href="mailto:hola@hispanosensuiza.com?subject=Quiero compartir mi historia"
+          href="/historias-reales/nueva"
           className="inline-block bg-white text-red-700 font-bold px-6 py-2.5 rounded-full hover:bg-red-50 transition-colors"
         >
-          Contar mi historia →
+          Compartir mi historia →
         </Link>
       </div>
     </div>
