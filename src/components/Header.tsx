@@ -51,8 +51,8 @@ export default function Header() {
         }}
         className="sticky top-0 z-50"
       >
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="flex items-center justify-between h-16" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}>
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-14 sm:h-16" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}>
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
               <span className="text-xl">🇨🇭</span>
@@ -130,9 +130,9 @@ export default function Header() {
               </div>
             </nav>
 
-            {/* Hamburger mobile */}
+            {/* Hamburger mobile - 44x44 touch target */}
             <button
-              className="md:hidden text-[#0A0A0A] hover:text-[#C8102E] transition-colors"
+              className="md:hidden flex items-center justify-center w-11 h-11 -mr-2 text-[#0A0A0A] active:bg-gray-100 rounded-full transition-colors"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Menú"
               aria-expanded={menuOpen}
@@ -157,7 +157,7 @@ export default function Header() {
             fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
           }}
         >
-          <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
             <div className="flex items-center gap-2 text-white">
               <span className="text-xl">🇨🇭</span>
               <span
@@ -167,12 +167,13 @@ export default function Header() {
                 HispanosEnSuiza
               </span>
             </div>
+            {/* Close button - 44x44 touch target */}
             <button
-              className="text-white/70 hover:text-white transition-colors"
+              className="flex items-center justify-center w-11 h-11 -mr-2 text-white/70 active:bg-white/10 rounded-full transition-colors"
               onClick={() => setMenuOpen(false)}
               aria-label="Cerrar menú"
             >
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -191,7 +192,7 @@ export default function Header() {
             </div>
           )}
 
-          <nav id="mobile-nav" className="flex flex-col gap-1 px-6 mt-4 flex-1">
+          <nav id="mobile-nav" className="flex flex-col gap-0.5 px-4 mt-3 flex-1 overflow-y-auto">
             {MOBILE_LINKS.map((link) => {
               const active = isActive(link.href);
               return (
@@ -199,10 +200,10 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="text-lg font-medium py-3 px-4 rounded-xl transition-colors"
+                  className="text-base font-medium py-3.5 px-4 rounded-xl transition-colors active:bg-white/10"
                   style={{
-                    color: active ? "#ffffff" : "rgba(255,255,255,0.75)",
-                    background: active ? "rgba(200,16,46,0.2)" : "transparent",
+                    color: active ? "#ffffff" : "rgba(255,255,255,0.8)",
+                    background: active ? "rgba(200,16,46,0.25)" : "transparent",
                   }}
                 >
                   {link.label}
@@ -211,18 +212,18 @@ export default function Header() {
             })}
           </nav>
 
-          <div className="px-6 py-6 space-y-3 border-t border-white/10">
+          <div className="px-4 py-4 space-y-3 border-t border-white/10 safe-bottom">
             {user ? (
               <button
                 onClick={() => { logout(); setMenuOpen(false); }}
-                className="block w-full border border-white/20 text-white font-semibold text-center py-3 rounded-2xl text-base hover:bg-white/10 transition-colors"
+                className="block w-full border border-white/20 text-white font-semibold text-center py-4 rounded-2xl text-base active:bg-white/10 transition-colors"
               >
                 Cerrar sesión
               </button>
             ) : (
               <button
                 onClick={() => { setMenuOpen(false); openModal(); }}
-                className="block w-full text-white font-bold text-center py-3.5 rounded-2xl text-base transition-colors"
+                className="block w-full text-white font-bold text-center py-4 rounded-2xl text-base active:opacity-90 transition-opacity"
                 style={{ background: "#C8102E" }}
               >
                 Crear cuenta gratis →

@@ -48,13 +48,13 @@ export default async function HistoriasRealesPage() {
   ]);
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8">
+    <div className="max-w-2xl mx-auto px-3 sm:px-4 py-5 sm:py-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800 mb-1">Historias de la comunidad</h1>
-        <p className="text-gray-500 text-sm">
+      <div className="mb-4 sm:mb-6">
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-0.5 sm:mb-1">Historias de la comunidad</h1>
+        <p className="text-gray-500 text-xs sm:text-sm">
           Experiencias reales de hispanohablantes en Suiza. Comparte la tuya.
         </p>
       </div>
@@ -63,14 +63,14 @@ export default async function HistoriasRealesPage() {
       <HistoriasFeed initialHistorias={historiasComunidad} />
 
       {/* Separador */}
-      <div className="my-10 flex items-center gap-4">
+      <div className="my-8 sm:my-10 flex items-center gap-3 sm:gap-4">
         <div className="flex-1 h-px bg-gray-200"></div>
-        <span className="text-sm text-gray-400">Historias destacadas</span>
+        <span className="text-xs sm:text-sm text-gray-400 whitespace-nowrap">Historias destacadas</span>
         <div className="flex-1 h-px bg-gray-200"></div>
       </div>
 
       {/* Historias destacadas (ejemplos) */}
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {historiasDestacadas.map((historia, i) => (
           <HistoriaCard key={`destacada-${i}`} historia={historia} variant="compact" />
         ))}

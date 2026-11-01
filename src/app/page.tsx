@@ -56,17 +56,18 @@ export default function Home() {
           HERO
       ══════════════════════════════════════════ */}
       <section style={{ background: "#0A0A0A" }}>
-        <div className="max-w-[1200px] mx-auto px-6 py-14 md:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-14 md:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 md:gap-16 items-center">
 
             {/* Texto */}
             <div className="order-2 md:order-1">
               <div
-                className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-7"
+                className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-5 sm:mb-7"
                 style={{ background: "rgba(200,16,46,0.14)", border: "1px solid rgba(200,16,46,0.3)", color: "#F87171" }}
               >
                 <span>🇨🇭</span>
-                <span>+142.000 hispanohablantes viven en Suiza</span>
+                <span className="hidden sm:inline">+142.000 hispanohablantes viven en Suiza</span>
+                <span className="sm:hidden">+142K hispanos en Suiza</span>
               </div>
 
               <h1
@@ -177,8 +178,8 @@ export default function Home() {
           STATS STRIP
       ══════════════════════════════════════════ */}
       <section style={{ background: "#ffffff", borderBottom: "1px solid #E8E5E0" }}>
-        <div className="max-w-[1200px] mx-auto px-6 py-5">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-4 sm:py-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
             {[
               { num: "142K+", label: "Hispanohablantes en Suiza" },
               { num: "559K",  label: "Búsquedas mensuales" },
@@ -187,12 +188,14 @@ export default function Home() {
             ].map((s) => (
               <div key={s.label} className="py-2">
                 <div
-                  style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#C8102E", fontSize: "1.75rem", fontWeight: 900 }}
+                  className="text-xl sm:text-2xl"
+                  style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#C8102E", fontWeight: 900 }}
                 >
                   {s.num}
                 </div>
                 <div
-                  style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", fontSize: "0.72rem", marginTop: 2 }}
+                  className="text-[0.65rem] sm:text-xs leading-tight"
+                  style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", marginTop: 2 }}
                 >
                   {s.label}
                 </div>
@@ -206,7 +209,7 @@ export default function Home() {
           ACCESOS RÁPIDOS
       ══════════════════════════════════════════ */}
       <section style={{ background: "#F8F6F3", borderBottom: "1px solid #E8E5E0" }}>
-        <div className="max-w-[1200px] mx-auto px-6 py-6">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-4 sm:py-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
               { href: "/trabajo",  icon: "💼", title: "Encontrar trabajo",  desc: "Ofertas reales por sector y ciudad, con ETT y empleo público", accent: "#C8102E", iconBg: "#FFF1F3" },
@@ -216,17 +219,17 @@ export default function Home() {
               <Link
                 key={card.href}
                 href={card.href}
-                className="group flex items-center gap-4 bg-white rounded-2xl p-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                className="group flex items-center gap-3 sm:gap-4 bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 transition-all duration-200 active:scale-[0.98] hover:-translate-y-0.5 hover:shadow-md"
                 style={{ border: "1px solid #E8E5E0", borderLeft: `4px solid ${card.accent}` }}
               >
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center text-xl flex-shrink-0" style={{ background: card.iconBg }}>
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl flex items-center justify-center text-lg sm:text-xl flex-shrink-0" style={{ background: card.iconBg }}>
                   {card.icon}
                 </div>
-                <div className="min-w-0">
-                  <div style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A", fontWeight: 600, fontSize: "0.88rem", lineHeight: 1.3, marginBottom: 2 }}>
+                <div className="min-w-0 flex-1">
+                  <div className="text-sm sm:text-[0.88rem]" style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A", fontWeight: 600, lineHeight: 1.3, marginBottom: 2 }}>
                     {card.title}
                   </div>
-                  <div style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", fontSize: "0.75rem", lineHeight: 1.4 }}>
+                  <div className="text-xs sm:text-[0.75rem] line-clamp-2" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", lineHeight: 1.4 }}>
                     {card.desc}
                   </div>
                 </div>
@@ -240,27 +243,27 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           CATEGORÍAS
       ══════════════════════════════════════════ */}
-      <section className="max-w-[1200px] mx-auto px-6 py-14">
+      <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-14">
         <h2
-          className="font-bold mb-6"
-          style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A", fontSize: "1.5rem" }}
+          className="font-bold mb-4 sm:mb-6 text-xl sm:text-2xl"
+          style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A" }}
         >
           Todo lo que necesitas saber
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+        <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3">
           {categorias.map((cat) => (
             <Link
               key={cat.slug}
               href={`/categorias/${cat.slug}`}
-              className="group flex flex-col items-center gap-2 bg-white rounded-2xl p-4 min-h-[90px] transition-all text-center justify-center hover:-translate-y-0.5 hover:shadow-md"
+              className="group flex flex-col items-center gap-1.5 sm:gap-2 bg-white rounded-xl sm:rounded-2xl p-3 sm:p-4 min-h-[70px] sm:min-h-[90px] transition-all text-center justify-center active:scale-95 hover:-translate-y-0.5 hover:shadow-md"
               style={{ border: "1px solid #E8E5E0" }}
             >
-              <span className="w-10 h-10 rounded-full bg-[#F8F6F3] flex items-center justify-center text-xl group-hover:bg-[#FFF1F3] transition-colors">
+              <span className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#F8F6F3] flex items-center justify-center text-base sm:text-xl group-hover:bg-[#FFF1F3] transition-colors">
                 {cat.icono}
               </span>
               <span
-                className="group-hover:text-[#C8102E] transition-colors"
-                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#374151", fontSize: "0.72rem", fontWeight: 500, lineHeight: 1.3 }}
+                className="group-hover:text-[#C8102E] transition-colors text-[0.65rem] sm:text-xs leading-tight"
+                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#374151", fontWeight: 500 }}
               >
                 {cat.label}
               </span>
@@ -273,8 +276,8 @@ export default function Home() {
           FOTO SUIZA — Los Alpes / vida real
       ══════════════════════════════════════════ */}
       <section style={{ background: "#0A0A0A", overflow: "hidden" }}>
-        <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
 
             {/* Fotos apiladas */}
             <div className="relative">
@@ -366,28 +369,28 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           ARTÍCULOS DESTACADOS
       ══════════════════════════════════════════ */}
-      <section className="max-w-[1200px] mx-auto px-6 py-14">
-        <div className="flex items-end justify-between mb-8">
+      <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-14">
+        <div className="flex items-end justify-between mb-5 sm:mb-8">
           <div>
             <h2
-              className="font-bold"
-              style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A", fontSize: "1.5rem" }}
+              className="font-bold text-xl sm:text-2xl"
+              style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A" }}
             >
               Las guías más importantes
             </h2>
-            <p style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", fontSize: "0.875rem", marginTop: 4 }}>
+            <p className="text-xs sm:text-sm mt-1" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280" }}>
               Por dónde empezar si estás planificando o acabas de llegar
             </p>
           </div>
           <Link
             href="/blog"
-            className="flex-shrink-0 ml-4 hover:underline"
-            style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#C8102E", fontSize: "0.875rem", fontWeight: 500 }}
+            className="flex-shrink-0 ml-4 hover:underline text-xs sm:text-sm"
+            style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#C8102E", fontWeight: 500 }}
           >
             Ver todas →
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {destacados.map((post) => (
             <ArticleCard key={post.slug} post={post} destacado />
           ))}
@@ -398,23 +401,23 @@ export default function Home() {
           TESTIMONIOS
       ══════════════════════════════════════════ */}
       <section style={{ background: "#F8F6F3", borderTop: "1px solid #E8E5E0", borderBottom: "1px solid #E8E5E0" }}>
-        <div className="max-w-[1200px] mx-auto px-6 py-14">
-          <div className="text-center mb-10">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-14">
+          <div className="text-center mb-6 sm:mb-10">
             <h2
-              className="font-bold"
-              style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A", fontSize: "1.5rem" }}
+              className="font-bold text-xl sm:text-2xl"
+              style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A" }}
             >
               Lo que dice la comunidad
             </h2>
-            <p style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", fontSize: "0.875rem", marginTop: 6 }}>
+            <p className="text-xs sm:text-sm mt-1 sm:mt-2" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280" }}>
               Experiencias reales de personas que usaron estas guías
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
             {TESTIMONIOS.map((t) => (
               <div
                 key={t.nombre}
-                className="bg-white rounded-2xl p-6 flex flex-col gap-4"
+                className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-4"
                 style={{ border: "1px solid #E8E5E0" }}
               >
                 <div className="flex gap-0.5">
@@ -452,29 +455,29 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           HERRAMIENTAS
       ══════════════════════════════════════════ */}
-      <section className="max-w-[1200px] mx-auto px-6 py-14">
-        <div className="flex items-end justify-between mb-8">
+      <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-14">
+        <div className="flex items-end justify-between mb-5 sm:mb-8">
           <div>
             <h2
-              className="font-bold"
-              style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A", fontSize: "1.5rem" }}
+              className="font-bold text-xl sm:text-2xl"
+              style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A" }}
             >
               Herramientas gratuitas
             </h2>
-            <p style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", fontSize: "0.875rem", marginTop: 4 }}>
+            <p className="text-xs sm:text-sm mt-1" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280" }}>
               Calculadoras y comparadores para tomar decisiones con datos reales
             </p>
           </div>
           <Link
             href="/herramientas"
-            className="flex-shrink-0 ml-4 hover:underline"
-            style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#C8102E", fontSize: "0.875rem", fontWeight: 500 }}
+            className="flex-shrink-0 ml-4 hover:underline text-xs sm:text-sm"
+            style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#C8102E", fontWeight: 500 }}
           >
             Ver todas →
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
           {[
             {
               href: "/herramientas/salario-neto",
@@ -510,15 +513,15 @@ export default function Home() {
             <Link
               key={h.href}
               href={h.href}
-              className="group bg-white rounded-2xl p-6 flex flex-col gap-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+              className="group bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 transition-all duration-200 active:scale-[0.98] hover:-translate-y-1 hover:shadow-lg"
               style={{ border: "1px solid #E8E5E0", borderTop: `3px solid ${h.accent}` }}
             >
               <div className="flex items-start justify-between">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: h.tagBg }}>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center text-xl sm:text-2xl" style={{ background: h.tagBg }}>
                   {h.icon}
                 </div>
                 <span
-                  className="text-xs font-semibold px-2.5 py-1 rounded-full"
+                  className="text-[0.65rem] sm:text-xs font-semibold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full"
                   style={{ background: h.tagBg, color: h.tagColor }}
                 >
                   {h.tag}
@@ -526,17 +529,17 @@ export default function Home() {
               </div>
               <div>
                 <h3
-                  className="font-bold mb-2 group-hover:text-[#C8102E] transition-colors"
+                  className="font-bold mb-1 sm:mb-2 text-sm sm:text-base group-hover:text-[#C8102E] transition-colors"
                   style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A" }}
                 >
                   {h.titulo}
                 </h3>
-                <p style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", fontSize: "0.875rem", lineHeight: 1.6 }}>
+                <p className="text-xs sm:text-sm leading-relaxed" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280" }}>
                   {h.desc}
                 </p>
               </div>
               <div
-                className="mt-auto flex items-center gap-1.5 text-sm font-semibold transition-colors"
+                className="mt-auto flex items-center gap-1.5 text-xs sm:text-sm font-semibold transition-colors"
                 style={{ color: h.accent, fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
               >
                 Abrir herramienta →
@@ -549,19 +552,19 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           RECURSOS DESCARGABLES - Lead Magnets
       ══════════════════════════════════════════ */}
-      <section className="max-w-[1200px] mx-auto px-6 py-14">
-        <div className="text-center mb-10">
+      <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-14">
+        <div className="text-center mb-6 sm:mb-10">
           <h2
-            className="font-bold"
-            style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A", fontSize: "1.5rem" }}
+            className="font-bold text-xl sm:text-2xl"
+            style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A" }}
           >
             Recursos gratuitos para empezar
           </h2>
-          <p style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", fontSize: "0.875rem", marginTop: 6 }}>
+          <p className="text-xs sm:text-sm mt-1 sm:mt-2" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280" }}>
             Descarga guías prácticas en español para tu mudanza a Suiza
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
           {[
             {
               href: "/recursos/primer-mes",
@@ -587,32 +590,32 @@ export default function Home() {
             <Link
               key={r.href}
               href={r.href}
-              className="group bg-white rounded-2xl p-6 flex items-start gap-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+              className="group bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 flex items-start gap-3 sm:gap-4 transition-all duration-200 active:scale-[0.98] hover:-translate-y-1 hover:shadow-lg"
               style={{ border: "1px solid #E8E5E0", borderLeft: `4px solid ${r.accent}` }}
             >
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0" style={{ background: "#F8F6F3" }}>
+              <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl flex items-center justify-center text-xl sm:text-2xl flex-shrink-0" style={{ background: "#F8F6F3" }}>
                 {r.icon}
               </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
                   <span
-                    className="text-xs font-semibold px-2 py-0.5 rounded-full"
+                    className="text-[0.65rem] sm:text-xs font-semibold px-2 py-0.5 rounded-full"
                     style={{ background: r.tagBg, color: r.tagColor }}
                   >
                     {r.tag}
                   </span>
                 </div>
                 <h3
-                  className="font-bold mb-1 group-hover:text-[#C8102E] transition-colors"
+                  className="font-bold mb-1 text-sm sm:text-base group-hover:text-[#C8102E] transition-colors"
                   style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A" }}
                 >
                   {r.titulo}
                 </h3>
-                <p style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", fontSize: "0.875rem", lineHeight: 1.5 }}>
+                <p className="text-xs sm:text-sm leading-relaxed" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280" }}>
                   {r.desc}
                 </p>
                 <span
-                  className="inline-block mt-3 text-sm font-semibold"
+                  className="inline-block mt-2 sm:mt-3 text-xs sm:text-sm font-semibold"
                   style={{ color: r.accent, fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
                 >
                   Descargar gratis →
@@ -636,28 +639,28 @@ export default function Home() {
           ARTÍCULOS RECIENTES
       ══════════════════════════════════════════ */}
       <section style={{ background: "#F8F6F3", borderTop: "1px solid #E8E5E0" }}>
-        <div className="max-w-[1200px] mx-auto px-6 py-14">
-          <div className="flex items-end justify-between mb-8">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-14">
+          <div className="flex items-end justify-between mb-5 sm:mb-8">
             <div>
               <h2
-                className="font-bold"
-                style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A", fontSize: "1.5rem" }}
+                className="font-bold text-xl sm:text-2xl"
+                style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0A0A0A" }}
               >
                 Últimas guías
               </h2>
-              <p style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", fontSize: "0.875rem", marginTop: 4 }}>
+              <p className="text-xs sm:text-sm mt-1" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280" }}>
                 Actualizadas con información de 2026
               </p>
             </div>
             <Link
               href="/blog"
-              className="flex-shrink-0 ml-4 hover:underline"
-              style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#C8102E", fontSize: "0.875rem", fontWeight: 500 }}
+              className="flex-shrink-0 ml-4 hover:underline text-xs sm:text-sm"
+              style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#C8102E", fontWeight: 500 }}
             >
               Ver todas →
             </Link>
           </div>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2 sm:gap-3">
             {recientes.map((post) => (
               <ArticleCard key={post.slug} post={post} />
             ))}
@@ -669,34 +672,34 @@ export default function Home() {
           NEWSLETTER
       ══════════════════════════════════════════ */}
       <section style={{ background: "#0A0A0A" }}>
-        <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
 
             <div>
               <div
-                className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-6"
+                className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-4 sm:mb-6"
                 style={{ background: "rgba(200,16,46,0.14)", border: "1px solid rgba(200,16,46,0.3)", color: "#F87171" }}
               >
                 📬 Newsletter semanal
               </div>
               <h2
-                className="font-black mb-4 leading-tight"
-                style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#ffffff", fontSize: "clamp(1.8rem, 3vw, 2.4rem)" }}
+                className="font-black mb-3 sm:mb-4 leading-tight"
+                style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#ffffff", fontSize: "clamp(1.5rem, 3vw, 2.4rem)" }}
               >
                 Una guía práctica cada semana, en tu correo
               </h2>
               <p
-                className="mb-6 leading-relaxed"
-                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#9CA3AF", fontSize: "1rem" }}
+                className="mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base"
+                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#9CA3AF" }}
               >
                 Cambios en seguros, oportunidades de empleo, trucos de vivienda y más. Sin spam. Baja cuando quieras.
               </p>
-              <div className="flex flex-wrap gap-x-6 gap-y-2">
+              <div className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2">
                 {["Sin spam", "Baja cuando quieras", "100% gratis"].map((t) => (
                   <span
                     key={t}
-                    className="flex items-center gap-1.5"
-                    style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", fontSize: "0.75rem" }}
+                    className="flex items-center gap-1.5 text-[0.7rem] sm:text-xs"
+                    style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280" }}
                   >
                     <span style={{ color: "#C8102E" }}>✓</span> {t}
                   </span>
@@ -705,19 +708,19 @@ export default function Home() {
             </div>
 
             <div
-              className="rounded-2xl p-6"
+              className="rounded-xl sm:rounded-2xl p-4 sm:p-6"
               style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}
             >
               <p
-                className="font-semibold mb-4"
-                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#ffffff", fontSize: "0.875rem" }}
+                className="font-semibold mb-3 sm:mb-4 text-sm"
+                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#ffffff" }}
               >
                 Únete gratis — solo tu email
               </p>
               <NewsletterForm />
               <p
-                className="mt-3"
-                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#9CA3AF", fontSize: "0.72rem" }}
+                className="mt-2 sm:mt-3 text-[0.65rem] sm:text-xs"
+                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#9CA3AF" }}
               >
                 Tus datos están seguros.{" "}
                 <Link href="/privacidad" className="underline hover:text-white transition-colors" style={{ color: "#9CA3AF" }}>

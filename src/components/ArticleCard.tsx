@@ -31,17 +31,17 @@ export default function ArticleCard({ post, destacado = false }: { post: Post; d
     return (
       <Link href={`/blog/${post.slug}`} className="block group">
         <article
-          className="bg-white rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+          className="bg-white rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-200 active:scale-[0.98] hover:-translate-y-1 hover:shadow-lg"
           style={{
             border: "1px solid #E8E5E0",
             borderLeft: `4px solid ${accentColor}`,
           }}
         >
-          <div className="p-6">
+          <div className="p-4 sm:p-6">
             {/* Category badge */}
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-3 sm:mb-4">
               <span
-                className="text-xs font-semibold px-2.5 py-1 rounded-full"
+                className="text-[0.65rem] sm:text-xs font-semibold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full"
                 style={{
                   color: accentColor,
                   background: badgeBg,
@@ -54,10 +54,9 @@ export default function ArticleCard({ post, destacado = false }: { post: Post; d
 
             {/* Title */}
             <h2
-              className="font-bold text-[#0A0A0A] mb-2 leading-snug group-hover:text-[#C8102E] transition-colors"
+              className="font-bold text-[#0A0A0A] mb-2 leading-snug group-hover:text-[#C8102E] transition-colors text-base sm:text-lg"
               style={{
                 fontFamily: "var(--font-playfair), Georgia, serif",
-                fontSize: "1.1rem",
               }}
             >
               {post.titulo}
@@ -65,22 +64,22 @@ export default function ArticleCard({ post, destacado = false }: { post: Post; d
 
             {/* Description */}
             <p
-              className="text-[#6B7280] text-sm leading-relaxed mb-5 line-clamp-3"
+              className="text-[#6B7280] text-xs sm:text-sm leading-relaxed mb-4 sm:mb-5 line-clamp-3"
               style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
             >
               {post.descripcion}
             </p>
 
             {/* Footer */}
-            <div className="flex items-center justify-between pt-4" style={{ borderTop: "1px solid #E8E5E0" }}>
+            <div className="flex items-center justify-between pt-3 sm:pt-4" style={{ borderTop: "1px solid #E8E5E0" }}>
               <span
-                className="text-xs text-[#9CA3AF]"
+                className="text-[0.65rem] sm:text-xs text-[#9CA3AF]"
                 style={{ fontFamily: "'DM Mono', 'Courier New', monospace" }}
               >
                 {fecha} · {post.tiempoLectura} min
               </span>
               <span
-                className="text-sm font-semibold group-hover:underline"
+                className="text-xs sm:text-sm font-semibold group-hover:underline"
                 style={{ color: "#C8102E", fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
               >
                 Leer más →
@@ -95,22 +94,22 @@ export default function ArticleCard({ post, destacado = false }: { post: Post; d
   return (
     <Link href={`/blog/${post.slug}`} className="block group">
       <article
-        className="bg-white rounded-xl p-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex gap-4 items-start"
+        className="bg-white rounded-lg sm:rounded-xl p-3.5 sm:p-5 transition-all duration-200 active:scale-[0.99] hover:-translate-y-0.5 hover:shadow-md flex gap-3 sm:gap-4 items-start"
         style={{
           border: "1px solid #E8E5E0",
           borderLeft: `4px solid ${accentColor}`,
         }}
       >
         <div
-          className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-xl"
+          className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-lg sm:text-xl"
           style={{ background: badgeBg }}
         >
           {cat?.icono ?? "📄"}
         </div>
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1.5">
+          <div className="flex items-center gap-2 mb-1">
             <span
-              className="text-xs font-semibold"
+              className="text-[0.65rem] sm:text-xs font-semibold"
               style={{
                 color: accentColor,
                 fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
@@ -120,16 +119,15 @@ export default function ArticleCard({ post, destacado = false }: { post: Post; d
             </span>
           </div>
           <h3
-            className="font-semibold text-[#0A0A0A] group-hover:text-[#C8102E] transition-colors leading-snug mb-1.5 line-clamp-2"
+            className="font-semibold text-[#0A0A0A] group-hover:text-[#C8102E] transition-colors leading-snug mb-1 line-clamp-2 text-sm sm:text-base"
             style={{
               fontFamily: "var(--font-playfair), Georgia, serif",
-              fontSize: "0.9rem",
             }}
           >
             {post.titulo}
           </h3>
           <span
-            className="text-xs text-[#9CA3AF]"
+            className="text-[0.65rem] sm:text-xs text-[#9CA3AF]"
             style={{ fontFamily: "'DM Mono', 'Courier New', monospace" }}
           >
             {fecha} · {post.tiempoLectura} min
