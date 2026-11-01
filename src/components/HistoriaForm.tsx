@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 import { CIUDADES_SUIZA, TEMAS_HISTORIA } from "@/lib/historias-comunidad";
 
@@ -120,12 +121,12 @@ export default function HistoriaForm() {
         <p className="text-gray-600 mb-6">
           Necesitas una cuenta para publicar tu historia en la comunidad.
         </p>
-        <a
+        <Link
           href="/login"
           className="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-full transition-colors"
         >
           Iniciar sesión con Google
-        </a>
+        </Link>
       </div>
     );
   }
@@ -143,19 +144,19 @@ export default function HistoriaForm() {
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           {publishedSlug && (
-            <a
+            <Link
               href={`/historias-reales/${publishedSlug}`}
               className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-full transition-colors"
             >
               Ver mi historia →
-            </a>
+            </Link>
           )}
-          <a
+          <Link
             href="/historias-reales"
             className="inline-block bg-white hover:bg-gray-50 text-gray-700 font-semibold px-6 py-3 rounded-full border border-gray-200 transition-colors"
           >
             Ver todas las historias
-          </a>
+          </Link>
         </div>
       </div>
     );

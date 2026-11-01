@@ -64,7 +64,7 @@ export async function getHistorias(): Promise<HistoriaComunidad[] | null> {
         Authorization: `token ${GITHUB_TOKEN}`,
         Accept: "application/vnd.github.v3+json",
       },
-      cache: "no-store",
+      next: { revalidate: 300 }, // Cache por 5 minutos, permite static generation
     });
 
     if (!res.ok) {

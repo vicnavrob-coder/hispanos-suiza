@@ -26,12 +26,15 @@ export function JoseContactButton({
   } | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // Check localStorage on mount
+  // Check localStorage on mount - usando lazy initialization para evitar cascading renders
   useEffect(() => {
     const stored = localStorage.getItem("jose_contact_data");
     if (stored) {
       try {
-        setSavedData(JSON.parse(stored));
+        const data = JSON.parse(stored);
+        // Usar requestIdleCallback o setTimeout para diferir el setState
+        const timeoutId = setTimeout(() => setSavedData(data), 0);
+        return () => clearTimeout(timeoutId);
       } catch {
         // Ignore invalid data
       }
