@@ -128,7 +128,7 @@ const postsManual: Post[] = [
   <li><strong>Comparis.ch</strong> — agrega anuncios de otros portales. Útil para tener una visión global.</li>
   <li><strong>Anibis.ch</strong> — anuncios de particulares, sin filtros. Puedes encontrar pisos compartidos o situaciones más flexibles.</li>
 </ul>
-<p>También vale la pena buscar en grupos de Facebook específicos: "Españoles en Zúrich", "Hispanohablantes en Ginebra", etc. Muchos pisos circulan solo por esas redes antes de aparecer en portales.</p>
+<p>Usa nuestro <a href="/vivienda">buscador de vivienda</a> para acceder a todos estos portales con tu búsqueda ya configurada. También vale la pena buscar en grupos de Facebook específicos: "Españoles en Zúrich", "Hispanohablantes en Ginebra", etc. Muchos pisos circulan solo por esas redes antes de aparecer en portales.</p>
 
 <h2>Los documentos que sí o sí te van a pedir</h2>
 <p>Esta es la parte que más sorprende a los recién llegados. En Suiza, un casero puede y suele pedir todo esto antes de mostrar el piso:</p>
@@ -142,14 +142,14 @@ const postsManual: Post[] = [
 <blockquote>"Me rechazaron 6 pisos antes de entender que la carta de presentación marcaba la diferencia. La séptima candidatura incluía una carta de 2 páginas en alemán y me la dieron." — Alejandra, Bogotá → Basilea</blockquote>
 
 <h2>Precios reales por ciudad en 2026</h2>
-<p>Los precios varían enormemente según la ciudad y el barrio. Como referencia para un apartamento de 1 habitación en zona no céntrica:</p>
+<p>Los precios varían enormemente según la ciudad y el barrio. Usa nuestro <a href="/herramientas/comparador-ciudades">comparador de ciudades</a> para ver el coste de vida completo. Como referencia para un apartamento de 1 habitación en zona no céntrica:</p>
 <ul>
-  <li><strong>Zúrich:</strong> 1.600 – 2.200 CHF/mes</li>
-  <li><strong>Ginebra:</strong> 1.500 – 2.100 CHF/mes</li>
-  <li><strong>Basilea:</strong> 1.200 – 1.700 CHF/mes</li>
-  <li><strong>Berna:</strong> 1.200 – 1.600 CHF/mes</li>
-  <li><strong>Lausana:</strong> 1.300 – 1.800 CHF/mes</li>
-  <li><strong>Zug:</strong> 1.500 – 2.000 CHF/mes (muy demandada por baja fiscalidad)</li>
+  <li><strong><a href="/blog/vivir-en-zurich-espanoles-hispanohablantes">Zúrich</a>:</strong> 1.600 – 2.200 CHF/mes</li>
+  <li><strong><a href="/blog/vivir-en-ginebra-espanoles-hispanohablantes">Ginebra</a>:</strong> 1.500 – 2.100 CHF/mes</li>
+  <li><strong><a href="/blog/vivir-en-basilea-guia-hispanohablantes">Basilea</a>:</strong> 1.200 – 1.700 CHF/mes</li>
+  <li><strong><a href="/blog/vivir-en-berna-guia-hispanohablantes">Berna</a>:</strong> 1.200 – 1.600 CHF/mes</li>
+  <li><strong><a href="/blog/vivir-en-lausana-guia-hispanohablantes">Lausana</a>:</strong> 1.300 – 1.800 CHF/mes</li>
+  <li><strong><a href="/blog/vivir-en-zug-guia-hispanohablantes">Zug</a>:</strong> 1.500 – 2.000 CHF/mes (muy demandada por baja fiscalidad)</li>
 </ul>
 <p>Recuerda que al precio del alquiler hay que sumar los gastos adicionales (Nebenkosten): agua, calefacción, basura. Suelen ser entre 100 y 250 CHF/mes adicionales.</p>
 
@@ -199,7 +199,7 @@ const postsManual: Post[] = [
     ],
     contenido: `
 <h2>El problema bancario al llegar a Suiza</h2>
-<p>Uno de los primeros obstáculos al emigrar a Suiza es abrir una cuenta bancaria. Los grandes bancos suizos (UBS, Credit Suisse, Raiffeisen) pueden ser exigentes con los recién llegados: piden historial crediticio, referencias y a veces una reunión presencial con varios documentos.</p>
+<p>Uno de los primeros obstáculos al <a href="/blog/guia-emigrar-suiza-espanoles-2026">emigrar a Suiza</a> es abrir una cuenta bancaria. Los grandes bancos suizos (UBS, Credit Suisse, Raiffeisen) pueden ser exigentes con los recién llegados: piden historial crediticio, referencias y a veces una reunión presencial con varios documentos.</p>
 <p>La buena noticia: hay opciones muy buenas para extranjeros, y la estrategia óptima es combinar una cuenta suiza con una cuenta digital internacional.</p>
 
 <h2>Opción 1: PostFinance — la más accesible para recién llegados</h2>
@@ -232,7 +232,7 @@ const postsManual: Post[] = [
   <li>Funciona antes de llegar a Suiza — ábrela desde España o Latinoamérica</li>
   <li>Gratuita para abrir, pequeñas comisiones en transferencias</li>
 </ul>
-<blockquote>"Abro Wise desde España semanas antes de llegar. Ya tenía IBAN suizo cuando aterricé, y pude cobrar mi primer salario sin problemas." — Miriam, Sevilla → Lausana</blockquote>
+<blockquote>"Abro Wise desde España semanas antes de llegar. Ya tenía IBAN suizo cuando aterricé, y pude cobrar mi primer salario sin problemas." — Miriam, Sevilla → <a href="/blog/vivir-en-lausana-guia-hispanohablantes">Lausana</a></blockquote>
 
 <h2>Opción 4: UBS o Raiffeisen — para cuando llevas tiempo</h2>
 <p>Los grandes bancos tradicionales suizos son más exigentes de entrada pero ofrecen servicios completos: hipotecas, inversiones, seguros integrados y banca privada. Son la opción a considerar una vez que llevas 6-12 meses con historial suizo.</p>
@@ -281,7 +281,7 @@ const postsManual: Post[] = [
     contenido: `
 <h2>El sistema sanitario suizo: lo bueno y lo que cuesta</h2>
 <p>Suiza tiene uno de los mejores sistemas de salud del mundo — hospitales de primera, tiempos de espera cortos, médicos accesibles. El precio que pagas por ello es el seguro médico obligatorio, que en Suiza corre por tu cuenta, no lo paga la empresa.</p>
-<p>Para muchos hispanohablantes, la primera factura del seguro es un shock: entre 300 y 600 CHF al mes por persona. En una familia de 4, puede suponer más de 2.000 CHF mensuales solo en seguros. Por eso, elegir bien desde el principio puede ahorrarte entre 600 y 1.500 CHF al año.</p>
+<p>Para muchos hispanohablantes, la primera factura del seguro es un shock: entre 300 y 600 CHF al mes por persona. En una familia de 4, puede suponer más de 2.000 CHF mensuales solo en seguros. Por eso, elegir bien desde el principio puede ahorrarte entre 600 y 1.500 CHF al año. Usa nuestra <a href="/herramientas/seguros-medicos">calculadora de seguros médicos</a> para comparar precios antes de contratar.</p>
 
 <h2>Cómo funciona el KVG (seguro básico obligatorio)</h2>
 <p>El sistema tiene dos niveles:</p>
@@ -303,14 +303,14 @@ const postsManual: Post[] = [
 </ul>
 
 <h2>Cuánto pagarás según cantón y ciudad</h2>
-<p>La prima del KVG varía mucho según el cantón. Los más caros son Ginebra, Basilea y Vaud. Los más baratos, Appenzell y Uri. Como referencia para un adulto con franquicia de 300 CHF en 2026:</p>
+<p>La prima del KVG varía mucho según el cantón. Los más caros son Ginebra, Basilea y Vaud. Los más baratos, Appenzell y Uri. Compara el <a href="/herramientas/comparador-ciudades">coste de vida completo por ciudad</a> antes de elegir dónde vivir. Como referencia para un adulto con franquicia de 300 CHF en 2026:</p>
 <ul>
-  <li><strong>Ginebra:</strong> 480 – 560 CHF/mes</li>
-  <li><strong>Zúrich:</strong> 420 – 490 CHF/mes</li>
-  <li><strong>Basilea:</strong> 440 – 510 CHF/mes</li>
-  <li><strong>Berna:</strong> 380 – 450 CHF/mes</li>
-  <li><strong>Zug:</strong> 320 – 390 CHF/mes</li>
-  <li><strong>Lucerna:</strong> 330 – 400 CHF/mes</li>
+  <li><strong><a href="/blog/vivir-en-ginebra-espanoles-hispanohablantes">Ginebra</a>:</strong> 480 – 560 CHF/mes</li>
+  <li><strong><a href="/blog/vivir-en-zurich-espanoles-hispanohablantes">Zúrich</a>:</strong> 420 – 490 CHF/mes</li>
+  <li><strong><a href="/blog/vivir-en-basilea-guia-hispanohablantes">Basilea</a>:</strong> 440 – 510 CHF/mes</li>
+  <li><strong><a href="/blog/vivir-en-berna-guia-hispanohablantes">Berna</a>:</strong> 380 – 450 CHF/mes</li>
+  <li><strong><a href="/blog/vivir-en-zug-guia-hispanohablantes">Zug</a>:</strong> 320 – 390 CHF/mes</li>
+  <li><strong><a href="/blog/vivir-en-lucerna-guia-hispanohablantes">Lucerna</a>:</strong> 330 – 400 CHF/mes</li>
 </ul>
 <p>Con franquicia de 2.500 CHF, resta entre 100 y 150 CHF a cada cifra.</p>
 
@@ -984,7 +984,7 @@ const postsManual: Post[] = [
     ],
     contenido: `
 <h2>El shock del alemán suizo: lo que nadie te avisa</h2>
-<p>Llegas a Zúrich con tu A2 de alemán que tanto te costó estudiar. Abres la boca en el supermercado y el cajero te responde algo que no se parece en nada a lo que aprendiste. Eso es el Schweizerdeutsch — y es una de las primeras sorpresas reales de vivir en la Suiza alemana.</p>
+<p>Llegas a <a href="/blog/vivir-en-zurich-espanoles-hispanohablantes">Zúrich</a> con tu A2 de alemán que tanto te costó estudiar. Abres la boca en el supermercado y el cajero te responde algo que no se parece en nada a lo que aprendiste. Eso es el Schweizerdeutsch — y es una de las primeras sorpresas reales de <a href="/blog/guia-emigrar-suiza-espanoles-2026">vivir en la Suiza alemana</a>.</p>
 <p>Entender la diferencia entre el alemán que estudias y el alemán que hablan los suizos en la calle es esencial antes de empezar cualquier curso.</p>
 
 <h2>Hochdeutsch vs Schweizerdeutsch: la diferencia clave</h2>
@@ -993,7 +993,7 @@ const postsManual: Post[] = [
   <li><strong>Hochdeutsch (alemán estándar):</strong> Es el alemán escrito, el de los textos oficiales, el correo del trabajo, las facturas, los contratos, los libros. Lo usan los medios de comunicación y en contextos formales. Es lo que estudias en academias de idiomas y lo que te enseña Duolingo o la DW. <em>Este es el alemán que necesitas para trabajar.</em></li>
   <li><strong>Schweizerdeutsch (dialecto suizo):</strong> Es el alemán hablado en la calle, en casa, entre amigos, en la TV local, en el supermercado. No tiene forma escrita estándar — cada cantón tiene su variante (Züritüütsch, Berndüütsch, Baseldüütsch...). Los suizos lo usan para todo lo informal. <em>No lo aprenderás en ningún curso: solo por inmersión.</em></li>
 </ul>
-<blockquote>"Después de 2 años en Suiza y un B2 de alemán, aún hay días que no entiendo nada de lo que dicen en el tren. Pero en el trabajo me comunico perfectamente." — Rodrigo, Lima → Zúrich</blockquote>
+<blockquote>"Después de 2 años en Suiza y un B2 de alemán, aún hay días que no entiendo nada de lo que dicen en el tren. Pero en el <a href="/trabajo">trabajo</a> me comunico perfectamente." — Rodrigo, Lima → <a href="/blog/vivir-en-zurich-espanoles-hispanohablantes">Zúrich</a></blockquote>
 
 <h2>¿Qué nivel necesitas según tu situación?</h2>
 <ul>
@@ -1015,7 +1015,7 @@ const postsManual: Post[] = [
 
 <h3>Opciones de precio medio</h3>
 <ul>
-  <li><strong>Migros Klubschule:</strong> La escuela de idiomas más popular de Suiza. Cursos de todos los niveles, horarios flexibles, instructores nativos. Precio: 300-500 CHF por nivel (unas 40 horas). Muy buena calidad-precio.</li>
+  <li><strong>Migros Klubschule:</strong> La escuela de idiomas más popular de Suiza. Cursos de todos los niveles, horarios flexibles, instructores nativos. Precio: 300-500 CHF por nivel (unas 40 horas). Muy buena calidad-precio. Tienen sedes en <a href="/blog/vivir-en-zurich-espanoles-hispanohablantes">Zúrich</a>, <a href="/blog/vivir-en-berna-guia-hispanohablantes">Berna</a>, <a href="/blog/vivir-en-basilea-guia-hispanohablantes">Basilea</a> y otras ciudades.</li>
   <li><strong>Volkshochschule (VHS):</strong> Escuela pública de adultos, presencia en todas las ciudades. Precios moderados, cursos intensivos y regulares.</li>
 </ul>
 
@@ -1593,7 +1593,7 @@ const postsManual: Post[] = [
     contenido: `
 <h2>Lo que nadie te cuenta al llegar: el plazo de 12 meses</h2>
 <p>Miles de hispanohablantes llevan en Suiza más de un año conduciendo con el carnet español sin saber que técnicamente están infringiendo la normativa. No es un error que tenga consecuencias inmediatas en el día a día — la policía raramente lo comprueba — pero puede ser problemático en caso de accidente.</p>
-<p>La regla es simple: cuando estableces tu residencia en Suiza (te empadronas), tienes <strong>12 meses para canjear tu carnet extranjero</strong> por el suizo. Pasado ese plazo, el carnet original deja de ser válido como permiso de conducción en el país.</p>
+<p>La regla es simple: cuando <a href="/blog/guia-emigrar-suiza-espanoles-2026">estableces tu residencia en Suiza</a> (te empadronas), tienes <strong>12 meses para canjear tu carnet extranjero</strong> por el suizo. Pasado ese plazo, el carnet original deja de ser válido como permiso de conducción en el país.</p>
 
 <h2>El canje del carnet español: paso a paso</h2>
 <p>La buena noticia para los españoles (y ciudadanos de la UE en general) es que el canje es un trámite administrativo sencillo, sin examen.</p>
@@ -1602,7 +1602,7 @@ const postsManual: Post[] = [
 <ul>
   <li>Carnet de conducir original español (válido y no caducado)</li>
   <li>DNI o pasaporte</li>
-  <li>Permiso de residencia suizo (permiso B o superior)</li>
+  <li><a href="/blog/permiso-residencia-suiza-espanoles-latinoamericanos-2026">Permiso de residencia suizo</a> (permiso B o superior)</li>
   <li>Fotografía de carnet reciente</li>
   <li>Formulario de solicitud de la oficina cantonal (lo puedes descargar online)</li>
 </ul>
@@ -1640,7 +1640,7 @@ const postsManual: Post[] = [
 <p>El coste en estos casos sube a entre 300 y 600 CHF incluyendo curso de primeros auxilios, examen teórico y tasa de canje.</p>
 
 <h2>El seguro del coche: obligatorio y diferente al español</h2>
-<p>En Suiza el seguro de responsabilidad civil (RC) del vehículo es obligatorio, igual que en España. Las diferencias:</p>
+<p>En Suiza el seguro de responsabilidad civil (RC) del vehículo es obligatorio, igual que en España. Usa nuestro <a href="/herramientas/comparador-ciudades">comparador de costes de vida</a> para ver cuánto te costará vivir en cada cantón. Las diferencias:</p>
 <ul>
   <li>No existe el sistema de puntos en el carnet suizo (aunque sí hay sanciones por infracciones graves)</li>
   <li>Las primas son más caras que en España, especialmente al llegar sin historial suizo</li>

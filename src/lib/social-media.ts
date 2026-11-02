@@ -86,9 +86,7 @@ export async function publishToInstagram(
   try {
     const caption = generateSocialCaption(historia);
     const storyUrl = `${BASE_URL}/historias-reales/${historia.slug}`;
-
-    // Nota: Instagram requiere una imagen. Por ahora publicamos solo texto.
-    // En producción, deberías generar una imagen con el título usando Canvas o similar.
+    const imageUrl = generateSocialImageUrl(historia);
 
     // Paso 1: Crear container de media
     const containerResponse = await fetch(
@@ -98,7 +96,7 @@ export async function publishToInstagram(
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           caption,
-          // image_url: imageUrl, // Agregar cuando tengas generación de imágenes
+          image_url: imageUrl,
           access_token: INSTAGRAM_ACCESS_TOKEN,
         }),
       }
@@ -213,10 +211,11 @@ export async function publishToAllSocials(
 
 /**
  * Genera imagen social (Open Graph) para una historia
- * Usar con Vercel OG Image Generation o Canvas
+ * Usa el endpoint /api/og-image para generar imágenes dinámicas
  */
 export function generateSocialImageUrl(historia: HistoriaComunidad): string {
-  // Por ahora retornamos la imagen por defecto
-  // En producción: usar /api/og-image?title=...&author=...
-  return `${BASE_URL}/og-image.jpg`;
+  // TEMPORAL: Usar imagen externa hasta el próximo deploy
+  // Después del deploy, cambiar a: return `${BASE_URL}/og-default.jpg`;
+  // O mejor aún, usar el endpoint dinámico /api/og-image
+  return "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=630&fit=crop&q=80";
 }

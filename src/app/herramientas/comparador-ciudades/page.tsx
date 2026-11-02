@@ -79,7 +79,7 @@ function CityCard({
       </div>
       <div className="text-xs text-[#9CA3AF] mt-0.5">{ciudad.idioma.split(" ")[0]}</div>
       {ciudad.region.includes("Cantón Zug") && (
-        <div className="text-[10px] font-bold mt-1 px-1.5 py-0.5 rounded-full inline-block"
+        <div className="text-xs font-bold mt-1 px-1.5 py-0.5 rounded-full inline-block"
           style={{ background: "#FEF3C7", color: "#92400E" }}>
           ⚡ Impuestos bajos
         </div>
@@ -158,7 +158,7 @@ export default function ComparadorCiudadesPage() {
           <div className="flex gap-1.5">
             <button
               onClick={() => setReplacing("A")}
-              className="px-3 py-1 rounded-full text-xs font-bold transition-all"
+              className="px-3 py-2 sm:py-1 rounded-full text-xs font-bold transition-all min-h-[40px] sm:min-h-0"
               style={{
                 background: replacing === "A" ? A.color : "#F0EDEA",
                 color: replacing === "A" ? "white" : "#6B7280",
@@ -170,7 +170,7 @@ export default function ComparadorCiudadesPage() {
             </button>
             <button
               onClick={() => setReplacing("B")}
-              className="px-3 py-1 rounded-full text-xs font-bold transition-all"
+              className="px-3 py-2 sm:py-1 rounded-full text-xs font-bold transition-all min-h-[40px] sm:min-h-0"
               style={{
                 background: replacing === "B" ? B.color : "#F0EDEA",
                 color: replacing === "B" ? "white" : "#6B7280",
@@ -199,8 +199,8 @@ export default function ComparadorCiudadesPage() {
               Ciudad A
             </label>
             <select value={slugA} onChange={(e) => pickA(e.target.value)}
-              className="w-full rounded-xl px-3 py-2 text-sm font-semibold text-[#0A0A0A] focus:outline-none"
-              style={{ border: `2px solid ${A.color}`, background: A.colorLight, fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}>
+              className="w-full rounded-xl px-3 py-3 sm:py-2 text-sm font-semibold text-[#0A0A0A] focus:outline-none"
+              style={{ border: `2px solid ${A.color}`, background: A.colorLight, fontFamily: "var(--font-dm-sans), system-ui, sans-serif", minHeight: "48px" }}>
               {CIUDADES.filter((c) => c.slug !== slugB).map((c) => (
                 <option key={c.slug} value={c.slug}>{c.emoji} {c.nombre}</option>
               ))}
@@ -211,8 +211,8 @@ export default function ComparadorCiudadesPage() {
               Ciudad B
             </label>
             <select value={slugB} onChange={(e) => pickB(e.target.value)}
-              className="w-full rounded-xl px-3 py-2 text-sm font-semibold text-[#0A0A0A] focus:outline-none"
-              style={{ border: `2px solid ${B.color}`, background: B.colorLight, fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}>
+              className="w-full rounded-xl px-3 py-3 sm:py-2 text-sm font-semibold text-[#0A0A0A] focus:outline-none"
+              style={{ border: `2px solid ${B.color}`, background: B.colorLight, fontFamily: "var(--font-dm-sans), system-ui, sans-serif", minHeight: "48px" }}>
               {CIUDADES.filter((c) => c.slug !== slugA).map((c) => (
                 <option key={c.slug} value={c.slug}>{c.emoji} {c.nombre}</option>
               ))}
@@ -384,7 +384,7 @@ export default function ComparadorCiudadesPage() {
                 <span className="text-base">{winner.emoji}</span>
                 <span className="font-bold text-sm text-[#0A0A0A]">{winner.nombre}</span>
               </div>
-              <div className="text-[11px] font-semibold" style={{ color: winner.color }}>{detail}</div>
+              <div className="text-xs font-semibold" style={{ color: winner.color }}>{detail}</div>
             </div>
           ))}
         </div>
@@ -557,8 +557,8 @@ export default function ComparadorCiudadesPage() {
               </div>
             </div>
             <button onClick={handleEquiv}
-              className="px-5 py-3 rounded-xl text-white font-bold text-sm whitespace-nowrap transition-all hover:opacity-90 active:scale-95"
-              style={{ background: "#C8102E", fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}>
+              className="px-5 py-3.5 sm:py-3 rounded-xl text-white font-bold text-sm whitespace-nowrap transition-all hover:opacity-90 active:scale-[0.98]"
+              style={{ background: "#C8102E", fontFamily: "var(--font-dm-sans), system-ui, sans-serif", minHeight: "48px" }}>
               {user ? "Calcular →" : "🔒 Ver gratis"}
             </button>
           </div>

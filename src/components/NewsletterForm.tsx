@@ -51,7 +51,7 @@ export default function NewsletterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
       <input
         type="email"
         value={email}
@@ -59,11 +59,12 @@ export default function NewsletterForm() {
         placeholder="tu@email.com"
         required
         disabled={state === "loading"}
-        className="rounded-xl px-4 py-2.5 text-sm placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#C8102E] transition-all text-white disabled:opacity-50"
+        className="rounded-xl px-4 py-3.5 text-sm md:text-base placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#C8102E] transition-all text-white disabled:opacity-50"
         style={{
           background: "rgba(255,255,255,0.06)",
           border: "1px solid rgba(255,255,255,0.12)",
           fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
+          minHeight: "48px",
         }}
       />
       {state === "error" && (
@@ -72,8 +73,8 @@ export default function NewsletterForm() {
       <button
         type="submit"
         disabled={state === "loading"}
-        className="text-white text-sm font-semibold py-2.5 rounded-xl transition-all disabled:opacity-60"
-        style={{ background: "#C8102E", fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
+        className="text-white text-sm md:text-base font-semibold py-4 rounded-xl transition-all disabled:opacity-60 active:scale-[0.98]"
+        style={{ background: "#C8102E", fontFamily: "var(--font-dm-sans), system-ui, sans-serif", minHeight: "52px" }}
       >
         {state === "loading" ? "Suscribiendo…" : "Suscribirme gratis"}
       </button>

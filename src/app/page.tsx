@@ -94,14 +94,14 @@ export default function Home() {
               <div className="flex flex-wrap gap-3 mb-9">
                 <Link
                   href="/blog/guia-emigrar-suiza-espanoles-2026"
-                  className="inline-flex items-center gap-2 font-semibold px-6 py-3.5 rounded-full text-sm transition-opacity hover:opacity-85"
+                  className="inline-flex items-center justify-center gap-2 font-semibold px-6 py-4 md:py-3.5 rounded-full text-base md:text-sm transition-opacity hover:opacity-85 active:scale-[0.98] min-h-[52px]"
                   style={BTN_RED}
                 >
                   Empezar por aquí →
                 </Link>
                 <Link
                   href="/herramientas"
-                  className="inline-flex items-center gap-2 font-semibold px-6 py-3.5 rounded-full text-sm transition-colors hover:bg-white/10"
+                  className="inline-flex items-center justify-center gap-2 font-semibold px-6 py-4 md:py-3.5 rounded-full text-base md:text-sm transition-colors hover:bg-white/10 active:scale-[0.98] min-h-[52px]"
                   style={BTN_OUTLINE}
                 >
                   Ver herramientas
@@ -219,7 +219,7 @@ export default function Home() {
               <Link
                 key={card.href}
                 href={card.href}
-                className="group flex items-center gap-3 sm:gap-4 bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 transition-all duration-200 active:scale-[0.98] hover:-translate-y-0.5 hover:shadow-md"
+                className="group flex items-center gap-4 sm:gap-4 bg-white rounded-xl sm:rounded-2xl p-5 sm:p-5 transition-all duration-200 active:scale-[0.98] hover:-translate-y-0.5 hover:shadow-md min-h-[80px]"
                 style={{ border: "1px solid #E8E5E0", borderLeft: `4px solid ${card.accent}` }}
               >
                 <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl flex items-center justify-center text-lg sm:text-xl flex-shrink-0" style={{ background: card.iconBg }}>
@@ -355,7 +355,7 @@ export default function Home() {
 
               <Link
                 href="/historias-reales"
-                className="inline-flex items-center gap-2 font-semibold px-6 py-3.5 rounded-full text-sm transition-opacity hover:opacity-85"
+                className="inline-flex items-center justify-center gap-2 font-semibold px-6 py-4 md:py-3.5 rounded-full text-base md:text-sm transition-opacity hover:opacity-85 active:scale-[0.98] min-h-[52px]"
                 style={BTN_RED}
               >
                 Leer historias reales →

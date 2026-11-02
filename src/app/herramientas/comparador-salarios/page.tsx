@@ -102,7 +102,7 @@ export default function ComparadorSalariosPage() {
               <button
                 key={s.nombre}
                 onClick={() => setSectorSeleccionado(s.nombre)}
-                className={`flex flex-col items-center justify-center gap-1 p-4 rounded-xl border-2 transition-all cursor-pointer text-center ${
+                className={`flex flex-col items-center justify-center gap-1 p-4 rounded-xl border-2 transition-all cursor-pointer text-center active:scale-[0.98] min-h-[80px] ${
                   selected
                     ? "border-[#C0392B] bg-red-50"
                     : "border-gray-200 bg-white hover:border-gray-300"
@@ -131,11 +131,12 @@ export default function ComparadorSalariosPage() {
               <button
                 key={n.label}
                 onClick={() => setNivelIndex(i)}
-                className={`px-4 py-3 rounded-xl border-2 text-sm font-semibold transition-all cursor-pointer ${
+                className={`px-4 py-3.5 sm:py-3 rounded-xl border-2 text-sm font-semibold transition-all cursor-pointer active:scale-[0.98] ${
                   selected
                     ? "bg-[#C0392B] text-white border-[#C0392B]"
                     : "bg-white text-gray-700 border-gray-200 hover:border-gray-300"
                 }`}
+                style={{ minHeight: "48px" }}
               >
                 {n.label}
               </button>

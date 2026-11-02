@@ -66,15 +66,15 @@ export default function CookieBanner() {
           <div className="flex flex-col sm:flex-row gap-2 shrink-0">
             <button
               onClick={() => accept("essential")}
-              className="px-4 py-2 rounded-xl text-xs font-semibold text-[#9CA3AF] transition-colors hover:text-white"
-              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}
+              className="px-4 py-3 sm:py-2 rounded-xl text-sm sm:text-xs font-semibold text-[#9CA3AF] transition-all hover:text-white active:scale-[0.98]"
+              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", minHeight: "48px" }}
             >
               Solo esenciales
             </button>
             <button
               onClick={() => accept("all")}
-              className="px-4 py-2 rounded-xl text-xs font-semibold text-white transition-colors hover:opacity-90"
-              style={{ background: "#C8102E" }}
+              className="px-4 py-3 sm:py-2 rounded-xl text-sm sm:text-xs font-semibold text-white transition-all hover:opacity-90 active:scale-[0.98]"
+              style={{ background: "#C8102E", minHeight: "48px" }}
             >
               Aceptar todo
             </button>

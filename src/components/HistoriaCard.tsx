@@ -38,7 +38,7 @@ export default function HistoriaCard({ historia, variant = "full" }: HistoriaCar
 
           <div className="flex-1 min-w-0">
             {/* Header */}
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[0.65rem] sm:text-sm text-gray-500 mb-1.5 sm:mb-2">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-gray-500 mb-1.5 sm:mb-2">
               <span className="font-medium text-gray-700">{historia.nombre}</span>
               <span>·</span>
               <span className="truncate">{historia.origen} → {historia.ciudad}</span>
@@ -65,7 +65,7 @@ export default function HistoriaCard({ historia, variant = "full" }: HistoriaCar
               {historia.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-[0.65rem] sm:text-xs bg-gray-100 text-gray-600 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full"
+                  className="text-xs sm:text-xs bg-gray-100 text-gray-600 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full"
                 >
                   {tag}
                 </span>
@@ -113,7 +113,7 @@ export default function HistoriaCard({ historia, variant = "full" }: HistoriaCar
 
           <div className="flex-1 min-w-0">
             {/* Header */}
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[0.65rem] sm:text-sm text-gray-500 mb-1.5 sm:mb-2">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-gray-500 mb-1.5 sm:mb-2">
               <span className="font-medium text-gray-700 truncate">{historia.autorNombre}</span>
               {historia.autorPais && (
                 <>
@@ -147,12 +147,12 @@ export default function HistoriaCard({ historia, variant = "full" }: HistoriaCar
             <div className="flex items-center justify-between">
               <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {historia.tema && (
-                  <span className="text-[0.65rem] sm:text-xs bg-red-50 text-red-700 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">
+                  <span className="text-xs sm:text-xs bg-red-50 text-red-700 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">
                     {historia.tema}
                   </span>
                 )}
                 {historia.ciudadSuiza && (
-                  <span className="text-[0.65rem] sm:text-xs bg-gray-100 text-gray-600 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">
+                  <span className="text-xs sm:text-xs bg-gray-100 text-gray-600 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">
                     {historia.ciudadSuiza}
                   </span>
                 )}

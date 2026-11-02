@@ -31,13 +31,13 @@ export default function ArticleCard({ post, destacado = false }: { post: Post; d
     return (
       <Link href={`/blog/${post.slug}`} className="block group">
         <article
-          className="bg-white rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-200 active:scale-[0.98] hover:-translate-y-1 hover:shadow-lg"
+          className="bg-white rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-200 active:scale-[0.98] hover:-translate-y-1 hover:shadow-lg min-h-[200px]"
           style={{
             border: "1px solid #E8E5E0",
             borderLeft: `4px solid ${accentColor}`,
           }}
         >
-          <div className="p-4 sm:p-6">
+          <div className="p-5 sm:p-6">
             {/* Category badge */}
             <div className="flex items-center gap-2 mb-3 sm:mb-4">
               <span
@@ -54,7 +54,7 @@ export default function ArticleCard({ post, destacado = false }: { post: Post; d
 
             {/* Title */}
             <h2
-              className="font-bold text-[#0A0A0A] mb-2 leading-snug group-hover:text-[#C8102E] transition-colors text-base sm:text-lg"
+              className="font-bold text-[#0A0A0A] mb-3 leading-snug group-hover:text-[#C8102E] transition-colors text-lg sm:text-lg"
               style={{
                 fontFamily: "var(--font-playfair), Georgia, serif",
               }}
@@ -64,7 +64,7 @@ export default function ArticleCard({ post, destacado = false }: { post: Post; d
 
             {/* Description */}
             <p
-              className="text-[#6B7280] text-xs sm:text-sm leading-relaxed mb-4 sm:mb-5 line-clamp-3"
+              className="text-[#6B7280] text-sm sm:text-sm leading-relaxed mb-5 sm:mb-5 line-clamp-3"
               style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
             >
               {post.descripcion}
@@ -94,7 +94,7 @@ export default function ArticleCard({ post, destacado = false }: { post: Post; d
   return (
     <Link href={`/blog/${post.slug}`} className="block group">
       <article
-        className="bg-white rounded-lg sm:rounded-xl p-3.5 sm:p-5 transition-all duration-200 active:scale-[0.99] hover:-translate-y-0.5 hover:shadow-md flex gap-3 sm:gap-4 items-start"
+        className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 transition-all duration-200 active:scale-[0.99] hover:-translate-y-0.5 hover:shadow-md flex gap-4 sm:gap-4 items-start min-h-[100px]"
         style={{
           border: "1px solid #E8E5E0",
           borderLeft: `4px solid ${accentColor}`,
@@ -119,7 +119,7 @@ export default function ArticleCard({ post, destacado = false }: { post: Post; d
             </span>
           </div>
           <h3
-            className="font-semibold text-[#0A0A0A] group-hover:text-[#C8102E] transition-colors leading-snug mb-1 line-clamp-2 text-sm sm:text-base"
+            className="font-semibold text-[#0A0A0A] group-hover:text-[#C8102E] transition-colors leading-snug mb-1.5 line-clamp-2 text-base sm:text-base"
             style={{
               fontFamily: "var(--font-playfair), Georgia, serif",
             }}

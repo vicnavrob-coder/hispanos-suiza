@@ -161,7 +161,7 @@ export default function HistoriasFeed({ initialHistorias }: HistoriasFeedProps) 
               <button
                 type="button"
                 onClick={() => setIsExpanded(false)}
-                className="ml-auto w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 active:bg-gray-100 rounded-full text-xl"
+                className="ml-auto w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 active:bg-gray-100 rounded-full text-xl min-w-[44px] min-h-[44px]"
               >
                 ×
               </button>
@@ -201,7 +201,7 @@ export default function HistoriasFeed({ initialHistorias }: HistoriasFeedProps) 
                 name="ciudadSuiza"
                 value={form.ciudadSuiza}
                 onChange={handleChange}
-                className="text-xs sm:text-sm bg-gray-100 border-0 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 focus:ring-2 focus:ring-red-500 min-h-[36px]"
+                className="text-xs sm:text-sm bg-gray-100 border-0 rounded-full px-3 sm:px-4 py-2.5 sm:py-2 focus:ring-2 focus:ring-red-500 min-h-[48px] sm:min-h-[36px]"
               >
                 <option value="">📍 Ciudad (opcional)</option>
                 {CIUDADES_SUIZA.map((ciudad) => (
@@ -213,7 +213,7 @@ export default function HistoriasFeed({ initialHistorias }: HistoriasFeedProps) 
                 name="tema"
                 value={form.tema}
                 onChange={handleChange}
-                className="text-xs sm:text-sm bg-gray-100 border-0 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 focus:ring-2 focus:ring-red-500 min-h-[36px]"
+                className="text-xs sm:text-sm bg-gray-100 border-0 rounded-full px-3 sm:px-4 py-2.5 sm:py-2 focus:ring-2 focus:ring-red-500 min-h-[48px] sm:min-h-[36px]"
               >
                 <option value="">🏷️ Tema (opcional)</option>
                 {TEMAS_HISTORIA.map((tema) => (
@@ -237,7 +237,7 @@ export default function HistoriasFeed({ initialHistorias }: HistoriasFeedProps) 
               <button
                 type="submit"
                 disabled={isSubmitting || charCount < minChars}
-                className="bg-red-600 hover:bg-red-700 active:bg-red-800 disabled:bg-gray-300 text-white font-semibold px-5 sm:px-6 py-2 sm:py-2.5 rounded-full transition-colors text-sm sm:text-base ml-auto min-h-[40px]"
+                className="bg-red-600 hover:bg-red-700 active:bg-red-800 active:scale-[0.98] disabled:bg-gray-300 text-white font-semibold px-5 sm:px-6 py-3 sm:py-2.5 rounded-full transition-all text-sm sm:text-base ml-auto min-h-[48px]"
               >
                 {isSubmitting ? "Publicando..." : "Publicar"}
               </button>

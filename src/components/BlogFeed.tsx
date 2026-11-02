@@ -162,7 +162,7 @@ export default function BlogFeed({ posts, historias, categorias }: BlogFeedProps
                 </div>
                 <span className="text-xs sm:text-sm font-medium text-gray-800">{user?.nombre}</span>
               </div>
-              <button type="button" onClick={() => setIsExpanded(false)} className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 active:bg-gray-100 rounded-full">
+              <button type="button" onClick={() => setIsExpanded(false)} className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 active:bg-gray-100 rounded-full min-w-[44px] min-h-[44px]">
                 ✕
               </button>
             </div>
@@ -184,11 +184,11 @@ export default function BlogFeed({ posts, historias, categorias }: BlogFeedProps
             />
 
             <div className="flex flex-wrap gap-2 py-3 border-t border-gray-100">
-              <select name="ciudadSuiza" value={form.ciudadSuiza} onChange={handleChange} className="text-xs bg-gray-100 border-0 rounded-full px-3 py-1.5 min-h-[36px]">
+              <select name="ciudadSuiza" value={form.ciudadSuiza} onChange={handleChange} className="text-xs sm:text-xs bg-gray-100 border-0 rounded-full px-3 py-2.5 sm:py-1.5 min-h-[48px] sm:min-h-[36px]">
                 <option value="">📍 Ciudad</option>
                 {CIUDADES_SUIZA.map((c) => <option key={c} value={c}>{c}</option>)}
               </select>
-              <select name="tema" value={form.tema} onChange={handleChange} className="text-xs bg-gray-100 border-0 rounded-full px-3 py-1.5 min-h-[36px]">
+              <select name="tema" value={form.tema} onChange={handleChange} className="text-xs sm:text-xs bg-gray-100 border-0 rounded-full px-3 py-2.5 sm:py-1.5 min-h-[48px] sm:min-h-[36px]">
                 <option value="">🏷️ Tema</option>
                 {TEMAS_HISTORIA.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
               </select>
@@ -201,7 +201,7 @@ export default function BlogFeed({ posts, historias, categorias }: BlogFeedProps
               <button
                 type="submit"
                 disabled={isSubmitting || charCount < 200}
-                className="bg-red-600 hover:bg-red-700 active:bg-red-800 disabled:bg-gray-300 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 rounded-full min-h-[40px]"
+                className="bg-red-600 hover:bg-red-700 active:bg-red-800 active:scale-[0.98] disabled:bg-gray-300 text-white text-sm sm:text-sm font-semibold px-5 sm:px-5 py-3 sm:py-2 rounded-full min-h-[48px] transition-all"
               >
                 {isSubmitting ? "..." : "Publicar"}
               </button>

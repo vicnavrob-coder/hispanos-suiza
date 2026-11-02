@@ -140,7 +140,7 @@ export default function SalarioNetoPage() {
                 <button
                   key={m}
                   onClick={() => { setModo(m); setResultado(null); }}
-                  className="flex-1 py-2 rounded-lg text-sm font-semibold transition-all"
+                  className="flex-1 py-3 md:py-2 rounded-lg text-base md:text-sm font-semibold transition-all active:scale-[0.98] min-h-[48px]"
                   style={modo === m
                     ? { background: "#C0392B", color: "#fff" }
                     : { background: "transparent", color: "#6B7280" }}
@@ -165,7 +165,8 @@ export default function SalarioNetoPage() {
                       onChange={(e) => { setPrecioH(e.target.value); setResultado(null); }}
                       placeholder="Ej: 25.00"
                       step="0.50"
-                      className="w-full border border-gray-200 rounded-xl pl-14 pr-4 py-3 text-gray-800 focus:outline-none focus:border-red-400 text-lg"
+                      className="w-full border border-gray-200 rounded-xl pl-14 pr-4 py-4 md:py-3 text-gray-800 focus:outline-none focus:border-red-400 text-lg"
+                      style={{ minHeight: "56px" }}
                     />
                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm">/hora</span>
                   </div>
@@ -179,7 +180,8 @@ export default function SalarioNetoPage() {
                     <select
                       value={horasD}
                       onChange={(e) => { setHorasD(e.target.value); setResultado(null); }}
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-red-400 bg-white"
+                      className="w-full border border-gray-200 rounded-xl px-4 py-4 md:py-3 text-gray-800 focus:outline-none focus:border-red-400 bg-white"
+                      style={{ minHeight: "56px" }}
                     >
                       {[4, 5, 6, 7, 8, 8.5, 9, 10, 12].map((h) => (
                         <option key={h} value={h}>{h}h / día</option>
@@ -193,7 +195,8 @@ export default function SalarioNetoPage() {
                     <select
                       value={diasS}
                       onChange={(e) => { setDiasS(e.target.value); setResultado(null); }}
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-red-400 bg-white"
+                      className="w-full border border-gray-200 rounded-xl px-4 py-4 md:py-3 text-gray-800 focus:outline-none focus:border-red-400 bg-white"
+                      style={{ minHeight: "56px" }}
                     >
                       {[3, 4, 5, 6].map((d) => (
                         <option key={d} value={d}>{d} días / semana</option>
@@ -223,7 +226,8 @@ export default function SalarioNetoPage() {
                     value={bruto}
                     onChange={(e) => { setBruto(e.target.value); setResultado(null); }}
                     placeholder="Ej: 5000"
-                    className="w-full border border-gray-200 rounded-xl pl-14 pr-4 py-3 text-gray-800 focus:outline-none focus:border-red-400 text-lg"
+                    className="w-full border border-gray-200 rounded-xl pl-14 pr-4 py-4 md:py-3 text-gray-800 focus:outline-none focus:border-red-400 text-lg"
+                    style={{ minHeight: "56px" }}
                   />
                   <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm">/mes</span>
                 </div>
@@ -238,7 +242,8 @@ export default function SalarioNetoPage() {
               <select
                 value={canton}
                 onChange={(e) => { setCanton(e.target.value); setResultado(null); }}
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-red-400 bg-white"
+                className="w-full border border-gray-200 rounded-xl px-4 py-4 md:py-3 text-gray-800 focus:outline-none focus:border-red-400 bg-white"
+                style={{ minHeight: "56px" }}
               >
                 {CANTONES.map((c) => (
                   <option key={c.slug} value={c.slug}>{c.nombre}</option>
@@ -248,8 +253,8 @@ export default function SalarioNetoPage() {
 
             <button
               onClick={calcular}
-              style={{ background: "#C0392B" }}
-              className="w-full text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition-opacity text-base"
+              style={{ background: "#C0392B", minHeight: "56px" }}
+              className="w-full text-white font-bold py-4 md:py-3.5 rounded-xl hover:opacity-90 transition-opacity active:scale-[0.98] text-lg md:text-base"
             >
               Calcular salario neto →
             </button>
