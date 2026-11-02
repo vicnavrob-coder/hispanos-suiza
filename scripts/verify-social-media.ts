@@ -130,6 +130,7 @@ async function main() {
       slug: 'test-publicacion',
       id: 'test',
       autorEmail: 'test@test.com',
+      createdAt: new Date().toISOString(),
       publishedAt: new Date().toISOString(),
     };
 
