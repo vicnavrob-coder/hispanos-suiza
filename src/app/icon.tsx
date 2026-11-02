@@ -11,7 +11,7 @@ export default function Icon() {
         style={{
           width: 32,
           height: 32,
-          background: "linear-gradient(135deg, #C8102E 0%, #9B1B30 100%)",
+          background: "#DC2626", // Rojo bandera suiza
           borderRadius: 6,
           display: "flex",
           alignItems: "center",
@@ -19,37 +19,25 @@ export default function Icon() {
           position: "relative",
         }}
       >
-        {/* Cruz suiza sutil */}
+        {/* Cruz suiza blanca prominente */}
         <div
           style={{
             position: "absolute",
-            width: 6,
-            height: 20,
-            background: "rgba(255,255,255,0.15)",
-            borderRadius: 1,
+            width: 4,
+            height: 18,
+            background: "white",
+            borderRadius: 0.5,
           }}
         />
         <div
           style={{
             position: "absolute",
-            width: 20,
-            height: 6,
-            background: "rgba(255,255,255,0.15)",
-            borderRadius: 1,
+            width: 18,
+            height: 4,
+            background: "white",
+            borderRadius: 0.5,
           }}
         />
-        {/* HS */}
-        <span
-          style={{
-            color: "white",
-            fontSize: 14,
-            fontWeight: 800,
-            fontFamily: "system-ui, sans-serif",
-            letterSpacing: -1,
-          }}
-        >
-          HS
-        </span>
       </div>
     ),
     { ...size }
