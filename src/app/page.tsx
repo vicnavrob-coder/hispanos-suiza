@@ -550,6 +550,132 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════
+          PRODUCTO DESTACADO - TEMPLATE
+      ══════════════════════════════════════════ */}
+      <section style={{ background: "#0A0A0A" }}>
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
+
+            <div>
+              <div
+                className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-4 sm:mb-6"
+                style={{ background: "rgba(200,16,46,0.14)", border: "1px solid rgba(200,16,46,0.3)", color: "#F87171" }}
+              >
+                <span>🎯</span>
+                <span>NUEVO PRODUCTO DIGITAL</span>
+              </div>
+
+              <h2
+                className="font-black mb-3 sm:mb-4 leading-tight"
+                style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#ffffff", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
+              >
+                Template Notion: Checklist Completa Emigrar a Suiza
+              </h2>
+
+              <p
+                className="mb-6 leading-relaxed text-sm sm:text-base"
+                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#9CA3AF" }}
+              >
+                Sistema completo con 50 pasos organizados, 7 guías profesionales, tracker de gastos y 50+ contactos verificados. Ahorra CHF 15'000-20'000 el primer año.
+              </p>
+
+              <div className="space-y-3 mb-8">
+                {[
+                  { icon: "✅", text: "Checklist 50 pasos con deadlines críticos" },
+                  { icon: "📚", text: "7 guías completas (1'975 líneas de contenido)" },
+                  { icon: "💰", text: "Tracker gastos con deducciones fiscales" },
+                  { icon: "👥", text: "50+ contactos verificados (2026)" },
+                ].map((item) => (
+                  <div key={item.icon} className="flex items-start gap-3">
+                    <span className="text-lg flex-shrink-0 mt-0.5">{item.icon}</span>
+                    <p style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#D1D5DB", fontSize: "0.875rem", lineHeight: 1.6 }}>
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-4 mb-6">
+                <div>
+                  <div
+                    className="text-3xl sm:text-4xl font-black"
+                    style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#C8102E" }}
+                  >
+                    CHF 19
+                  </div>
+                  <p className="text-xs" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280" }}>
+                    <span style={{ textDecoration: "line-through" }}>CHF 49</span> -61% descuento
+                  </p>
+                </div>
+                <Link
+                  href="/productos/template-emigrar-suiza"
+                  className="inline-flex items-center justify-center gap-2 font-semibold px-6 py-3.5 rounded-full text-sm transition-opacity hover:opacity-85 active:scale-[0.98]"
+                  style={BTN_RED}
+                >
+                  Ver template completo →
+                </Link>
+              </div>
+
+              <div className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2">
+                {["✓ Pago único", "✓ Garantía 30 días", "✓ Acceso inmediato"].map((t) => (
+                  <span
+                    key={t}
+                    className="flex items-center gap-1.5 text-[0.7rem] sm:text-xs"
+                    style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280" }}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div
+              className="rounded-2xl p-6 sm:p-8"
+              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}
+            >
+              <div className="space-y-5">
+                <div>
+                  <div className="text-xs font-semibold mb-2" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#9CA3AF" }}>
+                    ⏰ Ahorro de tiempo
+                  </div>
+                  <div className="text-lg font-bold" style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#ffffff" }}>
+                    40-60 horas de investigación evitada
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs font-semibold mb-2" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#9CA3AF" }}>
+                    💰 Ahorro económico
+                  </div>
+                  <div className="text-lg font-bold" style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#ffffff" }}>
+                    CHF 15'000-20'000 primer año
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs font-semibold mb-2" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#9CA3AF" }}>
+                    ✨ ROI
+                  </div>
+                  <div className="text-lg font-bold" style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#10B981" }}>
+                    500x-1'000x tu inversión
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className="mt-6 pt-6"
+                style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}
+              >
+                <p className="text-xs text-center" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280" }}>
+                  "Llegué a Suiza con este template y no me perdí ningún deadline crítico. Las guías son increíblemente detalladas."<br/>
+                  <span style={{ color: "#9CA3AF", fontWeight: 600 }}>— María G., Valencia → Zúrich</span>
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
           RECURSOS DESCARGABLES - Lead Magnets
       ══════════════════════════════════════════ */}
       <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-14">
