@@ -3,6 +3,7 @@ import { PDFParse } from "pdf-parse";
 import mammoth from "mammoth";
 import { canUserTranslate, recordTranslation } from "@/lib/cv-usage";
 import { addToQueue, getQueueItem } from "@/lib/cv-queue";
+import { CVUploadSchema, CVQueueStatusSchema, validateData, getValidationErrorMessage } from "@/lib/validation-schemas";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -65,12 +66,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
 
-    if (!email) {
-      return NextResponse.json({ error: "Email required" }, { status: 400 });
+    // Validate email with Zod
+    const validation = validateData(CVUploadSchema, { email });
+
+    if (!validation.success) {
+      return NextResponse.json(
+        { error: getValidationErrorMessage(validation.errors) },
+        { status: 400 }
+      );
     }
 
+    const validatedEmail = validation.data.email;
+
     // Check if user can translate (has free credit or subscription)
-    const usageCheck = await canUserTranslate(email);
+    const usageCheck = await canUserTranslate(validatedEmail);
     if (!usageCheck.allowed) {
       return NextResponse.json(
         {
@@ -112,7 +121,7 @@ export async function POST(req: NextRequest) {
 
     // Add to processing queue
     const queueResult = await addToQueue(
-      email,
+      validatedEmail,
       file.name,
       isPDF ? "pdf" : "docx",
       buffer
@@ -127,7 +136,7 @@ export async function POST(req: NextRequest) {
 
     // Record usage - isPaid if subscription OR if they already used their free one
     const isPaid = usageCheck.hasSubscription || usageCheck.freeUsed > 0;
-    await recordTranslation(email, isPaid);
+    await recordTranslation(validatedEmail, isPaid);
 
     return NextResponse.json({
       ok: true,
@@ -137,7 +146,6 @@ export async function POST(req: NextRequest) {
       estimatedTime: "1-4 horas (horario laboral)",
     });
   } catch (e) {
-    console.error("CV queue error:", e);
     return NextResponse.json(
       { error: "Failed to process request" },
       { status: 500 }
@@ -153,11 +161,17 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
   const id = req.nextUrl.searchParams.get("id");
 
-  if (!id) {
-    return NextResponse.json({ error: "Queue ID required" }, { status: 400 });
+  // Validate queue ID with Zod
+  const validation = validateData(CVQueueStatusSchema, { id });
+
+  if (!validation.success) {
+    return NextResponse.json(
+      { error: getValidationErrorMessage(validation.errors) },
+      { status: 400 }
+    );
   }
 
-  const item = await getQueueItem(id);
+  const item = await getQueueItem(validation.data.id);
 
   if (!item) {
     return NextResponse.json({ error: "CV not found" }, { status: 404 });

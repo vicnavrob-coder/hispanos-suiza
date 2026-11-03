@@ -3,6 +3,8 @@ import { getStripe } from "@/lib/stripe";
 import Stripe from "stripe";
 import { headers } from "next/headers";
 import { activateSubscription, cancelSubscription, recordTranslation } from "@/lib/cv-usage";
+import { StripeCheckoutMetadataSchema, validateData } from "@/lib/validation-schemas";
+import { logger } from "@/lib/logger";
 
 // Disable body parsing — Stripe needs the raw body
 export const runtime = "nodejs";
@@ -30,21 +32,29 @@ export async function POST(req: NextRequest) {
     );
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Webhook error";
-    console.error("[webhook] signature failed:", message);
+    const error = err instanceof Error ? err : new Error(message);
+    logger.error("Webhook signature verification failed", error);
     return NextResponse.json({ error: message }, { status: 400 });
   }
 
-  console.log(`[webhook] ${event.type}`);
+  logger.webhook("Stripe", event.type, true);
 
   try {
     switch (event.type) {
       case "checkout.session.completed": {
         const session = event.data.object as Stripe.Checkout.Session;
+
+        // Validate metadata
+        const metadataValidation = validateData(StripeCheckoutMetadataSchema, session.metadata || {});
+        if (!metadataValidation.success) {
+          logger.warn("Invalid Stripe checkout metadata", { errors: metadataValidation.errors });
+        }
+
         const email = session.customer_details?.email || session.metadata?.email;
         const customerId = session.customer as string;
         const plan = session.metadata?.plan || "premium";
 
-        console.log(`[webhook] Checkout completado: ${email} - plan: ${plan}`);
+        logger.info("Stripe checkout completed", { email, plan, customerId });
 
         if (email) {
           // Handle CV plans
@@ -52,7 +62,7 @@ export async function POST(req: NextRequest) {
             if (plan === "cv-single") {
               // Single CV purchase - record as paid translation credit
               await recordTranslation(email, true);
-              console.log(`[webhook] CV single purchase recorded for ${email}`);
+              logger.info("CV single purchase recorded", { email, plan });
             } else {
               // CV subscription (monthly/yearly)
               const expiresAt = new Date();
@@ -68,11 +78,11 @@ export async function POST(req: NextRequest) {
                 plan === "cv-monthly" ? "monthly" : "yearly",
                 expiresAt.toISOString()
               );
-              console.log(`[webhook] CV subscription activated for ${email}`);
+              logger.info("CV subscription activated", { email, plan, expiresAt: expiresAt.toISOString() });
             }
           } else {
             // General premium subscription
-            console.log(`[webhook] Premium subscription for ${email}`);
+            logger.info("Premium subscription activated", { email, plan });
           }
         }
         break;
@@ -83,7 +93,7 @@ export async function POST(req: NextRequest) {
         const customerId = sub.customer as string;
         const plan = sub.metadata?.plan;
 
-        console.log(`[webhook] Subscription cancelled: ${customerId}`);
+        logger.info("Subscription cancelled", { customerId, plan });
 
         // Get customer email
         const stripe = getStripe();
@@ -92,7 +102,7 @@ export async function POST(req: NextRequest) {
         if (customer && !customer.deleted && "email" in customer && customer.email) {
           if (plan && CV_PLANS.includes(plan)) {
             await cancelSubscription(customer.email);
-            console.log(`[webhook] CV subscription cancelled for ${customer.email}`);
+            logger.info("CV subscription cancelled", { email: customer.email, plan });
           }
         }
         break;
@@ -104,7 +114,7 @@ export async function POST(req: NextRequest) {
         const status = sub.status;
         const plan = sub.metadata?.plan;
 
-        console.log(`[webhook] Subscription ${status}: ${customerId}`);
+        logger.info("Subscription status updated", { customerId, status, plan });
 
         // If subscription became active after payment retry
         if (status === "active" && plan && CV_PLANS.includes(plan)) {
@@ -133,13 +143,14 @@ export async function POST(req: NextRequest) {
 
       case "invoice.payment_failed": {
         const invoice = event.data.object as Stripe.Invoice;
-        console.log(`[webhook] Pago fallido: ${invoice.customer_email}`);
+        logger.warn("Payment failed", { customerEmail: invoice.customer_email });
         // Could send notification email here
         break;
       }
     }
   } catch (err) {
-    console.error("[webhook] Processing error:", err);
+    const error = err instanceof Error ? err : new Error(String(err));
+    logger.error("Webhook processing error", error);
     // Don't return error to Stripe - we got the event, just failed to process
   }
 

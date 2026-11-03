@@ -3,9 +3,9 @@ import {
   getHistorias,
   createHistoria,
   updateSocialPosts,
-  type CreateHistoriaInput,
 } from "@/lib/historias-comunidad";
 import { publishToAllSocials } from "@/lib/social-media";
+import { CreateHistoriaSchema, validateData, getValidationErrorMessage } from "@/lib/validation-schemas";
 
 // ─────────────────────────────────────────────────────────────
 // GET /api/historias - Listar todas las historias
@@ -44,42 +44,18 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    // Validar campos requeridos
-    const { autorEmail, autorNombre, titulo, contenido, ciudadSuiza, tema, autorPais, autorAvatar } =
-      body as Partial<CreateHistoriaInput>;
+    // Validar datos con Zod
+    const validation = validateData(CreateHistoriaSchema, body);
 
-    if (!autorEmail || !autorNombre) {
+    if (!validation.success) {
       return NextResponse.json(
-        { error: "Debes iniciar sesión para publicar una historia" },
-        { status: 401 }
-      );
-    }
-
-    if (!titulo?.trim()) {
-      return NextResponse.json(
-        { error: "El título es obligatorio" },
+        { error: getValidationErrorMessage(validation.errors) },
         { status: 400 }
       );
     }
 
-    if (!contenido?.trim()) {
-      return NextResponse.json(
-        { error: "El contenido es obligatorio" },
-        { status: 400 }
-      );
-    }
-
-    // Crear la historia
-    const result = await createHistoria({
-      autorEmail,
-      autorNombre,
-      autorPais,
-      autorAvatar,
-      titulo,
-      contenido,
-      ciudadSuiza,
-      tema,
-    });
+    // Crear la historia con datos validados
+    const result = await createHistoria(validation.data);
 
     if (!result.ok) {
       return NextResponse.json(
@@ -105,7 +81,6 @@ export async function POST(req: NextRequest) {
                 url: socialPosts.instagram.url,
               } : undefined,
             });
-            console.log(`[historias] Published to social media: ${result.historia!.slug}`);
           }
         })
         .catch((err) => {

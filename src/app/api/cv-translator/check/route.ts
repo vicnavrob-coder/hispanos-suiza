@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { canUserTranslate } from "@/lib/cv-usage";
+import { CVCheckSchema, validateData, getValidationErrorMessage } from "@/lib/validation-schemas";
 
 export const runtime = "nodejs";
 
@@ -12,17 +13,17 @@ export const runtime = "nodejs";
 export async function GET(req: NextRequest) {
   const email = req.nextUrl.searchParams.get("email");
 
-  if (!email) {
-    return NextResponse.json({ error: "Email required" }, { status: 400 });
+  // Validate email with Zod
+  const validation = validateData(CVCheckSchema, { email });
+
+  if (!validation.success) {
+    return NextResponse.json(
+      { error: getValidationErrorMessage(validation.errors) },
+      { status: 400 }
+    );
   }
 
-  // Validate email format
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return NextResponse.json({ error: "Invalid email format" }, { status: 400 });
-  }
-
-  const result = await canUserTranslate(email);
+  const result = await canUserTranslate(validation.data.email);
 
   return NextResponse.json({
     allowed: result.allowed,

@@ -5,6 +5,7 @@ import nodemailer from "nodemailer";
 export const runtime = "nodejs";
 import { addUniaCita, getCitaByToken } from "@/lib/unia-citas";
 import { emailSolicitudUnia, emailReciboSolicitud } from "@/lib/email-templates-unia";
+import { UniaCitaSchema, UniaCitaTokenSchema, validateData, getValidationErrorMessage } from "@/lib/validation-schemas";
 
 const GMAIL_USER = process.env.NEWSLETTER_GMAIL_USER ?? "";
 const GMAIL_PASS = process.env.NEWSLETTER_GMAIL_PASS ?? "";
@@ -21,11 +22,17 @@ function getTransporter() {
 export async function GET(req: NextRequest) {
   const token = req.nextUrl.searchParams.get("token");
 
-  if (!token) {
-    return NextResponse.json({ error: "Token requerido" }, { status: 400 });
+  // Validate token with Zod
+  const validation = validateData(UniaCitaTokenSchema, { token });
+
+  if (!validation.success) {
+    return NextResponse.json(
+      { error: getValidationErrorMessage(validation.errors) },
+      { status: 400 }
+    );
   }
 
-  const cita = await getCitaByToken(token);
+  const cita = await getCitaByToken(validation.data.token);
 
   if (!cita) {
     return NextResponse.json({ error: "Cita no encontrada" }, { status: 404 });
@@ -53,20 +60,26 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { userEmail, userName, userPais, userTelefono, userMensaje } = body;
 
-    // Validation
-    if (!userEmail || !userName) {
-      return NextResponse.json({ error: "Email y nombre son obligatorios" }, { status: 400 });
+    // Validate with Zod
+    const validation = validateData(UniaCitaSchema, body);
+
+    if (!validation.success) {
+      return NextResponse.json(
+        { error: getValidationErrorMessage(validation.errors) },
+        { status: 400 }
+      );
     }
+
+    const { userEmail, userName, userPais, userTelefono, userMensaje } = validation.data;
 
     // Create appointment with token
     const { ok, token } = await addUniaCita({
-      userEmail: userEmail.trim(),
-      userName: userName.trim(),
-      userPais: userPais?.trim() || "No especificado",
-      userTelefono: userTelefono?.trim(),
-      userMensaje: userMensaje?.trim(),
+      userEmail,
+      userName,
+      userPais: userPais || "No especificado",
+      userTelefono,
+      userMensaje,
     });
 
     if (!ok || !token) {
@@ -75,7 +88,6 @@ export async function POST(req: NextRequest) {
 
     // Send emails
     if (!GMAIL_USER || !GMAIL_PASS) {
-      console.warn("[unia/cita] Gmail credentials not configured");
       return NextResponse.json({ ok: true, token });
     }
 
@@ -98,12 +110,9 @@ export async function POST(req: NextRequest) {
             token,
           }),
         });
-        console.log(`[unia/cita] Notification sent to UNIA for ${userEmail}`);
       } catch (err) {
-        console.error("[unia/cita] Failed to send UNIA notification:", err);
+        // Failed to send UNIA notification
       }
-    } else {
-      console.warn("[unia/cita] UNIA_CONTACT_EMAIL not configured");
     }
 
     // Confirmation email to user
@@ -114,14 +123,12 @@ export async function POST(req: NextRequest) {
         subject: "Tu solicitud de cita con UNIA ha sido recibida",
         html: emailReciboSolicitud(userName),
       });
-      console.log(`[unia/cita] Confirmation sent to ${userEmail}`);
     } catch (err) {
-      console.error("[unia/cita] Failed to send user confirmation:", err);
+      // Failed to send user confirmation
     }
 
     return NextResponse.json({ ok: true, token });
   } catch (err) {
-    console.error("[unia/cita] Unexpected error:", err);
     return NextResponse.json({ error: "Error al procesar la solicitud" }, { status: 500 });
   }
 }

@@ -5,6 +5,7 @@
 
 import { HistoriaComunidad } from "./historias-comunidad";
 import { BASE_URL } from "./seo";
+import { logger } from "./logger";
 
 // Configuración de redes sociales
 const INSTAGRAM_ACCESS_TOKEN = process.env.INSTAGRAM_ACCESS_TOKEN ?? "";
@@ -79,7 +80,7 @@ export async function publishToInstagram(
   historia: HistoriaComunidad
 ): Promise<SocialPost | null> {
   if (!INSTAGRAM_ACCESS_TOKEN || !INSTAGRAM_BUSINESS_ACCOUNT_ID) {
-    console.log("[social] Instagram credentials not configured, skipping");
+    logger.warn("Instagram credentials not configured");
     return null;
   }
 
@@ -104,7 +105,7 @@ export async function publishToInstagram(
 
     if (!containerResponse.ok) {
       const error = await containerResponse.json();
-      console.error("[social] Instagram container creation failed:", error);
+      logger.social("Instagram", undefined, false, new Error(JSON.stringify(error)));
       return null;
     }
 
@@ -125,11 +126,12 @@ export async function publishToInstagram(
 
     if (!publishResponse.ok) {
       const error = await publishResponse.json();
-      console.error("[social] Instagram publish failed:", error);
+      logger.social("Instagram", undefined, false, new Error(JSON.stringify(error)));
       return null;
     }
 
     const { id: postId } = await publishResponse.json();
+    logger.social("Instagram", postId, true);
 
     return {
       platform: "instagram",
@@ -138,7 +140,8 @@ export async function publishToInstagram(
       publishedAt: new Date().toISOString(),
     };
   } catch (error) {
-    console.error("[social] Instagram error:", error);
+    const err = error instanceof Error ? error : new Error(String(error));
+    logger.social("Instagram", undefined, false, err);
     return null;
   }
 }
@@ -151,7 +154,7 @@ export async function publishToFacebook(
   historia: HistoriaComunidad
 ): Promise<SocialPost | null> {
   if (!FACEBOOK_ACCESS_TOKEN || !FACEBOOK_PAGE_ID) {
-    console.log("[social] Facebook credentials not configured, skipping");
+    logger.warn("Facebook credentials not configured");
     return null;
   }
 
@@ -174,11 +177,12 @@ export async function publishToFacebook(
 
     if (!response.ok) {
       const error = await response.json();
-      console.error("[social] Facebook publish failed:", error);
+      logger.social("Facebook", undefined, false, new Error(JSON.stringify(error)));
       return null;
     }
 
     const { id: postId } = await response.json();
+    logger.social("Facebook", postId, true);
 
     return {
       platform: "facebook",
@@ -187,7 +191,8 @@ export async function publishToFacebook(
       publishedAt: new Date().toISOString(),
     };
   } catch (error) {
-    console.error("[social] Facebook error:", error);
+    const err = error instanceof Error ? error : new Error(String(error));
+    logger.social("Facebook", undefined, false, err);
     return null;
   }
 }
