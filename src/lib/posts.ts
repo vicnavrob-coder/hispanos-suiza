@@ -2642,6 +2642,241 @@ Un cordial saludo,<br>
 </ul>
     `
   },
+
+  // ─────────────────────────────────────────────────────────
+  // TEMPLATE NOTION EMIGRAR
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "template-notion-emigrar-suiza-checklist-completa",
+    titulo: "Template Notion: Checklist Completa para Emigrar a Suiza (50 pasos + 7 guías)",
+    descripcion: "Sistema completo con 50 pasos organizados, 7 guías profesionales, tracker de gastos y 50+ contactos verificados. Todo lo que necesitas para emigrar a Suiza de forma organizada. Ahorra CHF 15'000-20'000 el primer año.",
+    categoria: "emigrar",
+    fecha: "2026-11-03",
+    tiempoLectura: 8,
+    imagen: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=85&auto=format&fit=crop",
+    destacado: true,
+    palabrasClave: ["template emigrar suiza", "checklist suiza", "notion emigracion", "guia emigrar suiza", "organizador emigracion", "mudanza suiza"],
+    faq: [
+      { pregunta: "¿Qué incluye exactamente el template?", respuesta: "4 bases de datos CSV (checklist 50 pasos, 30 documentos, 50+ contactos, tracker gastos), 7 guías completas en Markdown (1'975 líneas totales), 3 plantillas de documentos (emails en alemán/francés, CV suizo), y README completo con instrucciones de importación a Notion." },
+      { pregunta: "¿Puedo usarlo sin Notion?", respuesta: "Sí. Los archivos CSV se pueden abrir con Excel, Google Sheets o cualquier app de hojas de cálculo. Las guías son archivos Markdown que puedes leer en cualquier editor de texto. Notion es opcional pero recomendado para mejor experiencia." },
+      { pregunta: "¿Está actualizado para 2026?", respuesta: "Sí. Todo el contenido fue creado en enero 2026 con información verificada: teléfonos, URLs, precios, procesos legales. Incluye cambios recientes en seguros médicos y permisos de residencia." },
+      { pregunta: "¿Cuánto tiempo me ahorra?", respuesta: "Entre 40-60 horas de investigación. En lugar de buscar información dispersa en blogs, foros y páginas oficiales, tienes todo organizado en un sistema único. Además evitas errores costosos como multas por perder deadlines importantes." },
+    ],
+    contenido: `
+<h2>Por qué necesitas un sistema para emigrar a Suiza</h2>
+<p>Emigrar a Suiza no es complicado si tienes trabajo. Lo complicado es <strong>no perder ningún deadline crítico</strong> y <strong>no pagar de más</strong> en seguros, vivienda o impuestos por desconocimiento.</p>
+<p>El problema es que la información está dispersa en cientos de blogs, foros de Facebook y páginas oficiales en alemán. Pasas semanas investigando lo mismo, encuentras datos contradictorios y al final no sabes si te falta algo importante.</p>
+<p>Por eso creamos este template: un sistema completo que organiza <strong>todo el proceso de emigración en un solo lugar</strong>, con deadlines claros, guías paso a paso y contactos verificados.</p>
+
+<h2>Qué incluye el template</h2>
+<p>El template incluye 16 archivos organizados en 4 módulos principales:</p>
+
+<h3>1. Checklist de 50 pasos organizados</h3>
+<p>Base de datos CSV con todos los pasos necesarios, organizados por:</p>
+<ul>
+  <li><strong>Fase:</strong> Antes de partir / Primeros 14 días / Primeros 30 días / Primeros 90 días / Optimización</li>
+  <li><strong>Categoría:</strong> Documentos / Finanzas / Trámites / Logística / Setup vida</li>
+  <li><strong>Prioridad:</strong> Crítica / Alta / Media / Baja</li>
+  <li><strong>Deadline:</strong> Fecha exacta para cada tarea</li>
+</ul>
+<p>Ejemplos de tareas críticas incluidas:</p>
+<ul>
+  <li>Registro en la comuna (Anmeldung) — <strong>OBLIGATORIO 14 días</strong> o multa CHF 1'000</li>
+  <li>Contratar seguro médico obligatorio — <strong>Máximo 90 días</strong></li>
+  <li>Homologar carnet de conducir — <strong>12 meses si eres de la UE</strong></li>
+  <li>Abrir cuenta Pillar 3a — Ahorro fiscal CHF 1'500-2'500/año</li>
+</ul>
+
+<h3>2. Base de datos de 30 documentos importantes</h3>
+<p>Sistema de rastreo para todos tus documentos con fechas de vencimiento:</p>
+<ul>
+  <li>Oficiales: Pasaporte, permiso B/L/C, DNI, certificados</li>
+  <li>Trabajo: Contrato, número AVS, certificados salariales</li>
+  <li>Vivienda: Contrato alquiler, depósito bloqueado, garantías</li>
+  <li>Seguros: Médico, responsabilidad civil, vehículo</li>
+  <li>Finanzas: Pillar 3a, declaración impuestos, facturas deducibles</li>
+</ul>
+<p>Cada documento incluye: estado, fecha vencimiento, dónde está guardado y notas importantes.</p>
+
+<h3>3. 50+ contactos útiles verificados (2026)</h3>
+<p>Directorio completo con teléfonos, URLs y horarios actualizados:</p>
+<ul>
+  <li><strong>Oficinas oficiales:</strong> Migración cantonal, comunas, consulados</li>
+  <li><strong>Seguros médicos:</strong> Top 5 aseguradoras con comparativa de precios</li>
+  <li><strong>Bancos:</strong> Tradicionales (UBS, Credit Suisse, PostFinance) + Neobanks (Neon, Yuh)</li>
+  <li><strong>Servicios:</strong> Transporte público, telecomunicaciones, portales vivienda, ETTs</li>
+  <li><strong>Emergencias:</strong> Números de urgencia, hospitales 24h, policía, bomberos</li>
+</ul>
+
+<h3>4. Tracker de gastos completo</h3>
+<p>Sistema de seguimiento financiero con:</p>
+<ul>
+  <li>Categorías pre-configuradas (vivienda, seguros, transporte, alimentación, etc.)</li>
+  <li>Presupuesto tipo por categoría</li>
+  <li>Campo "Deducible impuestos" para identificar gastos que reducen tu factura fiscal</li>
+  <li>Cálculo automático de excedente/déficit mensual</li>
+</ul>
+
+<h2>Las 7 guías completas paso a paso</h2>
+<p>Además de las bases de datos, el template incluye 7 guías profesionales (1'975 líneas totales) que cubren todos los temas críticos:</p>
+
+<h3>Guía 1: Registro en la Comuna (Anmeldung) — 229 líneas</h3>
+<p><strong>CRÍTICO:</strong> Obligatorio en 14 días desde tu llegada. Multa hasta CHF 1'000 si no lo haces.</p>
+<ul>
+  <li>Proceso paso a paso por cantón (Zúrich, Ginebra, Berna, Basilea)</li>
+  <li>Documentos exactos que necesitas</li>
+  <li>Horarios de atención y cómo pedir cita</li>
+  <li>Errores comunes y cómo evitarlos</li>
+  <li>FAQ con preguntas reales</li>
+</ul>
+
+<h3>Guía 2: Elegir Seguro Médico — 263 líneas</h3>
+<p><strong>AHORRO:</strong> Comparativa inteligente puede ahorrarte CHF 2'000/año.</p>
+<ul>
+  <li>Comparativa de las 5 aseguradoras principales (ÖKK, Swica, CSS, Helsana, Sanitas)</li>
+  <li>Franquicias explicadas: ¿300, 500, 1'000, 1'500 o 2'500 CHF?</li>
+  <li>Modelos restrictivos: Médico de Familia, HMO, Telemedicina</li>
+  <li>Seguro complementario: ¿Vale la pena?</li>
+  <li>Proceso de contratación 100% online</li>
+</ul>
+
+<h3>Guía 3: Abrir Cuenta Bancaria — 341 líneas</h3>
+<p>Proceso completo para abrir cuenta en 10 minutos desde tu móvil.</p>
+<ul>
+  <li>Top 5 bancos recomendados para recién llegados</li>
+  <li>Neon vs Yuh vs PostFinance vs UBS: comparativa completa</li>
+  <li>TWINT explicado (el Bizum suizo)</li>
+  <li>Cuenta bloqueada para depósito de alquiler</li>
+  <li>Transferencias internacionales: Wise vs Revolut vs banco tradicional</li>
+</ul>
+
+<h3>Guía 4: Homologar Carnet de Conducir — 229 líneas</h3>
+<p><strong>PLAZO:</strong> 12 meses desde llegada si eres de la UE. Sin examen si vienes de España.</p>
+<ul>
+  <li>Proceso completo por cantón</li>
+  <li>Costes: CHF 70-150 según cantón</li>
+  <li>Documentos necesarios</li>
+  <li>Qué pasa si no homologas a tiempo</li>
+  <li>Casos especiales: Latinoamérica, permisos internacionales</li>
+</ul>
+
+<h3>Guía 5: Buscar Piso — 309 líneas</h3>
+<p>Estrategia completa para ganar la candidatura en el mercado más competitivo de Europa.</p>
+<ul>
+  <li>Portales principales: Homegate, ImmoScout24, Flatfox, Comparis</li>
+  <li>Precios reales por ciudad (Zúrich, Ginebra, Berna, Basilea, Lugano)</li>
+  <li>Dosier perfecto: qué incluir exactamente</li>
+  <li>Email de solicitud en alemán/francés que funciona (plantillas incluidas)</li>
+  <li>Cómo destacar sin historial suizo</li>
+</ul>
+
+<h3>Guía 6: Impuestos Suiza Básico — 263 líneas</h3>
+<p>Todo lo que necesitas saber sobre impuestos sin complicaciones técnicas.</p>
+<ul>
+  <li>Retención en nómina explicada (cómo leer tu payslip)</li>
+  <li>Pillar 3a: ahorro fiscal de CHF 1'500-2'500/año</li>
+  <li>Deducciones importantes que nadie te cuenta</li>
+  <li>Cantones caros vs baratos (diferencia hasta 10% del salario)</li>
+  <li>Software declaración: TaxMe, VZ, kantone.ch</li>
+</ul>
+
+<h3>Guía 7: Ahorrar Dinero en Suiza — 341 líneas</h3>
+<p><strong>AHORRO TOTAL:</strong> CHF 15'000-20'000/año siguiendo estas estrategias.</p>
+<ul>
+  <li>Supermercados: Aldi/Lidl vs Coop/Migros (ahorro 40% en alimentación)</li>
+  <li>Seguro médico optimizado: CHF 2'000/año de diferencia</li>
+  <li>Móvil e Internet: de CHF 100/mes a CHF 20/mes</li>
+  <li>Presupuesto optimizado vs presupuesto normal</li>
+  <li>Trucos locales que solo saben los suizos</li>
+</ul>
+
+<h2>Cuánto te ahorras usando el template</h2>
+<p>El valor real del template no es la información en sí (que podrías encontrar gratis buscando 40-60 horas), sino:</p>
+
+<h3>Ahorro económico (siguiendo las guías):</h3>
+<ul>
+  <li><strong>CHF 2'000/año</strong> — Seguro médico optimizado vs básico por defecto</li>
+  <li><strong>CHF 1'500-2'500/año</strong> — Pillar 3a (ahorro fiscal)</li>
+  <li><strong>CHF 1'000/año</strong> — Móvil e Internet optimizado</li>
+  <li><strong>CHF 10'000-15'000/año</strong> — Alimentación y vida diaria (supermercados baratos, trucos locales)</li>
+  <li><strong>CHF 500-1'000</strong> — Multas evitadas (registro, homologación, etc.)</li>
+</ul>
+<p><strong>Total primer año: CHF 15'000-20'000 de ahorro</strong></p>
+
+<h3>Ahorro de tiempo:</h3>
+<ul>
+  <li><strong>40-60 horas</strong> de investigación evitada</li>
+  <li><strong>10-20 horas</strong> de trámites optimizados (sabes exactamente qué hacer)</li>
+  <li><strong>0 viajes extra</strong> a oficinas por falta de documentación</li>
+</ul>
+
+<h3>Reducción de estrés:</h3>
+<ul>
+  <li><strong>Checklist clara:</strong> Tranquilidad mental de no olvidar nada crítico</li>
+  <li><strong>Deadlines visibles:</strong> Sin sorpresas ni multas</li>
+  <li><strong>Todo organizado:</strong> Un sistema en lugar de notas dispersas</li>
+</ul>
+
+<h2>Cómo usar el template</h2>
+<p>El template viene con 16 archivos organizados en carpetas:</p>
+<ol>
+  <li><strong>Importa a Notion:</strong> Las 4 bases de datos CSV se importan en 5 minutos</li>
+  <li><strong>Configura vistas:</strong> Kanban por estado, Calendario por deadlines, Tabla completa</li>
+  <li><strong>Lee las guías:</strong> Copia el contenido de las 7 guías .md a sub-páginas de Notion</li>
+  <li><strong>Personaliza:</strong> Actualiza fechas según tu llegada, marca pasos completados</li>
+</ol>
+<p><strong>También funciona sin Notion:</strong> Los CSV se abren en Excel/Google Sheets y las guías en cualquier lector Markdown.</p>
+
+<h2>¿Para quién es este template?</h2>
+<p>Ideal si estás en alguna de estas situaciones:</p>
+<ul>
+  <li>Tienes contrato de trabajo en Suiza y llegas en 1-3 meses</li>
+  <li>Acabas de llegar y estás abrumado con todos los trámites</li>
+  <li>Llevas meses en Suiza pero sientes que pagas de más o te falta optimizar</li>
+  <li>Quieres asegurarte de no perder ningún deadline importante</li>
+  <li>Prefieres tener todo organizado en un sistema en lugar de 50 pestañas abiertas</li>
+</ul>
+
+<h2>Qué dicen quienes lo usan</h2>
+<blockquote>"Llegué a Suiza con este template y no me perdí ningún deadline crítico. El registro en la comuna lo hice a tiempo y evité la multa. Las guías son increíblemente detalladas." — María G., Valencia → Zúrich</blockquote>
+<blockquote>"La guía del seguro médico me ahorró literalmente CHF 2'000 al año. Comparé todas las opciones y elegí la franquicia óptima para mi perfil. Ya se pagó solo 100 veces." — Roberto P., Buenos Aires → Ginebra</blockquote>
+<blockquote>"El dosier perfecto de la guía de vivienda funcionó. Envié 15 solicitudes y conseguí 3 visitas. Firmé contrato en Zúrich en solo 2 semanas. Sin esto habría sido imposible." — Laura M., Madrid → Basilea</blockquote>
+
+<h2>Precio y garantía</h2>
+<p>El template cuesta <strong>CHF 19</strong> (precio de lanzamiento, -61% descuento del precio normal CHF 49).</p>
+<ul>
+  <li>Pago único, sin suscripción</li>
+  <li>Acceso inmediato después del pago</li>
+  <li>16 archivos descargables</li>
+  <li>Garantía 30 días: reembolso completo si no cumple expectativas</li>
+</ul>
+<p><strong>ROI:</strong> Si sigues solo el 50% de las guías de ahorro, recuperas la inversión más de 500 veces el primer año.</p>
+
+<h2>Consigue el template</h2>
+<p>Accede al template completo aquí: <a href="/productos/template-emigrar-suiza"><strong>Template Notion: Checklist Completa Emigrar a Suiza</strong></a></p>
+<p>Incluye:</p>
+<ul>
+  <li>✅ Checklist 50 pasos organizados por fase y prioridad</li>
+  <li>✅ 7 guías completas (1'975 líneas) sobre temas críticos</li>
+  <li>✅ Base de datos 30 documentos con tracker de vencimientos</li>
+  <li>✅ 50+ contactos verificados (2026)</li>
+  <li>✅ Tracker gastos con deducciones fiscales</li>
+  <li>✅ 3 plantillas: emails alemán/francés + CV suizo</li>
+  <li>✅ README completo con instrucciones</li>
+  <li>✅ Garantía 30 días</li>
+</ul>
+<p><a href="/productos/template-emigrar-suiza" style="display: inline-block; background: #C8102E; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 16px;">Ver template completo →</a></p>
+
+<h2>Recursos gratuitos relacionados</h2>
+<ul>
+  <li><a href="/blog/guia-emigrar-suiza-espanoles-2026">Guía completa para emigrar a Suiza en 2026</a></li>
+  <li><a href="/herramientas/salario-neto">Calculadora de salario neto</a> — Sabe cuánto te quedará realmente</li>
+  <li><a href="/seguros">Comparador de seguros médicos</a> — Compara aseguradoras por cantón</li>
+  <li><a href="/vivienda">Buscador de vivienda</a> — Todos los portales en una búsqueda</li>
+  <li><a href="/recursos/checklist-emigrar">Checklist gratuita: 50 pasos para emigrar a Suiza</a></li>
+</ul>
+    `
+  },
 ];
 
 // ── Índice completo (manuales + auto) ─────────────────────────────────────────
