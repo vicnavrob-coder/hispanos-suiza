@@ -5,12 +5,14 @@ import { headers } from "next/headers";
 import { activateSubscription, cancelSubscription, recordTranslation } from "@/lib/cv-usage";
 import { StripeCheckoutMetadataSchema, validateData } from "@/lib/validation-schemas";
 import { logger } from "@/lib/logger";
+import { savePurchase, sendTemplateEmail } from "@/lib/stripe-helpers";
 
 // Disable body parsing — Stripe needs the raw body
 export const runtime = "nodejs";
 
 // CV-related plans
 const CV_PLANS = ["cv-single", "cv-monthly", "cv-yearly"];
+const TEMPLATE_PRODUCT = "template-emigrar-suiza";
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
@@ -53,12 +55,43 @@ export async function POST(req: NextRequest) {
         const email = session.customer_details?.email || session.metadata?.email;
         const customerId = session.customer as string;
         const plan = session.metadata?.plan || "premium";
+        const product = session.metadata?.product;
 
-        logger.info("Stripe checkout completed", { email, plan, customerId });
+        logger.info("Stripe checkout completed", { email, plan, customerId, product });
 
         if (email) {
+          // Handle Template Emigrar Suiza
+          if (product === TEMPLATE_PRODUCT) {
+            const customerName = session.metadata?.customer_name || session.customer_details?.name || "";
+            const downloadId = `${Date.now()}-${Math.random().toString(36).substring(7)}`;
+
+            try {
+              // Save purchase
+              await savePurchase({
+                id: downloadId,
+                sessionId: session.id,
+                email,
+                name: customerName,
+                amount: session.amount_total! / 100,
+                currency: session.currency!,
+                timestamp: new Date().toISOString(),
+                product: TEMPLATE_PRODUCT,
+              });
+
+              // Send download email
+              await sendTemplateEmail({
+                to: email,
+                name: customerName,
+                downloadId,
+              });
+
+              logger.info("Template purchase processed", { email, downloadId });
+            } catch (error) {
+              logger.error("Error processing template purchase", error instanceof Error ? error : new Error(String(error)));
+            }
+          }
           // Handle CV plans
-          if (CV_PLANS.includes(plan)) {
+          else if (CV_PLANS.includes(plan)) {
             if (plan === "cv-single") {
               // Single CV purchase - record as paid translation credit
               await recordTranslation(email, true);

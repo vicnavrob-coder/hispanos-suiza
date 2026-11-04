@@ -1,0 +1,71 @@
+Mes,Categoría,Descripción,Monto CHF,Deducible Impuestos,Presupuesto Categoría,Notas
+2024-01,Vivienda,Alquiler Piso,1800,No,1800,Alquiler mensual
+2024-01,Vivienda,Gastos Calefacción,120,No,150,Nebenkosten incluido
+2024-01,Vivienda,Internet,59,No,60,Sunrise Fibra
+2024-01,Vivienda,Electricidad,45,No,50,Factura bimestral (promedio mensual)
+2024-01,Seguros,Seguro Médico Básico,350,Sí,350,Assura franquicia CHF 2500
+2024-01,Seguros,Seguro Responsabilidad Civil,12,Sí,12,Mobiliar - CHF 144/año
+2024-01,Seguros,Seguro Contenido Hogar,15,Sí,15,Zurich - CHF 180/año
+2024-01,Alimentación,Supermercado Aldi,280,No,300,Compra semanal x4
+2024-01,Alimentación,Supermercado Coop,120,No,100,Compras complementarias
+2024-01,Alimentación,Restaurantes,180,No,150,Comidas fuera
+2024-01,Transporte,Abono Transporte Público,70,No,70,ZVV zona 110 (si Zúrich)
+2024-01,Transporte,Gasolina,0,No,0,No tengo coche
+2024-01,Transporte,Parking,0,No,0,No tengo coche
+2024-01,Telecomunicaciones,Móvil,19,No,20,Wingo ilimitado
+2024-01,Salud,Medicamentos,45,Parcial,50,Franquicia aún no alcanzada
+2024-01,Salud,Dentista,0,No,30,No cubierto por seguro básico
+2024-01,Salud,Gimnasio,79,No,80,Fitness Park
+2024-01,Impuestos,Retención Fuente Nómina,650,No aplica,650,Automático desde nómina
+2024-01,Ahorro,Pillar 3a,588,Sí,588,CHF 7056/año ÷ 12 meses
+2024-01,Ahorro,Ahorro Emergencia,500,No,500,Fondo emergencias
+2024-01,Educación,Curso Alemán,150,Sí,150,Migros Klubschule
+2024-01,Ocio,Suscripciones Streaming,25,No,30,Netflix + Spotify
+2024-01,Ocio,Actividades Fin Semana,100,No,120,Cine, excursiones
+2024-01,Ropa,Ropa y Calzado,80,No,100,H&M, Zara
+2024-01,Otros,Productos Higiene,40,No,50,Dm, Rossmann
+2024-01,Otros,Regalos,50,No,40,Cumpleaños
+2024-01,Otros,Varios,30,No,50,Imprevistos
+
+### PRESUPUESTO MENSUAL TIPO (REFERENCIA)
+,,,,,,
+Categoría,Presupuesto Bajo,Presupuesto Medio,Presupuesto Alto,Notas Presupuesto,,
+Vivienda,1500,2200,3500,"Zúrich/Ginebra más caros. Comparte piso para ahorrar.",,
+Seguros,380,450,600,"Básico + Responsabilidad Civil obligatorios. Dental opcional.",,
+Alimentación,400,550,800,"Aldi/Lidl ahorra 30% vs Coop/Migros.",,
+Transporte,70,150,400,"Abono vs GA (CHF 3860/año) vs Coche.",,
+Telecomunicaciones,25,45,80,"Low-cost (Wingo/Yallo) vs Premium.",,
+Salud,50,120,250,"Depende franquicia y uso médico.",,
+Impuestos,600,900,1500,"Varía por cantón y salario. Zúrich/Zug baratos.",,
+Ahorro Pillar 3a,588,588,588,"Máximo deducible: CHF 7056/año.",,
+Ahorro Libre,300,600,1200,"Fondo emergencia + inversiones.",,
+Educación,100,200,400,"Cursos idiomas, formación continua.",,
+Ocio,150,300,500,"Streaming, cine, actividades, restaurantes.",,
+Ropa,80,150,300,Temporal,,
+Otros,100,200,350,Imprevistos y varios,,
+**TOTAL MES**,**4343**,**6453**,**10468**,"Salario neto necesario para vivir.",,
+,,,,,,
+### DEDUCCIONES FISCALES PRINCIPALES,,,,,,
+Categoría Deducción,Monto Máximo Anual,Notas Fiscales,,,
+Pillar 3a,CHF 7056,"Deducción completa. Obligatorio declarar.",,,,
+Seguro Médico Básico,Ilimitado,"Prima completa deducible.",,,,
+Seguros Adicionales,Limitado,"Responsabilidad civil, contenido hogar: parcialmente deducibles.",,,,
+Formación Continua,CHF 12000 (aprox),"Si relacionada con trabajo actual o mejora empleabilidad.",,,,
+Gastos Desplazamiento Trabajo,Ilimitado,"Abono transporte o km coche (CHF 0.70/km).",,,,
+Donaciones,Limitado,"Mínimo CHF 100. Máximo 20% ingresos netos.",,,,
+Intereses Deudas,CHF 50000,"Hipotecas, préstamos.",,,,
+Pensión Alimenticia,Ilimitado,"Si pagas pensión ex-cónyuge/hijos.",,,,
+,,,,,,
+### CONSEJOS AHORRO PRIMER AÑO,,,,,,
+Consejo,Ahorro Estimado CHF/año,Dificultad,,,
+Comprar Aldi/Lidl vs Coop/Migros,1800,Fácil,,,
+Franquicia CHF 2500 si eres sano,1200,Fácil,,,
+Móvil low-cost (Wingo) vs Premium,240,Fácil,,,
+Compartir piso vs vivir solo,6000-12000,Media,,,
+Cocinar en casa vs restaurantes,2400,Fácil,,,
+Maximar Pillar 3a deducción,1400-2100 (ahorro fiscal),Fácil,,,
+Comprar ropa H&M/Zara vs Manor,800,Fácil,,,
+No tener coche (abono vs coche),3000-6000,Media-Difícil,,,
+Beber agua grifo vs comprar,200,Muy Fácil,,,
+Traer comida trabajo vs cantina,1500,Media,,,
+**AHORRO TOTAL POTENCIAL**,**CHF 15000-20000**,,,,,

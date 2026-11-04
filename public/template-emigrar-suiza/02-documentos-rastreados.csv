@@ -1,0 +1,31 @@
+ID,Documento,Tipo,Fecha Emisión,Fecha Vencimiento,Renovar Antes,Ubicación,Notas,Estado
+1,Pasaporte,Oficial,,2030-06-15,6 meses antes,Caja fuerte,"Válido mínimo 6 meses para trámites. Renovar en consulado si vence.",Vigente
+2,DNI/Documento Identidad,Oficial,,2028-03-20,3 meses antes,Cartera,"Aunque vivas en Suiza, mantén vigente para viajes UE.",Vigente
+3,Permiso de Residencia B,Oficial,2024-01-15,2029-01-15,3 meses antes,Cartera,"Válido 5 años. Renovación automática si sigues trabajando.",Vigente
+4,Permiso de Trabajo,Oficial,2024-01-15,2029-01-15,Mismo que Permiso B,Copia en casa,"Integrado en permiso B para ciudadanos UE.",Vigente
+5,Certificado AVS (Seguro Social),Oficial,2024-01-20,,No vence,Archivador digital,"Número AVS de por vida. Guarda certificado inicial.",Vigente
+6,Contrato de Trabajo,Trabajo,2024-01-10,,No vence (indefinido),Archivador casa,"Revisa: salario, días vacaciones, período prueba, cláusulas rescisión.",Vigente
+7,Nóminas últimas 3,Trabajo,Mensual,,Guardar 3 últimas,Archivador digital,"Necesarias para: alquilar piso, créditos, declaración impuestos.",Vigente
+8,Certificado Empleador (Arbeitszeugnis),Trabajo,,,Al terminar empleo,Archivador digital,"Pide siempre al dejar trabajo. Fundamental para siguiente empleo.",Pendiente
+9,Extracto Antecedentes Penales Apostillado,Legal,2023-09-01,2024-09-01,Solicitado y usado,Archivador casa,"Válido 6 meses. Solo para permiso inicial. Guarda copia.",Caducado
+10,Título Universitario Traducido,Educación,2023-10-15,,No vence,Archivador casa,"Traducción jurada oficial. Guarda original + traducción.",Vigente
+11,Contrato Alquiler Piso,Vivienda,2024-02-01,,No vence,Archivador casa,"Revisa: plazo rescisión (3 meses típico), incrementos alquiler, normas.",Vigente
+12,Recibo Depósito Alquiler (cuenta bloqueada),Vivienda,2024-02-01,,Mientras alquiles,Archivador digital,"Comprobante depósito 2-3 meses alquiler. Recuperas al dejar piso.",Vigente
+13,Protocolo Estado Piso (Wohnungsübergabeprotokoll),Vivienda,2024-02-01,,Al entrar y salir,Archivador casa,"Documenta estado al entrar. Crítico para recuperar depósito.",Vigente
+14,Póliza Seguro Médico Obligatorio,Seguros,2024-01-01,Renovación anual,Octubre (cambio),Archivador digital,"Renovación automática. Revisa cada octubre para cambiar enero.",Vigente
+15,Póliza Seguro Responsabilidad Civil,Seguros,2024-02-15,2025-02-15,1 mes antes,Archivador digital,"Renovación anual. Cubre daños a terceros. CHF 80-150/año.",Vigente
+16,Póliza Seguro Contenido Hogar (Hausrat),Seguros,2024-02-15,2025-02-15,1 mes antes,Archivador digital,"Cubre: robo, incendio, daños agua en tus pertenencias.",Vigente
+17,Carnet de Conducir Suizo,Oficial,2024-03-10,2049-03-10,1 año antes,Cartera,"Válido 25 años hasta 50 años edad. Luego renovación cada 5 años.",Vigente
+18,Tarjeta Circulación Vehículo,Transporte,,,Al vender coche,Coche,"Si tienes coche. Lleva siempre en vehículo.",No aplica
+19,Seguro Coche Obligatorio,Seguros,,,1 mes antes,Archivador digital,"Si tienes coche. Responsabilidad civil obligatoria.",No aplica
+20,Certificado Registro Deudores,Vivienda,2024-01-25,Válido 3 meses,Renovar según necesidad,Archivador digital,"Betreibungsregisterauszug. Gratis. Necesario para alquilar piso.",Caducado (renovar)
+21,Declaración Impuestos Año Anterior,Finanzas,2024-03-15,,Guardar 10 años,Archivador digital,"Guarda declaración + justificantes. Hacienda puede revisar hasta 10 años atrás.",Vigente
+22,Certificados Deducciones Fiscales,Finanzas,Anual,,Guardar con declaración,Archivador digital,"Pillar 3a, donaciones, gastos médicos, formación. Para declaración impuestos.",Pendiente
+23,Certificado Pillar 2 (2º Pilar),Finanzas,Anual,,Guardar,Archivador digital,"Empleador envía anualmente. Muestra ahorros pensión. Guarda todos los años.",Vigente
+24,Certificado Pillar 3a (3er Pilar),Finanzas,Anual,,Guardar,Archivador digital,"Banco envía anualmente. Para declaración impuestos y seguimiento.",Vigente
+25,Factura Seguro Médico Anual,Finanzas,Anual,,Guardar 3 años,Archivador digital,"Deducible en declaración impuestos. Guarda justificante pago.",Vigente
+26,Registro Vacunación (Impfausweis),Salud,,,No vence,Archivador casa,"Importante: COVID, tétanos, hepatitis. Médicos suizos lo piden.",Vigente
+27,Recetas Médicas Habituales,Salud,,,Renovar según necesidad,Archivador casa,"Si tomas medicación habitual. Médico suizo debe re-recetar.",Vigente
+28,Testamento/Planificación Sucesoria,Legal,,,Revisar cada 5 años,Caja fuerte,"Opcional pero recomendado. Ley sucesoria suiza difiere de España.",Pendiente
+29,Poderes Notariales (si aplica),Legal,,,No vence salvo revocación,Caja fuerte,"Para gestiones en España: venta piso, herencias, etc.",No aplica
+30,Certificados Formación Continua,Educación,,,No vence,Archivador digital,"Cursos idiomas, certificaciones profesionales. Para CV y promociones.",Pendiente
