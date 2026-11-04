@@ -230,7 +230,7 @@ export default function TemplateEmigrarPage() {
     },
   });
 
-  const faqSchemaData = faqSchema(FAQS.map(faq => ({
+  const faqSchemaData = faqSchema(FAQ.map((faq: { q: string; a: string }) => ({
     pregunta: faq.q,
     respuesta: faq.a,
   })));
