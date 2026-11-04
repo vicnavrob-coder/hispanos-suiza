@@ -12,9 +12,11 @@ const NAV_LINKS = [
   { href: "/seguros",      label: "Seguros" },
   { href: "/herramientas", label: "Herramientas" },
   { href: "/blog",         label: "Blog" },
+  { href: "/productos/template-emigrar-suiza", label: "Template", badge: "Nuevo" },
 ];
 
 const MOBILE_LINKS = [
+  { href: "/productos/template-emigrar-suiza", label: "🎁 Template Emigrar (NUEVO)" },
   { href: "/trabajo",                label: "💼 Trabajo" },
   { href: "/trabajo/unia",           label: "⚖️ UNIA — Derechos laborales" },
   { href: "/trabajo/esqui-suiza",    label: "⛷️ Trabajo en estaciones de esquí" },
@@ -76,11 +78,12 @@ export default function Header() {
             >
               {NAV_LINKS.map((link) => {
                 const active = isActive(link.href);
+                const hasBadge = 'badge' in link && link.badge;
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                    className="px-3 py-2 rounded-lg text-sm font-medium transition-colors relative"
                     style={{
                       color: active ? "#C8102E" : "#374151",
                       background: active ? "rgba(200,16,46,0.06)" : "transparent",
@@ -94,6 +97,11 @@ export default function Header() {
                     }}
                   >
                     {link.label}
+                    {hasBadge && (
+                      <span className="absolute -top-1 -right-1 text-[8px] font-bold px-1.5 py-0.5 rounded-full" style={{ background: "#C8102E", color: "#ffffff" }}>
+                        {link.badge}
+                      </span>
+                    )}
                   </Link>
                 );
               })}

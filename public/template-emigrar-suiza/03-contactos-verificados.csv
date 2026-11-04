@@ -1,0 +1,56 @@
+ID,Nombre,Categoría,Ciudad/Cantón,Teléfono,URL,Email,Horario,Notas,Actualizado
+1,Oficina Migración Zúrich,Oficinas Oficiales,Zúrich,+41 43 259 88 00,https://www.zh.ch/de/migration-integration.html,,Lun-Vie 8:00-17:00,"Permiso residencia, renovaciones, naturalización",2026-01
+2,Oficina Migración Ginebra,Oficinas Oficiales,Ginebra,+41 22 546 60 00,https://www.ge.ch/ocpm,,Lun-Vie 9:00-16:00,"Cita previa online obligatoria",2026-01
+3,Oficina Migración Berna,Oficinas Oficiales,Berna,+41 31 633 78 11,https://www.pom.be.ch,,Lun-Jue 8:00-17:00 Vie 8:00-16:00,"Atención en alemán principalmente",2026-01
+4,Oficina Migración Basilea,Oficinas Oficiales,Basilea,+41 61 267 70 25,https://www.bs.ch/migration,,Lun-Vie 9:00-12:00,"Sin cita solo consultas generales",2026-01
+5,Oficina Migración Vaud (Lausana),Oficinas Oficiales,Vaud,+41 21 316 49 49,https://www.vd.ch/spop,,Lun-Vie 8:30-11:30,"Atención en francés",2026-01
+6,Comuna Zúrich Registro Residentes,Comunas,Zúrich,+41 44 412 31 11,https://www.stadt-zuerich.ch/prd/de/index/bevoelkerungsamt.html,,Lun-Vie 8:00-17:00,"Anmeldung dentro 14 días llegada",2026-01
+7,Comuna Ginebra Registro,Comunas,Ginebra,+41 22 418 50 00,https://www.ville-geneve.ch/,,Lun-Vie 8:30-16:00,"Cita previa recomendada",2026-01
+8,Comuna Berna Registro,Comunas,Berna,+41 31 321 61 11,https://www.bern.ch/,,Lun-Mie-Jue 8:00-18:00 Mar 8:00-16:00,"Atención alemán",2026-01
+9,Consulado España en Zúrich,Consulados,Zúrich,+41 44 289 16 60,http://www.exteriores.gob.es/Consulados/ZURICH,cog.zurich@maec.es,Lun-Vie 9:00-13:30,"Cita previa online",2026-01
+10,Consulado España en Ginebra,Consulados,Ginebra,+41 22 849 68 40,http://www.exteriores.gob.es/Consulados/GINEBRA,cog.ginebra@maec.es,Lun-Vie 9:00-13:30,"Pasaportes, certificados",2026-01
+11,Consulado México en Ginebra,Consulados,Ginebra,+41 22 730 08 50,https://consulmex.sre.gob.mx/suiza,,,Atención ciudadanos mexicanos,2026-01
+12,Consulado Argentina en Ginebra,Consulados,Ginebra,+41 22 908 08 08,https://cgine.cancilleria.gob.ar,,,Atención ciudadanos argentinos,2026-01
+13,Consulado Colombia en Ginebra,Consulados,Ginebra,+41 22 918 03 30,https://ginebra.consulado.gov.co,,,Atención ciudadanos colombianos,2026-01
+14,Assura (Seguro Médico),Seguros Médicos,Nacional,0800 277 872,https://www.assura.ch,info@assura.ch,Lun-Vie 8:00-17:00,"Low-cost, buena relación calidad-precio",2026-01
+15,Sanitas (Seguro Médico),Seguros Médicos,Nacional,0844 150 150,https://www.sanitas.com,,,Seguros más vendido en Suiza,2026-01
+16,CSS (Seguro Médico),Seguros Médico,Nacional,0844 277 277,https://www.css.ch,,,Buenas coberturas adicionales,2026-01
+17,Swica (Seguro Médico),Seguros Médicos,Nacional,0800 80 90 80,https://www.swica.ch,,,Modelos HMO económicos,2026-01
+18,Helsana (Seguro Médico),Seguros Médicos,Nacional,0844 80 81 82,https://www.helsana.ch,,,Líder mercado,2026-01
+19,Priminfo.ch (Comparador Seguros),Seguros Médicos,Nacional,,https://www.priminfo.ch,,,"Comparador oficial gobierno suizo",2026-01
+20,UBS Zúrich Centro,Bancos Tradicionales,Zúrich,+41 44 234 11 11,https://www.ubs.com/ch,,,Banco tradicional grande,2026-01
+21,Credit Suisse Ginebra,Bancos Tradicionales,Ginebra,+41 848 880 840,https://www.credit-suisse.com/ch,,,Banco tradicional grande,2026-01
+22,PostFinance,Bancos Tradicionales,Nacional,0848 888 710,https://www.postfinance.ch,,Lun-Vie 8:00-18:00,"Banco de Correos. Comisiones bajas.",2026-01
+23,Raiffeisen,Bancos Tradicionales,Nacional,0844 888 840,https://www.raiffeisen.ch,,,"Banco cooperativo. Servicio personalizado.",2026-01
+24,Neon Bank (Neobank),Neobancos,Nacional,,https://www.neon-free.ch,support@neon-free.ch,,"100% online, sin comisiones, cuenta gratis",2026-01
+25,Yuh (Neobank),Neobancos,Nacional,,https://www.yuh.com,support@yuh.com,,"App Swissquote+Postfinance. Inversión integrada.",2026-01
+26,Revolut Suiza,Neobancos,Nacional,,https://www.revolut.com/es-CH,,,Multi-moneda. Bueno para viajes.,2026-01
+27,Zak (Bank Cler),Neobancos,Nacional,,https://www.zak.ch,,,App del Bank Cler. Cuenta gratis.,2026-01
+28,Homegate.ch,Vivienda,Nacional,,https://www.homegate.ch,,,"Portal #1 alquiler/compra",2026-01
+29,ImmoScout24,Vivienda,Nacional,,https://www.immoscout24.ch,,,"Portal #2 alquiler/compra",2026-01
+30,Comparis Vivienda,Vivienda,Nacional,,https://en.comparis.ch/immobilien/,,,"Comparador multi-portal",2026-01
+31,Flatfox,Vivienda,Nacional,,https://flatfox.ch,,,"Alquiler moderno, proceso digital",2026-01
+32,Woko Zúrich (Pisos compartidos estudiantes),Vivienda,Zúrich,,https://www.woko.ch,,,"Pisos compartidos económicos",2026-01
+33,Jobs.ch,Empleo,Nacional,,https://www.jobs.ch,,,"Portal empleo #1",2026-01
+34,Indeed Suiza,Empleo,Nacional,,https://ch.indeed.com,,,"Portal internacional",2026-01
+35,LinkedIn Jobs,Empleo,Nacional,,https://www.linkedin.com/jobs,,,"Red profesional",2026-01
+36,Monster.ch,Empleo,Nacional,,https://www.monster.ch,,,"Portal empleo tradicional",2026-01
+37,Jobup.ch,Empleo,Nacional,,https://www.jobup.ch,,,"Portal empleo suizo",2026-01
+38,Swisscom,Telecomunicaciones,Nacional,0800 800 800,https://www.swisscom.ch,,,"Operador principal. Fibra rápida.",2026-01
+39,Sunrise,Telecomunicaciones,Nacional,0800 707 707,https://www.sunrise.ch,,,"Competidor Swisscom. Precios medios.",2026-01
+40,Salt,Telecomunicaciones,Nacional,0800 700 700,https://www.salt.ch,,,"Low-cost. Buenas ofertas móvil.",2026-01
+41,Wingo (Swisscom low-cost),Telecomunicaciones,Nacional,,https://www.wingo.ch,,,"Low-cost de Swisscom. CHF 15-25/mes",2026-01
+42,Yallo (Sunrise low-cost),Telecomunicaciones,Nacional,,https://www.yallo.ch,,,"Low-cost de Sunrise. CHF 19/mes",2026-01
+43,Lebara Mobile,Telecomunicaciones,Nacional,,https://mobile.lebara.com/ch,,,"Llamadas internacionales baratas",2026-01
+44,SBB (Ferrocarriles Suizos),Transporte,Nacional,0848 44 66 88,https://www.sbb.ch,,,"Trenes. App imprescindible.",2026-01
+45,ZVV (Transporte Zúrich),Transporte,Zúrich,0848 988 988,https://www.zvv.ch,,,"Abonos transporte cantón Zúrich",2026-01
+46,TPG (Transporte Ginebra),Transporte,Ginebra,+41 900 022 021,https://www.tpg.ch,,,"Buses, tranvía Ginebra",2026-01
+47,Bernmobil,Transporte,Berna,+41 31 321 86 41,https://www.bernmobil.ch,,,"Transporte público Berna",2026-01
+48,VIAC (Pillar 3a digital),Finanzas - Pillar 3a,Nacional,,https://viac.ch,support@viac.ch,,"Mejor relación calidad-precio 3a",2026-01
+49,Finpension (Pillar 3a),Finanzas - Pillar 3a,Nacional,,https://finpension.ch,,,Comisiones bajísimas,2026-01
+50,UBS Vitainvest (Pillar 3a),Finanzas - Pillar 3a,Nacional,+41 44 234 11 11,https://www.ubs.com/ch/de/private/pension/pillar3a.html,,,Banco tradicional con 3a,2026-01
+51,TaxMe (Software Impuestos),Servicios,Nacional,,https://www.taxme.ch,,,"App declaración impuestos simple",2026-01
+52,Taxfix Suiza,Servicios,Nacional,,https://taxfix.ch,,,"Declaración impuestos guiada",2026-01
+53,K-Tipp (Revista Consumidor),Información,Nacional,,https://www.ktipp.ch,,,"Revista comparativas productos/servicios",2026-01
+54,Comparis.ch (Comparador General),Información,Nacional,,https://www.comparis.ch,,,"Compara: seguros, telecom, finanzas, vivienda",2026-01
+55,Moneyland.ch (Comparador Financiero),Información,Nacional,,https://www.moneyland.ch,,,"Especializado en bancos, seguros, hipotecas",2026-01

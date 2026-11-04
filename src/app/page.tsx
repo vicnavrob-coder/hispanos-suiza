@@ -241,6 +241,80 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════
+          CTA TEMPLATE EMIGRAR
+      ══════════════════════════════════════════ */}
+      <section style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%)", borderTop: "1px solid #E8E5E0", borderBottom: "1px solid #E8E5E0" }}>
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-10">
+          <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+            {/* Texto */}
+            <div className="flex-1 text-center md:text-left">
+              <div
+                className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full mb-3"
+                style={{ background: "rgba(200,16,46,0.14)", border: "1px solid rgba(200,16,46,0.3)", color: "#F87171" }}
+              >
+                <span>🎁</span>
+                <span>NUEVO</span>
+              </div>
+              <h2
+                className="font-bold text-2xl sm:text-3xl mb-3"
+                style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#ffffff" }}
+              >
+                Template Completo Emigrar a Suiza
+              </h2>
+              <p
+                className="text-sm sm:text-base mb-4 max-w-2xl mx-auto md:mx-0"
+                style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#9CA3AF" }}
+              >
+                50 pasos organizados + 7 guías profesionales + tracker gastos + 55 contactos verificados. Ahorra CHF 15'000-20'000 el primer año.
+              </p>
+              <div className="flex flex-wrap gap-3 justify-center md:justify-start items-center">
+                <Link
+                  href="/productos/template-emigrar-suiza"
+                  className="inline-flex items-center justify-center gap-2 font-semibold px-5 py-3 rounded-full text-sm transition-opacity hover:opacity-85 active:scale-[0.98]"
+                  style={BTN_RED}
+                >
+                  Ver Template →
+                </Link>
+                <div className="flex items-center gap-2">
+                  <span
+                    className="text-2xl font-black"
+                    style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#C8102E" }}
+                  >
+                    CHF 19
+                  </span>
+                  <span style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280", fontSize: "0.85rem" }}>
+                    <span style={{ textDecoration: "line-through" }}>CHF 49</span> -61%
+                  </span>
+                </div>
+              </div>
+            </div>
+            {/* Badges */}
+            <div className="flex flex-col gap-2 md:min-w-[200px]">
+              {[
+                { icon: "📦", text: "16 archivos incluidos" },
+                { icon: "📄", text: "1'975 líneas contenido" },
+                { icon: "💰", text: "Ahorro CHF 15-20K/año" },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg"
+                  style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+                >
+                  <span className="text-lg">{item.icon}</span>
+                  <span
+                    className="text-xs font-medium"
+                    style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#E5E7EB" }}
+                  >
+                    {item.text}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
           CATEGORÍAS
       ══════════════════════════════════════════ */}
       <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-14">

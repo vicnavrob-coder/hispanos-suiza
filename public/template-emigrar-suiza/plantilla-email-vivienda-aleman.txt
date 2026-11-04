@@ -1,0 +1,59 @@
+ASUNTO: Bewerbung für [DIRECCIÓN EXACTA PISO] - [FECHA VISITA]
+
+==========================================
+
+Sehr geehrte Damen und Herren,
+
+Ich möchte mich für die [2-Zimmer-Wohnung / 3-Zimmer-Wohnung / Studio] an der [Dirección exacta del piso] bewerben.
+
+Über mich:
+• Name: [TU NOMBRE COMPLETO]
+• Alter: [EDAD] Jahre
+• Nationalität: [NACIONALIDAD - ej: Spanisch, Argentinisch, Mexikanisch]
+• Beruf: [TU PROFESIÓN] bei [NOMBRE EMPRESA]
+• Monatliches Nettoeinkommen: CHF [SALARIO NETO MENSUAL]
+• Nichtraucher / Raucher
+• Keine Haustiere / Habe [MASCOTA]
+• Gewünschtes Einzugsdatum: [FECHA - ej: 01.03.2026]
+
+Die Wohnung entspricht genau meinen Vorstellungen, und ich würde mich sehr freuen, dort einziehen zu dürfen. Mit einem monatlichen Nettoeinkommen von CHF [SALARIO] stellt die Miete von CHF [ALQUILER] etwa [PORCENTAJE - ej: 28]% meines Einkommens dar, was eine sehr komfortable finanzielle Situation gewährleistet.
+
+Ich bin ein zuverlässiger, ruhiger und respektvoller Mieter. Ich schätze eine gepflegte Wohnumgebung und lege Wert auf ein gutes nachbarschaftliches Verhältnis.
+
+Gerne stelle ich mich persönlich vor und freue mich auf eine Besichtigung. Alle erforderlichen Unterlagen (Lohnausweise, Arbeitsvertrag, Betreibungsregisterauszug, Lebenslauf) habe ich vorbereitet und kann diese zur Besichtigung mitbringen oder Ihnen vorab zusenden.
+
+Für Rückfragen stehe ich Ihnen jederzeit gerne zur Verfügung.
+
+Mit freundlichen Grüßen,
+[TU NOMBRE]
+
+---
+Kontaktdaten:
+Telefon: +41 [TU NÚMERO SUIZO]
+E-Mail: [TU EMAIL]
+Adresse: [TU DIRECCIÓN ACTUAL EN SUIZA]
+
+==========================================
+
+NOTAS DE USO:
+
+1. Reemplaza TODO lo que está entre [CORCHETES] con tus datos reales
+2. Elimina la línea que NO aplique:
+   - "Nichtraucher" (no fumador) O "Raucher" (fumador)
+   - "Keine Haustiere" (sin mascotas) O "Habe [gato/perro]" (tengo mascota)
+3. Porcentaje alquiler: Calcula alquiler/salario neto × 100
+   - Ejemplo: CHF 2'000 alquiler / CHF 7'000 neto = 28.5%
+   - IMPORTANTE: Debe ser < 33% (idealmente 25-30%)
+4. Adjuntar: PDF con tu dosier completo (CV, nóminas, contrato, Betreibungsregisterauszug)
+5. Enviar EN MENOS DE 1 HORA desde que se publica el anuncio (competencia altísima)
+
+VOCABULARIO ÚTIL:
+• Bewerbung = Solicitud
+• Wohnung = Piso/apartamento
+• Nichtraucher = No fumador
+• Haustiere = Mascotas
+• Nettoeinkommen = Salario neto
+• Einzugsdatum = Fecha de mudanza
+• Lohnausweise = Nóminas
+• Betreibungsregisterauszug = Extracto registro deudores
+• Mit freundlichen Grüßen = Atentamente (fórmula de cierre)

@@ -1,0 +1,60 @@
+OBJET: Candidature pour [DIRECCIÓN EXACTA PISO] - [FECHA VISITA]
+
+==========================================
+
+Madame, Monsieur,
+
+Je souhaite postuler pour l'appartement de [2 pièces / 3 pièces / studio] situé [Dirección exacta del piso].
+
+À propos de moi:
+• Nom: [TU NOMBRE COMPLETO]
+• Âge: [EDAD] ans
+• Nationalité: [NACIONALIDAD - ej: Espagnole, Argentine, Mexicaine]
+• Profession: [TU PROFESIÓN] chez [NOMBRE EMPRESA]
+• Revenu net mensuel: CHF [SALARIO NETO MENSUAL]
+• Non-fumeur / Fumeur
+• Sans animaux / Avec [MASCOTA]
+• Date d'emménagement souhaitée: [FECHA - ej: 01.03.2026]
+
+Cet appartement correspond parfaitement à mes attentes et je serais ravi d'y emménager. Avec un revenu net mensuel de CHF [SALARIO], le loyer de CHF [ALQUILER] représente environ [PORCENTAJE - ej: 28]% de mon revenu, ce qui constitue une situation financière très confortable.
+
+Je suis un locataire fiable, calme et respectueux. J'apprécie un environnement de vie soigné et j'accorde une grande importance aux bonnes relations de voisinage.
+
+Je me tiens à votre disposition pour une visite et serais heureux de faire votre connaissance. J'ai préparé tous les documents nécessaires (fiches de salaire, contrat de travail, extrait du registre des poursuites, CV) et peux les apporter lors de la visite ou vous les envoyer au préalable.
+
+Je reste à votre entière disposition pour toute question complémentaire.
+
+Cordialement,
+[TU NOMBRE]
+
+---
+Coordonnées:
+Téléphone: +41 [TU NÚMERO SUIZO]
+E-mail: [TU EMAIL]
+Adresse: [TU DIRECCIÓN ACTUAL EN SUIZA]
+
+==========================================
+
+NOTES D'UTILISATION:
+
+1. Remplacez TOUT ce qui est entre [CROCHETS] par vos vraies données
+2. Supprimez la ligne qui NE s'applique PAS:
+   - "Non-fumeur" (no fumador) OU "Fumeur" (fumador)
+   - "Sans animaux" (sin mascotas) OU "Avec [chat/chien]" (tengo mascota)
+3. Pourcentage loyer: Calculez loyer/salaire net × 100
+   - Exemple: CHF 2'000 loyer / CHF 7'000 net = 28.5%
+   - IMPORTANT: Doit être < 33% (idéalement 25-30%)
+4. Joindre: PDF avec votre dossier complet (CV, fiches salaire, contrat, extrait registre poursuites)
+5. Envoyer EN MOINS D'1 HEURE après publication de l'annonce (concurrence très forte)
+
+VOCABULAIRE UTILE:
+• Candidature = Solicitud
+• Appartement = Piso/apartamento
+• Pièces = Habitaciones (2 pièces = sala + dormitorio)
+• Non-fumeur = No fumador
+• Animaux = Mascotas
+• Revenu net = Salario neto
+• Date d'emménagement = Fecha de mudanza
+• Fiches de salaire = Nóminas
+• Extrait du registre des poursuites = Extracto registro deudores
+• Cordialement = Atentamente (fórmula de cierre)
