@@ -17,6 +17,7 @@ export async function POST(req: NextRequest) {
               name: "Template Notion: Checklist Completa Emigrar a Suiza",
               description: "Sistema completo con 50 pasos, 7 guías profesionales, tracker de gastos y 50+ contactos verificados",
               images: ["https://hispanosensuiza.ch/og-template.jpg"],
+              tax_code: "txcd_10000000", // General - Electronically Supplied Services
             },
             unit_amount: 1900, // CHF 19.00 en centavos
           },
