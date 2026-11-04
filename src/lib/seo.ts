@@ -295,6 +295,56 @@ export function serviceSchema(opts: {
   };
 }
 
+/** Product — productos digitales */
+export function productSchema(opts: {
+  name: string;
+  description: string;
+  price: number;
+  currency: string;
+  url: string;
+  image?: string;
+  sku?: string;
+  brand?: string;
+  aggregateRating?: {
+    ratingValue: number;
+    reviewCount: number;
+  };
+  offers?: {
+    availability: string;
+    priceValidUntil?: string;
+  };
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+    image: opts.image ?? DEFAULT_OG_IMAGE,
+    brand: {
+      "@type": "Organization",
+      name: opts.brand ?? SITE_NAME,
+      url: BASE_URL,
+    },
+    ...(opts.sku ? { sku: opts.sku } : {}),
+    ...(opts.aggregateRating ? {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: opts.aggregateRating.ratingValue,
+        reviewCount: opts.aggregateRating.reviewCount,
+      }
+    } : {}),
+    offers: {
+      "@type": "Offer",
+      price: opts.price.toString(),
+      priceCurrency: opts.currency,
+      availability: opts.offers?.availability ?? "https://schema.org/InStock",
+      url: opts.url,
+      ...(opts.offers?.priceValidUntil ? { priceValidUntil: opts.offers.priceValidUntil } : {}),
+    },
+  };
+}
+
 // ─────────────────────────────────────────────
 // Helper — renderiza múltiples schemas en un <script>
 // ─────────────────────────────────────────────

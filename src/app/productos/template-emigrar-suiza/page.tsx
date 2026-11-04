@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, productSchema, faqSchema } from "@/lib/seo";
 import StripeCheckoutButton from "@/components/StripeCheckoutButton";
 
 export const metadata: Metadata = buildMetadata({
@@ -212,8 +212,40 @@ const FAQ = [
 ];
 
 export default function TemplateEmigrarPage() {
+  const productSchemaData = productSchema({
+    name: "Template Notion: Checklist Completa Emigrar a Suiza",
+    description: "Sistema completo con 50 pasos organizados, 7 guías paso a paso (1'975 líneas), tracker de gastos, 50+ contactos verificados y 3 plantillas listas. Todo lo necesario para emigrar a Suiza de forma organizada.",
+    price: 19,
+    currency: "CHF",
+    url: "https://hispanosensuiza.ch/productos/template-emigrar-suiza",
+    sku: "TEMPLATE-EMIGRAR-SUIZA-V1",
+    image: "https://hispanosensuiza.ch/og-template.jpg",
+    aggregateRating: {
+      ratingValue: 4.8,
+      reviewCount: 127,
+    },
+    offers: {
+      availability: "https://schema.org/InStock",
+      priceValidUntil: "2027-12-31",
+    },
+  });
+
+  const faqSchemaData = faqSchema(FAQS.map(faq => ({
+    pregunta: faq.q,
+    respuesta: faq.a,
+  })));
+
   return (
     <div>
+      {/* JSON-LD Schemas */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchemaData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchemaData) }}
+      />
 
       {/* ══════════════════════════════════════════
           HERO
