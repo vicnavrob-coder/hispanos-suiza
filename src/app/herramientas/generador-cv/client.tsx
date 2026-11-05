@@ -430,6 +430,54 @@ function PersonalDataStep({ cvData, updateData }: any) {
 
         <div className="md:col-span-2">
           <label className="block text-sm font-medium text-gray-700 mb-2">
+            Foto de perfil (opcional, recomendado para CVs suizos)
+          </label>
+          <div className="flex items-start gap-4">
+            <div className="flex-1">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    // Verificar tamaño (máx 2MB)
+                    if (file.size > 2 * 1024 * 1024) {
+                      alert("La imagen es demasiado grande. Máximo 2MB.");
+                      return;
+                    }
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                      updateData("foto", reader.result as string);
+                    };
+                    reader.readAsDataURL(file);
+                  }
+                }}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3498DB] focus:border-transparent text-sm"
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                Formato JPG o PNG. Tamaño máximo 2MB. Foto profesional tipo pasaporte.
+              </p>
+            </div>
+            {cvData.foto && (
+              <div className="relative">
+                <img
+                  src={cvData.foto}
+                  alt="Preview"
+                  className="w-24 h-24 object-cover rounded-lg border-2 border-gray-300"
+                />
+                <button
+                  onClick={() => updateData("foto", "")}
+                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600"
+                >
+                  ×
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="md:col-span-2">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
             Objetivo Profesional *
           </label>
           <textarea
