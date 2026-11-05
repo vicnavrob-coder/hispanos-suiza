@@ -20,10 +20,10 @@ export const metadata: Metadata = buildMetadata({
 const herramientas = [
   {
     icono: "📝",
-    titulo: "Traductor de CV al alemán",
-    descripcion: "Sube tu currículum en español y descarga un Lebenslauf profesional traducido al alemán y adaptado al formato suizo estándar. Tu primer CV es gratis.",
+    titulo: "Generador de CV Suizo",
+    descripcion: "Crea tu CV profesional en formato suizo completando un formulario. Genera un PDF con diseño profesional y estructura estándar suiza en minutos. Gratis.",
     estado: "disponible",
-    href: "/herramientas/traductor-cv",
+    href: "/herramientas/generador-cv",
     color: "bg-indigo-50 border-indigo-200",
     btnColor: "bg-indigo-700",
   },
