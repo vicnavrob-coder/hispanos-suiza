@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { generateSwissCV } from "@/lib/cv-generator";
 import type { CVData, ExperienciaLaboral, Formacion, Idioma, Referencia } from "@/types/cv";
@@ -17,8 +17,13 @@ const STEPS = [
   { id: "preview", label: "Previsualizar", icon: "👁️" },
 ];
 
+const CV_USAGE_KEY = "hispanos_cv_usage_count";
+const CV_PRICE = 6.99;
+
 export default function CVGeneratorClient() {
   const [currentStep, setCurrentStep] = useState<Step>("personal");
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [cvData, setCvData] = useState<CVData>({
     nombre: "",
     apellidos: "",
@@ -40,10 +45,85 @@ export default function CVGeneratorClient() {
     setCvData(prev => ({ ...prev, [field]: value }));
   };
 
+  // Check if user needs to pay
+  const getCVUsageCount = (): number => {
+    if (typeof window === "undefined") return 0;
+    const count = localStorage.getItem(CV_USAGE_KEY);
+    return count ? parseInt(count, 10) : 0;
+  };
+
+  const incrementCVUsage = () => {
+    if (typeof window === "undefined") return;
+    const currentCount = getCVUsageCount();
+    localStorage.setItem(CV_USAGE_KEY, String(currentCount + 1));
+  };
+
+  const isFirstCV = () => getCVUsageCount() === 0;
+
+  const handleDownloadClick = () => {
+    if (isFirstCV()) {
+      // Primera vez: descargar gratis
+      downloadPDF();
+      incrementCVUsage();
+    } else {
+      // Segunda vez en adelante: mostrar modal de pago
+      setShowPaymentModal(true);
+    }
+  };
+
   const downloadPDF = () => {
     const pdf = generateSwissCV(cvData);
     pdf.save(`CV_${cvData.nombre}_${cvData.apellidos}_Swiss.pdf`);
   };
+
+  const handlePayment = async () => {
+    if (!cvData.email) {
+      alert("Por favor, introduce tu email en los datos personales");
+      setCurrentStep("personal");
+      setShowPaymentModal(false);
+      return;
+    }
+
+    setIsProcessingPayment(true);
+
+    try {
+      const response = await fetch("/api/stripe/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: cvData.email,
+          nombre: `${cvData.nombre} ${cvData.apellidos}`,
+          plan: "cv-generator",
+          returnUrl: window.location.href,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        // Redirect to Stripe checkout
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || "Error al crear la sesión de pago");
+      }
+    } catch (error) {
+      console.error("Payment error:", error);
+      alert("Error al procesar el pago. Por favor, intenta de nuevo.");
+      setIsProcessingPayment(false);
+    }
+  };
+
+  // Check for payment success
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("payment") === "success") {
+      // Payment successful, allow download and increment usage
+      downloadPDF();
+      incrementCVUsage();
+      // Clean URL
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+  }, []);
 
   const stepIndex = STEPS.findIndex(s => s.id === currentStep);
 
@@ -143,15 +223,84 @@ export default function CVGeneratorClient() {
               </button>
             ) : (
               <button
-                onClick={downloadPDF}
+                onClick={handleDownloadClick}
                 className="ml-auto px-8 py-3 bg-gradient-to-r from-[#27AE60] to-[#229954] text-white rounded-lg hover:from-[#229954] hover:to-[#1E8449] transition font-bold"
               >
-                📥 Descargar CV
+                📥 {isFirstCV() ? "Descargar CV Gratis" : "Descargar CV"}
               </button>
             )}
           </div>
         </div>
       </div>
+
+      {/* Payment Modal */}
+      {showPaymentModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative">
+            <button
+              onClick={() => setShowPaymentModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl"
+              disabled={isProcessingPayment}
+            >
+              ×
+            </button>
+
+            <div className="text-center">
+              <div className="text-5xl mb-4">📄</div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                ¡Tu primer CV fue gratis!
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Para generar CVs adicionales, el precio es de solo <span className="font-bold text-[#27AE60]">{CV_PRICE} CHF</span> por CV.
+              </p>
+
+              <div className="bg-gradient-to-br from-[#F8F6F3] to-white rounded-xl p-6 mb-6">
+                <h4 className="font-bold text-gray-800 mb-3">Lo que incluye:</h4>
+                <ul className="text-sm text-gray-700 space-y-2 text-left">
+                  <li className="flex items-start">
+                    <span className="text-[#27AE60] mr-2">✓</span>
+                    <span>CV profesional en formato suizo estándar</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[#27AE60] mr-2">✓</span>
+                    <span>Diseño optimizado para reclutadores suizos</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[#27AE60] mr-2">✓</span>
+                    <span>Descarga inmediata en PDF de alta calidad</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[#27AE60] mr-2">✓</span>
+                    <span>Sin suscripciones ni costes ocultos</span>
+                  </li>
+                </ul>
+              </div>
+
+              <button
+                onClick={handlePayment}
+                disabled={isProcessingPayment}
+                className="w-full py-4 bg-gradient-to-r from-[#27AE60] to-[#229954] text-white rounded-xl hover:from-[#229954] hover:to-[#1E8449] transition font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isProcessingPayment ? (
+                  <span className="flex items-center justify-center">
+                    <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Procesando...
+                  </span>
+                ) : (
+                  `Pagar ${CV_PRICE} CHF y descargar →`
+                )}
+              </button>
+
+              <p className="text-xs text-gray-500 mt-4">
+                Pago seguro con Stripe. Aceptamos todas las tarjetas.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

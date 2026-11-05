@@ -9,7 +9,13 @@ const PLANS: Record<string, { priceId: string; mode: "subscription" | "payment";
     mode: "subscription",
     successPath: "/suscripcion/exito",
   },
-  // CV Translator plans
+  // CV Generator - Single CV (6.99 CHF)
+  "cv-generator": {
+    priceId: process.env.STRIPE_PRICE_ID_CV_GENERATOR || "",
+    mode: "payment",
+    successPath: "/herramientas/generador-cv?payment=success",
+  },
+  // CV Translator plans (old - deprecated)
   "cv-single": {
     priceId: process.env.STRIPE_PRICE_ID_CV_SINGLE || "",
     mode: "payment",
