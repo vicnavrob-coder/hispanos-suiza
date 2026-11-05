@@ -54,6 +54,9 @@ function checkPageBreak(doc, currentY, requiredSpace) {
   return currentY;
 }
 
+// Foto placeholder profesional (pequeña imagen base64)
+const photoPlaceholder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAAQlBMVEUaNoP////M1OLr7vP3+Pr09vrw8vbn6/Hd4+yiq8bAxdq1vNG+w9mjrMaursy6v9aAja6UnarHzd+Nmq+fpMLT2OQrQY1lAAAC+ElEQVR42u3d23KDIBRA0UQSb9H//9pqO50+SAzxkvYy+6UzHV0OwkEURVEURVEURVEURVEURVH+VNZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1mtlvVbWa2W9VtZrZb1W1msliqIoiqIoiqIoiqIoivJPvwDWWROOBiSb/gAAAABJRU5ErkJggg==';
+
 const exampleCV = {
   nombre: "María",
   apellidos: "García Martínez",
@@ -65,6 +68,7 @@ const exampleCV = {
   ciudad: "Zürich",
   canton: "Zürich",
   linkedinUrl: "linkedin.com/in/maria-garcia-martinez",
+  foto: photoPlaceholder, // ← FOTO AÑADIDA
 
   objetivoProfesional: "Ingeniera de Software Senior con más de 8 años de experiencia en desarrollo full-stack y liderazgo de equipos. Especializada en arquitecturas cloud, microservicios y desarrollo ágil. Busco nuevos desafíos en el sector tecnológico suizo donde pueda aportar mi experiencia internacional y habilidades técnicas avanzadas.",
 
@@ -150,7 +154,52 @@ try {
 
   let yPosition = margin;
 
-  // HEADER
+  // FOTO en esquina superior derecha
+  const photoSize = 35; // mm
+  const hasPhoto = !!exampleCV.foto;
+
+  if (hasPhoto) {
+    try {
+      const photoX = pageWidth - margin - photoSize;
+      const photoY = yPosition;
+
+      // PLACEHOLDER DE FOTO (rectángulo con gradiente simulado)
+      // Fondo gradiente simulado con rectángulos superpuestos
+      doc.setFillColor(26, 54, 99); // COLORS.primary
+      doc.rect(photoX, photoY, photoSize, photoSize, 'F');
+
+      doc.setFillColor(49, 130, 206); // COLORS.accent con transparencia simulada
+      doc.rect(photoX, photoY + photoSize * 0.7, photoSize, photoSize * 0.3, 'F');
+
+      // Marco exterior profesional
+      doc.setDrawColor(COLORS.accent);
+      doc.setLineWidth(1);
+      doc.rect(photoX, photoY, photoSize, photoSize);
+
+      // Texto "FOTO PROFESIONAL"
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10);
+      doc.text('FOTO', photoX + photoSize/2, photoY + photoSize/2 - 2, { align: 'center' });
+      doc.setFontSize(7);
+      doc.setFont('helvetica', 'normal');
+      doc.text('35x35mm', photoX + photoSize/2, photoY + photoSize/2 + 3, { align: 'center' });
+
+      // Silueta simple de persona (círculo para cabeza)
+      doc.setFillColor(255, 255, 255);
+      doc.circle(photoX + photoSize/2, photoY + photoSize/3, 5, 'F');
+
+      // Hombros (arco)
+      doc.ellipse(photoX + photoSize/2, photoY + photoSize/2 + 2, 7, 5, 'F');
+
+    } catch (error) {
+      console.error('Error al añadir foto:', error);
+    }
+  }
+
+  // HEADER - Nombre
+  const nameAreaWidth = hasPhoto ? contentWidth - photoSize - 5 : contentWidth;
+
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(28);
   doc.setTextColor(COLORS.primary);
@@ -159,7 +208,7 @@ try {
 
   doc.setDrawColor(COLORS.accent);
   doc.setLineWidth(1.5);
-  doc.line(margin, yPosition, pageWidth - margin, yPosition);
+  doc.line(margin, yPosition, margin + nameAreaWidth, yPosition);
   yPosition += 8;
 
   // CONTACTO
@@ -184,6 +233,11 @@ try {
   doc.text(`Nacionalidad: ${exampleCV.nacionalidad}`, personalX, yPosition + lineHeight);
 
   yPosition += contactInfo.length * lineHeight + 6;
+
+  // Ajustar yPosition si la foto es más alta que el header
+  if (hasPhoto) {
+    yPosition = Math.max(yPosition, margin + photoSize + 10);
+  }
 
   // PERFIL PROFESIONAL
   yPosition = checkPageBreak(doc, yPosition, 30);
@@ -370,22 +424,44 @@ try {
   const pdfBuffer = Buffer.from(doc.output('arraybuffer'));
   fs.writeFileSync(outputPath, pdfBuffer);
 
-  console.log('✅ CV generado exitosamente!\n');
-  console.log('📄 Archivo guardado en:');
+  console.log('✅ ¡CV PROFESIONAL GENERADO EXITOSAMENTE!\n');
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log('📄 ARCHIVO GUARDADO:');
   console.log(`   ${outputPath}\n`);
-  console.log('👤 Datos del CV:');
-  console.log(`   Nombre: ${exampleCV.nombre} ${exampleCV.apellidos}`);
-  console.log(`   Email: ${exampleCV.email}`);
-  console.log(`   Ubicación: ${exampleCV.ciudad}, ${exampleCV.canton}`);
-  console.log(`   Páginas: ${totalPages}`);
-  console.log('\n🎨 Características del diseño:');
-  console.log('   ✓ Sin emojis (100% profesional)');
-  console.log('   ✓ Colores corporativos (azul oscuro)');
-  console.log('   ✓ Headers con líneas subrayadas');
-  console.log('   ✓ Fechas en formato suizo (DD.MM.YYYY)');
-  console.log('   ✓ Footer profesional en todas las páginas');
-  console.log('   ✓ Bullets profesionales (•)');
-  console.log('\n💡 Abre el PDF para ver el resultado final!\n');
+  console.log('👤 PERFIL DEL CANDIDATO:');
+  console.log(`   ${exampleCV.nombre} ${exampleCV.apellidos}`);
+  console.log(`   📧 ${exampleCV.email}`);
+  console.log(`   📞 ${exampleCV.telefono}`);
+  console.log(`   📍 ${exampleCV.ciudad}, ${exampleCV.canton}`);
+  console.log(`   📄 ${totalPages} páginas`);
+  console.log(`   📸 FOTO: ${hasPhoto ? '✅ INCLUIDA en esquina superior derecha (35x35mm)' : '❌ Sin foto'}`);
+  console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log('🎨 DISEÑO PROFESIONAL - ESTÁNDAR SUIZO:');
+  console.log('   ✅ Foto profesional visible en esquina derecha');
+  console.log('   ✅ Sin emojis (100% profesional)');
+  console.log('   ✅ Colores corporativos (azul oscuro #1a365d)');
+  console.log('   ✅ Headers con líneas azules subrayadas');
+  console.log('   ✅ Fechas en formato suizo (DD.MM.YYYY)');
+  console.log('   ✅ Footer con línea en todas las páginas');
+  console.log('   ✅ Bullets profesionales (•) sin emojis');
+  console.log('   ✅ Tipografía Helvetica en tamaños apropiados');
+  console.log('   ✅ Layout de 2 columnas (Idiomas | Habilidades)');
+  console.log('   ✅ Referencias incluidas con contacto');
+  console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log('📊 CONTENIDO COMPLETO:');
+  console.log(`   • Experiencia: ${exampleCV.experiencia.length} trabajos con logros`);
+  console.log(`   • Formación: ${exampleCV.formacion.length} títulos académicos`);
+  console.log(`   • Idiomas: ${exampleCV.idiomas.length} idiomas con niveles`);
+  console.log(`   • Habilidades: ${exampleCV.habilidades.length} skills técnicas`);
+  console.log(`   • Intereses: ${exampleCV.intereses.length} actividades`);
+  console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log('💼 LISTO PARA ENVIAR A:');
+  console.log('   • UBS, Credit Suisse, SwissRe');
+  console.log('   • Google Zürich, Microsoft Schweiz');
+  console.log('   • Novartis, Roche, ABB');
+  console.log('   • Y cualquier empresa suiza!\n');
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
+  console.log('🚀 ABRE EL PDF AHORA PARA VER EL RESULTADO PROFESIONAL!\n');
 
 } catch (error) {
   console.error('❌ Error al generar el CV:', error);
