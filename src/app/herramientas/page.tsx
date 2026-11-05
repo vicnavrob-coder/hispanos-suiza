@@ -5,23 +5,31 @@ import { buildMetadata, BASE_URL, breadcrumbSchema, itemListSchema } from "@/lib
 
 export const metadata: Metadata = buildMetadata({
   title: "Herramientas gratuitas para vivir en Suiza — Calculadoras y comparadores",
-  description: "7 herramientas gratuitas para hispanohablantes en Suiza: traductor de CV al alemán, salario neto, comparador de salarios, seguros médicos, comparador de ciudades, permisos y más.",
+  description: "7 herramientas gratuitas para hispanohablantes en Suiza: generador CV profesional con foto, salario neto, comparador de salarios, seguros médicos, comparador de ciudades, permisos y más.",
   path: "/herramientas",
   ogImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=85&auto=format&fit=crop",
   keywords: [
+    // General
     "herramientas suiza", "calculadora suiza gratis", "calculadora salario suiza",
-    "comparador seguros suiza", "herramientas expat suiza", "traductor cv aleman",
+    "comparador seguros suiza", "herramientas expat suiza",
+
+    // CV Generator (nuevo destacado)
+    "generador cv suizo", "cv suizo gratis", "cv profesional suiza", "cv con foto suiza",
+    "plantilla cv suiza", "crear cv suizo", "cv formato suizo", "cv corporativo suiza",
+
+    // Otras herramientas
     "calculadora impuestos suiza", "coste vida suiza calculadora",
-    "salario neto suiza 2026", "comparador salarios suiza ciudad",
+    "salario neto suiza 2025", "comparador salarios suiza ciudad",
     "permiso trabajo suiza calculadora", "salario por profesion suiza",
+    "seguro medico suiza comparador",
   ],
 });
 
 const herramientas = [
   {
     icono: "📝",
-    titulo: "Generador de CV Suizo",
-    descripcion: "Crea tu CV profesional en formato suizo completando un formulario. Genera un PDF con diseño profesional y estructura estándar suiza en minutos. Gratis.",
+    titulo: "Generador de CV Suizo Profesional",
+    descripcion: "Crea tu CV en formato suizo con FOTO incluida y diseño corporativo profesional. Primera generación GRATIS, adicionales 6,99 CHF. Cumple estándares suizos. Listo para enviar a empresas.",
     estado: "disponible",
     href: "/herramientas/generador-cv",
     color: "bg-indigo-50 border-indigo-200",
