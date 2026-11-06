@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { generateSwissCV } from "@/lib/cv-generator";
 import type { CVData, ExperienciaLaboral, Formacion, Idioma, Referencia } from "@/types/cv";
 import { NIVELES_IDIOMA, CANTONES } from "@/types/cv";
@@ -18,11 +19,11 @@ const STEPS = [
 ];
 
 const CV_USAGE_KEY = "hispanos_cv_usage_count";
-const CV_PRICE = 6.99;
 
 export default function CVGeneratorClient() {
+  const { data: session, status } = useSession();
   const [currentStep, setCurrentStep] = useState<Step>("personal");
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [cvData, setCvData] = useState<CVData>({
     nombre: "",
@@ -61,13 +62,19 @@ export default function CVGeneratorClient() {
   const isFirstCV = () => getCVUsageCount() === 0;
 
   const handleDownloadClick = () => {
+    // Usuario premium: CVs ilimitados
+    if (session?.user?.isPremium) {
+      downloadPDF();
+      return;
+    }
+
+    // Usuario no premium: primer CV gratis, luego necesita premium
     if (isFirstCV()) {
-      // Primera vez: descargar gratis
       downloadPDF();
       incrementCVUsage();
     } else {
-      // Segunda vez en adelante: mostrar modal de pago
-      setShowPaymentModal(true);
+      // Mostrar modal para upgrade a premium
+      setShowUpgradeModal(true);
     }
   };
 
@@ -76,11 +83,10 @@ export default function CVGeneratorClient() {
     pdf.save(`CV_${cvData.nombre}_${cvData.apellidos}_Swiss.pdf`);
   };
 
-  const handlePayment = async () => {
-    if (!cvData.email) {
-      alert("Por favor, introduce tu email en los datos personales");
-      setCurrentStep("personal");
-      setShowPaymentModal(false);
+  const handleUpgrade = async () => {
+    if (!session?.user?.email) {
+      alert("Por favor, inicia sesión primero");
+      window.location.href = "/auth/signin?callbackUrl=" + encodeURIComponent(window.location.href);
       return;
     }
 
@@ -91,9 +97,9 @@ export default function CVGeneratorClient() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: cvData.email,
-          nombre: `${cvData.nombre} ${cvData.apellidos}`,
-          plan: "cv-generator",
+          email: session.user.email,
+          nombre: session.user.name || cvData.nombre + " " + cvData.apellidos,
+          plan: "premium",
           returnUrl: window.location.href,
         }),
       });
@@ -233,12 +239,12 @@ export default function CVGeneratorClient() {
         </div>
       </div>
 
-      {/* Payment Modal */}
-      {showPaymentModal && (
+      {/* Premium Upgrade Modal */}
+      {showUpgradeModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 relative">
             <button
-              onClick={() => setShowPaymentModal(false)}
+              onClick={() => setShowUpgradeModal(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl"
               disabled={isProcessingPayment}
             >
@@ -246,40 +252,76 @@ export default function CVGeneratorClient() {
             </button>
 
             <div className="text-center">
-              <div className="text-5xl mb-4">📄</div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                ¡Tu primer CV fue gratis!
+              <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+              </div>
+              <h3 className="text-3xl font-bold text-gray-800 mb-2">
+                ¡Upgrade a Premium!
               </h3>
-              <p className="text-gray-600 mb-6">
-                Para generar CVs adicionales, el precio es de solo <span className="font-bold text-[#27AE60]">{CV_PRICE} CHF</span> por CV.
+              <p className="text-gray-600 mb-4">
+                Tu primer CV fue gratis. Para CVs ilimitados y todas las funciones premium:
               </p>
+              <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-4 mb-6">
+                <p className="text-4xl font-bold text-amber-600">
+                  2,99 CHF<span className="text-lg text-gray-500">/mes</span>
+                </p>
+                <p className="text-sm text-gray-600 mt-1">Cancela cuando quieras</p>
+              </div>
 
-              <div className="bg-gradient-to-br from-[#F8F6F3] to-white rounded-xl p-6 mb-6">
-                <h4 className="font-bold text-gray-800 mb-3">Lo que incluye:</h4>
-                <ul className="text-sm text-gray-700 space-y-2 text-left">
-                  <li className="flex items-start">
-                    <span className="text-[#27AE60] mr-2">✓</span>
-                    <span>CV profesional en formato suizo estándar</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#27AE60] mr-2">✓</span>
-                    <span>Diseño optimizado para reclutadores suizos</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#27AE60] mr-2">✓</span>
-                    <span>Descarga inmediata en PDF de alta calidad</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#27AE60] mr-2">✓</span>
-                    <span>Sin suscripciones ni costes ocultos</span>
-                  </li>
-                </ul>
+              <div className="bg-white border border-gray-200 rounded-xl p-4 mb-6 text-left">
+                <h4 className="font-bold text-gray-800 mb-3">Con Premium obtienes:</h4>
+                <div className="space-y-2 text-sm text-gray-700">
+                  <div className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span><strong>CVs ilimitados</strong> (ahorra 6,99 CHF por CV)</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Comparador de salarios en 26 cantones</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Comparador de 16 ciudades suizas</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Búsquedas ilimitadas de salarios</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Exportar informes PDF ilimitados</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Consejos personalizados de ahorro</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Soporte prioritario</span>
+                  </div>
+                </div>
               </div>
 
               <button
-                onClick={handlePayment}
+                onClick={handleUpgrade}
                 disabled={isProcessingPayment}
-                className="w-full py-4 bg-gradient-to-r from-[#27AE60] to-[#229954] text-white rounded-xl hover:from-[#229954] hover:to-[#1E8449] transition font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl hover:from-amber-600 hover:to-orange-600 transition font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
               >
                 {isProcessingPayment ? (
                   <span className="flex items-center justify-center">
@@ -290,12 +332,12 @@ export default function CVGeneratorClient() {
                     Procesando...
                   </span>
                 ) : (
-                  `Pagar ${CV_PRICE} CHF y descargar →`
+                  `Suscribirme a Premium - 2,99 CHF/mes →`
                 )}
               </button>
 
               <p className="text-xs text-gray-500 mt-4">
-                Pago seguro con Stripe. Aceptamos todas las tarjetas.
+                Pago seguro con Stripe. Cancela cuando quieras. Sin compromisos.
               </p>
             </div>
           </div>

@@ -3,6 +3,7 @@ import { getStripe } from "@/lib/stripe";
 import Stripe from "stripe";
 import { headers } from "next/headers";
 import { activateSubscription, cancelSubscription, recordTranslation } from "@/lib/cv-usage";
+import { activatePremium, cancelPremium, updateSubscriptionStatus } from "@/lib/premium-users";
 import { StripeCheckoutMetadataSchema, validateData } from "@/lib/validation-schemas";
 import { logger } from "@/lib/logger";
 import { savePurchase, sendTemplateEmail } from "@/lib/stripe-helpers";
@@ -113,9 +114,13 @@ export async function POST(req: NextRequest) {
               );
               logger.info("CV subscription activated", { email, plan, expiresAt: expiresAt.toISOString() });
             }
-          } else {
+          } else if (plan === "premium") {
             // General premium subscription
-            logger.info("Premium subscription activated", { email, plan });
+            const subscriptionId = session.subscription as string;
+            if (subscriptionId) {
+              await activatePremium(email, customerId, subscriptionId, "active");
+              logger.info("Premium subscription activated", { email, plan, subscriptionId });
+            }
           }
         }
         break;
@@ -136,6 +141,9 @@ export async function POST(req: NextRequest) {
           if (plan && CV_PLANS.includes(plan)) {
             await cancelSubscription(customer.email);
             logger.info("CV subscription cancelled", { email: customer.email, plan });
+          } else if (plan === "premium") {
+            await cancelPremium(customer.email);
+            logger.info("Premium subscription cancelled", { email: customer.email, plan });
           }
         }
         break;
@@ -149,12 +157,12 @@ export async function POST(req: NextRequest) {
 
         logger.info("Subscription status updated", { customerId, status, plan });
 
-        // If subscription became active after payment retry
-        if (status === "active" && plan && CV_PLANS.includes(plan)) {
-          const stripe = getStripe();
-          const customer = await stripe.customers.retrieve(customerId);
+        const stripe = getStripe();
+        const customer = await stripe.customers.retrieve(customerId);
 
-          if (customer && !customer.deleted && "email" in customer && customer.email) {
+        if (customer && !customer.deleted && "email" in customer && customer.email) {
+          // Handle CV plans
+          if (plan && CV_PLANS.includes(plan) && status === "active") {
             // Calculate expiration based on plan type
             const expiresAt = new Date();
             if (plan === "cv-monthly") {
@@ -169,6 +177,14 @@ export async function POST(req: NextRequest) {
               plan === "cv-monthly" ? "monthly" : "yearly",
               expiresAt.toISOString()
             );
+          }
+          // Handle premium plan
+          else if (plan === "premium") {
+            await updateSubscriptionStatus(
+              customer.email,
+              status as "active" | "canceled" | "past_due" | "unpaid" | "trialing"
+            );
+            logger.info("Premium subscription status updated", { email: customer.email, status });
           }
         }
         break;

@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { SALARY_DATA, CANTONES as CANTONES_DATA } from "@/lib/data";
+import PremiumGate from "@/components/PremiumGate";
+import MultiCantonComparator from "@/components/MultiCantonComparator";
 
 const CANTONES = CANTONES_DATA.map((c) => ({ slug: c.slug, nombre: c.nombre, tasa: c.tasa }));
 const SECTORES = Object.entries(SALARY_DATA).map(([nombre, v]) => ({ nombre, icono: v.icono, min: v.min, max: v.max }));
@@ -365,6 +367,37 @@ export default function SalarioNetoPage() {
                   No incluye impuesto eclesiástico ni complementos salariales (13º paga, vacaciones).
                 </p>
               </div>
+            </div>
+          )}
+
+          {/* Comparador Multi-Cantón Premium */}
+          {resultado && (
+            <div className="mt-6">
+              <PremiumGate
+                featureName="Comparador Multi-Cantón"
+                premiumBenefits={[
+                  "Compara los 26 cantones suizos simultáneamente",
+                  "Gráfico visual interactivo con ranking",
+                  "Top 5 y Bottom 5 cantones automáticos",
+                  "Calcula el ahorro anual mudándote al mejor cantón",
+                  "Exporta los datos para análisis detallado"
+                ]}
+              >
+                <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900">Comparación Multi-Cantón</h3>
+                      <p className="text-sm text-gray-600">Función Premium activa</p>
+                    </div>
+                  </div>
+                  <MultiCantonComparator salarioBruto={resultado.bruto} />
+                </div>
+              </PremiumGate>
             </div>
           )}
 

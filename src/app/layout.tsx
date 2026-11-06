@@ -9,6 +9,7 @@ import Analytics from "@/components/Analytics";
 import RegistroPrompt from "@/components/RegistroPrompt";
 import { AuthProvider } from "@/contexts/AuthContext";
 import AuthModal from "@/components/AuthModal";
+import SessionProvider from "@/components/SessionProvider";
 import { BASE_URL, SITE_NAME, TWITTER_HANDLE, organizationSchema, websiteSchema } from "@/lib/seo";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -92,15 +93,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             strategy="afterInteractive"
           />
         )}
-        <AuthProvider>
-          <Analytics />
-          <Header />
-          <AuthModal />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <CookieBanner />
-          <RegistroPrompt />
-        </AuthProvider>
+        <SessionProvider>
+          <AuthProvider>
+            <Analytics />
+            <Header />
+            <AuthModal />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <CookieBanner />
+            <RegistroPrompt />
+          </AuthProvider>
+        </SessionProvider>
         {process.env.VERCEL === "1" && <VercelAnalytics />}
         {process.env.VERCEL === "1" && <SpeedInsights />}
       </body>
