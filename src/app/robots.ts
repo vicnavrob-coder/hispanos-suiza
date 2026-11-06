@@ -1,22 +1,49 @@
-import type { MetadataRoute } from "next";
-import { BASE_URL } from "@/lib/seo";
+import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: "*",
-        allow: "/",
+        userAgent: '*',
+        allow: '/',
         disallow: [
-          "/api/",
-          "/_next/",
-          "/admin/",
-          "/unia/proponer/",
-          "/unia/elegir/",
+          '/api/',
+          '/admin/',
+          '/auth/',
+          '/productos/*/descargar/',
+          '/unia/proponer/',
+          '/unia/elegir/',
+          '/_next/',
+          '/static/',
+        ],
+      },
+      // GoogleBot específico - full access
+      {
+        userAgent: 'Googlebot',
+        allow: '/',
+        disallow: [
+          '/api/',
+          '/admin/',
+          '/auth/',
+          '/productos/*/descargar/',
+          '/unia/proponer/',
+          '/unia/elegir/',
+        ],
+      },
+      // Bingbot
+      {
+        userAgent: 'Bingbot',
+        allow: '/',
+        disallow: [
+          '/api/',
+          '/admin/',
+          '/auth/',
+          '/productos/*/descargar/',
+          '/unia/proponer/',
+          '/unia/elegir/',
         ],
       },
     ],
-    sitemap: `${BASE_URL}/sitemap.xml`,
-    host: BASE_URL,
+    sitemap: 'https://hispanosensuiza.ch/sitemap.xml',
   };
 }

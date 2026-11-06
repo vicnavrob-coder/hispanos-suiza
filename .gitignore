@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Documentation with credentials (keep local only)
+CUENTAS_HISPANOSSUIZA.md
+CUENTA_CORRECTA_RRSS.md
+DIAGNOSTICO_RRSS.md
+ESTRATEGIA_GROWTH_RRSS.md
+INSTRUCCIONES_PUBLICAR_RRSS.md
+README_RRSS.md
+RESUMEN_FINAL_RRSS.md
+SOCIAL_MEDIA_CONTENT_NOV2026.md
+scripts/publish-social-updates.js
