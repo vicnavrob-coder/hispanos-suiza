@@ -41,6 +41,9 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-sm" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}>
               <li>
+                <a href="https://vicnavrob-coder.github.io/swiss-starter-pack/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" style={{ color: "#C8102E" }}>Swiss Starter Pack</a>
+              </li>
+              <li>
                 <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
               </li>
               <li>
