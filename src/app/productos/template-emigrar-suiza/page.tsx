@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { buildMetadata, productSchema, faqSchema } from "@/lib/seo";
-import StripeCheckoutButton from "@/components/StripeCheckoutButton";
 
 export const metadata: Metadata = buildMetadata({
   title: "Template Notion: Checklist Completa Emigrar a Suiza",
@@ -303,12 +302,15 @@ export default function TemplateEmigrarPage() {
               </div>
 
               {/* CTA */}
-              <StripeCheckoutButton
+              <a
+                href="https://vnrsolutions.gumroad.com/l/template-emigrar-suiza"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 font-semibold px-6 py-4 md:py-3.5 rounded-full text-base md:text-sm transition-opacity hover:opacity-85 active:scale-[0.98] min-h-[52px] mb-6"
                 style={BTN_RED}
               >
                 Comprar template ahora →
-              </StripeCheckoutButton>
+              </a>
 
               {/* Garantía */}
               <div className="flex items-center gap-3">
@@ -714,12 +716,15 @@ export default function TemplateEmigrarPage() {
               Descuento 61% · Pago único
             </p>
 
-            <StripeCheckoutButton
+            <a
+              href="https://vnrsolutions.gumroad.com/l/template-emigrar-suiza"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-4 rounded-full text-base transition-opacity hover:opacity-85 active:scale-[0.98] w-full"
               style={BTN_RED}
             >
               Comprar ahora →
-            </StripeCheckoutButton>
+            </a>
 
             <p className="text-xs mt-4" style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#6B7280" }}>
               Descarga inmediata después del pago
