@@ -39,6 +39,16 @@ export default function CompraExitosaPage() {
             Gracias por tu compra. Tu template está listo.
           </p>
 
+          {/* Download Button */}
+          <a
+            href="/downloads/template-emigrar-suiza.zip"
+            download="template-emigrar-suiza.zip"
+            className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-4 rounded-full text-base transition-opacity hover:opacity-85 active:scale-[0.98] w-full mb-8"
+            style={{ background: "#C8102E", color: "#ffffff", fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
+          >
+            ⬇️ Descargar Template Ahora (41 KB)
+          </a>
+
           {/* Email notice */}
           <div
             className="rounded-xl p-6 mb-8"
@@ -51,13 +61,13 @@ export default function CompraExitosaPage() {
                   className="font-bold text-base mb-2"
                   style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#10B981" }}
                 >
-                  Revisa tu email
+                  También te enviamos un email
                 </h3>
                 <p
                   className="text-sm mb-2"
                   style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#E5E7EB" }}
                 >
-                  Te hemos enviado un email con el <strong>link de descarga del template</strong>.
+                  Recibirás un email con el <strong>link de descarga del template</strong> y próximos pasos.
                 </p>
                 <p
                   className="text-xs"
