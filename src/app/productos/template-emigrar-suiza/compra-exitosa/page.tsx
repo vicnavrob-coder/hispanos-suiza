@@ -41,7 +41,7 @@ export default function CompraExitosaPage() {
 
           {/* Download Button */}
           <a
-            href="/api/download-template"
+            href="/template-emigrar-suiza-v1.0.zip"
             download="template-emigrar-suiza.zip"
             className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-4 rounded-full text-base transition-opacity hover:opacity-85 active:scale-[0.98] w-full mb-8"
             style={{ background: "#C8102E", color: "#ffffff", fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}

@@ -58,7 +58,7 @@ export default async function DescargarPage({ params }: { params: Promise<{ id: 
           </p>
 
           <a
-            href="/api/download-template"
+            href="/template-emigrar-suiza-v1.0.zip"
             download="template-emigrar-suiza.zip"
             className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-4 rounded-full text-base transition-opacity hover:opacity-85 active:scale-[0.98] w-full mb-4"
             style={BTN_RED}
