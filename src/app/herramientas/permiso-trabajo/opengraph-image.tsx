@@ -30,7 +30,7 @@ export default function OgImage() {
           borderRadius: 20,
           padding: "8px 16px",
           marginBottom: 32,
-          width: "fit-content",
+          width: "90%",
         }}
       >
         <span style={{ fontSize: 20 }}>📋</span>
