@@ -159,8 +159,8 @@ export default function AdminPage() {
                 HispanosEnSuiza
                 <span className="text-sm font-normal bg-white/20 px-3 py-1 rounded-full">Admin</span>
               </h1>
-              <p className="text-white/80 text-sm mt-1">
-                Actualizado: {now}
+              <p className="text-white/90 text-sm mt-1">
+                Última actualización: {now}
               </p>
             </div>
             <div className="flex gap-3">
