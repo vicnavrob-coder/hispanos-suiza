@@ -1,12 +1,5 @@
 {
-  "crons": [
-    {
-      "path": "/api/cron/welcome-sequence",
-      "schedule": "0 8 * * *"
-    },
-    {
-      "path": "/api/cv-translator/process-pending",
-      "schedule": "0 9 * * *"
-    }
-  ]
+  "buildCommand": "TURBOPACK=0 next build",
+  "framework": "nextjs",
+  "installCommand": "npm install"
 }
