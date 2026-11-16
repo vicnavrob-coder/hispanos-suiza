@@ -26,7 +26,6 @@ type Cita = {
 
 export default function AdminPage() {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [contacts, setContacts] = useState<Subscriber[]>([]);
   const [users, setUsers] = useState<User[]>([]);
@@ -34,16 +33,11 @@ export default function AdminPage() {
   const [searchEmail, setSearchEmail] = useState('');
   const [searchUser, setSearchUser] = useState('');
   const [filterStep, setFilterStep] = useState<number | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const ADMIN_TOKEN = process.env.NEXT_PUBLIC_ADMIN_TOKEN || 'hispanos-admin-2026';
-  const token = searchParams.get('token');
+  const token = searchParams.get('token') || '';
 
   useEffect(() => {
-    if (token !== ADMIN_TOKEN) {
-      router.push('/admin?token=');
-      return;
-    }
-
     async function loadData() {
       try {
         const [contactsRes, usersRes, citasRes] = await Promise.all([
@@ -56,22 +50,26 @@ export default function AdminPage() {
         const usersData = await usersRes.json();
         const citasData = await citasRes.json();
 
+        // Check for authorization errors
+        if (contactsData?.error === 'Unauthorized' || usersData?.error === 'Unauthorized' || citasData?.error === 'Unauthorized') {
+          setError('No autorizado. Token inválido.');
+          setLoading(false);
+          return;
+        }
+
         setContacts(Array.isArray(contactsData) ? contactsData : []);
         setUsers(Array.isArray(usersData?.users) ? usersData.users : []);
         setCitas(Array.isArray(citasData) ? citasData : []);
       } catch (error) {
         console.error('Error loading data:', error);
+        setError('Error al cargar los datos');
       } finally {
         setLoading(false);
       }
     }
 
     loadData();
-  }, [token, ADMIN_TOKEN, router]);
-
-  if (token !== ADMIN_TOKEN) {
-    return null;
-  }
+  }, [token]);
 
   if (loading) {
     return (
@@ -79,6 +77,24 @@ export default function AdminPage() {
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-[#C8102E] border-t-transparent"></div>
           <p className="mt-4 text-slate-600 font-medium">Cargando dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
+        <div className="text-center max-w-md">
+          <div className="text-6xl mb-4">🔒</div>
+          <h1 className="text-2xl font-bold text-slate-800 mb-2">Acceso Denegado</h1>
+          <p className="text-slate-600 mb-6">{error}</p>
+          <a
+            href="/admin?token=hispanos-admin-2026"
+            className="inline-block bg-[#C8102E] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#A00D24] transition-colors"
+          >
+            Intentar de nuevo
+          </a>
         </div>
       </div>
     );
