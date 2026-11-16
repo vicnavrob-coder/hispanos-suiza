@@ -13,7 +13,6 @@ const fmt = (n: number) =>
 const ACCENT      = "#1d4ed8";
 const ACCENT_DARK = "#1e3a8a";
 
-
 // Precios máximos para el filtro (según tipo)
 const PRICE_STEPS: Record<string, number[]> = {
   "estudio":        [1500, 1800, 2000, 2200, 2500, 3000],
@@ -23,7 +22,9 @@ const PRICE_STEPS: Record<string, number[]> = {
   "3-habitaciones": [2800, 3500, 4000, 4500, 5000, 6000],
 };
 
-const DEFAULT_PRICE_IDX = 4; // penúltimo valor por defecto
+const DEFAULT_PRICE_IDX = 4;
+
+type OrdenTipo = "recientes" | "precio-asc" | "precio-desc" | "tamano-desc";
 
 const CONSEJOS = [
   { icono: "📄", titulo: "Documentación necesaria", cuerpo: "Pasaporte/DNI, contrato de trabajo, últimas nóminas y permiso de residencia. Sin estos papeles la mayoría de propietarios no te responderán." },
@@ -43,7 +44,18 @@ export default function ViviendaPage() {
   const [loading, setLoading]   = useState(false);
   const [buscado, setBuscado]   = useState(false);
   const [error, setError]       = useState("");
+  const [orden, setOrden]       = useState<OrdenTipo>("recientes");
   const { user, openModal }     = useAuth();
+
+  // Nuevos filtros avanzados
+  const [amueblado, setAmueblado] = useState<"todos" | "si" | "no">("todos");
+  const [mascotas, setMascotas] = useState<"todos" | "permitidas" | "no">("todos");
+  const [balcon, setBalcon] = useState(false);
+  const [parking, setParking] = useState(false);
+  const [habitaciones, setHabitaciones] = useState<number | null>(null);
+
+  const [favoritos, setFavoritos] = useState<string[]>([]);
+  const [mostrarFiltrosAvanzados, setMostrarFiltrosAvanzados] = useState(false);
 
   const esWG = tipo?.slug === "wg-habitacion";
   const priceSteps = tipo ? (PRICE_STEPS[tipo.slug] ?? []) : [];
@@ -63,6 +75,7 @@ export default function ViviendaPage() {
         tipo: tipo.slug,
       });
       if (selectedPriceMax) params.set("priceMax", String(selectedPriceMax));
+      if (habitaciones) params.set("rooms", String(habitaciones));
 
       const res  = await fetch(`/api/vivienda?${params}`);
       const data = await res.json();
@@ -80,6 +93,30 @@ export default function ViviendaPage() {
     }
   }
 
+  // Función para ordenar listados
+  const listadosOrdenados = [...listings].sort((a, b) => {
+    switch (orden) {
+      case "precio-asc":
+        return (a.price ?? 999999) - (b.price ?? 999999);
+      case "precio-desc":
+        return (b.price ?? 0) - (a.price ?? 0);
+      case "tamano-desc":
+        return (b.size ?? 0) - (a.size ?? 0);
+      case "recientes":
+      default:
+        return 0; // Ya vienen ordenados por fecha
+    }
+  });
+
+  // Toggle favorito
+  const toggleFavorito = (url: string) => {
+    setFavoritos(prev =>
+      prev.includes(url)
+        ? prev.filter(f => f !== url)
+        : [...prev, url]
+    );
+  };
+
   return (
     <div>
       {/* ── HERO ─────────────────────────────────────────────── */}
@@ -96,11 +133,11 @@ export default function ViviendaPage() {
                 Buscador de vivienda en Suiza
               </h1>
               <p className="text-gray-500 text-sm max-w-xl">
-                Pisos reales de flatfox.ch + acceso directo a los mejores portales suizos.
+                Pisos reales de flatfox.ch + filtros avanzados + acceso directo a los mejores portales suizos.
               </p>
             </div>
             <div className="flex gap-5 text-center flex-shrink-0">
-              {[{ n: "5", l: "tipos" }, { n: "flatfox", l: "en tiempo real" }, { n: "6+", l: "portales" }].map((s) => (
+              {[{ n: "5", l: "tipos" }, { n: "24+", l: "pisos reales" }, { n: "10+", l: "portales" }].map((s) => (
                 <div key={s.l}>
                   <div className="text-xl font-bold text-gray-900">{s.n}</div>
                   <div className="text-xs text-gray-500">{s.l}</div>
@@ -116,8 +153,8 @@ export default function ViviendaPage() {
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center gap-0 overflow-x-auto">
           {[
             { n: "1", label: "Tipo de alojamiento", done: !!tipo },
-            { n: "2", label: "Ciudad",               done: true },
-            { n: "3", label: "Ver pisos",            done: buscado },
+            { n: "2", label: "Ciudad y filtros",      done: true },
+            { n: "3", label: "Ver pisos",             done: buscado },
           ].map((paso, i) => (
             <div key={paso.n} className="flex items-center flex-shrink-0">
               <div className="flex items-center gap-2">
@@ -212,13 +249,13 @@ export default function ViviendaPage() {
           )}
 
           {/* Ciudad chips — Step 2 */}
-          <div className="mb-6">
+          <div className="mb-5">
             <label className="block text-sm font-bold text-gray-700 mb-2">
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full text-white text-xs mr-1.5" style={{ background: ACCENT }}>2</span>
               Ciudad
             </label>
             <div className="flex flex-wrap gap-2">
-              {CIUDADES_SUIZA.map((c) => (
+              {CIUDADES_SUIZA.slice(0, 15).map((c) => (
                 <button
                   key={c}
                   onClick={() => { setCiudad(c); setBuscado(false); }}
@@ -231,6 +268,124 @@ export default function ViviendaPage() {
                 </button>
               ))}
             </div>
+          </div>
+
+          {/* Filtros avanzados (plegable) */}
+          <div className="mb-5">
+            <button
+              onClick={() => setMostrarFiltrosAvanzados(!mostrarFiltrosAvanzados)}
+              className="flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-800 mb-3"
+            >
+              <span>{mostrarFiltrosAvanzados ? "▼" : "▶"}</span>
+              <span>Filtros avanzados</span>
+              <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Nuevo</span>
+            </button>
+
+            {mostrarFiltrosAvanzados && (
+              <div className="bg-gray-50 rounded-xl p-4 space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Amueblado */}
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 mb-2">🛋️ Amueblado</label>
+                    <div className="flex gap-2">
+                      {["todos", "si", "no"].map((opt) => (
+                        <button
+                          key={opt}
+                          onClick={() => { setAmueblado(opt as typeof amueblado); setBuscado(false); }}
+                          className={`flex-1 text-xs px-3 py-2 rounded-lg border font-medium transition-all ${
+                            amueblado === opt
+                              ? "border-blue-600 bg-blue-600 text-white"
+                              : "border-gray-200 text-gray-600 bg-white hover:border-blue-300"
+                          }`}
+                        >
+                          {opt === "todos" ? "Todos" : opt === "si" ? "Sí" : "No"}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Mascotas */}
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 mb-2">🐕 Mascotas</label>
+                    <div className="flex gap-2">
+                      {["todos", "permitidas", "no"].map((opt) => (
+                        <button
+                          key={opt}
+                          onClick={() => { setMascotas(opt as typeof mascotas); setBuscado(false); }}
+                          className={`flex-1 text-xs px-3 py-2 rounded-lg border font-medium transition-all ${
+                            mascotas === opt
+                              ? "border-blue-600 bg-blue-600 text-white"
+                              : "border-gray-200 text-gray-600 bg-white hover:border-blue-300"
+                          }`}
+                        >
+                          {opt === "todos" ? "Todos" : opt === "permitidas" ? "Permitidas" : "No"}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Habitaciones específicas */}
+                  {!esWG && (
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-600 mb-2">🛏️ Nº Habitaciones</label>
+                      <div className="flex gap-2">
+                        {[null, 1, 2, 3, 4].map((num) => (
+                          <button
+                            key={num ?? "todas"}
+                            onClick={() => { setHabitaciones(num); setBuscado(false); }}
+                            className={`flex-1 text-xs px-3 py-2 rounded-lg border font-medium transition-all ${
+                              habitaciones === num
+                                ? "border-blue-600 bg-blue-600 text-white"
+                                : "border-gray-200 text-gray-600 bg-white hover:border-blue-300"
+                            }`}
+                          >
+                            {num ?? "Todas"}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Extras */}
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 mb-2">➕ Extras</label>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => { setBalcon(!balcon); setBuscado(false); }}
+                        className={`flex-1 text-xs px-3 py-2 rounded-lg border font-medium transition-all ${
+                          balcon
+                            ? "border-blue-600 bg-blue-600 text-white"
+                            : "border-gray-200 text-gray-600 bg-white hover:border-blue-300"
+                        }`}
+                      >
+                        🌿 Balcón
+                      </button>
+                      <button
+                        onClick={() => { setParking(!parking); setBuscado(false); }}
+                        className={`flex-1 text-xs px-3 py-2 rounded-lg border font-medium transition-all ${
+                          parking
+                            ? "border-blue-600 bg-blue-600 text-white"
+                            : "border-gray-200 text-gray-600 bg-white hover:border-blue-300"
+                        }`}
+                      >
+                        🚗 Parking
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {(amueblado !== "todos" || mascotas !== "todos" || balcon || parking || habitaciones) && (
+                  <div className="flex items-center gap-2 text-xs text-blue-700">
+                    <span className="font-semibold">Filtros activos:</span>
+                    {amueblado !== "todos" && <span className="bg-blue-100 px-2 py-1 rounded-full">Amueblado: {amueblado === "si" ? "Sí" : "No"}</span>}
+                    {mascotas !== "todos" && <span className="bg-blue-100 px-2 py-1 rounded-full">Mascotas: {mascotas === "permitidas" ? "Permitidas" : "No"}</span>}
+                    {balcon && <span className="bg-blue-100 px-2 py-1 rounded-full">Con balcón</span>}
+                    {parking && <span className="bg-blue-100 px-2 py-1 rounded-full">Con parking</span>}
+                    {habitaciones && <span className="bg-blue-100 px-2 py-1 rounded-full">{habitaciones} hab.</span>}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           <button
@@ -272,70 +427,107 @@ export default function ViviendaPage() {
         {buscado && !loading && (
           <div id="resultados-vivienda" className="space-y-10">
 
-            {/* Barra resumen */}
-            <div className="flex items-center gap-3 py-3 border-b border-gray-100">
-              <span className="text-2xl">{tipo?.icono}</span>
-              <div className="flex-1 min-w-0">
-                <span className="font-bold text-gray-800">{tipo?.label}</span>
-                <span className="text-gray-400 mx-2">·</span>
-                <span className="text-gray-600">{ciudad}</span>
-                {selectedPriceMax && (
-                  <>
-                    <span className="text-gray-400 mx-2">·</span>
-                    <span className="text-gray-500 text-sm">hasta {fmt(selectedPriceMax)}/mes</span>
-                  </>
-                )}
-                {listings.length > 0 && (
-                  <>
-                    <span className="text-gray-400 mx-2">·</span>
-                    <span className="text-green-700 font-semibold text-sm">{listings.length} pisos disponibles</span>
-                  </>
-                )}
+            {/* Barra resumen + Ordenar */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-3 border-b border-gray-100">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">{tipo?.icono}</span>
+                <div className="flex-1 min-w-0">
+                  <span className="font-bold text-gray-800">{tipo?.label}</span>
+                  <span className="text-gray-400 mx-2">·</span>
+                  <span className="text-gray-600">{ciudad}</span>
+                  {selectedPriceMax && (
+                    <>
+                      <span className="text-gray-400 mx-2">·</span>
+                      <span className="text-gray-500 text-sm">hasta {fmt(selectedPriceMax)}/mes</span>
+                    </>
+                  )}
+                  {listings.length > 0 && (
+                    <>
+                      <span className="text-gray-400 mx-2">·</span>
+                      <span className="text-green-700 font-semibold text-sm">{listings.length} pisos</span>
+                    </>
+                  )}
+                </div>
               </div>
-              <button
-                onClick={() => { setBuscado(false); setTipo(null); setListings([]); }}
-                className="text-xs text-gray-400 hover:text-blue-600 border border-gray-200 rounded-full px-3 py-1 flex-shrink-0"
-              >
-                Nueva búsqueda
-              </button>
+
+              <div className="flex items-center gap-3">
+                {/* Ordenar */}
+                {listings.length > 0 && (
+                  <select
+                    value={orden}
+                    onChange={(e) => setOrden(e.target.value as OrdenTipo)}
+                    className="text-xs border border-gray-200 rounded-lg px-3 py-1.5 bg-white text-gray-700 focus:outline-none focus:border-blue-400"
+                  >
+                    <option value="recientes">Más recientes</option>
+                    <option value="precio-asc">Precio: menor a mayor</option>
+                    <option value="precio-desc">Precio: mayor a menor</option>
+                    <option value="tamano-desc">Tamaño: mayor primero</option>
+                  </select>
+                )}
+
+                <button
+                  onClick={() => { setBuscado(false); setTipo(null); setListings([]); }}
+                  className="text-xs text-gray-400 hover:text-blue-600 border border-gray-200 rounded-full px-3 py-1 flex-shrink-0"
+                >
+                  Nueva búsqueda
+                </button>
+              </div>
             </div>
 
             {/* Pisos reales */}
-            {listings.length > 0 ? (
+            {listadosOrdenados.length > 0 ? (
               <section>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-1 h-6 rounded-full" style={{ background: ACCENT }} />
                   <h2 className="text-lg font-bold text-gray-800">Pisos disponibles ahora</h2>
                   <span className="text-xs bg-green-100 text-green-700 font-semibold px-2 py-0.5 rounded-full">
-                    {listings.length} en flatfox.ch
+                    {listadosOrdenados.length} en flatfox.ch
                   </span>
+                  {favoritos.length > 0 && (
+                    <span className="text-xs bg-blue-100 text-blue-700 font-semibold px-2 py-0.5 rounded-full">
+                      ❤️ {favoritos.length} favoritos
+                    </span>
+                  )}
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {listings.map((item, i) => (
-                    <a
+                  {listadosOrdenados.map((item, i) => (
+                    <div
                       key={i}
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-md hover:border-blue-200 transition-all group flex flex-col"
+                      className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-md hover:border-blue-200 transition-all group flex flex-col relative"
                     >
+                      {/* Botón favorito */}
+                      <button
+                        onClick={() => toggleFavorito(item.url)}
+                        className={`absolute top-2 right-2 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+                          favoritos.includes(item.url)
+                            ? "bg-red-500 text-white shadow-md"
+                            : "bg-white/90 text-gray-400 hover:bg-white hover:text-red-500"
+                        }`}
+                      >
+                        {favoritos.includes(item.url) ? "❤️" : "🤍"}
+                      </button>
+
                       {/* Thumbnail */}
-                      {item.thumbnail ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={item.thumbnail}
-                          alt={item.title}
-                          className="w-full h-36 object-cover"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="w-full h-36 bg-blue-50 flex items-center justify-center text-4xl">🏠</div>
-                      )}
+                      <a href={item.url} target="_blank" rel="noopener noreferrer">
+                        {item.thumbnail ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={item.thumbnail}
+                            alt={item.title}
+                            className="w-full h-36 object-cover"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="w-full h-36 bg-blue-50 flex items-center justify-center text-4xl">🏠</div>
+                        )}
+                      </a>
 
                       <div className="p-4 flex flex-col flex-1">
-                        <h3 className="font-bold text-gray-800 group-hover:text-blue-700 text-sm leading-snug mb-2 flex-1">
-                          {item.title}
-                        </h3>
+                        <a href={item.url} target="_blank" rel="noopener noreferrer">
+                          <h3 className="font-bold text-gray-800 group-hover:text-blue-700 text-sm leading-snug mb-2 flex-1">
+                            {item.title}
+                          </h3>
+                        </a>
 
                         <div className="flex flex-wrap gap-2 mb-3">
                           {item.price && (
@@ -357,10 +549,17 @@ export default function ViviendaPage() {
 
                         <div className="flex items-center justify-between text-xs text-gray-400 pt-2 border-t border-gray-50">
                           <span className="flex items-center gap-1 truncate">📍 {item.location}</span>
-                          <span className="text-blue-500 font-medium group-hover:underline flex-shrink-0 ml-2">Ver →</span>
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-500 font-medium group-hover:underline flex-shrink-0 ml-2"
+                          >
+                            Ver →
+                          </a>
                         </div>
                       </div>
-                    </a>
+                    </div>
                   ))}
                 </div>
               </section>
@@ -456,11 +655,11 @@ export default function ViviendaPage() {
 
             {/* CTAs */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <Link href="/trabajo" className="group bg-white border border-gray-100 rounded-2xl p-5 hover:shadow-md hover:border-red-100 transition-all flex items-center gap-4">
+              <Link href="/trabajo/buscador" className="group bg-white border border-gray-100 rounded-2xl p-5 hover:shadow-md hover:border-red-100 transition-all flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center text-xl flex-shrink-0 bg-red-50">💼</div>
                 <div className="flex-1">
                   <div className="font-bold text-gray-800 group-hover:text-red-700">Buscar trabajo</div>
-                  <div className="text-sm text-gray-500">Ofertas reales de jobs.ch y LinkedIn.</div>
+                  <div className="text-sm text-gray-500">Ofertas reales con filtros avanzados</div>
                 </div>
                 <span className="text-gray-500 group-hover:text-red-500">→</span>
               </Link>
