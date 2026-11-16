@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 type Subscriber = {
   email: string;
@@ -22,6 +22,7 @@ type User = {
 
 type Cita = {
   status: string;
+  createdAt?: string;
 };
 
 export default function AdminPage() {
@@ -30,10 +31,10 @@ export default function AdminPage() {
   const [contacts, setContacts] = useState<Subscriber[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [citas, setCitas] = useState<Cita[]>([]);
-  const [searchEmail, setSearchEmail] = useState('');
-  const [searchUser, setSearchUser] = useState('');
-  const [filterStep, setFilterStep] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'subscribers' | 'unia'>('overview');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sortBy, setSortBy] = useState<'email' | 'date' | 'step'>('date');
 
   const token = searchParams.get('token') || '';
 
@@ -50,7 +51,6 @@ export default function AdminPage() {
         const usersData = await usersRes.json();
         const citasData = await citasRes.json();
 
-        // Check for authorization errors
         if (contactsData?.error === 'Unauthorized' || usersData?.error === 'Unauthorized' || citasData?.error === 'Unauthorized') {
           setError('No autorizado. Token inválido.');
           setLoading(false);
@@ -73,10 +73,10 @@ export default function AdminPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-[#C8102E] border-t-transparent"></div>
-          <p className="mt-4 text-slate-600 font-medium">Cargando dashboard...</p>
+          <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-slate-200 border-t-slate-800"></div>
+          <p className="mt-4 text-slate-600 font-medium">Cargando datos del dashboard...</p>
         </div>
       </div>
     );
@@ -84,494 +84,651 @@ export default function AdminPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
-        <div className="text-center max-w-md">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="text-center max-w-md bg-white rounded-2xl shadow-lg p-8">
           <div className="text-6xl mb-4">🔒</div>
-          <h1 className="text-2xl font-bold text-slate-800 mb-2">Acceso Denegado</h1>
+          <h1 className="text-2xl font-bold text-slate-900 mb-2">Acceso Denegado</h1>
           <p className="text-slate-600 mb-6">{error}</p>
           <a
             href="/admin?token=hispanos-admin-2026"
-            className="inline-block bg-[#C8102E] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#A00D24] transition-colors"
+            className="inline-block bg-slate-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-800 transition-colors"
           >
-            Intentar de nuevo
+            Reintentar
           </a>
         </div>
       </div>
     );
   }
 
-  // Stats calculation
-  const now = new Date().toLocaleString('es-ES', { timeZone: 'Europe/Zurich' });
-  const todayStart = new Date();
-  todayStart.setHours(0, 0, 0, 0);
+  // Calculate stats
+  const now = new Date();
+  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const yesterdayStart = new Date(todayStart);
+  yesterdayStart.setDate(yesterdayStart.getDate() - 1);
   const weekStart = new Date(todayStart);
   weekStart.setDate(weekStart.getDate() - 7);
+  const monthStart = new Date(todayStart);
+  monthStart.setDate(monthStart.getDate() - 30);
 
-  const usersStats = {
-    total: users.length,
-    google: users.filter(u => u.provider === 'google').length,
-    email: users.filter(u => u.provider === 'email').length,
-    today: users.filter(u => new Date(u.createdAt || '') >= todayStart).length,
-    thisWeek: users.filter(u => new Date(u.createdAt || '') >= weekStart).length,
-  };
+  // User stats
+  const totalUsers = users.length;
+  const usersToday = users.filter(u => u.createdAt && new Date(u.createdAt) >= todayStart).length;
+  const usersYesterday = users.filter(u => u.createdAt && new Date(u.createdAt) >= yesterdayStart && new Date(u.createdAt) < todayStart).length;
+  const usersThisWeek = users.filter(u => u.createdAt && new Date(u.createdAt) >= weekStart).length;
+  const usersThisMonth = users.filter(u => u.createdAt && new Date(u.createdAt) >= monthStart).length;
+  const googleUsers = users.filter(u => u.provider === 'google').length;
+  const emailUsers = users.filter(u => u.provider === 'email').length;
 
-  const citasStats = {
-    total: citas.length,
-    pendientes: citas.filter(c => c.status === 'solicitud').length,
-    propuestas: citas.filter(c => c.status === 'propuesta').length,
-    confirmadas: citas.filter(c => c.status === 'confirmada').length,
-  };
+  // Subscriber stats
+  const totalSubscribers = contacts.length;
+  const activeSubscribers = contacts.filter(c => !c.blacklisted).length;
+  const blacklistedSubscribers = contacts.filter(c => c.blacklisted).length;
+  const step0 = contacts.filter(c => c.welcomeStep === 0).length;
+  const step1to4 = contacts.filter(c => c.welcomeStep > 0 && c.welcomeStep < 5).length;
+  const step5 = contacts.filter(c => c.welcomeStep === 5).length;
+  const subscribersToday = contacts.filter(c => c.createdAt && new Date(c.createdAt) >= todayStart).length;
+  const subscribersThisWeek = contacts.filter(c => c.createdAt && new Date(c.createdAt) >= weekStart).length;
 
-  const total = contacts.length;
-  const stepDist: Record<number, number> = {};
-  for (const c of contacts) {
-    stepDist[c.welcomeStep] = (stepDist[c.welcomeStep] || 0) + 1;
-  }
-  const completed = stepDist[5] || 0;
-  const inProgress = Object.entries(stepDist)
-    .filter(([k]) => Number(k) > 0 && Number(k) < 5)
-    .reduce((a, [, v]) => a + v, 0);
-  const notStarted = stepDist[0] || 0;
+  // UNIA stats
+  const totalCitas = citas.length;
+  const citasPendientes = citas.filter(c => c.status === 'solicitud').length;
+  const citasPropuestas = citas.filter(c => c.status === 'propuesta').length;
+  const citasConfirmadas = citas.filter(c => c.status === 'confirmada').length;
+  const citasToday = citas.filter(c => c.createdAt && new Date(c.createdAt) >= todayStart).length;
+  const citasThisWeek = citas.filter(c => c.createdAt && new Date(c.createdAt) >= weekStart).length;
 
-  // Filter contacts
-  const filteredContacts = contacts.filter(c => {
-    const matchesEmail = c.email.toLowerCase().includes(searchEmail.toLowerCase()) ||
-                         (c.nombre || '').toLowerCase().includes(searchEmail.toLowerCase());
-    const matchesStep = filterStep === null || c.welcomeStep === filterStep;
-    return matchesEmail && matchesStep;
-  });
+  // Growth rate
+  const userGrowthRate = usersYesterday > 0 ? ((usersToday - usersYesterday) / usersYesterday * 100) : 0;
+  const conversionRate = totalUsers > 0 ? (activeSubscribers / totalUsers * 100) : 0;
 
-  // Filter users
-  const filteredUsers = users.filter(u =>
-    u.email.toLowerCase().includes(searchUser.toLowerCase()) ||
-    (u.nombre || '').toLowerCase().includes(searchUser.toLowerCase())
-  );
+  // Filter and sort
+  const filteredData = (() => {
+    switch (activeTab) {
+      case 'users':
+        return users
+          .filter(u =>
+            u.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            (u.nombre || '').toLowerCase().includes(searchTerm.toLowerCase())
+          )
+          .sort((a, b) => {
+            if (sortBy === 'email') return a.email.localeCompare(b.email);
+            if (sortBy === 'date') return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
+            return 0;
+          });
+      case 'subscribers':
+        return contacts
+          .filter(c =>
+            c.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            (c.nombre || '').toLowerCase().includes(searchTerm.toLowerCase())
+          )
+          .sort((a, b) => {
+            if (sortBy === 'email') return a.email.localeCompare(b.email);
+            if (sortBy === 'date') return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
+            if (sortBy === 'step') return b.welcomeStep - a.welcomeStep;
+            return 0;
+          });
+      case 'unia':
+        return citas.sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime());
+      default:
+        return [];
+    }
+  })();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-[#C8102E] via-[#A00D24] to-[#0032A0] text-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-black tracking-tight flex items-center gap-3">
-                <span className="text-3xl">🇨🇭</span>
-                HispanosEnSuiza
-                <span className="text-sm font-normal bg-white/20 px-3 py-1 rounded-full">Admin</span>
-              </h1>
-              <p className="text-white/90 text-sm mt-1">
-                Última actualización: {now}
-              </p>
-            </div>
-            <div className="flex gap-3">
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/20">
-                <div className="text-xs text-white/70">Usuarios</div>
-                <div className="text-2xl font-bold">{usersStats.total}</div>
+    <div className="min-h-screen bg-slate-50">
+      {/* Top Header */}
+      <div className="bg-white border-b border-slate-200 sticky top-0 z-10">
+        <div className="max-w-[1600px] mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🇨🇭</span>
+                <h1 className="text-xl font-bold text-slate-900">HispanosEnSuiza</h1>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/20">
-                <div className="text-xs text-white/70">Suscriptores</div>
-                <div className="text-2xl font-bold">{total}</div>
+              <span className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-md font-medium">
+                Dashboard Admin
+              </span>
+            </div>
+            <div className="flex items-center gap-6">
+              <div className="text-sm text-slate-500">
+                {now.toLocaleDateString('es-ES', {
+                  weekday: 'short',
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Top Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {/* Total Users */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Usuarios Totales</p>
-                <p className="text-3xl font-black text-slate-900 mt-2">{usersStats.total}</p>
-                <p className="text-xs text-emerald-600 font-semibold mt-1">
-                  +{usersStats.today} hoy · +{usersStats.thisWeek} esta semana
-                </p>
+      {/* Navigation Tabs */}
+      <div className="bg-white border-b border-slate-200">
+        <div className="max-w-[1600px] mx-auto px-6">
+          <div className="flex gap-1">
+            <button
+              onClick={() => setActiveTab('overview')}
+              className={`px-4 py-3 text-sm font-medium transition-all border-b-2 ${
+                activeTab === 'overview'
+                  ? 'border-slate-900 text-slate-900'
+                  : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
+              }`}
+            >
+              📊 Overview
+            </button>
+            <button
+              onClick={() => setActiveTab('users')}
+              className={`px-4 py-3 text-sm font-medium transition-all border-b-2 ${
+                activeTab === 'users'
+                  ? 'border-slate-900 text-slate-900'
+                  : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
+              }`}
+            >
+              👤 Usuarios ({totalUsers})
+            </button>
+            <button
+              onClick={() => setActiveTab('subscribers')}
+              className={`px-4 py-3 text-sm font-medium transition-all border-b-2 ${
+                activeTab === 'subscribers'
+                  ? 'border-slate-900 text-slate-900'
+                  : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
+              }`}
+            >
+              ✉️ Suscriptores ({totalSubscribers})
+            </button>
+            <button
+              onClick={() => setActiveTab('unia')}
+              className={`px-4 py-3 text-sm font-medium transition-all border-b-2 ${
+                activeTab === 'unia'
+                  ? 'border-slate-900 text-slate-900'
+                  : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
+              }`}
+            >
+              🤝 UNIA Citas ({totalCitas})
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-[1600px] mx-auto px-6 py-8">
+
+        {/* OVERVIEW TAB */}
+        {activeTab === 'overview' && (
+          <div className="space-y-6">
+            {/* Key Metrics */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Total Users */}
+              <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="text-sm font-medium text-slate-600">Total Usuarios</div>
+                  <div className="text-2xl">👥</div>
+                </div>
+                <div className="text-3xl font-bold text-slate-900 mb-1">{totalUsers.toLocaleString()}</div>
+                <div className="flex items-center gap-2 text-xs">
+                  <span className={`font-semibold ${userGrowthRate >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    {userGrowthRate >= 0 ? '↗' : '↘'} {Math.abs(userGrowthRate).toFixed(1)}%
+                  </span>
+                  <span className="text-slate-500">vs ayer</span>
+                </div>
+                <div className="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-600">
+                  <div className="flex justify-between mb-1">
+                    <span>Hoy: {usersToday}</span>
+                    <span>Semana: {usersThisWeek}</span>
+                  </div>
+                </div>
               </div>
-              <div className="bg-blue-100 rounded-xl p-3">
-                <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
+
+              {/* Total Subscribers */}
+              <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="text-sm font-medium text-slate-600">Suscriptores Email</div>
+                  <div className="text-2xl">📬</div>
+                </div>
+                <div className="text-3xl font-bold text-slate-900 mb-1">{totalSubscribers.toLocaleString()}</div>
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="font-semibold text-blue-600">{activeSubscribers} activos</span>
+                  <span className="text-slate-400">•</span>
+                  <span className="text-slate-500">{blacklistedSubscribers} bloqueados</span>
+                </div>
+                <div className="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-600">
+                  <div className="flex justify-between mb-1">
+                    <span>Hoy: {subscribersToday}</span>
+                    <span>Semana: {subscribersThisWeek}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* UNIA Citas */}
+              <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="text-sm font-medium text-slate-600">Citas UNIA</div>
+                  <div className="text-2xl">📅</div>
+                </div>
+                <div className="text-3xl font-bold text-slate-900 mb-1">{totalCitas.toLocaleString()}</div>
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="font-semibold text-orange-600">{citasPendientes} pendientes</span>
+                  <span className="text-slate-400">•</span>
+                  <span className="text-green-600">{citasConfirmadas} confirmadas</span>
+                </div>
+                <div className="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-600">
+                  <div className="flex justify-between mb-1">
+                    <span>Hoy: {citasToday}</span>
+                    <span>Semana: {citasThisWeek}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Conversion Rate */}
+              <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="text-sm font-medium text-slate-600">Tasa Conversión</div>
+                  <div className="text-2xl">📈</div>
+                </div>
+                <div className="text-3xl font-bold text-slate-900 mb-1">{conversionRate.toFixed(1)}%</div>
+                <div className="text-xs text-slate-500">Suscriptores / Usuarios</div>
+                <div className="mt-3 pt-3 border-t border-slate-100">
+                  <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-blue-500 to-green-500 rounded-full transition-all"
+                      style={{ width: `${Math.min(conversionRate, 100)}%` }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="mt-4 flex gap-2">
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-700">
-                🔴 {usersStats.google} Google
-              </span>
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-purple-700">
-                🟣 {usersStats.email} Email
-              </span>
+
+            {/* Charts Row */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* User Distribution */}
+              <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
+                <h3 className="text-sm font-semibold text-slate-900 mb-4">Distribución de Usuarios</h3>
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-slate-600 flex items-center gap-2">
+                        <span className="w-3 h-3 rounded-full bg-blue-500"></span>
+                        Google OAuth
+                      </span>
+                      <span className="font-semibold text-slate-900">{googleUsers} ({totalUsers > 0 ? (googleUsers/totalUsers*100).toFixed(1) : 0}%)</span>
+                    </div>
+                    <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-blue-500 rounded-full transition-all"
+                        style={{ width: `${totalUsers > 0 ? (googleUsers/totalUsers*100) : 0}%` }}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-slate-600 flex items-center gap-2">
+                        <span className="w-3 h-3 rounded-full bg-green-500"></span>
+                        Email/Password
+                      </span>
+                      <span className="font-semibold text-slate-900">{emailUsers} ({totalUsers > 0 ? (emailUsers/totalUsers*100).toFixed(1) : 0}%)</span>
+                    </div>
+                    <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-green-500 rounded-full transition-all"
+                        style={{ width: `${totalUsers > 0 ? (emailUsers/totalUsers*100) : 0}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Email Sequence Progress */}
+              <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
+                <h3 className="text-sm font-semibold text-slate-900 mb-4">Progreso Secuencia Email</h3>
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-slate-600 flex items-center gap-2">
+                        <span className="w-3 h-3 rounded-full bg-slate-400"></span>
+                        No iniciado (Step 0)
+                      </span>
+                      <span className="font-semibold text-slate-900">{step0} ({totalSubscribers > 0 ? (step0/totalSubscribers*100).toFixed(1) : 0}%)</span>
+                    </div>
+                    <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-slate-400 rounded-full transition-all"
+                        style={{ width: `${totalSubscribers > 0 ? (step0/totalSubscribers*100) : 0}%` }}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-slate-600 flex items-center gap-2">
+                        <span className="w-3 h-3 rounded-full bg-orange-500"></span>
+                        En progreso (Step 1-4)
+                      </span>
+                      <span className="font-semibold text-slate-900">{step1to4} ({totalSubscribers > 0 ? (step1to4/totalSubscribers*100).toFixed(1) : 0}%)</span>
+                    </div>
+                    <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-orange-500 rounded-full transition-all"
+                        style={{ width: `${totalSubscribers > 0 ? (step1to4/totalSubscribers*100) : 0}%` }}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-slate-600 flex items-center gap-2">
+                        <span className="w-3 h-3 rounded-full bg-green-500"></span>
+                        Completado (Step 5)
+                      </span>
+                      <span className="font-semibold text-slate-900">{step5} ({totalSubscribers > 0 ? (step5/totalSubscribers*100).toFixed(1) : 0}%)</span>
+                    </div>
+                    <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-green-500 rounded-full transition-all"
+                        style={{ width: `${totalSubscribers > 0 ? (step5/totalSubscribers*100) : 0}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Stats Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                <div className="text-xs font-medium text-blue-700 mb-1">Usuarios Mes</div>
+                <div className="text-2xl font-bold text-blue-900">{usersThisMonth}</div>
+              </div>
+              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+                <div className="text-xs font-medium text-green-700 mb-1">Suscriptores Semana</div>
+                <div className="text-2xl font-bold text-green-900">{subscribersThisWeek}</div>
+              </div>
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+                <div className="text-xs font-medium text-orange-700 mb-1">Citas Pendientes</div>
+                <div className="text-2xl font-bold text-orange-900">{citasPendientes}</div>
+              </div>
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                <div className="text-xs font-medium text-purple-700 mb-1">Citas Confirmadas</div>
+                <div className="text-2xl font-bold text-purple-900">{citasConfirmadas}</div>
+              </div>
             </div>
           </div>
+        )}
 
-          {/* Email Subscribers */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Suscriptores Email</p>
-                <p className="text-3xl font-black text-slate-900 mt-2">{total}</p>
-                <p className="text-xs text-slate-500 font-semibold mt-1">
-                  {inProgress} en secuencia · {completed} completados
-                </p>
-              </div>
-              <div className="bg-indigo-100 rounded-xl p-3">
-                <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-            </div>
-            <div className="mt-4">
-              <div className="flex items-center gap-2">
-                <div className="flex-1 bg-slate-100 rounded-full h-2 overflow-hidden">
-                  <div
-                    className="bg-gradient-to-r from-indigo-500 to-purple-500 h-full rounded-full transition-all"
-                    style={{ width: `${total > 0 ? (completed / total) * 100 : 0}%` }}
+        {/* USERS TAB */}
+        {activeTab === 'users' && (
+          <div className="space-y-4">
+            {/* Filters */}
+            <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex-1">
+                  <input
+                    type="text"
+                    placeholder="Buscar por email o nombre..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
                   />
                 </div>
-                <span className="text-xs font-bold text-slate-600">{Math.round((completed / total) * 100)}%</span>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as any)}
+                  className="px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+                >
+                  <option value="date">Más recientes</option>
+                  <option value="email">Email A-Z</option>
+                </select>
               </div>
             </div>
-          </div>
 
-          {/* UNIA Citas */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Citas UNIA</p>
-                <p className="text-3xl font-black text-slate-900 mt-2">{citasStats.total}</p>
-                <p className="text-xs text-slate-500 font-semibold mt-1">
-                  {citasStats.pendientes} pendientes
-                </p>
+            {/* Table */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-slate-50 border-b border-slate-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Usuario</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Provider</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Logins</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Registrado</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200">
+                    {filteredData.slice(0, 50).map((user: any, idx) => (
+                      <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                        <td className="px-6 py-4">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                              {(user.nombre || user.email)[0].toUpperCase()}
+                            </div>
+                            <div>
+                              <div className="text-sm font-medium text-slate-900">{user.nombre || 'Sin nombre'}</div>
+                              <div className="text-xs text-slate-500">{user.email}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium ${
+                            user.provider === 'google'
+                              ? 'bg-blue-100 text-blue-700'
+                              : 'bg-green-100 text-green-700'
+                          }`}>
+                            {user.provider === 'google' ? '🔵 Google' : '✉️ Email'}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-slate-900">{user.loginCount || 1}</td>
+                        <td className="px-6 py-4 text-sm text-slate-600">
+                          {user.createdAt ? new Date(user.createdAt).toLocaleDateString('es-ES', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                          }) : 'N/A'}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-              <div className="bg-amber-100 rounded-xl p-3">
-                <svg className="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {citasStats.propuestas > 0 && (
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-orange-100 text-orange-700">
-                  {citasStats.propuestas} propuestas
-                </span>
-              )}
-              {citasStats.confirmadas > 0 && (
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
-                  {citasStats.confirmadas} confirmadas
-                </span>
-              )}
-            </div>
-          </div>
-
-          {/* Engagement Rate (calculated) */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Engagement Rate</p>
-                <p className="text-3xl font-black text-slate-900 mt-2">
-                  {Math.round((total / (usersStats.total || 1)) * 100)}%
-                </p>
-                <p className="text-xs text-slate-500 font-semibold mt-1">
-                  Usuarios → Newsletter
-                </p>
-              </div>
-              <div className="bg-emerald-100 rounded-xl p-3">
-                <svg className="w-6 h-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
-              </div>
-            </div>
-            <div className="mt-4">
-              <p className="text-xs text-slate-600">
-                <span className="font-bold text-emerald-600">{inProgress + completed}</span> activos de <span className="font-bold">{total}</span> suscriptores
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* UNIA Citas Panel */}
-        <a
-          href={`/admin/citas?token=${token}`}
-          className="block mb-8 group"
-        >
-          <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 rounded-2xl p-6 hover:shadow-lg transition-all hover:border-amber-300">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="bg-amber-200 rounded-xl p-4">
-                  <span className="text-3xl">⚖️</span>
+              {filteredData.length > 50 && (
+                <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 text-sm text-slate-600 text-center">
+                  Mostrando 50 de {filteredData.length} usuarios
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold text-amber-900">Gestión de Citas UNIA</h3>
-                  <p className="text-sm text-amber-700 mt-1">
-                    {citasStats.pendientes > 0 && <span className="font-bold">{citasStats.pendientes} citas pendientes de asignar · </span>}
-                    {citasStats.propuestas > 0 && <span>{citasStats.propuestas} esperando confirmación del usuario · </span>}
-                    {citasStats.confirmadas > 0 && <span className="text-emerald-700 font-semibold">{citasStats.confirmadas} confirmadas</span>}
-                    {citasStats.total === 0 && <span>No hay citas registradas todavía</span>}
-                  </p>
+              )}
+              {filteredData.length === 0 && (
+                <div className="px-6 py-12 text-center text-slate-500">
+                  No se encontraron usuarios
                 </div>
-              </div>
-              <div className="bg-amber-900 text-white px-6 py-3 rounded-xl font-bold text-sm group-hover:bg-amber-800 transition-colors flex items-center gap-2">
-                Ver todas ({citasStats.total})
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
+              )}
             </div>
           </div>
-        </a>
+        )}
 
-        {/* Email Subscribers Section */}
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="bg-indigo-100 rounded-xl p-2">
-                <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+        {/* SUBSCRIBERS TAB */}
+        {activeTab === 'subscribers' && (
+          <div className="space-y-4">
+            {/* Filters */}
+            <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex-1">
+                  <input
+                    type="text"
+                    placeholder="Buscar por email o nombre..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+                  />
+                </div>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as any)}
+                  className="px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+                >
+                  <option value="date">Más recientes</option>
+                  <option value="email">Email A-Z</option>
+                  <option value="step">Por progreso</option>
+                </select>
               </div>
-              <h2 className="text-xl font-bold text-slate-900">Secuencia de Emails</h2>
-              <span className="text-sm text-slate-500">({filteredContacts.length} de {total})</span>
             </div>
-          </div>
 
-          {/* Search and filters */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-6">
-            <div className="flex-1 relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg className="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+            {/* Table */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-slate-50 border-b border-slate-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Suscriptor</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Progreso</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Estado</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Registrado</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200">
+                    {filteredData.slice(0, 50).map((sub: any, idx) => (
+                      <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                        <td className="px-6 py-4">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                              {(sub.nombre || sub.email)[0].toUpperCase()}
+                            </div>
+                            <div>
+                              <div className="text-sm font-medium text-slate-900">{sub.nombre || 'Sin nombre'}</div>
+                              <div className="text-xs text-slate-500">{sub.email}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex items-center gap-2">
+                            <div className="flex gap-1">
+                              {[0, 1, 2, 3, 4, 5].map((step) => (
+                                <div
+                                  key={step}
+                                  className={`w-2 h-2 rounded-full ${
+                                    sub.welcomeStep >= step
+                                      ? 'bg-green-500'
+                                      : 'bg-slate-200'
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                            <span className="text-xs text-slate-600">
+                              {sub.welcomeStep}/5
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium ${
+                            sub.blacklisted
+                              ? 'bg-red-100 text-red-700'
+                              : 'bg-green-100 text-green-700'
+                          }`}>
+                            {sub.blacklisted ? '🚫 Bloqueado' : '✅ Activo'}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-slate-600">
+                          {sub.createdAt ? new Date(sub.createdAt).toLocaleDateString('es-ES', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                          }) : 'N/A'}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-              <input
-                type="text"
-                placeholder="Buscar por email o nombre..."
-                value={searchEmail}
-                onChange={(e) => setSearchEmail(e.target.value)}
-                className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-              />
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setFilterStep(null)}
-                className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                  filterStep === null
-                    ? 'bg-indigo-600 text-white shadow-sm'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                }`}
-              >
-                Todos
-              </button>
-              <button
-                onClick={() => setFilterStep(0)}
-                className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                  filterStep === 0
-                    ? 'bg-indigo-600 text-white shadow-sm'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                }`}
-              >
-                Sin iniciar ({notStarted})
-              </button>
-              <button
-                onClick={() => setFilterStep(5)}
-                className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                  filterStep === 5
-                    ? 'bg-indigo-600 text-white shadow-sm'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                }`}
-              >
-                Completados ({completed})
-              </button>
+              {filteredData.length > 50 && (
+                <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 text-sm text-slate-600 text-center">
+                  Mostrando 50 de {filteredData.length} suscriptores
+                </div>
+              )}
+              {filteredData.length === 0 && (
+                <div className="px-6 py-12 text-center text-slate-500">
+                  No se encontraron suscriptores
+                </div>
+              )}
             </div>
           </div>
+        )}
 
-          {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-slate-200">
-              <thead className="bg-slate-50">
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Email</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider hidden sm:table-cell">Nombre</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Registro</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Progreso</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-slate-100">
-                {filteredContacts.map((c) => (
-                  <tr key={c.email} className="hover:bg-slate-50 transition-colors">
-                    <td className="px-4 py-3 text-sm text-slate-900">
-                      {c.email}
-                      {c.blacklisted && <span className="ml-2 text-red-600">🚫</span>}
-                    </td>
-                    <td className="px-4 py-3 text-sm text-slate-600 hidden sm:table-cell">
-                      {c.nombre || <span className="text-slate-400">—</span>}
-                    </td>
-                    <td className="px-4 py-3 text-sm text-slate-600 whitespace-nowrap">
-                      {c.createdAt?.slice(0, 10) || '—'}
-                    </td>
-                    <td className="px-4 py-3">
-                      <EmailProgress step={c.welcomeStep} start={c.welcomeStart} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mt-4 text-center text-xs text-slate-500">
-            <span className="inline-flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-indigo-600"></span> Enviado
-              <span className="w-3 h-3 rounded-full bg-indigo-200 border-2 border-indigo-600 ml-2"></span> Próximo
-              <span className="w-3 h-3 rounded-full bg-slate-200 ml-2"></span> Pendiente
-            </span>
-          </div>
-        </div>
-
-        {/* Users Section */}
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="bg-blue-100 rounded-xl p-2">
-                <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
+        {/* UNIA TAB */}
+        {activeTab === 'unia' && (
+          <div className="space-y-4">
+            {/* Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="bg-white rounded-lg p-4 border border-slate-200">
+                <div className="text-xs font-medium text-slate-600 mb-1">Total</div>
+                <div className="text-2xl font-bold text-slate-900">{totalCitas}</div>
               </div>
-              <h2 className="text-xl font-bold text-slate-900">Usuarios Registrados</h2>
-              <span className="text-sm text-slate-500">({filteredUsers.length} de {users.length})</span>
-            </div>
-          </div>
-
-          {/* Search */}
-          <div className="mb-6">
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg className="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                <div className="text-xs font-medium text-orange-700 mb-1">Solicitudes</div>
+                <div className="text-2xl font-bold text-orange-900">{citasPendientes}</div>
               </div>
-              <input
-                type="text"
-                placeholder="Buscar usuario por email o nombre..."
-                value={searchUser}
-                onChange={(e) => setSearchUser(e.target.value)}
-                className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-              />
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <div className="text-xs font-medium text-blue-700 mb-1">Propuestas</div>
+                <div className="text-2xl font-bold text-blue-900">{citasPropuestas}</div>
+              </div>
+              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="text-xs font-medium text-green-700 mb-1">Confirmadas</div>
+                <div className="text-2xl font-bold text-green-900">{citasConfirmadas}</div>
+              </div>
+            </div>
+
+            {/* Table */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-slate-50 border-b border-slate-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">#</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Estado</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Fecha</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200">
+                    {filteredData.slice(0, 50).map((cita: any, idx) => (
+                      <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                        <td className="px-6 py-4 text-sm font-medium text-slate-900">#{idx + 1}</td>
+                        <td className="px-6 py-4">
+                          <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium ${
+                            cita.status === 'confirmada'
+                              ? 'bg-green-100 text-green-700'
+                              : cita.status === 'propuesta'
+                              ? 'bg-blue-100 text-blue-700'
+                              : 'bg-orange-100 text-orange-700'
+                          }`}>
+                            {cita.status === 'confirmada' ? '✅ Confirmada' :
+                             cita.status === 'propuesta' ? '📋 Propuesta' :
+                             '⏳ Solicitud'}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-slate-600">
+                          {cita.createdAt ? new Date(cita.createdAt).toLocaleDateString('es-ES', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                          }) : 'N/A'}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {filteredData.length > 50 && (
+                <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 text-sm text-slate-600 text-center">
+                  Mostrando 50 de {filteredData.length} citas
+                </div>
+              )}
+              {filteredData.length === 0 && (
+                <div className="px-6 py-12 text-center text-slate-500">
+                  No hay citas registradas
+                </div>
+              )}
             </div>
           </div>
-
-          {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-slate-200">
-              <thead className="bg-slate-50">
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Email</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider hidden sm:table-cell">Nombre</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Método</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Registro</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider hidden lg:table-cell">Logins</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-slate-100">
-                {filteredUsers.slice().reverse().map((u) => (
-                  <tr key={u.email} className="hover:bg-slate-50 transition-colors">
-                    <td className="px-4 py-3 text-sm text-slate-900">{u.email}</td>
-                    <td className="px-4 py-3 text-sm text-slate-600 hidden sm:table-cell">
-                      {u.nombre || <span className="text-slate-400">—</span>}
-                    </td>
-                    <td className="px-4 py-3">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${
-                        u.provider === 'google'
-                          ? 'bg-red-100 text-red-700'
-                          : 'bg-purple-100 text-purple-700'
-                      }`}>
-                        {u.provider === 'google' ? '🔴 Google' : '🟣 Email'}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-sm text-slate-600 whitespace-nowrap">
-                      {u.createdAt?.slice(0, 10) || '—'}
-                    </td>
-                    <td className="px-4 py-3 text-sm text-slate-600 text-center hidden lg:table-cell">
-                      {u.loginCount || 1}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Footer info */}
-        <div className="mt-8 text-center text-xs text-slate-500">
-          <p>Datos almacenados en GitHub Gist · users.json + subscribers.json</p>
-          <p className="mt-1">Envíos de email: Gmail SMTP · Secuencia automática de bienvenida</p>
-        </div>
+        )}
       </div>
-    </div>
-  );
-}
-
-function EmailProgress({ step, start }: { step: number; start?: string }) {
-  const steps = [
-    { n: 1, label: 'Bienvenida', day: 0 },
-    { n: 2, label: 'Día 3', day: 3 },
-    { n: 3, label: 'Día 7', day: 7 },
-    { n: 4, label: 'Día 14', day: 14 },
-    { n: 5, label: 'Día 21', day: 21 },
-  ];
-
-  let statusText = '';
-  let statusColor = 'text-slate-500';
-
-  if (step >= 5) {
-    statusText = '✓ Completo';
-    statusColor = 'text-emerald-600';
-  } else if (start) {
-    try {
-      const startDate = new Date(start.slice(0, 10));
-      const next = steps[step];
-      const nextDate = new Date(startDate);
-      nextDate.setDate(nextDate.getDate() + next.day);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const diff = Math.round((nextDate.getTime() - today.getTime()) / 86400000);
-
-      if (diff > 0) {
-        statusText = `→ ${next.label} en ${diff}d`;
-        statusColor = 'text-slate-500';
-      } else if (diff === 0) {
-        statusText = '→ HOY';
-        statusColor = 'text-amber-600 font-bold';
-      } else {
-        statusText = '→ Pendiente envío';
-        statusColor = 'text-red-600';
-      }
-    } catch {
-      statusText = '';
-    }
-  }
-
-  return (
-    <div className="flex items-center gap-2">
-      <div className="flex gap-0.5">
-        {steps.map(s => (
-          <div
-            key={s.n}
-            className={`w-3 h-3 rounded-full ${
-              s.n <= step
-                ? 'bg-indigo-600'
-                : s.n === step + 1
-                ? 'bg-indigo-200 border-2 border-indigo-600'
-                : 'bg-slate-200'
-            }`}
-            title={s.label}
-          />
-        ))}
-      </div>
-      <span className="text-xs text-slate-600 font-medium">{step}/5</span>
-      {statusText && (
-        <span className={`text-xs ${statusColor} ml-1`}>{statusText}</span>
-      )}
     </div>
   );
 }
