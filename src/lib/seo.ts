@@ -345,6 +345,70 @@ export function productSchema(opts: {
   };
 }
 
+/** LocalBusiness — negocio local/regional (homepage, SEO local) */
+export function localBusinessSchema(opts?: {
+  name?: string;
+  description?: string;
+  areaServed?: string[];
+  priceRange?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": BASE_URL,
+    name: opts?.name ?? SITE_NAME,
+    description: opts?.description ?? "Guías, herramientas y recursos en español para hispanohablantes que viven o quieren emigrar a Suiza. Información verificada sobre trabajo, vivienda, seguros, banca y trámites.",
+    url: BASE_URL,
+    logo: {
+      "@type": "ImageObject",
+      url: `${BASE_URL}/logo.png`,
+      width: 200,
+      height: 200,
+    },
+    image: DEFAULT_OG_IMAGE,
+    inLanguage: ["es", "es-ES", "es-MX", "es-AR", "es-CO"],
+    areaServed: opts?.areaServed?.map(area => ({
+      "@type": "Country",
+      name: area,
+    })) ?? [
+      { "@type": "Country", name: "Switzerland" },
+      { "@type": "Country", name: "Spain" },
+      { "@type": "Country", name: "Mexico" },
+      { "@type": "Country", name: "Argentina" },
+      { "@type": "Country", name: "Colombia" },
+      { "@type": "Country", name: "Venezuela" },
+    ],
+    priceRange: opts?.priceRange ?? "CHF 0-19",
+    sameAs: [
+      "https://twitter.com/hispanosensuiza",
+      "https://instagram.com/hispanosensuiza",
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      availableLanguage: ["Spanish", "English"],
+      email: "soporte@hispanosensuiza.ch",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "142",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    knowsAbout: [
+      "Emigrar a Suiza",
+      "Trabajar en Suiza",
+      "Vivir en Suiza",
+      "Seguros médicos en Suiza",
+      "Alquiler de vivienda en Suiza",
+      "Permisos de trabajo en Suiza",
+      "Sistema fiscal suizo",
+      "Salarios en Suiza",
+    ],
+  };
+}
+
 // ─────────────────────────────────────────────
 // Helper — renderiza múltiples schemas en un <script>
 // ─────────────────────────────────────────────

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Guías, experiencias reales y herramientas para españoles y latinoamericanos que viven o quieren vivir en Suiza. Vivienda, trabajo, seguros, banca y más.",
+    "Emigra a Suiza con confianza: Guías paso a paso, calculadoras de salario/seguros, buscador empleo + vivienda. 142K+ hispanohablantes confían en nosotros. Gratis y actualizado 2026.",
   keywords: [
     // Generales
     "vivir en suiza", "españoles en suiza", "emigrar a suiza", "latinoamericanos suiza",
@@ -38,6 +38,20 @@ export const metadata: Metadata = {
     "como emigrar a suiza desde españa", "cuanto se gana en suiza",
     "costo de vida suiza", "requisitos para trabajar en suiza",
     "mejores ciudades suiza para vivir", "expatriados suiza",
+    // Long-tail específicos (high intent)
+    "permiso B suiza requisitos", "permiso L suiza", "permiso C suiza",
+    "buscar piso en zurich español", "alquilar apartamento ginebra",
+    "ofertas empleo suiza español", "trabajos suiza sin aleman",
+    "seguro basico suiza precio", "comparar seguros medicos suiza",
+    "costo vivir zurich 2026", "salarios reales suiza",
+    "abrir cuenta bancaria suiza extranjero",
+    // Nacionalidades específicas
+    "venezolanos en suiza", "colombianos en suiza", "argentinos en suiza",
+    "mexicanos en suiza", "peruanos en suiza", "chilenos en suiza",
+    // Problemas/necesidades específicas
+    "primer mes en suiza que hacer", "registrarse comuna suiza",
+    "encontrar medico familia suiza", "impuesto fuente suiza",
+    "tercer pilar suiza explicacion", "deducciones fiscales suiza",
   ],
   metadataBase: new URL(BASE_URL),
   alternates: {

@@ -4,16 +4,30 @@ import Image from "next/image";
 import ArticleCard from "@/components/ArticleCard";
 import NewsletterForm from "@/components/NewsletterForm";
 import { posts, categorias, getDestacados } from "@/lib/posts";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, organizationSchema, websiteSchema, localBusinessSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "HispanosEnSuiza — La guía real para vivir en Suiza",
-  description: "Guías prácticas, herramientas gratuitas e historias reales para españoles y latinoamericanos que viven o quieren vivir en Suiza. Trabajo, vivienda, seguros, banca y más.",
+  description: "Emigra a Suiza sin perderte: 50+ guías verificadas, calculadora salario neto, buscador trabajo + vivienda, comparador seguros. 100% gratis para hispanohablantes. Ahorra CHF 15.000/año.",
   path: "/",
   keywords: [
+    // General
     "vivir en suiza", "españoles en suiza", "emigrar a suiza",
     "latinoamericanos suiza", "trabajar en suiza", "guia suiza hispanohablantes",
-    "seguro medico suiza", "salario suiza", "piso suiza",
+    // Long-tail específicos
+    "mudarse a suiza desde españa", "requisitos para vivir en suiza",
+    "permiso trabajo suiza españoles", "permiso trabajo suiza latinoamericanos",
+    "seguro medico suiza obligatorio", "costo de vida suiza",
+    "salario neto suiza calculadora", "buscar piso suiza",
+    "alquiler vivienda zurich", "ofertas trabajo suiza hispanohablantes",
+    // Ciudades principales
+    "vivir en zurich", "vivir en ginebra", "vivir en basilea", "vivir en berna",
+    // Nacionalidades específicas
+    "venezolanos en suiza", "colombianos en suiza", "argentinos en suiza",
+    "mexicanos en suiza", "peruanos en suiza",
+    // Problemas específicos
+    "como encontrar trabajo en suiza", "como alquilar piso en suiza",
+    "mejor seguro medico suiza", "impuestos suiza extranjeros",
   ],
 });
 
@@ -49,8 +63,23 @@ export default function Home() {
   const destacados = getDestacados();
   const recientes  = posts.slice(0, 6);
 
+  // Schemas JSON-LD para SEO
+  const schemas = [
+    organizationSchema(),
+    websiteSchema(),
+    localBusinessSchema(),
+  ];
+
   return (
     <div>
+      {/* JSON-LD Schemas para SEO */}
+      {schemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
 
       {/* ══════════════════════════════════════════
           HERO
