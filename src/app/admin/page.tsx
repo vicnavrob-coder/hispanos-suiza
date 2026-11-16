@@ -186,7 +186,7 @@ export default function AdminPage() {
                 <h1 className="text-xl font-bold text-slate-900">HispanosEnSuiza</h1>
               </div>
               <span className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-md font-medium">
-                Dashboard Admin
+                Admin Dashboard
               </span>
             </div>
             <div className="flex items-center gap-6">
