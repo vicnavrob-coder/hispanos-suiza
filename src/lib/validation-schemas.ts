@@ -19,8 +19,8 @@ export const CreateHistoriaSchema = z.object({
     .max(200, 'El título no puede exceder 200 caracteres')
     .transform((val) => val.trim()),
   contenido: z.string()
-    .min(100, 'El contenido debe tener al menos 100 caracteres')
-    .max(10000, 'El contenido no puede exceder 10,000 caracteres')
+    .min(200, 'El contenido debe tener al menos 200 caracteres')
+    .max(5000, 'El contenido no puede exceder 5,000 caracteres')
     .transform((val) => val.trim()),
   ciudadSuiza: z.string().optional(),
   tema: z.enum(['llegada', 'trabajo', 'vivienda', 'salud', 'educacion', 'cultura', 'otro']).optional(),
