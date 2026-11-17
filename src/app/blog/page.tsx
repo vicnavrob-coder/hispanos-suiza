@@ -44,7 +44,13 @@ export default async function BlogPage() {
             >
               Para ti
             </Link>
-            {categorias.slice(0, 4).map((cat) => (
+            <Link
+              href="/blog/historias-reales"
+              className="px-3 sm:px-4 py-3 text-xs sm:text-sm font-medium text-gray-500 hover:text-gray-900 active:bg-gray-100 transition-colors whitespace-nowrap flex-shrink-0"
+            >
+              ❤️ Historias reales
+            </Link>
+            {categorias.slice(0, 3).map((cat) => (
               <Link
                 key={cat.slug}
                 href={`/categorias/${cat.slug}`}
