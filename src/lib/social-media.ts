@@ -80,6 +80,7 @@ export async function publishToInstagram(
   historia: HistoriaComunidad
 ): Promise<SocialPost | null> {
   if (!INSTAGRAM_ACCESS_TOKEN || !INSTAGRAM_BUSINESS_ACCOUNT_ID) {
+    console.warn("[RRSS] ⚠️ Instagram credentials not configured");
     logger.warn("Instagram credentials not configured");
     return null;
   }
@@ -88,6 +89,8 @@ export async function publishToInstagram(
     const caption = generateSocialCaption(historia);
     const storyUrl = `${BASE_URL}/historias-reales/${historia.slug}`;
     const imageUrl = generateSocialImageUrl(historia);
+
+    console.log(`[RRSS] 📸 Intentando publicar en Instagram: "${historia.titulo}"`);
 
     // Paso 1: Crear container de media
     const containerResponse = await fetch(
@@ -105,6 +108,7 @@ export async function publishToInstagram(
 
     if (!containerResponse.ok) {
       const error = await containerResponse.json();
+      console.error("[RRSS] ❌ Instagram media container failed:", error);
       logger.social("Instagram", undefined, false, new Error(JSON.stringify(error)));
       return null;
     }
@@ -126,11 +130,13 @@ export async function publishToInstagram(
 
     if (!publishResponse.ok) {
       const error = await publishResponse.json();
+      console.error("[RRSS] ❌ Instagram media publish failed:", error);
       logger.social("Instagram", undefined, false, new Error(JSON.stringify(error)));
       return null;
     }
 
     const { id: postId } = await publishResponse.json();
+    console.log(`[RRSS] ✅ Instagram publicado exitosamente - Post ID: ${postId}`);
     logger.social("Instagram", postId, true);
 
     return {
@@ -141,6 +147,7 @@ export async function publishToInstagram(
     };
   } catch (error) {
     const err = error instanceof Error ? error : new Error(String(error));
+    console.error("[RRSS] ❌ Instagram error inesperado:", err);
     logger.social("Instagram", undefined, false, err);
     return null;
   }
@@ -154,6 +161,7 @@ export async function publishToFacebook(
   historia: HistoriaComunidad
 ): Promise<SocialPost | null> {
   if (!FACEBOOK_ACCESS_TOKEN || !FACEBOOK_PAGE_ID) {
+    console.warn("[RRSS] ⚠️ Facebook credentials not configured");
     logger.warn("Facebook credentials not configured");
     return null;
   }
@@ -161,6 +169,8 @@ export async function publishToFacebook(
   try {
     const caption = generateSocialCaption(historia);
     const storyUrl = `${BASE_URL}/historias-reales/${historia.slug}`;
+
+    console.log(`[RRSS] 📘 Intentando publicar en Facebook: "${historia.titulo}"`);
 
     const response = await fetch(
       `https://graph.facebook.com/v18.0/${FACEBOOK_PAGE_ID}/feed`,
@@ -177,11 +187,13 @@ export async function publishToFacebook(
 
     if (!response.ok) {
       const error = await response.json();
+      console.error("[RRSS] ❌ Facebook post failed:", error);
       logger.social("Facebook", undefined, false, new Error(JSON.stringify(error)));
       return null;
     }
 
     const { id: postId } = await response.json();
+    console.log(`[RRSS] ✅ Facebook publicado exitosamente - Post ID: ${postId}`);
     logger.social("Facebook", postId, true);
 
     return {
@@ -192,6 +204,7 @@ export async function publishToFacebook(
     };
   } catch (error) {
     const err = error instanceof Error ? error : new Error(String(error));
+    console.error("[RRSS] ❌ Facebook error inesperado:", err);
     logger.social("Facebook", undefined, false, err);
     return null;
   }

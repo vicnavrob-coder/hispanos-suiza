@@ -3,6 +3,16 @@
   "generatedAt": "2026-11-18T00:00:00.000Z",
   "items": [
     {
+      "id": "post-guia-emigrar",
+      "type": "post",
+      "titulo": "Guía completa para emigrar a Suiza en 2026",
+      "descripcion": "Desde el permiso de residencia hasta encontrar piso, pasando por abrir una cuenta bancaria. La guía más completa en español para mudarte a Suiza.",
+      "url": "/blog/guia-emigrar-suiza-espanoles-2026",
+      "categoria": "emigrar",
+      "keywords": ["emigrar a suiza", "vivir en suiza", "permiso residencia suiza", "mudarse a suiza"],
+      "relevancia": 15
+    },
+    {
       "id": "guia-rav",
       "type": "guia",
       "titulo": "Cobrar el RAV (Paro) en Suiza",
@@ -12,12 +22,40 @@
       "relevancia": 10
     },
     {
+      "id": "post-alquiler",
+      "type": "post",
+      "titulo": "Alquilar piso en Suiza: lo que nadie te cuenta",
+      "descripcion": "Cómo encontrar piso en Suiza: portales, documentación necesaria, depósitos y trámites.",
+      "url": "/blog/alquilar-piso-suiza",
+      "categoria": "vivienda",
+      "keywords": ["alquiler suiza", "buscar piso", "encontrar vivienda", "documentos alquiler"],
+      "relevancia": 10
+    },
+    {
       "id": "ciudad-zurich",
       "type": "ciudad",
       "titulo": "Zúrich",
       "descripcion": "La capital económica de Suiza. El mayor mercado laboral del país, especialmente en finanzas, tecnología y farmacéutica.",
       "url": "/ciudades/zurich",
-      "keywords": ["vivir en zurich", "españoles zurich", "trabajar zurich", "alquiler zurich"],
+      "keywords": ["vivir en zurich", "españoles zurich", "trabajar zurich", "alquiler zurich", "zurich hispanohablantes"],
+      "relevancia": 10
+    },
+    {
+      "id": "ciudad-ginebra",
+      "type": "ciudad",
+      "titulo": "Ginebra",
+      "descripcion": "Ciudad internacional por excelencia. Sede de la ONU, la OMS y 200+ organizaciones internacionales. La mayor comunidad hispanohablante de Suiza.",
+      "url": "/ciudades/ginebra",
+      "keywords": ["vivir en ginebra", "españoles ginebra", "trabajar ginebra", "alquiler ginebra", "geneva"],
+      "relevancia": 10
+    },
+    {
+      "id": "ciudad-basilea",
+      "type": "ciudad",
+      "titulo": "Basilea",
+      "descripcion": "Capital farmacéutica de Suiza. Sede de Roche y Novartis. Ciudad trinacional con Alemania y Francia.",
+      "url": "/ciudades/basilea",
+      "keywords": ["vivir en basilea", "trabajar basilea", "alquiler basilea", "basel pharma"],
       "relevancia": 10
     },
     {
@@ -26,8 +64,35 @@
       "titulo": "Comparador de Seguros Médicos",
       "descripcion": "Compara precios de seguros médicos obligatorios (KVG/LAMal) por cantón, edad y franquicia.",
       "url": "/herramientas/seguros-medicos",
-      "keywords": ["seguro medico", "kvg", "lamal", "franquicia", "seguro salud"],
+      "keywords": ["seguro medico", "kvg", "lamal", "franquicia", "seguro salud", "comparar seguros"],
       "relevancia": 8
+    },
+    {
+      "id": "herramienta-salario",
+      "type": "herramienta",
+      "titulo": "Calculadora de Salario Neto",
+      "descripcion": "Calcula tu salario neto en Suiza después de impuestos y deducciones según tu cantón.",
+      "url": "/herramientas/salario-neto",
+      "keywords": ["salario neto", "impuestos suiza", "calculadora salario", "neto bruto", "cuanto gano"],
+      "relevancia": 8
+    },
+    {
+      "id": "herramienta-comparador",
+      "type": "herramienta",
+      "titulo": "Comparador de Ciudades",
+      "descripcion": "Compara Zúrich, Ginebra, Basilea, Berna, Lausana y Lugano en salarios, alquileres y coste de vida.",
+      "url": "/herramientas/comparador-ciudades",
+      "keywords": ["comparar ciudades", "zurich ginebra", "coste vida", "salarios suiza", "donde vivir"],
+      "relevancia": 8
+    },
+    {
+      "id": "herramienta-cv",
+      "type": "herramienta",
+      "titulo": "Generador de CV Suizo",
+      "descripcion": "Adapta tu CV español al formato suizo con nuestro generador automático.",
+      "url": "/herramientas/generador-cv",
+      "keywords": ["cv suizo", "curriculum", "cv formato suiza", "lebenslauf", "curriculum vitae"],
+      "relevancia": 7
     },
     {
       "id": "pagina-trabajo",
@@ -35,7 +100,7 @@
       "titulo": "Trabajar en Suiza",
       "descripcion": "Portal de empleo para hispanohablantes: buscador de trabajo, sectores, salarios y permisos.",
       "url": "/trabajo",
-      "keywords": ["trabajar suiza", "empleo suiza", "trabajo hispanohablantes"],
+      "keywords": ["trabajar suiza", "empleo suiza", "trabajo hispanohablantes", "ofertas trabajo", "buscar empleo"],
       "relevancia": 10
     },
     {
@@ -44,8 +109,81 @@
       "titulo": "Vivienda en Suiza",
       "descripcion": "Busca pisos de alquiler en todos los portales suizos: Homegate, ImmoScout24, Comparis.",
       "url": "/vivienda",
-      "keywords": ["alquiler suiza", "buscar piso", "vivienda", "homegate"],
+      "keywords": ["alquiler suiza", "buscar piso", "vivienda", "homegate", "immoscout", "encontrar piso"],
       "relevancia": 10
+    },
+    {
+      "id": "pagina-seguros",
+      "type": "pagina",
+      "titulo": "Seguros en Suiza",
+      "descripcion": "Todo sobre el seguro médico obligatorio y seguros complementarios en Suiza.",
+      "url": "/seguros",
+      "keywords": ["seguros suiza", "seguro medico", "kvg", "lamal", "seguro obligatorio"],
+      "relevancia": 10
+    },
+    {
+      "id": "pagina-herramientas",
+      "type": "pagina",
+      "titulo": "Herramientas Gratuitas",
+      "descripcion": "Calculadoras y comparadores gratuitos para hispanohablantes en Suiza.",
+      "url": "/herramientas",
+      "keywords": ["herramientas", "calculadoras", "comparadores", "gratis", "utilidades"],
+      "relevancia": 8
+    },
+    {
+      "id": "post-impuestos",
+      "type": "post",
+      "titulo": "Sistema de impuestos en Suiza",
+      "descripcion": "Cómo funcionan los impuestos en Suiza: federal, cantonal y municipal. Impuesto de fuente explicado.",
+      "url": "/blog/impuestos-suiza-2026",
+      "categoria": "banca",
+      "keywords": ["impuestos suiza", "impuesto fuente", "quellensteuer", "tributar suiza", "declaracion impuestos"],
+      "relevancia": 10
+    },
+    {
+      "id": "guia-trabajo-esqui",
+      "type": "guia",
+      "titulo": "Trabajar en Estaciones de Esquí",
+      "descripcion": "Cómo conseguir trabajo en temporada de esquí en Suiza: requisitos, salarios y mejores estaciones.",
+      "url": "/trabajo/esqui-suiza",
+      "keywords": ["trabajo esqui", "temporada esqui", "estaciones esqui suiza", "trabajo temporal", "ski season"],
+      "relevancia": 8
+    },
+    {
+      "id": "recurso-checklist",
+      "type": "recurso",
+      "titulo": "Checklist para Emigrar a Suiza",
+      "descripcion": "Checklist completa con 50 pasos para emigrar a Suiza sin olvidar nada.",
+      "url": "/recursos/checklist-emigrar",
+      "keywords": ["checklist emigrar", "pasos emigrar", "mudarse suiza", "lista tareas", "que necesito"],
+      "relevancia": 9
+    },
+    {
+      "id": "recurso-primer-mes",
+      "type": "recurso",
+      "titulo": "Guía del Primer Mes en Suiza",
+      "descripcion": "Todo lo que debes hacer en tu primer mes: empadronamiento, seguros, banco.",
+      "url": "/recursos/primer-mes",
+      "keywords": ["primer mes suiza", "primeros pasos", "recien llegado", "que hacer primero", "nuevos residentes"],
+      "relevancia": 9
+    },
+    {
+      "id": "pais-colombia",
+      "type": "pais",
+      "titulo": "🇨🇴 Colombia",
+      "descripcion": "Guía completa para colombianos que quieren emigrar a Suiza: proceso, requisitos y permisos.",
+      "url": "/latinoamericanos/colombia",
+      "keywords": ["colombianos suiza", "emigrar desde colombia", "permiso trabajo colombia", "visa suiza colombia"],
+      "relevancia": 8
+    },
+    {
+      "id": "pagina-newsletter",
+      "type": "pagina",
+      "titulo": "Newsletter Semanal Gratis",
+      "descripcion": "Recibe cada jueves: ofertas de trabajo con salarios reales, historias de hispanos en Suiza, guías prácticas y herramientas gratis.",
+      "url": "/newsletter",
+      "keywords": ["newsletter", "boletin", "suscripcion", "email semanal", "noticias suiza"],
+      "relevancia": 7
     }
   ]
 }

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 import {
   getHistorias,
   createHistoria,
@@ -6,6 +7,10 @@ import {
 } from "@/lib/historias-comunidad";
 import { publishToAllSocials } from "@/lib/social-media";
 import { CreateHistoriaSchema, validateData, getValidationErrorMessage } from "@/lib/validation-schemas";
+import { emailHistoriaPublicada } from "@/lib/email-templates";
+
+const GMAIL_USER = process.env.NEWSLETTER_GMAIL_USER ?? "";
+const GMAIL_PASS = process.env.NEWSLETTER_GMAIL_PASS ?? "";
 
 // ─────────────────────────────────────────────────────────────
 // GET /api/historias - Listar todas las historias
@@ -64,14 +69,37 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Publicar en redes sociales automáticamente
+    // Enviar email de bienvenida al autor
     // Se ejecuta en background para no bloquear la respuesta
-    if (result.historia) {
-      publishToAllSocials(result.historia)
+    if (result.historia && GMAIL_USER && GMAIL_PASS) {
+      const historia = result.historia;
+
+      // Email de agradecimiento
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: { user: GMAIL_USER, pass: GMAIL_PASS },
+      });
+
+      transporter.sendMail({
+        from: `"HispanosEnSuiza" <${GMAIL_USER}>`,
+        to: historia.autorEmail,
+        subject: `¡Tu historia "${historia.titulo}" está publicada! 🎉`,
+        html: emailHistoriaPublicada(historia.autorNombre, historia.titulo, historia.slug),
+      })
+        .then(() => {
+          console.log(`[historias] ✅ Email de bienvenida enviado a ${historia.autorEmail}`);
+        })
+        .catch((err) => {
+          console.error("[historias] ❌ Error enviando email de bienvenida:", err);
+          // No bloqueamos la respuesta si falla el email
+        });
+
+      // Publicar en redes sociales
+      publishToAllSocials(historia)
         .then(async (socialPosts) => {
           // Guardar referencias a los posts en redes sociales
           if (socialPosts.facebook || socialPosts.instagram) {
-            await updateSocialPosts(result.historia!.id, {
+            await updateSocialPosts(historia.id, {
               facebook: socialPosts.facebook ? {
                 postId: socialPosts.facebook.postId,
                 url: socialPosts.facebook.url,
@@ -84,7 +112,7 @@ export async function POST(req: NextRequest) {
           }
         })
         .catch((err) => {
-          console.error("[historias] Social media publish failed:", err);
+          console.error("[historias] ❌ Social media publish failed:", err);
           // No bloqueamos la respuesta si falla RRSS
         });
     }

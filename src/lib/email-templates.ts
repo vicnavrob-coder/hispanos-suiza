@@ -65,6 +65,40 @@ export function emailCVCompletado(nombre: string, cvUrl: string): string {
   ].join(""));
 }
 
+// Email de agradecimiento para autores de historias
+export function emailHistoriaPublicada(nombre: string, titulo: string, slug: string): string {
+  const historiaUrl = `${SITE}/historias-reales/${slug}`;
+
+  return layout("¡Tu historia está publicada! 🎉", [
+    p(`Hola ${nombre},`),
+    p(`<strong>¡Gracias por compartir tu historia con la comunidad!</strong> Tu experiencia "${titulo}" ya está publicada y visible para todos los hispanohablantes que están considerando mudarse a Suiza.`),
+    `<table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0">
+      <tr><td style="padding:16px;background:#fef2f2;border-radius:8px;border-left:4px solid ${BRAND_COLOR}">
+        <strong style="color:#991b1b">📖 Tu historia publicada</strong><br>
+        <span style="font-size:14px;color:#7f1d1d;line-height:1.6">"${titulo}"</span><br>
+        <a href="${historiaUrl}" style="color:${BRAND_COLOR};font-size:13px;font-weight:600;margin-top:8px;display:inline-block">Ver mi historia →</a>
+      </td></tr>
+    </table>`,
+    p("Tu historia también se compartirá automáticamente en nuestras redes sociales (Facebook e Instagram) para llegar a más personas."),
+    p("<strong>¿Qué pasa ahora?</strong>"),
+    `<ul style="margin:0 0 14px;padding-left:20px;font-size:15px;line-height:1.8;color:#374151">
+      <li>Tu historia estará visible permanentemente en la web</li>
+      <li>Otros usuarios podrán leerla y aprender de tu experiencia</li>
+      <li>Puedes compartir el enlace con quien quieras</li>
+      <li>Si necesitas editar algo, responde a este email</li>
+    </ul>`,
+    `<table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0">
+      <tr><td style="padding:14px;background:#eff6ff;border-radius:8px;border-left:4px solid #0032A0">
+        <strong style="color:#1e3a8a">💬 Únete a la comunidad</strong><br>
+        <span style="font-size:14px;color:#1e40af">Sigue compartiendo consejos y experiencias con otros hispanohablantes en Suiza.</span><br>
+        <a href="${SITE}/historias-reales" style="color:${BRAND_COLOR};font-size:13px;font-weight:600">Leer otras historias →</a>
+      </td></tr>
+    </table>`,
+    p("Gracias por formar parte de HispanosEnSuiza. Tu historia ayudará a muchas personas que están pasando por lo mismo que tú viviste."),
+    p("Un fuerte abrazo,<br><strong>Equipo HispanosEnSuiza</strong>"),
+  ].join(""));
+}
+
 export const EMAIL_TEMPLATES: Record<number, { subject: string; html: (nombre?: string) => string }> = {
 
   // ── Email 1: Bienvenida (Día 0) ──
