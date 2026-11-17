@@ -21,7 +21,8 @@ const BTN_RED: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), system-ui, sans-serif"
 };
 
-const HERO_IMG = "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1000&q=90&auto=format&fit=crop";
+// Lucerna, Suiza - Puente de la Capilla y Monte Pilatus
+const HERO_IMG = "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=1000&q=90&auto=format&fit=crop";
 
 const TESTIMONIOS = [
   {

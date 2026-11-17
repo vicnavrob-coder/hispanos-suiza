@@ -31,9 +31,12 @@ export const metadata: Metadata = buildMetadata({
   ],
 });
 
-const HERO_IMG  = "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=1000&q=90&auto=format&fit=crop";
+// Matterhorn, Suiza - Montaña icónica suiza
+const HERO_IMG  = "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1000&q=90&auto=format&fit=crop";
+// Zürich, Suiza - Vista de la ciudad
 const ALPS_IMG  = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&q=90&auto=format&fit=crop";
-const LUCERNA_IMG = "https://images.unsplash.com/photo-1527856263669-12c3a0af2aa6?w=800&q=90&auto=format&fit=crop";
+// Lucerna, Suiza - Lago de los Cuatro Cantones
+const LUCERNA_IMG = "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&q=90&auto=format&fit=crop";
 
 const TESTIMONIOS = [
   {

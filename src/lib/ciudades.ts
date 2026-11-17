@@ -39,7 +39,8 @@ export const ciudades: Ciudad[] = [
     salarioMedio: "8.500 CHF/mes bruto",
     descripcion: "La capital económica de Suiza. El mayor mercado laboral del país, especialmente en finanzas, tecnología y farmacéutica.",
     descripcionLarga: `Zúrich es la ciudad donde más españoles y latinoamericanos trabajan en Suiza. No es la capital política (eso es Berna), pero sí la económica y financiera. Aquí tienen sede UBS, Credit Suisse, Google, Microsoft, ABB y cientos de empresas internacionales.\n\nLa calidad de vida es excepcional —puntúa año tras año entre las tres primeras del mundo en el ranking Mercer— pero el coste de vida es de los más altos de Europa. Un alquiler en el centro puede superar los 3.000 CHF para un piso de dos habitaciones.\n\nPara hispanohablantes, Zúrich tiene una comunidad consolidada. Hay asociaciones culturales, grupos de WhatsApp con miles de miembros y hasta un consulado español que atiende a toda la región nordeste.`,
-    imagen: "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=1200&q=85&auto=format&fit=crop",
+    // Zúrich, Suiza - Limmat River y casco antiguo
+    imagen: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85&auto=format&fit=crop",
     pros: [
       "Mayor mercado laboral de Suiza: finanzas, tech, pharma, consultoría",
       "Salarios más altos del país",
@@ -77,7 +78,8 @@ export const ciudades: Ciudad[] = [
     salarioMedio: "8.200 CHF/mes bruto",
     descripcion: "Ciudad internacional por excelencia. Sede de la ONU, la OMS y 200+ organizaciones internacionales. La mayor comunidad hispanohablante de Suiza.",
     descripcionLarga: `Ginebra es la ciudad más internacional de Suiza y probablemente de Europa. La ONU, la OMS, el CERN, la Cruz Roja y más de 200 organizaciones internacionales tienen su sede aquí. Eso crea un mercado laboral muy particular: muchos puestos en inglés o francés, con salarios muy altos y muchos hispanohablantes en el entorno laboral.\n\nEl francés es el idioma oficial y el que necesitas para el día a día. La ventaja para hispanoablantes es que el francés es mucho más fácil de aprender que el alemán — muchos hispanohablantes aprenden a comunicarse bien en 6-12 meses.\n\nLa comunidad latina en Ginebra es la más grande de Suiza, con una presencia muy notable de colombianos, venezolanos, argentinos, mexicanos y españoles. Hay restaurantes latinos, tiendas especializadas y asociaciones muy activas.`,
-    imagen: "https://images.unsplash.com/photo-1573108724029-4c46571d6490?w=1200&q=85&auto=format&fit=crop",
+    // Ginebra, Suiza - Jet d'Eau y lago Leman
+    imagen: "https://images.unsplash.com/photo-1455391103597-cae9bd25e568?w=1200&q=85&auto=format&fit=crop",
     pros: [
       "Mayor comunidad hispanohablante de Suiza",
       "Francés — más fácil de aprender que el alemán para hispanohablantes",
@@ -115,7 +117,8 @@ export const ciudades: Ciudad[] = [
     salarioMedio: "7.800 CHF/mes bruto",
     descripcion: "Capital mundial de la industria farmacéutica. Sede de Novartis, Roche y Syngenta. Frontera triple con Alemania y Francia.",
     descripcionLarga: `Basilea es la capital de la industria farmacéutica y química mundial. Novartis, Roche y Syngenta tienen sus sedes centrales aquí. Si trabajas en pharma, biotech, química o investigación médica, Basilea es tu ciudad.\n\nLa ubicación es única: está en el punto donde confluyen Suiza, Alemania y Francia (Dreiländereck). Muchos residentes viven en Alemania o Francia y trabajan en Basilea — los alquileres en Alemania son un 40-60% más baratos.\n\nAunque es menos conocida que Zúrich o Ginebra, Basilea tiene una escena cultural impresionante: Art Basel (la feria de arte más importante del mundo), el Kunstmuseum y una arquitectura extraordinaria.`,
-    imagen: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85&auto=format&fit=crop",
+    // Basilea, Suiza - Vista del Rin y ciudad
+    imagen: "https://images.unsplash.com/photo-1559564484-e48bf551dbb9?w=1200&q=85&auto=format&fit=crop",
     pros: [
       "Capital mundial de la pharma: Novartis, Roche, Syngenta",
       "Alquileres más asequibles que Zúrich y Ginebra",
@@ -151,7 +154,8 @@ export const ciudades: Ciudad[] = [
     salarioMedio: "7.500 CHF/mes bruto",
     descripcion: "La capital federal de Suiza. Centro de la administración pública, organizaciones internacionales y el sector público. Ciudad Patrimonio de la UNESCO.",
     descripcionLarga: `Berna es la capital de Suiza, algo que sorprende a muchos — se imaginaban Zúrich o Ginebra. Es una ciudad tranquila, ordenada y con una calidad de vida muy alta. El Casco Antiguo medieval es Patrimonio de la UNESCO y caminar por sus arcadas históricas es una experiencia única.\n\nEl mercado laboral está dominado por la administración federal y cantonal, las organizaciones internacionales y el sector público en general. Si buscas estabilidad laboral, Berna es ideal. Los salarios en el sector público son competitivos y la seguridad laboral es muy alta.\n\nEs más tranquila que Zúrich y más germanófona que Ginebra. Los alquileres son entre un 20-30% más baratos que en Zúrich. Una opción muy buena para familias o para quienes buscan calidad de vida sin el ritmo frenético de la capital financiera.`,
-    imagen: "https://images.unsplash.com/photo-1491557345352-5929e343eb89?w=1200&q=85&auto=format&fit=crop",
+    // Berna, Suiza - Casco antiguo UNESCO
+    imagen: "https://images.unsplash.com/photo-1551616073-01e77e4cdadb?w=1200&q=85&auto=format&fit=crop",
     pros: [
       "Capital federal: empleo estable en administración y organizaciones internacionales",
       "20-30% más barata que Zúrich en alquiler",
@@ -187,7 +191,8 @@ export const ciudades: Ciudad[] = [
     salarioMedio: "7.200 CHF/mes bruto",
     descripcion: "Ciudad universitaria y deportiva a orillas del lago Leman. Sede del COI (Comité Olímpico Internacional) y de la EPFL, una de las mejores universidades técnicas del mundo.",
     descripcionLarga: `Lausana es la gran alternativa francoparlante a Ginebra. Está a solo 60 km por autopista y a 40 minutos en tren, pero es significativamente más barata y tiene un ambiente más relajado y universitario.\n\nEs la capital olímpica del mundo: el COI (Comité Olímpico Internacional) y decenas de federaciones deportivas internacionales tienen su sede aquí. Si trabajas en el mundo del deporte, Lausana es tu ciudad.\n\nLa EPFL (École Polytechnique Fédérale de Lausanne) es una de las mejores universidades técnicas del mundo y genera un ecosistema startups y tech muy dinámico. El campus es impresionante y hay muchos hispanohablantes en la comunidad académica.`,
-    imagen: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=85&auto=format&fit=crop",
+    // Lausana, Suiza - Lago Leman y los Alpes
+    imagen: "https://images.unsplash.com/photo-1594894047477-01e1ab52a81f?w=1200&q=85&auto=format&fit=crop",
     pros: [
       "Francesa pero 20-30% más barata que Ginebra",
       "Sede del COI y federaciones deportivas internacionales",
@@ -223,7 +228,8 @@ export const ciudades: Ciudad[] = [
     salarioMedio: "6.800 CHF/mes bruto",
     descripcion: "La ciudad más mediterránea de Suiza. Idioma italiano, clima templado, orillas del lago y una importante plaza financiera y bancaria.",
     descripcionLarga: `Lugano es la puerta de entrada mediterránea a Suiza. El idioma oficial es el italiano, el clima es notablemente más suave que el resto del país (palmeras incluidas), y el estilo de vida recuerda más al norte de Italia que a la imagen típica suiza.\n\nPara hispanohablantes, el italiano es mucho más fácil de aprender que el alemán — muchos lo consiguen a nivel funcional en 3-4 meses. Es la ciudad donde el choque cultural es menor para alguien que viene de España o Latinoamérica.\n\nEconómicamente, Lugano es un centro financiero y bancario muy importante, con una concentración de bancos privados y gestoras de patrimonio. El turismo de lujo y el sector inmobiliario también tienen mucho peso.`,
-    imagen: "https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=1200&q=85&auto=format&fit=crop",
+    // Lugano, Suiza - Lago de Lugano y Monte San Salvatore
+    imagen: "https://images.unsplash.com/photo-1569157761553-7b68ea2ef2a8?w=1200&q=85&auto=format&fit=crop",
     pros: [
       "Italiano — el idioma más fácil para hispanohablantes en Suiza",
       "Clima mediterráneo, el más suave de Suiza",

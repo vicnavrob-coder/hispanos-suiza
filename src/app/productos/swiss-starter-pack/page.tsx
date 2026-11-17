@@ -22,7 +22,8 @@ const BTN_PURPLE: React.CSSProperties = {
   fontFamily: "var(--font-dm-sans), system-ui, sans-serif"
 };
 
-const HERO_IMG = "https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=1000&q=90&auto=format&fit=crop";
+// Zúrich, Suiza - Vista profesional de la ciudad
+const HERO_IMG = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&q=90&auto=format&fit=crop";
 
 const TESTIMONIOS = [
   {
