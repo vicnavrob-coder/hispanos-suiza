@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     const validation = validateData(SubscriberSchema, {
       email: typeof body.email === 'string' ? body.email.trim().toLowerCase() : body.email,
       nombre: typeof body.nombre === 'string' ? body.nombre.trim() : body.nombre,
-      origen: body.origen,
+      origen: body.origen || body.source, // Accept both origen and source
     });
 
     if (!validation.success) {
@@ -36,9 +36,10 @@ export async function POST(req: NextRequest) {
     }
 
     const { email, nombre } = validation.data;
+    const source = body.source || body.origen || "footer-hispanosensuiza";
 
     // ── Guardar suscriptor (welcomeStep: 0 = email pendiente) ──
-    const { ok, already } = await addSubscriber(email, nombre || "");
+    const { ok, already } = await addSubscriber(email, nombre || "", source);
 
   if (!ok) {
     return NextResponse.json({ error: "Error al guardar suscriptor" }, { status: 500 });

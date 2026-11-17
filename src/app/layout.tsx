@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 import Analytics from "@/components/Analytics";
 import RegistroPrompt from "@/components/RegistroPrompt";
+import NewsletterPopup from "@/components/NewsletterPopup";
 import { AuthProvider } from "@/contexts/AuthContext";
 import AuthModal from "@/components/AuthModal";
 import SessionProvider from "@/components/SessionProvider";
@@ -117,6 +118,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
             <CookieBanner />
             <RegistroPrompt />
+            <NewsletterPopup />
           </AuthProvider>
         </SessionProvider>
         {process.env.VERCEL === "1" && <VercelAnalytics />}
