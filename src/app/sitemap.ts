@@ -131,6 +131,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     // Productos
     {
+      url: `${BASE_URL}/productos/swiss-starter-pack`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
       url: `${BASE_URL}/productos/template-emigrar-suiza`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
