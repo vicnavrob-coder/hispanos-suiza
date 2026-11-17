@@ -14,6 +14,7 @@ export const runtime = "nodejs";
 // CV-related plans
 const CV_PLANS = ["cv-single", "cv-monthly", "cv-yearly"];
 const TEMPLATE_PRODUCT = "template-emigrar-suiza";
+const SWISS_PACK_PRODUCT = "swiss-starter-pack";
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
@@ -89,6 +90,37 @@ export async function POST(req: NextRequest) {
               logger.info("Template purchase processed", { email, downloadId });
             } catch (error) {
               logger.error("Error processing template purchase", error instanceof Error ? error : new Error(String(error)));
+            }
+          }
+          // Handle Swiss Starter Pack
+          else if (product === SWISS_PACK_PRODUCT) {
+            const customerName = session.metadata?.customer_name || session.customer_details?.name || "";
+            const downloadId = `${Date.now()}-${Math.random().toString(36).substring(7)}`;
+
+            try {
+              // Save purchase
+              await savePurchase({
+                id: downloadId,
+                sessionId: session.id,
+                email,
+                name: customerName,
+                amount: session.amount_total! / 100,
+                currency: session.currency!,
+                timestamp: new Date().toISOString(),
+                product: SWISS_PACK_PRODUCT,
+              });
+
+              // Send download email
+              await sendTemplateEmail({
+                to: email,
+                name: customerName,
+                downloadId,
+                product: SWISS_PACK_PRODUCT,
+              });
+
+              logger.info("Swiss Pack purchase processed", { email, downloadId });
+            } catch (error) {
+              logger.error("Error processing Swiss Pack purchase", error instanceof Error ? error : new Error(String(error)));
             }
           }
           // Handle CV plans

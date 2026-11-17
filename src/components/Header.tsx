@@ -12,11 +12,13 @@ const NAV_LINKS = [
   { href: "/seguros",      label: "Seguros" },
   { href: "/herramientas", label: "Herramientas" },
   { href: "/blog",         label: "Blog" },
-  { href: "/productos/template-emigrar-suiza", label: "Template", badge: "Nuevo" },
+  { href: "/productos/swiss-starter-pack", label: "Swiss Pack", badge: "Nuevo" },
+  { href: "/productos/template-emigrar-suiza", label: "Template" },
 ];
 
 const MOBILE_LINKS = [
-  { href: "/productos/template-emigrar-suiza", label: "🎁 Template Emigrar (NUEVO)" },
+  { href: "/productos/swiss-starter-pack", label: "🇨🇭 Swiss Starter Pack (NUEVO)" },
+  { href: "/productos/template-emigrar-suiza", label: "🎁 Template Emigrar" },
   { href: "/trabajo",                label: "💼 Trabajo" },
   { href: "/trabajo/unia",           label: "⚖️ UNIA — Derechos laborales" },
   { href: "/trabajo/esqui-suiza",    label: "⛷️ Trabajo en estaciones de esquí" },

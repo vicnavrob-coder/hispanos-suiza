@@ -15,6 +15,7 @@ interface EmailParams {
   to: string;
   name: string;
   downloadId: string;
+  product?: string;
 }
 
 // Configurar transporter de Gmail
@@ -86,15 +87,21 @@ export async function savePurchase(purchase: Purchase): Promise<void> {
 }
 
 /**
- * Envía email con link de descarga del template
+ * Envía email con link de descarga del template o Swiss Pack
  */
-export async function sendTemplateEmail({ to, name, downloadId }: EmailParams): Promise<void> {
-  const downloadUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/productos/template-emigrar-suiza/descargar/${downloadId}`;
+export async function sendTemplateEmail({ to, name, downloadId, product = "template-emigrar-suiza" }: EmailParams): Promise<void> {
+  const isSwissPack = product === "swiss-starter-pack";
+
+  const downloadUrl = isSwissPack
+    ? `${process.env.NEXT_PUBLIC_BASE_URL}/productos/swiss-starter-pack/descargar/${downloadId}`
+    : `${process.env.NEXT_PUBLIC_BASE_URL}/productos/template-emigrar-suiza/descargar/${downloadId}`;
 
   const mailOptions = {
     from: `HispanosEnSuiza <${process.env.NEWSLETTER_GMAIL_USER}>`,
     to,
-    subject: "🎉 Tu Template para Emigrar a Suiza está listo",
+    subject: isSwissPack
+      ? "🎉 Tu Swiss Starter Pack está listo"
+      : "🎉 Tu Template para Emigrar a Suiza está listo",
     html: `
       <!DOCTYPE html>
       <html>
@@ -187,35 +194,52 @@ export async function sendTemplateEmail({ to, name, downloadId }: EmailParams): 
 
           <p>¡Bienvenido a la comunidad de HispanosEnSuiza! 🎉</p>
 
-          <p>Tu <strong>Template Completo para Emigrar a Suiza</strong> está listo. Incluye todo lo que necesitas:</p>
+          <p>Tu <strong>${isSwissPack ? "Swiss Starter Pack" : "Template Completo para Emigrar a Suiza"}</strong> está listo. Incluye todo lo que necesitas:</p>
 
           <ul>
-            <li>📋 Checklist de 50 pasos organizados</li>
-            <li>📚 7 guías completas (1'975 líneas)</li>
-            <li>💰 Tracker de gastos con presupuesto</li>
-            <li>📞 50+ contactos verificados 2026</li>
-            <li>📄 3 plantillas listas para usar</li>
+            ${isSwissPack ? `
+              <li>📚 eBook completo 70+ páginas PDF</li>
+              <li>📝 Plantillas editables en alemán</li>
+              <li>💰 Calculadora de salarios interactiva</li>
+              <li>🔗 Directorio de recursos verificados</li>
+              <li>✅ Actualizaciones gratis hasta 2027</li>
+            ` : `
+              <li>📋 Checklist de 50 pasos organizados</li>
+              <li>📚 7 guías completas (1'975 líneas)</li>
+              <li>💰 Tracker de gastos con presupuesto</li>
+              <li>📞 50+ contactos verificados 2026</li>
+              <li>📄 3 plantillas listas para usar</li>
+            `}
           </ul>
 
           <div style="text-align: center; margin: 30px 0;">
             <a href="${downloadUrl}" class="cta-button">
-              📥 Descargar Template Ahora
+              📥 Descargar ${isSwissPack ? "Pack" : "Template"} Ahora
             </a>
           </div>
 
           <div class="steps">
             <h3>🚀 Instrucciones Rápidas:</h3>
             <ol>
-              <li>Haz clic en el botón de arriba para descargar</li>
-              <li>Descomprime el archivo ZIP (16 archivos)</li>
-              <li>Lee <strong>README.md</strong> primero</li>
-              <li>Importa los CSVs a Notion/Excel</li>
-              <li>Empieza con la <strong>Guía 01</strong> (Registro en la Comuna)</li>
+              ${isSwissPack ? `
+                <li>Haz clic en el botón de arriba para descargar</li>
+                <li>Descomprime el archivo ZIP</li>
+                <li>Lee el <strong>README.md</strong> primero</li>
+                <li>Abre el <strong>eBook PDF</strong> para empezar</li>
+                <li>Accede a la <strong>calculadora de salarios</strong> online</li>
+                <li>Usa las <strong>plantillas en alemán</strong> para tu CV</li>
+              ` : `
+                <li>Haz clic en el botón de arriba para descargar</li>
+                <li>Descomprime el archivo ZIP (16 archivos)</li>
+                <li>Lee <strong>README.md</strong> primero</li>
+                <li>Importa los CSVs a Notion/Excel</li>
+                <li>Empieza con la <strong>Guía 01</strong> (Registro en la Comuna)</li>
+              `}
             </ol>
           </div>
 
           <div class="guarantee">
-            <strong>✅ Garantía 30 días:</strong> Si el template no cumple tus expectativas, reembolso completo sin preguntas. Escríbenos a soporte@hispanosensuiza.ch
+            <strong>✅ Garantía 30 días:</strong> Si ${isSwissPack ? "el pack" : "el template"} no cumple tus expectativas, reembolso completo sin preguntas. Escríbenos a hispanosensuiza@gmail.com
           </div>
 
           <p><strong>Acceso de por vida:</strong> Este link de descarga es válido permanentemente. Guárdalo en un lugar seguro.</p>
@@ -223,7 +247,7 @@ export async function sendTemplateEmail({ to, name, downloadId }: EmailParams): 
           <p style="margin-top: 30px;"><strong>¿Necesitas ayuda?</strong></p>
           <p>Estamos aquí para ayudarte:</p>
           <ul>
-            <li>📧 Email: soporte@hispanosensuiza.ch</li>
+            <li>📧 Email: hispanosensuiza@gmail.com</li>
             <li>🌐 Web: <a href="https://hispanosensuiza.ch">hispanosensuiza.ch</a></li>
             <li>⏰ Respuesta: 24-48h hábiles</li>
           </ul>
@@ -237,7 +261,7 @@ export async function sendTemplateEmail({ to, name, downloadId }: EmailParams): 
         </div>
 
         <div class="footer">
-          <p>Este email fue enviado porque compraste el Template Emigrar a Suiza</p>
+          <p>Este email fue enviado porque compraste ${isSwissPack ? "el Swiss Starter Pack" : "el Template Emigrar a Suiza"}</p>
           <p style="margin-top: 10px;">
             HispanosEnSuiza.ch | La guía real para vivir en Suiza<br>
             <a href="https://hispanosensuiza.ch" style="color: #C8102E;">hispanosensuiza.ch</a>

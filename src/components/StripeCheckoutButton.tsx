@@ -7,9 +7,10 @@ interface StripeCheckoutButtonProps {
   className?: string;
   style?: React.CSSProperties;
   children: React.ReactNode;
+  productId?: string;
 }
 
-export default function StripeCheckoutButton({ className, style, children }: StripeCheckoutButtonProps) {
+export default function StripeCheckoutButton({ className, style, children, productId = "template-emigrar-suiza" }: StripeCheckoutButtonProps) {
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
 
@@ -26,6 +27,7 @@ export default function StripeCheckoutButton({ className, style, children }: Str
         body: JSON.stringify({
           email: user?.email || "",
           nombre: user?.nombre || "",
+          productId,
         }),
       });
 
