@@ -191,3 +191,141 @@ export const EMAIL_TEMPLATES: Record<number, { subject: string; html: (nombre?: 
     ].join("")),
   },
 };
+
+// ─────────────────────────────────────────────────────────────
+// WEEKLY NEWSLETTER TEMPLATE
+// ─────────────────────────────────────────────────────────────
+
+import type { NewsletterContent } from "./newsletter-content";
+
+export function generateNewsletterSubject(weekNumber: number): string {
+  return `🇨🇭 Newsletter Semanal #${weekNumber} - HispanosEnSuiza`;
+}
+
+export function generateNewsletterHTML(
+  nombre: string,
+  content: NewsletterContent
+): string {
+  const { weekNumber, featuredType, jobs, story, blogPost, tool } = content;
+
+  const utmParams = `utm_source=newsletter&utm_medium=email&utm_campaign=weekly-${weekNumber}`;
+
+  // ── Featured Section (rotates weekly) ──
+  let featuredSection = "";
+
+  if (featuredType === "job" && jobs.length > 0) {
+    const job = jobs[0];
+    featuredSection = `
+      <table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0 24px">
+        <tr><td style="padding:20px;background:#fef2f2;border-radius:12px;border-left:5px solid ${BRAND_COLOR}">
+          <h2 style="margin:0 0 12px;font-size:18px;color:#991b1b">🔥 Oferta Destacada de la Semana</h2>
+          <strong style="color:#1a1a2e;font-size:16px">${job.title}</strong><br>
+          <span style="font-size:14px;color:#64748b">${job.company} · ${job.location}</span><br>
+          ${job.salary ? `<span style="font-size:14px;color:#059669;font-weight:600">${job.salary}</span><br>` : ""}
+          ${cta("Ver oferta completa →", `${job.url}?${utmParams}`)}
+        </td></tr>
+      </table>`;
+  } else if (featuredType === "story" && story) {
+    featuredSection = `
+      <table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0 24px">
+        <tr><td style="padding:20px;background:#fef3c7;border-radius:12px;border-left:5px solid #f59e0b">
+          <h2 style="margin:0 0 12px;font-size:18px;color:#92400e">📖 Historia Destacada</h2>
+          <strong style="color:#1a1a2e;font-size:16px">${story.titulo}</strong><br>
+          <span style="font-size:14px;color:#64748b">Por ${story.autorNombre}${story.ciudadSuiza ? ` · ${story.ciudadSuiza}` : ""}</span><br>
+          ${cta("Leer historia →", `${SITE}/comunidad/historias/${story.slug}?${utmParams}`)}
+        </td></tr>
+      </table>`;
+  } else if (featuredType === "blog" && blogPost) {
+    featuredSection = `
+      <table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0 24px">
+        <tr><td style="padding:20px;background:#dbeafe;border-radius:12px;border-left:5px solid #0032A0">
+          <h2 style="margin:0 0 12px;font-size:18px;color:#1e3a8a">📝 Artículo del Blog</h2>
+          <strong style="color:#1a1a2e;font-size:16px">${blogPost.titulo}</strong><br>
+          <span style="font-size:14px;color:#64748b">${blogPost.categoria} · ${blogPost.tiempoLectura} min lectura</span><br>
+          ${cta("Leer artículo →", `${SITE}/blog/${blogPost.slug}?${utmParams}`)}
+        </td></tr>
+      </table>`;
+  } else {
+    featuredSection = `
+      <table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0 24px">
+        <tr><td style="padding:20px;background:#fce7f3;border-radius:12px;border-left:5px solid #9d174d">
+          <h2 style="margin:0 0 12px;font-size:18px;color:#9d174d">🛠️ Herramienta de la Semana</h2>
+          <strong style="color:#1a1a2e;font-size:16px">${tool.icon} ${tool.name}</strong><br>
+          <span style="font-size:14px;color:#64748b">${tool.description}</span><br>
+          ${cta(tool.cta, `${tool.url}?${utmParams}`)}
+        </td></tr>
+      </table>`;
+  }
+
+  // ── Jobs Section ──
+  const jobsSection = jobs.length > 0 ? `
+    <h2 style="margin:24px 0 16px;font-size:18px;color:#1a1a2e">💼 Top 3 Ofertas de Trabajo</h2>
+    ${jobs.map(job => `
+      <table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 12px;background:#f8fafc;border-radius:8px;overflow:hidden">
+        <tr><td style="padding:14px">
+          <strong style="color:#1a1a2e;font-size:15px">${job.title}</strong><br>
+          <span style="font-size:13px;color:#64748b">${job.company} · ${job.location}</span><br>
+          ${job.salary ? `<span style="font-size:13px;color:#059669;font-weight:600">${job.salary}</span><br>` : ""}
+          <a href="${job.url}?${utmParams}" style="color:${BRAND_COLOR};font-size:13px;font-weight:600;text-decoration:none">Ver oferta →</a>
+        </td></tr>
+      </table>
+    `).join("")}
+  ` : "";
+
+  // ── Story Section ──
+  const storySection = story && featuredType !== "story" ? `
+    <h2 style="margin:24px 0 16px;font-size:18px;color:#1a1a2e">📖 Historia de la Comunidad</h2>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 12px;background:#fef3c7;border-radius:8px;overflow:hidden">
+      <tr><td style="padding:14px">
+        <strong style="color:#1a1a2e;font-size:15px">${story.titulo}</strong><br>
+        <span style="font-size:13px;color:#64748b">Por ${story.autorNombre}${story.ciudadSuiza ? ` desde ${story.ciudadSuiza}` : ""}</span><br>
+        <a href="${SITE}/comunidad/historias/${story.slug}?${utmParams}" style="color:${BRAND_COLOR};font-size:13px;font-weight:600;text-decoration:none">Leer historia →</a>
+      </td></tr>
+    </table>
+  ` : "";
+
+  // ── Blog Section ──
+  const blogSection = blogPost && featuredType !== "blog" ? `
+    <h2 style="margin:24px 0 16px;font-size:18px;color:#1a1a2e">📝 Artículo del Blog</h2>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 12px;background:#dbeafe;border-radius:8px;overflow:hidden">
+      <tr><td style="padding:14px">
+        <strong style="color:#1a1a2e;font-size:15px">${blogPost.titulo}</strong><br>
+        <span style="font-size:13px;color:#64748b">${blogPost.descripcion.slice(0, 120)}...</span><br>
+        <a href="${SITE}/blog/${blogPost.slug}?${utmParams}" style="color:${BRAND_COLOR};font-size:13px;font-weight:600;text-decoration:none">Leer más →</a>
+      </td></tr>
+    </table>
+  ` : "";
+
+  // ── Tool Section ──
+  const toolSection = featuredType !== "tool" ? `
+    <h2 style="margin:24px 0 16px;font-size:18px;color:#1a1a2e">🛠️ Herramienta de la Semana</h2>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 12px;background:#fce7f3;border-radius:8px;overflow:hidden">
+      <tr><td style="padding:14px">
+        <strong style="color:#1a1a2e;font-size:15px">${tool.icon} ${tool.name}</strong><br>
+        <span style="font-size:13px;color:#64748b">${tool.description}</span><br>
+        <a href="${tool.url}?${utmParams}" style="color:${BRAND_COLOR};font-size:13px;font-weight:600;text-decoration:none">${tool.cta}</a>
+      </td></tr>
+    </table>
+  ` : "";
+
+  return layout(
+    `Newsletter Semanal #${weekNumber}`,
+    [
+      p(`Hola ${nombre}!`),
+      p(`Te enviamos lo más interesante de esta semana para hispanohablantes en Suiza.`),
+      featuredSection,
+      jobsSection,
+      storySection,
+      blogSection,
+      toolSection,
+      `<table width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0 16px">
+        <tr><td style="padding:16px;background:#f1f5f9;border-radius:8px;text-align:center">
+          <span style="font-size:14px;color:#475569">¿Buscas trabajo en Suiza?</span><br>
+          <a href="${SITE}/trabajo/buscador?${utmParams}" style="color:${BRAND_COLOR};font-size:14px;font-weight:600;text-decoration:none">Explora +1,000 ofertas actualizadas diariamente →</a>
+        </td></tr>
+      </table>`,
+      p("¡Hasta la semana que viene!"),
+      p("<strong>Equipo HispanosEnSuiza</strong>"),
+    ].join("")
+  );
+}

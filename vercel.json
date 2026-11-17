@@ -1,5 +1,11 @@
 {
   "buildCommand": "TURBOPACK=0 next build",
   "framework": "nextjs",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "crons": [
+    {
+      "path": "/api/cron/weekly-newsletter",
+      "schedule": "0 9 * * 4"
+    }
+  ]
 }

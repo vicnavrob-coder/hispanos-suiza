@@ -147,3 +147,13 @@ export function canSendEmail(sub: Subscriber): boolean {
   const hoursSinceLastEmail = (Date.now() - new Date(sub.lastEmailAt).getTime()) / 3_600_000;
   return hoursSinceLastEmail >= 20; // Minimum 20 hours between emails
 }
+
+/**
+ * Get all active (non-blacklisted) subscribers
+ * Returns null on error (NOT empty array)
+ */
+export async function getActiveSubscribers(): Promise<Subscriber[] | null> {
+  const subs = await getSubscribers();
+  if (subs === null) return null;
+  return subs.filter(sub => !sub.blacklisted);
+}
