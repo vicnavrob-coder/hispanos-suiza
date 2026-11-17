@@ -178,8 +178,8 @@ export default function CompraExitosaPage() {
               style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", color: "#9CA3AF" }}
             >
               Revisa tu carpeta de spam o escríbenos a{" "}
-              <a href="mailto:soporte@hispanosensuiza.ch" style={{ color: "#C8102E", textDecoration: "underline" }}>
-                soporte@hispanosensuiza.ch
+              <a href="mailto:hispanosensuiza@gmail.com" style={{ color: "#C8102E", textDecoration: "underline" }}>
+                hispanosensuiza@gmail.com
               </a>
             </p>
           </div>
@@ -194,7 +194,7 @@ export default function CompraExitosaPage() {
               ← Volver al inicio
             </Link>
             <a
-              href="mailto:soporte@hispanosensuiza.ch"
+              href="mailto:hispanosensuiza@gmail.com"
               className="flex-1 inline-flex items-center justify-center gap-2 font-semibold px-6 py-3 rounded-full text-sm transition-opacity hover:opacity-85"
               style={{ background: "#C8102E", color: "#ffffff", fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
             >

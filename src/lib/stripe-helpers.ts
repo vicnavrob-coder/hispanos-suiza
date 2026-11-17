@@ -186,7 +186,7 @@ export async function sendTemplateEmail({ to, name, downloadId, product = "templ
       <body>
         <div class="header">
           <h1>🇨🇭 ¡Gracias por tu compra!</h1>
-          <p>Tu template está listo para descargar</p>
+          <p>Tu ${isSwissPack ? "Swiss Starter Pack" : "template"} está listo para descargar</p>
         </div>
 
         <div class="content">

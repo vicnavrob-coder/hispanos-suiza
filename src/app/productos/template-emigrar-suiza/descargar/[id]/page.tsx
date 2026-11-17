@@ -125,7 +125,7 @@ export default async function DescargarPage({ params }: { params: Promise<{ id: 
           </p>
           <div className="flex gap-3 justify-center">
             <a
-              href="mailto:soporte@hispanosensuiza.ch"
+              href="mailto:hispanosensuiza@gmail.com"
               className="text-sm font-semibold"
               style={{ color: "#C8102E", fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }}
             >

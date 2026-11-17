@@ -8,6 +8,7 @@ export const metadata: Metadata = buildMetadata({
   title: "Swiss Starter Pack - Guía Completa Trabajar en Suiza 2026",
   description: "eBook 70+ páginas, plantillas en alemán, calculadora salarios y directorio de recursos verificados. Todo lo que necesitas para conseguir trabajo en Suiza. CHF 67 pago único.",
   path: "/productos/swiss-starter-pack",
+  ogImage: "https://hispanosensuiza.ch/og-swiss-pack.jpg",
   keywords: [
     "trabajar en suiza", "conseguir empleo suiza", "cv suiza", "permiso trabajo suiza",
     "emigrar suiza", "guia trabajo suiza", "salarios suiza", "seguros suiza",
