@@ -1,0 +1,51 @@
+{
+  "version": "20261118",
+  "generatedAt": "2026-11-18T00:00:00.000Z",
+  "items": [
+    {
+      "id": "guia-rav",
+      "type": "guia",
+      "titulo": "Cobrar el RAV (Paro) en Suiza",
+      "descripcion": "Guía completa sobre el sistema de desempleo suizo: requisitos, cuánto pagan y cómo solicitarlo.",
+      "url": "/blog/rav-paro-suiza",
+      "keywords": ["rav", "paro", "desempleo", "subsidio desempleo", "cobrar paro suiza"],
+      "relevancia": 10
+    },
+    {
+      "id": "ciudad-zurich",
+      "type": "ciudad",
+      "titulo": "Zúrich",
+      "descripcion": "La capital económica de Suiza. El mayor mercado laboral del país, especialmente en finanzas, tecnología y farmacéutica.",
+      "url": "/ciudades/zurich",
+      "keywords": ["vivir en zurich", "españoles zurich", "trabajar zurich", "alquiler zurich"],
+      "relevancia": 10
+    },
+    {
+      "id": "herramienta-seguros",
+      "type": "herramienta",
+      "titulo": "Comparador de Seguros Médicos",
+      "descripcion": "Compara precios de seguros médicos obligatorios (KVG/LAMal) por cantón, edad y franquicia.",
+      "url": "/herramientas/seguros-medicos",
+      "keywords": ["seguro medico", "kvg", "lamal", "franquicia", "seguro salud"],
+      "relevancia": 8
+    },
+    {
+      "id": "pagina-trabajo",
+      "type": "pagina",
+      "titulo": "Trabajar en Suiza",
+      "descripcion": "Portal de empleo para hispanohablantes: buscador de trabajo, sectores, salarios y permisos.",
+      "url": "/trabajo",
+      "keywords": ["trabajar suiza", "empleo suiza", "trabajo hispanohablantes"],
+      "relevancia": 10
+    },
+    {
+      "id": "pagina-vivienda",
+      "type": "pagina",
+      "titulo": "Vivienda en Suiza",
+      "descripcion": "Busca pisos de alquiler en todos los portales suizos: Homegate, ImmoScout24, Comparis.",
+      "url": "/vivienda",
+      "keywords": ["alquiler suiza", "buscar piso", "vivienda", "homegate"],
+      "relevancia": 10
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
+import SearchBar from "./SearchBar";
 
 const NAV_LINKS = [
   { href: "/trabajo",      label: "Trabajo" },
@@ -72,6 +73,11 @@ export default function Header() {
                 </div>
               </div>
             </Link>
+
+            {/* Search bar desktop */}
+            <div className="hidden md:flex items-center flex-1 max-w-md mx-6">
+              <SearchBar />
+            </div>
 
             {/* Nav desktop */}
             <nav
@@ -201,6 +207,11 @@ export default function Header() {
               </div>
             </div>
           )}
+
+          {/* Search bar mobile */}
+          <div className="px-4 pb-4 border-b border-white/10 mt-4">
+            <SearchBar />
+          </div>
 
           <nav id="mobile-nav" className="flex flex-col gap-0.5 px-4 mt-3 flex-1 overflow-y-auto">
             {MOBILE_LINKS.map((link) => {
