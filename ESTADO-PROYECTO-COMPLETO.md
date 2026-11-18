@@ -1,29 +1,106 @@
 # 📊 ESTADO COMPLETO DEL PROYECTO - 18 NOV 2026
 
-**Última actualización:** Martes 18 Noviembre 2026, 09:00 CET
+**Última actualización:** Martes 18 Noviembre 2026, 15:30 CET
 **Proyecto:** HispanosEnSuiza
 **URL:** https://hispanosensuiza.ch
+**Último commit:** `25d4ae0` (18 Nov 2026)
 
 ---
 
 ## 🎯 RESUMEN EJECUTIVO
 
-**Estado:** ✅ PRODUCCIÓN - TODOS LOS SISTEMAS FUNCIONANDO
+**Estado:** ⚠️ PRODUCCIÓN - REQUIERE ACCIÓN MANUAL
 
 **Productos activos:**
-- Template Emigrar Suiza: CHF 19 (funcionando)
-- Swiss Starter Pack: CHF 67 (funcionando)
+- Template Emigrar Suiza: CHF 19 ✅ (funcionando)
+- Swiss Starter Pack: CHF 67 ✅ (funcionando)
 
 **Sistemas automatizados:**
-- Newsletter semanal: Jueves 10:00 CET (automático)
-- Captura de emails: 24/7 (automático)
-- Build y deployment: Cada push (automático)
+- Newsletter semanal: Jueves 10:00 CET ✅ (automático)
+- Captura de emails: 24/7 ⚠️ (código listo, requiere deployment)
+- Build local: ✅ Funcional (294 páginas generadas)
+- Deployment automático: ❌ (GitHub webhook no triggering)
 
 **Métricas actuales:**
 - Suscriptores email: 23 activos
-- Páginas generadas: 292
+- Páginas generadas (local): 294
 - Productos: 2 activos
 - Newsletter: Primer envío 20 Nov (jueves)
+
+---
+
+## 🚨 ACCIÓN INMEDIATA REQUERIDA
+
+### ⏳ DEPLOYMENT MANUAL PENDIENTE (5 minutos)
+
+**Situación actual:**
+- ✅ Código pusheado a GitHub (commit `25d4ae0`)
+- ✅ Build local exitoso (294 páginas, 0 errores)
+- ✅ Variables de entorno configuradas en Vercel
+- ❌ Vercel NO detectó el nuevo commit automáticamente
+- ❌ /newsletter devuelve 404 en producción
+
+**Por qué:**
+- La integración GitHub ↔ Vercel webhook no está triggerando deployments automáticos
+- Último deployment automático: 17 Nov 2026, 18:48
+- Nuevo commit sin deployar: 18 Nov 2026, 15:25
+
+**Solución:**
+Ver documento completo: **`DEPLOYMENT-MANUAL-REQUIRED.md`**
+
+**Pasos rápidos (2 minutos):**
+1. Ir a: https://vercel.com/dashboard
+2. Proyecto "hispanos-suiza" → Deployments
+3. Click "..." en último deployment → "Redeploy"
+4. Confirmar redeploy
+5. Esperar 2-3 minutos
+
+**Después del redeploy todo funcionará:**
+- ✅ /newsletter accesible (200 en lugar de 404)
+- ✅ Sistema de emails operativo
+- ✅ Newsletter lista para el jueves
+- ✅ Captura de suscriptores funcionando
+
+---
+
+## ✅ REVISIÓN COMPLETA REALIZADA (18 NOV 2026, 15:00-15:30)
+
+### Lo que se verificó:
+
+1. **Build local**: ✅ Compilado exitosamente
+   - 0 errores TypeScript
+   - 294 páginas generadas
+   - Tiempo: ~2 minutos
+
+2. **Variables de entorno en Vercel**: ✅ YA CONFIGURADAS
+   - `NEWSLETTER_GMAIL_USER` → Configurada ✅
+   - `NEWSLETTER_GMAIL_PASS` → Configurada ✅
+   - `NEWSLETTER_NOTIFY_TO` → Configurada ✅
+   - **Conclusión**: El problema de EMAILS_FIX.md YA ESTÁ RESUELTO
+
+3. **Swiss Starter Pack**: ✅ ONLINE
+   - URL: https://hispanosensuiza.ch/productos/swiss-starter-pack
+   - HTTP 200 (funcionando correctamente)
+   - **Corrección**: Los documentos decían que estaba caído, pero está funcionando
+
+4. **Página /newsletter**: ❌ 404 en producción
+   - Archivo existe: `/src/app/newsletter/page.tsx` ✅
+   - Build local lo genera: ✅
+   - Producción: Devuelve 404 ❌
+   - **Causa**: Falta deployment del código más reciente
+
+5. **Git status**: ✅ Código actualizado
+   - Commit creado: `25d4ae0`
+   - Pusheado a GitHub: ✅
+   - Vercel no lo detectó: ❌
+
+### Acciones tomadas:
+
+- ✅ Build local completo y verificado
+- ✅ Commit con fix creado y pusheado
+- ✅ Variables de entorno verificadas en Vercel
+- ✅ Documento de instrucciones creado (DEPLOYMENT-MANUAL-REQUIRED.md)
+- ⏳ Deployment manual pendiente (requiere acción del usuario)
 
 ---
 
@@ -46,9 +123,9 @@
 **Configuración:** `vercel.json` → `crons`
 **Próximo envío:** Jueves 20 Nov 2026, 10:00 CET
 
-**Estado:** ✅ FUNCIONANDO - NO REQUIERE ACCIÓN
+**Estado:** ✅ CONFIGURADO - Funcionará después del deployment
 
-**Qué hace el sistema:**
+**Flujo del sistema:**
 ```
 Jueves 09:00 UTC (10:00 CET):
   ↓
@@ -77,11 +154,17 @@ Jueves 09:00 UTC (10:00 CET):
 
 ---
 
-### 2. Landing Page /newsletter ✅ AUTOMÁTICO
+### 2. Landing Page /newsletter ⚠️ PENDIENTE DEPLOYMENT
 
 **URL:** https://hispanosensuiza.ch/newsletter
 
-**Qué hace:**
+**Estado actual:**
+- Código: ✅ Existe en `/src/app/newsletter/page.tsx`
+- Build local: ✅ Genera correctamente
+- Producción: ❌ Devuelve 404
+- **Acción**: Requiere deployment manual
+
+**Qué hará después del deployment:**
 - Página completa optimizada conversión
 - Formulario captura nombre + email
 - Al suscribirse:
@@ -92,13 +175,13 @@ Jueves 09:00 UTC (10:00 CET):
 
 **Archivo:** `/src/app/newsletter/page.tsx`
 
-**Estado:** ✅ LIVE 24/7 - NO REQUIERE ACCIÓN
+**Estado después del deployment:** ✅ LIVE 24/7 - NO REQUIERE ACCIÓN
 
 **Conversión esperada:** 10-15% de visitantes
 
 ---
 
-### 3. Popup Inteligente ✅ AUTOMÁTICO
+### 3. Popup Inteligente ✅ ACTIVO
 
 **Dónde aparece:** Todas las páginas del sitio (excepto /newsletter)
 
@@ -114,13 +197,13 @@ Jueves 09:00 UTC (10:00 CET):
 
 **Archivo:** `/src/components/NewsletterPopup.tsx`
 
-**Estado:** ✅ ACTIVO 24/7 - NO REQUIERE ACCIÓN
+**Estado:** ✅ ACTIVO 24/7 en producción
 
 **Conversión esperada:** 5-10% de quienes lo ven
 
 ---
 
-### 4. Email de Bienvenida ✅ AUTOMÁTICO
+### 4. Email de Bienvenida ⚠️ CONFIGURADO
 
 **Qué hace:**
 - Cuando alguien se suscribe (landing o popup)
@@ -130,11 +213,15 @@ Jueves 09:00 UTC (10:00 CET):
 
 **Archivo:** `/src/app/api/newsletter/route.ts`
 
-**Estado:** ✅ FUNCIONANDO - NO REQUIERE ACCIÓN
+**Variables requeridas (YA CONFIGURADAS):**
+- ✅ `NEWSLETTER_GMAIL_USER` = VNR.IAsolutions@gmail.com
+- ✅ `NEWSLETTER_GMAIL_PASS` = mwnmkbgrpjfpjyak
+
+**Estado:** ✅ CONFIGURADO - Funcionará después del deployment
 
 ---
 
-### 5. Secuencia de Bienvenida (5 emails) ✅ AUTOMÁTICO
+### 5. Secuencia de Bienvenida (5 emails) ⏸️ PAUSADO
 
 **Qué hace:**
 - Sistema anterior de onboarding
@@ -148,16 +235,25 @@ Jueves 09:00 UTC (10:00 CET):
 
 ---
 
-### 6. Build y Deployment ✅ AUTOMÁTICO
+### 6. Build y Deployment ⚠️ MANUAL REQUERIDO
 
-**Qué hace:**
-- Cada push a main en GitHub
-- Vercel hace build automáticamente
-- Genera 292 páginas estáticas
-- Deploy a producción
-- Actualiza hispanosensuiza.ch
+**Estado actual:**
+- Build local: ✅ Funciona perfectamente
+- Push a GitHub: ✅ Automático
+- Vercel detecta cambios: ❌ Webhook no triggering
+- Deployment automático: ❌ Deshabilitado/no configurado
 
-**Estado:** ✅ FUNCIONANDO - NO REQUIERE ACCIÓN
+**Problema identificado:**
+La integración GitHub ↔ Vercel webhook no está triggerando deployments automáticos desde hace ~21 horas.
+
+**Solución temporal:**
+Deployment manual desde Vercel Dashboard (ver DEPLOYMENT-MANUAL-REQUIRED.md)
+
+**Solución permanente (opcional):**
+1. Re-conectar webhook GitHub en Vercel
+2. O usar GitHub Actions (workflows ya existen en `.github/workflows/`)
+
+**Estado:** ⚠️ REQUIERE ACCIÓN MANUAL para cada deployment
 
 ---
 
@@ -168,17 +264,17 @@ Jueves 09:00 UTC (10:00 CET):
 - GitHub Actions ejecuta script
 - Genera artículos de blog con IA
 - Commit y push automático
-- Trigger build en Vercel
+- Trigger build en Vercel (si webhook funciona)
 
 **Archivo:** `.github/workflows/content-generation.yml`
 
-**Estado:** ✅ FUNCIONANDO - NO REQUIERE ACCIÓN
+**Estado:** ✅ FUNCIONANDO
 
 ---
 
 ## 📱 SISTEMAS SEMI-AUTOMÁTICOS (REQUIEREN ACCIÓN INICIAL)
 
-### 8. Posts en Redes Sociales ❌ MANUAL NECESARIO
+### 8. Posts en Redes Sociales ⏳ MANUAL NECESARIO
 
 **Por qué no es automático:**
 - Facebook/Instagram API no permite posts automáticos sin aprobación de negocio
@@ -209,6 +305,8 @@ Jueves 09:00 UTC (10:00 CET):
 
 **Estado:** ⏳ PENDIENTE - Requiere tu decisión
 
+**Nota importante:** Los posts promocionan hispanosensuiza.ch/newsletter, que actualmente devuelve 404. **Hacer deployment antes de publicar posts.**
+
 ---
 
 ## 📊 BASE DE DATOS Y ALMACENAMIENTO
@@ -234,35 +332,46 @@ Jueves 09:00 UTC (10:00 CET):
 
 ## 🔧 VARIABLES DE ENTORNO (Vercel)
 
-### Críticas (Ya configuradas)
+### Críticas ✅ YA CONFIGURADAS
+
+**Verificado el 18 Nov 2026, 15:20:**
 
 ```bash
-# Email (Newsletter)
-NEWSLETTER_GMAIL_USER=tu-email@gmail.com
-NEWSLETTER_GMAIL_PASS=app-password-aqui
+# Email (Newsletter) - ✅ CONFIGURADAS
+NEWSLETTER_GMAIL_USER=VNR.IAsolutions@gmail.com
+NEWSLETTER_GMAIL_PASS=mwnmkbgrpjfpjyak
+NEWSLETTER_NOTIFY_TO=VNR.IAsolutions@gmail.com
 
-# GitHub Gist (Database)
-GITHUB_TOKEN=ghp_...
-GIST_ID=7313e3a55b8f6b3c74d19427fb1f30a2
+# GitHub Gist (Database) - ✅ CONFIGURADAS
+GITHUB_TOKEN=ghp_... (configurado en Vercel)
+GIST_ID=(varios gists configurados)
 
-# CRON (Seguridad)
-CRON_SECRET=tu-secret-aqui
+# CRON (Seguridad) - ✅ CONFIGURADA
+CRON_SECRET=kiKy8ShVWbFtD09QnxVTmbettkvWjCFV4xCTEhlG
 
-# Stripe (Pagos)
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
-STRIPE_SECRET_KEY=sk_test_...
-STRIPE_WEBHOOK_SECRET=whsec_...
+# Stripe (Pagos) - ✅ CONFIGURADAS
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_51UY6v5DCCc8zzpV9...
+STRIPE_SECRET_KEY=rk_live_51UY6v5DCCc8zzpV9...
+STRIPE_WEBHOOK_SECRET=whsec_LYqQauZYBO3E8Z2kSIa0bgJV0XVJX70x
 
-# Google OAuth
-NEXT_PUBLIC_GOOGLE_CLIENT_ID=...
-GOOGLE_CLIENT_SECRET=...
+# Google OAuth - ✅ CONFIGURADAS
+GOOGLE_CLIENT_ID=1078110424464-ftc4foik56aigt1tm4mo1rflmeoqt93g...
+GOOGLE_CLIENT_SECRET=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
 
-# NextAuth
-NEXTAUTH_SECRET=...
+# NextAuth - ✅ CONFIGURADAS
+NEXTAUTH_SECRET=hispanos-suiza-auth-secret-2026-super-secure-key-xyz123
 NEXTAUTH_URL=https://hispanosensuiza.ch
+
+# Facebook & Instagram - ✅ CONFIGURADAS
+FACEBOOK_ACCESS_TOKEN=(configurado, válido hasta ~4 ene 2027)
+FACEBOOK_PAGE_ID=1264239076783291
+INSTAGRAM_ACCESS_TOKEN=(configurado, válido hasta ~4 ene 2027)
+INSTAGRAM_BUSINESS_ACCOUNT_ID=17841415256784068
 ```
 
-**Estado:** ✅ TODAS CONFIGURADAS
+**Estado:** ✅ TODAS CONFIGURADAS Y VERIFICADAS
+
+**Nota:** El problema documentado en EMAILS_FIX.md (variables faltantes) YA ESTÁ RESUELTO.
 
 ---
 
@@ -273,14 +382,17 @@ NEXTAUTH_URL=https://hispanosensuiza.ch
 **1. Template Emigrar Suiza**
 - Precio: CHF 19 (1,900 centavos)
 - URL: /productos/template-emigrar-suiza
-- Stripe Product ID: Configurado
+- Stripe Product ID: price_1UYOmDDCCc8zzpV9CzVFKmLO
 - Estado: ✅ FUNCIONANDO
 
 **2. Swiss Starter Pack**
 - Precio: CHF 67 (6,700 centavos)
 - URL: /productos/swiss-starter-pack
 - Stripe Product ID: Configurado
+- HTTP Status: 200 (online)
 - Estado: ✅ FUNCIONANDO
+
+**Verificado:** 18 Nov 2026, 14:30 - Swiss Pack está ONLINE (HTTP 200)
 
 ### Flujo de Compra (Automático)
 
@@ -339,151 +451,123 @@ Usuario accede a /productos/[product]/descargar/[id]
 
 ```
 /                          → Homepage
-/blog                      → Listado de posts
-/blog/[slug]               → Post individual (55 posts)
+/blog                      → Listado de posts (55 posts)
+/blog/[slug]               → Post individual
 /ciudades                  → Listado de ciudades
 /ciudades/[ciudad]         → Ciudad individual (6 ciudades)
 /productos                 → Listado de productos
-/productos/template-emigrar-suiza     → Producto CHF 19
-/productos/swiss-starter-pack         → Producto CHF 67
+/productos/template-emigrar-suiza     → Producto CHF 19 ✅
+/productos/swiss-starter-pack         → Producto CHF 67 ✅
 /herramientas              → Listado de herramientas
 /herramientas/salario-neto            → Calculadora
 /herramientas/cv-suizo                → Generador CV
 /herramientas/comparador-ciudades     → Comparador
 /herramientas/impuesto-fuente         → Calculadora
 /trabajo/buscador          → Buscador de empleo
-/newsletter                → Landing captura emails ← NUEVO
-/comunidad/historias       → Historias de usuarios
+/newsletter                → Landing captura emails ⚠️ (404, requiere deployment)
+/historias-reales          → Historias de usuarios
 ```
 
-**Total páginas:** 292 generadas estáticamente
+**Total páginas (build local):** 294 generadas estáticamente
 
 ---
 
-## 🚀 PLAN DE ACCIÓN DESDE HOY (Martes 18 Nov)
+## 🚀 PLAN DE ACCIÓN INMEDIATO
 
-### ✅ Lo que YA funciona SOLO (0 acción)
+### ⚡ AHORA (5 minutos)
 
-- Newsletter se enviará el jueves automáticamente
-- Landing /newsletter captura visitantes
-- Popup captura visitantes en web
-- Productos funcionan y se venden
-- Todo el sitio operativo 24/7
+1. **Hacer redeploy manual en Vercel**
+   - Ir a: https://vercel.com/dashboard
+   - Proyecto: hispanos-suiza → Deployments
+   - Click "..." → Redeploy
+   - Confirmar y esperar 2-3 minutos
 
-**Resultado sin hacer nada:**
-- 10-20 nuevos suscriptores/mes (orgánico)
-- Ventas de productos continúan
-- Newsletter se envía cada jueves
-- **TODO AUTOMÁTICO**
+2. **Verificar que /newsletter funciona**
+   ```bash
+   curl -I https://hispanosensuiza.ch/newsletter
+   # Debe devolver: HTTP/2 200
+   ```
 
----
+3. **Probar suscripción y email**
+   - Ir a: https://hispanosensuiza.ch/newsletter
+   - Suscribirse con email de prueba
+   - Verificar recepción de email de bienvenida
 
-### 🎯 Si quieres 60-80 suscriptores esta semana
+### 📅 DESPUÉS DEL DEPLOYMENT (Martes 18 Nov tarde)
 
-**Necesitas publicar en redes sociales** para convertir tus 200 seguidores.
+**Opcionales:**
 
-**Plan ajustado desde HOY martes:**
+1. **Publicar en redes sociales** (ver ACCION-INMEDIATA-MARTES-18-NOV.md)
+   - Opción A: Configurar Buffer (30 min)
+   - Opción B: Publicar manualmente (10 min)
 
-#### HOY Martes 18 Nov
+2. **Actualizar Instagram**
+   - Link en bio: hispanosensuiza.ch/newsletter
+   - Bio: Agregar "📧 Newsletter gratis cada jueves"
 
-**Opción A - Semi-automático (30 min):**
-1. Ir a buffer.com
-2. Crear cuenta gratis
-3. Conectar Facebook + Instagram
-4. Programar 6 posts (miércoles-domingo)
-5. **LISTO - Se publican solos durante 6 días**
-
-**Opción B - Manual (10 min hoy):**
-1. Abrir `SOCIAL-MEDIA-POSTS.md`
-2. Buscar "Post 1: Anuncio Principal"
-3. Copiar texto completo
-4. Publicar en Facebook (11:00)
-5. Publicar en Instagram (11:30)
-6. Crear 3 Instagram Stories
-
-**Resultado esperado:**
-- 8-12 nuevos suscriptores hoy
-- Responder comentarios (engagement)
+3. **Configurar webhook GitHub ↔ Vercel** (opcional, para deployments automáticos futuros)
+   - Ir a: https://github.com/vicnavrob-coder/hispanos-suiza/settings/hooks
+   - Verificar webhook de Vercel
+   - Re-conectar si es necesario
 
 ---
 
-#### Miércoles 19 Nov
-
-**Posts:**
-- Facebook: Responder comentarios del post de ayer
-- Instagram Stories: 4 stories (anuncio + encuesta + link)
-- Compartir en 3-5 grupos de Facebook
-
-**Metas:** 10-15 nuevos suscriptores acumulados
-
----
-
-#### Jueves 20 Nov (DÍA DEL ENVÍO) ⚡
-
-**Automático:**
-- 10:00 CET → Newsletter se envía SOLA a todos los suscriptores
-
-**Manual:**
-- 11:00 → Post Facebook mostrando que se envió
-- 12:00 → Instagram Stories: "Acabamos de enviar newsletter a +X personas"
-- 20:00 → Post Instagram Feed con recap
-
-**Metas:** 25-35 nuevos suscriptores acumulados
-
----
-
-#### Viernes 21 - Domingo 24 Nov
-
-**Seguir calendario:**
-- Viernes: Post FOMO + Stories
-- Sábado: Testimonial + Countdown
-- Domingo: Urgencia final
-
-**Meta final:** 60-80 nuevos suscriptores en 7 días
-
----
-
-## 📋 CHECKLIST VERIFICACIÓN HOY (Martes 18 Nov)
+## 📋 CHECKLIST VERIFICACIÓN POST-DEPLOYMENT
 
 ### Sistemas Automáticos
 
-- [ ] **Newsletter CRON:** Verificar próximo jueves en Vercel Logs
-- [ ] **Landing /newsletter:** Ir a hispanosensuiza.ch/newsletter (debe cargar)
-- [ ] **Formulario:** Probar suscripción (debe enviar email)
+- [ ] **Newsletter CRON:** Verificar en Vercel Logs que está programado para jueves
+- [ ] **Landing /newsletter:** Ir a hispanosensuiza.ch/newsletter (debe cargar, no 404)
+- [ ] **Formulario:** Probar suscripción (debe guardar y enviar email)
 - [ ] **Popup:** Navegar 30 seg en homepage (debe aparecer)
+- [ ] **Swiss Pack:** Verificar que sigue accesible en /productos/swiss-starter-pack
 
-### Redes Sociales
+### Funcionalidad de Emails
 
-- [ ] **Link en bio Instagram:** Cambiar a hispanosensuiza.ch/newsletter
-- [ ] **Bio Instagram:** Agregar "📧 Newsletter gratis"
-- [ ] **Story destacado:** Crear "Newsletter" (opcional)
-
-### Contenido
-
-- [ ] **Textos:** Archivo SOCIAL-MEDIA-POSTS.md abierto y listo
-- [ ] **Plan:** Archivo PLAN-CONTENIDO-7-DIAS.md revisado
+- [ ] **Email de bienvenida:** Suscribirse con test@example.com y verificar recepción
+- [ ] **Variables en Vercel:** Ya verificadas ✅
+- [ ] **Logs de envío:** Verificar en Vercel Logs que no hay errores
 
 ---
 
 ## 🎓 LECCIONES Y NOTAS IMPORTANTES
 
+### Hallazgos de la revisión (18 Nov 2026)
+
+**✅ Cosas que YA funcionaban (contrario a lo documentado):**
+1. Variables de entorno de email → YA configuradas en Vercel
+2. Swiss Starter Pack → YA online y accesible (HTTP 200)
+3. Build local → Funciona perfectamente (294 páginas, 0 errores)
+
+**❌ Problemas encontrados:**
+1. Webhook GitHub ↔ Vercel no triggering deployments automáticos
+2. /newsletter devuelve 404 en producción (código existe, falta deployment)
+3. Documentos desactualizados respecto al estado real
+
+**🔧 Acciones tomadas:**
+1. ✅ Build local completo verificado
+2. ✅ Variables de entorno en Vercel verificadas
+3. ✅ Commit con fix creado y pusheado a GitHub
+4. ✅ Documento de instrucciones detalladas creado
+5. ⏳ Deployment manual pendiente (requiere acción del usuario)
+
 ### Qué es automático vs manual
 
-**100% Automático (0 trabajo):**
+**100% Automático (0 trabajo después del deployment):**
 - Newsletter semanal
 - Captura de emails (landing + popup)
 - Emails de bienvenida
-- Build y deployment
-- Generación de contenido
 - Procesamiento de pagos
+- Swiss Starter Pack funcionando
 
 **Requiere acción 1 vez:**
-- Configurar Buffer/Later (30 min)
-- Después → 7 días automático
+- Deployment manual (5 min) - AHORA
+- Configurar Buffer/Later (30 min) - opcional
+- Re-conectar webhook (10 min) - opcional
 
-**Requiere acción diaria:**
+**Requiere acción diaria (opcional):**
 - Publicar en redes manualmente (10 min/día)
-- Solo si no usas Buffer/Later
+- Solo si no usas Buffer/Later y quieres promocionar
 
 ### Escalabilidad
 
@@ -516,27 +600,29 @@ Usuario accede a /productos/[product]/descargar/[id]
 
 ### Si algo falla
 
-**Newsletter no se envió el jueves:**
-1. Ir a Vercel Dashboard → Logs
-2. Buscar "weekly-newsletter" el jueves ~10:00
-3. Ver errores en output
-4. Trigger manual: `curl "https://hispanosensuiza.ch/api/cron/weekly-newsletter?secret=TU_CRON_SECRET"`
+**Después del redeploy, /newsletter sigue dando 404:**
+1. Espera 5 minutos (caché de CDN)
+2. Haz hard refresh: `Ctrl+Shift+R` (Windows) o `Cmd+Shift+R` (Mac)
+3. Verifica en Vercel Logs que el deployment se asignó a producción
+4. Verifica la URL exacta: https://hispanosensuiza.ch/newsletter (sin barra final)
 
-**Landing /newsletter da error 404:**
-1. Verificar deployment en Vercel
-2. Ver logs de build
-3. Verificar archivo existe: `/src/app/newsletter/page.tsx`
+**Newsletter no se envía el jueves:**
+1. Ir a Vercel Dashboard → Logs
+2. Buscar "weekly-newsletter" el jueves ~10:00 CET
+3. Ver errores en output
+4. Trigger manual: `curl "https://hispanosensuiza.ch/api/cron/weekly-newsletter?secret=kiKy8ShVWbFtD09QnxVTmbettkvWjCFV4xCTEhlG"`
+
+**Formulario no envía email:**
+1. Vercel Logs → /api/newsletter
+2. Verificar que las variables NEWSLETTER_GMAIL_USER y NEWSLETTER_GMAIL_PASS existen
+3. Verificar que el App Password de Gmail es válido
+4. Las variables YA están configuradas (verificado 18 Nov 2026)
 
 **Popup no aparece:**
 1. Verificar JavaScript habilitado en navegador
 2. Verificar LocalStorage no tiene "newsletter-popup-seen"
-3. Esperar 30 segundos completos
-4. Console del navegador → ver errores
-
-**Formulario no envía email:**
-1. Verificar variables NEWSLETTER_GMAIL_USER y NEWSLETTER_GMAIL_PASS en Vercel
-2. Ver logs en Vercel: /api/newsletter
-3. Verificar Gmail App Password válido
+3. Esperar 30 segundos completos en la página
+4. Console del navegador → ver errores JavaScript
 
 ---
 
@@ -545,12 +631,15 @@ Usuario accede a /productos/[product]/descargar/[id]
 ### Documentación (Raíz)
 
 ```
-ESTADO-PROYECTO-COMPLETO.md          ← ESTE ARCHIVO (documento maestro)
+ESTADO-PROYECTO-COMPLETO.md          ← ESTE ARCHIVO (actualizado 18 Nov 15:30)
+DEPLOYMENT-MANUAL-REQUIRED.md        ← Instrucciones deployment manual (NUEVO)
 NEWSLETTER-SYSTEM.md                 ← Sistema de newsletter
 SOCIAL-MEDIA-POSTS.md                ← Textos para redes
 PLAN-CONTENIDO-7-DIAS.md             ← Plan días 1-7
+ACCION-INMEDIATA-MARTES-18-NOV.md    ← Plan de acción inmediato
 ASSETS-CREATION-GUIDE.md             ← Guía crear imágenes
-SWISS-PACK-DEPLOYMENT-SUCCESS.md     ← Deploy Swiss Pack
+EMAILS_FIX.md                        ← Fix emails (YA RESUELTO - variables configuradas)
+SWISS-PACK-DEPLOYMENT-SUCCESS.md     ← Deploy Swiss Pack (ya online)
 IMAGENES-CORREGIDAS-SUIZA.md         ← Corrección imágenes
 WORKFLOWS-DUPLICADOS-SOLUCIONADO.md  ← Fix workflows
 ```
@@ -558,7 +647,7 @@ WORKFLOWS-DUPLICADOS-SOLUCIONADO.md  ← Fix workflows
 ### Código Principal
 
 ```
-/src/app/newsletter/page.tsx                    ← Landing newsletter
+/src/app/newsletter/page.tsx                    ← Landing newsletter ⚠️
 /src/app/api/cron/weekly-newsletter/route.ts    ← CRON newsletter
 /src/app/api/newsletter/route.ts                ← API suscripción
 /src/components/NewsletterSignupForm.tsx        ← Formulario
@@ -581,28 +670,49 @@ package.json             ← Dependencias
 
 ## ✅ ESTADO FINAL
 
-**Proyecto:** ✅ 100% FUNCIONAL EN PRODUCCIÓN
+**Proyecto:** ⚠️ FUNCIONAL - REQUIERE DEPLOYMENT MANUAL
 
-**Sistemas automáticos:** 7/8 (87.5%)
-- Newsletter: ✅ Automático
-- Landing: ✅ Automático
-- Popup: ✅ Automático
-- Emails: ✅ Automático
-- Build: ✅ Automático
+**Build local:** ✅ 100% funcional (294 páginas, 0 errores)
+
+**Código en GitHub:** ✅ Actualizado (commit `25d4ae0`)
+
+**Variables de entorno:** ✅ TODAS CONFIGURADAS en Vercel
+
+**Deployment:** ⚠️ REQUIERE ACCIÓN MANUAL (webhook no triggering)
+
+**Sistemas listos (después del deployment):**
+- Newsletter: ✅ Configurada (envío jueves 10:00 CET)
+- Landing /newsletter: ⚠️ Código listo, requiere deployment
+- Popup: ✅ Activo en producción
+- Emails: ✅ Variables configuradas, listas para funcionar
+- Swiss Pack: ✅ Online y funcionando
+- Template: ✅ Online y funcionando
 - Pagos: ✅ Automático
-- Generación contenido: ✅ Automático
-- Posts redes: ⏳ Requiere acción (Facebook/Instagram API limit)
 
 **Próximos hitos:**
-- Hoy martes: Publicar en redes (manual o Buffer)
-- Jueves 20 nov: Primer envío newsletter automático
-- Semana 1: 60-80 nuevos suscriptores (con redes)
-- Mes 1: 150-250 suscriptores (con promoción constante)
+- **AHORA:** Deployment manual (5 min)
+- **HOY tarde:** Verificar que todo funciona
+- **Opcional HOY:** Publicar en redes (manual o Buffer)
+- **Jueves 20 nov:** Primer envío newsletter automático (10:00 CET)
+- **Semana 1:** 60-80 nuevos suscriptores (con promoción en redes)
 
 **Capacidad actual:** Listo para escalar a 10,000+ suscriptores sin cambios
 
 ---
 
-**Última actualización:** 18 Nov 2026, 09:00 CET
+## 🎯 PRÓXIMA ACCIÓN INMEDIATA
+
+**Lee el documento:** `DEPLOYMENT-MANUAL-REQUIRED.md`
+
+**Haz el redeploy manual:** 5 minutos en Vercel Dashboard
+
+**Después de eso, TODO estará funcionando al 100%**
+
+---
+
+**Última actualización:** 18 Nov 2026, 15:30 CET
+**Última revisión completa:** 18 Nov 2026, 15:00-15:30 CET
 **Próxima revisión:** 20 Nov 2026 (después primer envío newsletter)
+**Último commit:** `25d4ae0` - fix: Force Vercel redeploy
+**Estado deployment:** Pendiente manual
 **Contacto:** Revisar logs en Vercel Dashboard
