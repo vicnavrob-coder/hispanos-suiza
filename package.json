@@ -9,7 +9,9 @@
     "lint": "eslint",
     "setup:social-media": "tsx scripts/setup-social-media.ts",
     "verify:social-media": "tsx scripts/verify-social-media.ts",
-    "publish:updates": "node scripts/publish-social-updates.js"
+    "publish:updates": "node scripts/publish-social-updates.js",
+    "status": "python3 scripts/check-systems.py",
+    "dashboard": "python3 scripts/generate-dashboard.py && open dashboard.html"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.3.0",

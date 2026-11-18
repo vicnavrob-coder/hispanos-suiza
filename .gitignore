@@ -50,3 +50,7 @@ README_RRSS.md
 RESUMEN_FINAL_RRSS.md
 SOCIAL_MEDIA_CONTENT_NOV2026.md
 scripts/publish-social-updates.js
+
+# Dashboard generated files
+dashboard.html
+system-status.json
