@@ -25,14 +25,44 @@ type Cita = {
   createdAt?: string;
 };
 
+type SystemStatus = {
+  status: 'ok' | 'warning' | 'error';
+  info?: string;
+  error?: string;
+  http_code?: number;
+  mode?: string;
+  count?: number;
+};
+
+type SystemsReport = {
+  timestamp: string;
+  systems: {
+    vercel_production: SystemStatus;
+    vercel_deployment: SystemStatus;
+    api_newsletter: SystemStatus;
+    gist_database: SystemStatus;
+    email_system: SystemStatus;
+    stripe_mode: SystemStatus;
+    build_system: SystemStatus;
+  };
+  summary: {
+    total: number;
+    ok: number;
+    warning: number;
+    error: number;
+    health_percentage: number;
+  };
+};
+
 export default function AdminPage() {
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [contacts, setContacts] = useState<Subscriber[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [citas, setCitas] = useState<Cita[]>([]);
+  const [systemsReport, setSystemsReport] = useState<SystemsReport | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'subscribers' | 'unia'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'subscribers' | 'unia' | 'systems'>('overview');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState<'email' | 'date' | 'step'>('date');
 
@@ -41,15 +71,17 @@ export default function AdminPage() {
   useEffect(() => {
     async function loadData() {
       try {
-        const [contactsRes, usersRes, citasRes] = await Promise.all([
+        const [contactsRes, usersRes, citasRes, systemsRes] = await Promise.all([
           fetch(`/api/admin/subscribers?token=${token}`).catch(() => ({ json: async () => [] })),
           fetch(`/api/admin/users?token=${token}`).catch(() => ({ json: async () => ({ users: [] }) })),
           fetch(`/api/admin/citas?token=${token}`).catch(() => ({ json: async () => [] })),
+          fetch(`/api/admin/systems?token=${token}`).catch(() => ({ json: async () => null })),
         ]);
 
         const contactsData = await contactsRes.json();
         const usersData = await usersRes.json();
         const citasData = await citasRes.json();
+        const systemsData = await systemsRes.json();
 
         if (contactsData?.error === 'Unauthorized' || usersData?.error === 'Unauthorized' || citasData?.error === 'Unauthorized') {
           setError('No autorizado. Token inválido.');
@@ -60,6 +92,7 @@ export default function AdminPage() {
         setContacts(Array.isArray(contactsData) ? contactsData : []);
         setUsers(Array.isArray(usersData?.users) ? usersData.users : []);
         setCitas(Array.isArray(citasData) ? citasData : []);
+        setSystemsReport(systemsData?.error ? null : systemsData);
       } catch (error) {
         console.error('Error loading data:', error);
         setError('Error al cargar los datos');
@@ -249,6 +282,16 @@ export default function AdminPage() {
             >
               🤝 UNIA Citas ({totalCitas})
             </button>
+            <button
+              onClick={() => setActiveTab('systems')}
+              className={`px-4 py-3 text-sm font-medium transition-all border-b-2 ${
+                activeTab === 'systems'
+                  ? 'border-slate-900 text-slate-900'
+                  : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
+              }`}
+            >
+              🔧 Sistemas {systemsReport && `(${systemsReport.summary.health_percentage.toFixed(0)}%)`}
+            </button>
           </div>
         </div>
       </div>
@@ -259,8 +302,27 @@ export default function AdminPage() {
         {/* OVERVIEW TAB */}
         {activeTab === 'overview' && (
           <div className="space-y-6">
+            {/* System Health Alert */}
+            {systemsReport && systemsReport.summary.health_percentage < 80 && (
+              <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center gap-3">
+                <span className="text-2xl">⚠️</span>
+                <div>
+                  <div className="text-sm font-semibold text-red-900">Alerta: Sistemas con problemas</div>
+                  <div className="text-xs text-red-700">
+                    {systemsReport.summary.error} error(es) y {systemsReport.summary.warning} advertencia(s) detectadas.
+                    <button
+                      onClick={() => setActiveTab('systems')}
+                      className="ml-2 underline hover:no-underline"
+                    >
+                      Ver detalles
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Key Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               {/* Total Users */}
               <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-center justify-between mb-3">
@@ -339,6 +401,42 @@ export default function AdminPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Systems Health */}
+              {systemsReport && (
+                <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-sm font-medium text-slate-600">Salud Sistemas</div>
+                    <div className="text-2xl">🔧</div>
+                  </div>
+                  <div className={`text-3xl font-bold mb-1 ${
+                    systemsReport.summary.health_percentage >= 90 ? 'text-green-600' :
+                    systemsReport.summary.health_percentage >= 70 ? 'text-yellow-600' :
+                    'text-red-600'
+                  }`}>
+                    {systemsReport.summary.health_percentage.toFixed(0)}%
+                  </div>
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="font-semibold text-green-600">{systemsReport.summary.ok} OK</span>
+                    <span className="text-slate-400">•</span>
+                    <span className="text-yellow-600">{systemsReport.summary.warning} ⚠️</span>
+                    <span className="text-slate-400">•</span>
+                    <span className="text-red-600">{systemsReport.summary.error} ❌</span>
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-slate-100">
+                    <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full rounded-full transition-all ${
+                          systemsReport.summary.health_percentage >= 90 ? 'bg-green-500' :
+                          systemsReport.summary.health_percentage >= 70 ? 'bg-yellow-500' :
+                          'bg-red-500'
+                        }`}
+                        style={{ width: `${systemsReport.summary.health_percentage}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Charts Row */}
@@ -725,6 +823,190 @@ export default function AdminPage() {
                   No hay citas registradas
                 </div>
               )}
+            </div>
+          </div>
+        )}
+
+        {/* SYSTEMS TAB */}
+        {activeTab === 'systems' && systemsReport && (
+          <div className="space-y-6">
+            {/* Summary Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="bg-white rounded-lg p-4 border border-slate-200">
+                <div className="text-xs font-medium text-slate-600 mb-1">Total Sistemas</div>
+                <div className="text-2xl font-bold text-slate-900">{systemsReport.summary.total}</div>
+              </div>
+              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="text-xs font-medium text-green-700 mb-1">Operativos</div>
+                <div className="text-2xl font-bold text-green-900">{systemsReport.summary.ok}</div>
+              </div>
+              <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+                <div className="text-xs font-medium text-yellow-700 mb-1">Advertencias</div>
+                <div className="text-2xl font-bold text-yellow-900">{systemsReport.summary.warning}</div>
+              </div>
+              <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                <div className="text-xs font-medium text-red-700 mb-1">Errores</div>
+                <div className="text-2xl font-bold text-red-900">{systemsReport.summary.error}</div>
+              </div>
+            </div>
+
+            {/* Systems Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Vercel Production */}
+              <div className={`bg-white rounded-xl p-6 border-l-4 shadow-sm ${
+                systemsReport.systems.vercel_production.status === 'ok' ? 'border-l-green-500' :
+                systemsReport.systems.vercel_production.status === 'warning' ? 'border-l-yellow-500' :
+                'border-l-red-500'
+              }`}>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-semibold text-slate-900">🚀 Vercel Production</h3>
+                  <span className={`text-2xl ${
+                    systemsReport.systems.vercel_production.status === 'ok' ? '' :
+                    systemsReport.systems.vercel_production.status === 'warning' ? '' :
+                    ''
+                  }`}>
+                    {systemsReport.systems.vercel_production.status === 'ok' ? '✅' :
+                     systemsReport.systems.vercel_production.status === 'warning' ? '⚠️' : '❌'}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600">
+                  {systemsReport.systems.vercel_production.info ||
+                   systemsReport.systems.vercel_production.error ||
+                   'Sin información'}
+                </p>
+              </div>
+
+              {/* Vercel Deployment */}
+              <div className={`bg-white rounded-xl p-6 border-l-4 shadow-sm ${
+                systemsReport.systems.vercel_deployment.status === 'ok' ? 'border-l-green-500' :
+                systemsReport.systems.vercel_deployment.status === 'warning' ? 'border-l-yellow-500' :
+                'border-l-red-500'
+              }`}>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-semibold text-slate-900">📦 Latest Deployment</h3>
+                  <span className="text-2xl">
+                    {systemsReport.systems.vercel_deployment.status === 'ok' ? '✅' :
+                     systemsReport.systems.vercel_deployment.status === 'warning' ? '⚠️' : '❌'}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600">
+                  {systemsReport.systems.vercel_deployment.info ||
+                   systemsReport.systems.vercel_deployment.error ||
+                   'Sin información'}
+                </p>
+              </div>
+
+              {/* Newsletter API */}
+              <div className={`bg-white rounded-xl p-6 border-l-4 shadow-sm ${
+                systemsReport.systems.api_newsletter.status === 'ok' ? 'border-l-green-500' :
+                systemsReport.systems.api_newsletter.status === 'warning' ? 'border-l-yellow-500' :
+                'border-l-red-500'
+              }`}>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-semibold text-slate-900">🔌 Newsletter API</h3>
+                  <span className="text-2xl">
+                    {systemsReport.systems.api_newsletter.status === 'ok' ? '✅' :
+                     systemsReport.systems.api_newsletter.status === 'warning' ? '⚠️' : '❌'}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600">
+                  {systemsReport.systems.api_newsletter.info ||
+                   systemsReport.systems.api_newsletter.error ||
+                   'Sin información'}
+                </p>
+              </div>
+
+              {/* GitHub Gist */}
+              <div className={`bg-white rounded-xl p-6 border-l-4 shadow-sm ${
+                systemsReport.systems.gist_database.status === 'ok' ? 'border-l-green-500' :
+                systemsReport.systems.gist_database.status === 'warning' ? 'border-l-yellow-500' :
+                'border-l-red-500'
+              }`}>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-semibold text-slate-900">💾 GitHub Gist Database</h3>
+                  <span className="text-2xl">
+                    {systemsReport.systems.gist_database.status === 'ok' ? '✅' :
+                     systemsReport.systems.gist_database.status === 'warning' ? '⚠️' : '❌'}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600">
+                  {systemsReport.systems.gist_database.info ||
+                   systemsReport.systems.gist_database.error ||
+                   'Sin información'}
+                </p>
+              </div>
+
+              {/* Email System */}
+              <div className={`bg-white rounded-xl p-6 border-l-4 shadow-sm ${
+                systemsReport.systems.email_system.status === 'ok' ? 'border-l-green-500' :
+                systemsReport.systems.email_system.status === 'warning' ? 'border-l-yellow-500' :
+                'border-l-red-500'
+              }`}>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-semibold text-slate-900">📧 Email System</h3>
+                  <span className="text-2xl">
+                    {systemsReport.systems.email_system.status === 'ok' ? '✅' :
+                     systemsReport.systems.email_system.status === 'warning' ? '⚠️' : '❌'}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600">
+                  {systemsReport.systems.email_system.info ||
+                   systemsReport.systems.email_system.error ||
+                   'Sin información'}
+                </p>
+              </div>
+
+              {/* Stripe */}
+              <div className={`bg-white rounded-xl p-6 border-l-4 shadow-sm ${
+                systemsReport.systems.stripe_mode.status === 'ok' ? 'border-l-green-500' :
+                systemsReport.systems.stripe_mode.status === 'warning' ? 'border-l-yellow-500' :
+                'border-l-red-500'
+              }`}>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-semibold text-slate-900">💳 Stripe Payment</h3>
+                  <span className="text-2xl">
+                    {systemsReport.systems.stripe_mode.status === 'ok' ? '✅' :
+                     systemsReport.systems.stripe_mode.status === 'warning' ? '⚠️' : '❌'}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600">
+                  {systemsReport.systems.stripe_mode.info ||
+                   systemsReport.systems.stripe_mode.error ||
+                   'Sin información'}
+                </p>
+              </div>
+
+              {/* Build System */}
+              <div className={`bg-white rounded-xl p-6 border-l-4 shadow-sm ${
+                systemsReport.systems.build_system.status === 'ok' ? 'border-l-green-500' :
+                systemsReport.systems.build_system.status === 'warning' ? 'border-l-yellow-500' :
+                'border-l-red-500'
+              }`}>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-semibold text-slate-900">🔧 Build System</h3>
+                  <span className="text-2xl">
+                    {systemsReport.systems.build_system.status === 'ok' ? '✅' :
+                     systemsReport.systems.build_system.status === 'warning' ? '⚠️' : '❌'}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600">
+                  {systemsReport.systems.build_system.info ||
+                   systemsReport.systems.build_system.error ||
+                   'Sin información'}
+                </p>
+              </div>
+            </div>
+
+            {/* Last Updated */}
+            <div className="text-center text-xs text-slate-500">
+              Última actualización: {new Date(systemsReport.timestamp).toLocaleString('es-ES', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+              })}
             </div>
           </div>
         )}
