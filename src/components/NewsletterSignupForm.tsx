@@ -28,7 +28,7 @@ export default function NewsletterSignupForm() {
         body: JSON.stringify({
           email: email.trim(),
           nombre: nombre.trim(),
-          source: "landing-newsletter",
+          origen: "newsletter",
         }),
       });
 
@@ -47,7 +47,7 @@ export default function NewsletterSignupForm() {
         // Track conversion (Google Analytics / Plausible)
         if (typeof window !== "undefined" && (window as any).plausible) {
           (window as any).plausible("Newsletter Signup", {
-            props: { source: "landing-newsletter" },
+            props: { origen: "newsletter" },
           });
         }
       } else {

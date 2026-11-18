@@ -79,7 +79,7 @@ export default function PrimerMesPage() {
         body: JSON.stringify({
           email,
           nombre,
-          source: "lead-magnet-primer-mes"
+          origen: "newsletter"
         }),
       });
 

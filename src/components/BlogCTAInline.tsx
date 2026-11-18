@@ -30,7 +30,7 @@ export default function BlogCTAInline({
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           email,
-          source: variant === "checklist" ? "checklist_cta" : "blog_inline"
+          origen: "newsletter"
         }),
       });
 

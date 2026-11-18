@@ -79,7 +79,7 @@ export default function GuiaSalariosPage() {
         body: JSON.stringify({
           email,
           nombre,
-          source: "lead-magnet-guia-salarios"
+          origen: "newsletter"
         }),
       });
 

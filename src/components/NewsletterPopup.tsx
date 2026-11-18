@@ -92,7 +92,7 @@ export default function NewsletterPopup() {
         body: JSON.stringify({
           email: email.trim(),
           nombre: nombre.trim(),
-          source: "popup-website",
+          origen: "newsletter",
         }),
       });
 
@@ -110,7 +110,7 @@ export default function NewsletterPopup() {
         // Track conversion
         if (typeof window !== "undefined" && (window as any).plausible) {
           (window as any).plausible("Newsletter Signup", {
-            props: { source: "popup-website" },
+            props: { origen: "newsletter" },
           });
         }
 
