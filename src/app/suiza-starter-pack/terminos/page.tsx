@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
 
+// Force dynamic rendering to bypass Vercel cache
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata: Metadata = buildMetadata({
   title: "Términos y Condiciones — Suiza Starter Pack",
   description: "Términos y condiciones del servicio Suiza Starter Pack de HispanosEnSuiza",
