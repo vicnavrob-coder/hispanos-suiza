@@ -1,8 +1,16 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-// Inicializar Resend solo si hay API key configurada
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+// Configurar transporter de Gmail
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.NEWSLETTER_GMAIL_USER,
+    pass: process.env.NEWSLETTER_GMAIL_PASS,
+  },
+});
 
 export async function POST(request: Request) {
   try {
@@ -17,71 +25,72 @@ export async function POST(request: Request) {
       );
     }
 
-    // Verificar que Resend está configurado
-    if (!resend) {
-      console.error("RESEND_API_KEY no configurada");
-      return NextResponse.json(
-        { error: "Servicio de email no configurado" },
-        { status: 500 }
-      );
-    }
-
     // Email a Víctor (notificación de nueva solicitud)
-    await resend.emails.send({
-      from: "HispanosEnSuiza <noreply@hispanosensuiza.com>",
+    await transporter.sendMail({
+      from: '"HispanosEnSuiza" <VNR.IAsolutions@gmail.com>',
       to: "VNR.IAsolutions@gmail.com",
       subject: `🎯 Nueva Solicitud Suiza Starter Pack - ${nombre}`,
       html: `
-        <h2>Nueva Solicitud Suiza Starter Pack</h2>
-        <p><strong>Nombre:</strong> ${nombre}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Teléfono:</strong> ${telefono}</p>
-        <p><strong>Fecha llegada estimada:</strong> ${fechaLlegada}</p>
-        <p><strong>Sector:</strong> ${sector}</p>
-        ${mensaje ? `<p><strong>Mensaje:</strong><br>${mensaje}</p>` : ""}
-        <hr>
-        <p><strong>Siguiente paso:</strong> Contactar por WhatsApp/email para confirmar disponibilidad y enviar enlace de pago señal (500 CHF).</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #2563eb;">Nueva Solicitud Suiza Starter Pack</h2>
+          <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>Nombre:</strong> ${nombre}</p>
+            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+            <p><strong>Teléfono:</strong> ${telefono}</p>
+            <p><strong>Fecha llegada estimada:</strong> ${fechaLlegada}</p>
+            <p><strong>Sector:</strong> ${sector}</p>
+            ${mensaje ? `<p><strong>Mensaje:</strong><br>${mensaje.replace(/\n/g, '<br>')}</p>` : ""}
+          </div>
+          <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+          <p><strong>✅ Siguiente paso:</strong> Contactar por WhatsApp/email para confirmar disponibilidad y enviar enlace de pago señal (500 CHF).</p>
+        </div>
       `,
     });
 
     // Email al cliente (confirmación)
-    await resend.emails.send({
-      from: "HispanosEnSuiza <noreply@hispanosensuiza.com>",
+    await transporter.sendMail({
+      from: '"HispanosEnSuiza" <VNR.IAsolutions@gmail.com>',
       to: email,
       subject: "✅ Solicitud recibida - Suiza Starter Pack",
       html: `
-        <h2>¡Gracias por tu interés en el Suiza Starter Pack!</h2>
-        <p>Hola ${nombre},</p>
-        <p>Hemos recibido tu solicitud correctamente. Te contactaremos en las próximas 24 horas para:</p>
-        <ul>
-          <li>Confirmar disponibilidad para tu fecha (${fechaLlegada})</li>
-          <li>Responder cualquier duda que tengas</li>
-          <li>Enviarte el enlace de pago de la señal (500 CHF)</li>
-        </ul>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #2563eb;">¡Gracias por tu interés en el Suiza Starter Pack!</h2>
+          <p>Hola ${nombre},</p>
+          <p>Hemos recibido tu solicitud correctamente. Te contactaremos en las próximas 24 horas para:</p>
+          <ul style="line-height: 1.8;">
+            <li>Confirmar disponibilidad para tu fecha (${fechaLlegada})</li>
+            <li>Responder cualquier duda que tengas</li>
+            <li>Enviarte el enlace de pago de la señal (500 CHF)</li>
+          </ul>
 
-        <h3>Mientras tanto...</h3>
-        <p>Puedes preparar estos documentos que necesitaremos:</p>
-        <ul>
-          <li>Pasaporte o DNI vigente</li>
-          <li>CV actualizado</li>
-          <li>Certificados de estudios/experiencia (si tienes)</li>
-        </ul>
+          <div style="background: #eff6ff; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #2563eb;">
+            <h3 style="margin-top: 0; color: #1e40af;">Mientras tanto...</h3>
+            <p>Puedes preparar estos documentos que necesitaremos:</p>
+            <ul style="line-height: 1.8;">
+              <li>Pasaporte o DNI vigente</li>
+              <li>CV actualizado</li>
+              <li>Certificados de estudios/experiencia (si tienes)</li>
+            </ul>
+          </div>
 
-        <p><strong>Detalles de tu solicitud:</strong></p>
-        <ul>
-          <li><strong>Fecha llegada estimada:</strong> ${fechaLlegada}</li>
-          <li><strong>Sector:</strong> ${sector}</li>
-        </ul>
+          <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0;"><strong>Detalles de tu solicitud:</strong></p>
+            <ul style="line-height: 1.8; margin-bottom: 0;">
+              <li><strong>Fecha llegada estimada:</strong> ${fechaLlegada}</li>
+              <li><strong>Sector:</strong> ${sector}</li>
+            </ul>
+          </div>
 
-        <p>Si tienes dudas urgentes, escríbenos a: <a href="mailto:contacto@hispanosensuiza.com">contacto@hispanosensuiza.com</a></p>
+          <p>Si tienes dudas urgentes, escríbenos a: <a href="mailto:contacto@hispanosensuiza.com" style="color: #2563eb;">contacto@hispanosensuiza.com</a></p>
 
-        <p>¡Nos vemos pronto en Suiza!</p>
-        <p><strong>Equipo HispanosEnSuiza</strong></p>
+          <p>¡Nos vemos pronto en Suiza!</p>
+          <p><strong>Equipo HispanosEnSuiza</strong></p>
 
-        <hr>
-        <p style="font-size: 12px; color: #666;">
-          Si no solicitaste esto, simplemente ignora este email.
-        </p>
+          <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 30px 0 20px;">
+          <p style="font-size: 12px; color: #64748b;">
+            Si no solicitaste esto, simplemente ignora este email.
+          </p>
+        </div>
       `,
     });
 
