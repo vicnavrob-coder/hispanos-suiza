@@ -10,7 +10,7 @@ export const revalidate = 0;
 export const metadata: Metadata = buildMetadata({
   title: "Suiza Starter Pack — Llega a Suiza con Todo Resuelto",
   description: "Tu primer mes en Suiza sin estrés: alojamiento garantizado 30 días + acompañamiento ETT + kit llegada completo. Solo 2.890 CHF todo incluido. Programa intensivo para españoles y latinos.",
-  path: "/suiza-starter-pack",
+  path: "/starter-pack-vip",
   keywords: [
     "paquete relocation suiza",
     "mudarse a suiza con ayuda",
@@ -582,7 +582,7 @@ export default function SuizaStarterPackPage() {
           <div className="mt-8 text-center text-sm text-blue-200">
             <p>
               Al enviar el formulario aceptas nuestros{" "}
-              <Link href="/suiza-starter-pack/terminos" className="underline hover:text-white">
+              <Link href="/starter-pack-vip/terminos" className="underline hover:text-white">
                 términos y condiciones
               </Link>
               .

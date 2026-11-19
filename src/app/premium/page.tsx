@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Servicios Premium — Emigra a Suiza con Acompañamiento Profesional",
   description: "Servicios exclusivos para hispanohablantes que emigran a Suiza: Template Notion, Swiss Pack eBook, y Suiza Starter Pack con alojamiento y acompañamiento completo. Desde CHF 29 hasta servicio VIP completo.",
-  path: "/servicios-premium",
+  path: "/premium",
   keywords: [
     "servicios premium suiza",
     "emigrar suiza con ayuda",
@@ -93,7 +93,7 @@ const SERVICIOS = [
       origen: "Servicio premium personalizado",
     },
     cta: "Solicitar Plaza",
-    link: "/suiza-starter-pack",
+    link: "/starter-pack-vip",
     color: "from-blue-600 to-blue-700",
   },
 ];

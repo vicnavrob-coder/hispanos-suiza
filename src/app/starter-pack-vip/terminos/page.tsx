@@ -9,7 +9,7 @@ export const revalidate = 0;
 export const metadata: Metadata = buildMetadata({
   title: "Términos y Condiciones — Suiza Starter Pack",
   description: "Términos y condiciones del servicio Suiza Starter Pack de HispanosEnSuiza",
-  path: "/suiza-starter-pack/terminos",
+  path: "/starter-pack-vip/terminos",
 });
 
 export default function TerminosPage() {
@@ -18,7 +18,7 @@ export default function TerminosPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="mb-8">
           <Link
-            href="/suiza-starter-pack"
+            href="/starter-pack-vip"
             className="text-blue-600 hover:text-blue-700 flex items-center gap-2 mb-4"
           >
             <svg
@@ -290,7 +290,7 @@ export default function TerminosPage() {
 
         <div className="mt-12 text-center">
           <Link
-            href="/suiza-starter-pack"
+            href="/starter-pack-vip"
             className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl"
           >
             Volver al Suiza Starter Pack
