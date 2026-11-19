@@ -13,11 +13,11 @@ const NAV_LINKS = [
   { href: "/seguros",      label: "Seguros" },
   { href: "/herramientas", label: "Herramientas" },
   { href: "/blog",         label: "Blog" },
-  { href: "/servicios-premium", label: "Premium", badge: "VIP" },
+  { href: "/premium", label: "Premium", badge: "VIP" },
 ];
 
 const MOBILE_LINKS = [
-  { href: "/servicios-premium", label: "⭐ Servicios Premium (VIP)" },
+  { href: "/premium", label: "⭐ Servicios Premium (VIP)" },
   { href: "/trabajo",                label: "💼 Trabajo" },
   { href: "/trabajo/unia",           label: "⚖️ UNIA — Derechos laborales" },
   { href: "/trabajo/esqui-suiza",    label: "⛷️ Trabajo en estaciones de esquí" },
