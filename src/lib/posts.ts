@@ -2877,6 +2877,139 @@ Un cordial saludo,<br>
 </ul>
     `
   },
+
+  // ─────────────────────────────────────────────────────────
+  // SUIZA STARTER PACK VIP — Servicio Premium
+  // ─────────────────────────────────────────────────────────
+  {
+    slug: "suiza-starter-pack-vip-servicio-acompanamiento",
+    titulo: "Suiza Starter Pack VIP: Tu primer mes en Suiza con acompañamiento personal",
+    descripcion: "Alojamiento garantizado 30 días + acompañamiento personal a ETT + kit completo de llegada. El servicio premium que necesitas para empezar en Suiza sin estrés.",
+    categoria: "emigrar",
+    fecha: "2026-11-19",
+    tiempoLectura: 8,
+    imagen: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=85&auto=format&fit=crop",
+    destacado: true,
+    palabrasClave: ["emigrar a suiza", "servicio relocation suiza", "acompañamiento suiza", "primer mes suiza", "mudarse suiza", "alojamiento suiza", "ETT suiza"],
+    faq: [
+      { pregunta: "¿Qué incluye exactamente el Suiza Starter Pack VIP?", respuesta: "Incluye alojamiento garantizado 30 días en zona Luzern, acompañamiento personal a 3 ETT principales, registro en ayuntamiento, apertura cuenta bancaria, tarjeta móvil, CV profesional en alemán/francés, grupo WhatsApp 24/7 primer mes, y acceso a comunidad exclusiva HispanosEnSuiza Premium." },
+      { pregunta: "¿Me garantizan trabajo con este servicio?", respuesta: "No podemos garantizar trabajo legalmente, pero te acompañamos PERSONALMENTE a las 3 mejores ETT de la zona y preparamos tu CV profesional. Basado en experiencias anteriores, la mayoría encuentra trabajo en 2-3 semanas tras las presentaciones." },
+      { pregunta: "¿Por qué solo 2 plazas por mes?", respuesta: "Para mantener la calidad del servicio premium. El acompañamiento es personal y dedicado — cada cliente recibe atención individualizada durante todo su primer mes." },
+      { pregunta: "¿Qué pasa si no estoy satisfecho con el servicio?", respuesta: "Tienes garantía de satisfacción: si avisas con más de 15 días de tu fecha de llegada, devolvemos el 70% del pago. Entre 7-14 días: 30%. Con menos de 7 días: por los gastos ya comprometidos de alojamiento, no hay reembolso." },
+      { pregunta: "¿Funciona para otras ciudades además de Luzern?", respuesta: "Por ahora el servicio completo es solo en Luzern, pero puedo ayudarte con contactos y orientación básica para otras ciudades una vez estés en Suiza." },
+    ],
+    contenido: `
+<h2>El primer mes en Suiza: el mes más difícil</h2>
+<p>Los primeros 30 días en Suiza son críticos. Es cuando más te juegas y cuando más difícil es todo: no conoces el sistema, no tienes red de contactos, cada trámite parece un laberinto y cada error te puede costar semanas.</p>
+<p>He visto a decenas de hispanohablantes llegar a Suiza con ilusión y acabar volviendo al mes porque:</p>
+<ul>
+  <li>No encuentran alojamiento estable y gastan los ahorros en Airbnb</li>
+  <li>No saben en qué ETT registrarse ni cómo presentarse</li>
+  <li>Pierden semanas buscando ayuntamiento, banco, seguro médico sin saber por dónde empezar</li>
+  <li>Se sienten completamente solos en un país que no entienden</li>
+</ul>
+<p>El <strong>Suiza Starter Pack VIP</strong> resuelve exactamente esto: te acompaño PERSONALMENTE durante tu primer mes para que no pierdas tiempo, no cometas los errores caros, y empieces con pie derecho.</p>
+
+<h2>Qué incluye el Suiza Starter Pack VIP</h2>
+<p>Este no es un PDF ni un curso online. Es un <strong>acompañamiento personal completo</strong> durante tu primer mes en Suiza:</p>
+
+<h3>🏠 Alojamiento garantizado 30 días</h3>
+<p>Habitación en piso compartido zona Luzern, todo incluido (internet, gastos, limpieza). Sin Airbnb, sin hoteles caros, sin incertidumbre. Llegas y ya tienes donde dormir desde el día 1.</p>
+
+<h3>💼 Acompañamiento personal a las 3 ETT principales</h3>
+<p>Esto es lo que marca la diferencia: <strong>voy contigo físicamente</strong> a las 3 mejores ETT de la zona (Manpower, Adecco, Randstad). Te presento, traduzco si hace falta, explico tu perfil y me aseguro de que quedas bien registrado.</p>
+<p>No es "te paso contactos". Es ir juntos, cara a cara, con los recruiters que realmente colocan gente cada semana.</p>
+
+<h3>📋 Kit de llegada completo</h3>
+<p>Te acompaño paso a paso en todos los trámites del primer mes:</p>
+<ul>
+  <li>Registro en el ayuntamiento (Einwohnerkontrolle) — te llevo personalmente</li>
+  <li>Apertura de cuenta bancaria (PostFinance o similar) — voy contigo</li>
+  <li>Tarjeta móvil prepago suiza (Swisscom/Salt/Sunrise) — la sacamos juntos</li>
+  <li>Registro en el seguro médico obligatorio — te ayudo a elegir y contratar</li>
+  <li>Transporte: te explico el sistema de abonos GA/Half-Fare</li>
+</ul>
+
+<h3>📄 CV profesional formato suizo</h3>
+<p>Adapto tu CV al formato suizo profesional en <strong>alemán y francés</strong>. No es traducción automática: es un CV que entienden los recruiters suizos y que destaca tu perfil correctamente.</p>
+
+<h3>💬 Grupo WhatsApp 24/7 soporte primer mes</h3>
+<p>Durante tus primeros 30 días, tienes acceso directo a mí por WhatsApp. ¿Duda sobre un formulario? ¿No entiendes una carta del ayuntamiento? ¿Necesitas ayuda para leer un contrato? Te respondo en menos de 2 horas (horario razonable).</p>
+
+<h3>👥 Comunidad exclusiva HispanosEnSuiza Premium</h3>
+<p>Acceso permanente a nuestra comunidad privada de hispanohablantes que ya están establecidos en Suiza. Networking real, consejos actualizados, oportunidades laborales que no se publican en portales.</p>
+
+<h2>¿Por qué este servicio existe?</h2>
+<p>Porque yo llegué a Suiza hace años y cometí TODOS los errores. Tardé 6 semanas en encontrar trabajo estable cuando podría haber tardado 2 si alguien me hubiera acompañado. Pagué 3.000 CHF en Airbnb porque no sabía dónde buscar alojamiento temporal. Perdí días enteros intentando registrarme en el ayuntamiento porque no sabía qué papeles llevar.</p>
+<p>Este servicio es lo que yo hubiera pagado gustosamente cuando llegué. Es tener a alguien que ya conoce el sistema, que habla tu idioma, y que te lleva de la mano durante las semanas más complicadas.</p>
+
+<h2>Inversión y plazas disponibles</h2>
+<p><strong>Inversión:</strong> 2.890 CHF todo incluido (valor real del servicio: 4.500 CHF)</p>
+<p>¿Por qué este precio? Porque incluye:</p>
+<ul>
+  <li>30 días de alojamiento (valor: ~1.200 CHF)</li>
+  <li>Acompañamiento personal completo (valor: ~2.500 CHF)</li>
+  <li>CV profesional bilingüe (valor: ~300 CHF)</li>
+  <li>Soporte 24/7 primer mes (valor: ~500 CHF)</li>
+</ul>
+
+<p><strong>⚡ OFERTA LANZAMIENTO:</strong> Las primeras 2 personas que reserven: <strong>600 CHF de descuento → solo 2.290 CHF</strong></p>
+<p>A cambio necesito: testimonial en video + feedback honesto para mejorar el servicio.</p>
+
+<p><strong>Solo 2 plazas por mes.</strong> No puedo atender más manteniendo la calidad del servicio personal que prometo.</p>
+
+<h2>Garantía de satisfacción</h2>
+<p>Entiendo que es una inversión importante. Por eso tienes garantía:</p>
+<ul>
+  <li><strong>Más de 15 días antes de llegada:</strong> 70% reembolso si no estás convencido</li>
+  <li><strong>Entre 7-14 días antes:</strong> 30% reembolso (ya hay gastos comprometidos)</li>
+  <li><strong>Menos de 7 días:</strong> Sin reembolso (alojamiento ya reservado y pagado)</li>
+</ul>
+
+<h2>Para quién es este servicio</h2>
+<p>✅ <strong>Para ti si:</strong></p>
+<ul>
+  <li>Quieres llegar a Suiza y empezar con pie derecho desde el día 1</li>
+  <li>Valoras tu tiempo más que el dinero (cada semana perdida son ~1.500 CHF no ganados)</li>
+  <li>Prefieres tener ayuda real de alguien que ya lo hizo antes</li>
+  <li>No quieres el estrés de hacer todo solo en un país que no conoces</li>
+</ul>
+
+<p>❌ <strong>No es para ti si:</strong></p>
+<ul>
+  <li>Quieres hacer todo completamente solo y por tu cuenta</li>
+  <li>Ya tienes red de contactos fuerte en Suiza que puede ayudarte</li>
+  <li>Tienes experiencia previa viviendo en Suiza</li>
+  <li>No puedes permitirte la inversión ahora mismo</li>
+</ul>
+
+<h2>Cómo funciona el proceso</h2>
+<ol>
+  <li><strong>Reserva tu plaza:</strong> Rellenas el formulario de solicitud y pagamos señal de 500 CHF</li>
+  <li><strong>Planificamos tu llegada:</strong> Coordinamos fechas, vuelos, necesidades específicas</li>
+  <li><strong>Día 1:</strong> Te recojo en Luzern, te llevo al alojamiento, te explico todo</li>
+  <li><strong>Primera semana:</strong> Hacemos juntos todos los registros (ayuntamiento, banco, móvil, seguro)</li>
+  <li><strong>Segunda semana:</strong> Visitas a las 3 ETT con acompañamiento personal</li>
+  <li><strong>Tercer/cuarto semana:</strong> Seguimiento, primeras entrevistas, soporte continuo</li>
+  <li><strong>Fin de mes:</strong> Ya estás establecido, con trabajo o proceso avanzado, red de contactos, y autonomía completa</li>
+</ol>
+
+<h2>Reserva tu plaza</h2>
+<p>Solo 2 plazas disponibles por mes. Si estás decidido a venir a Suiza y quieres hacerlo bien desde el principio, este es tu momento.</p>
+<p><a href="/starter-pack-vip" style="display: inline-block; background: #C8102E; color: white; padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 18px; margin: 24px 0;">Reservar mi plaza ahora →</a></p>
+
+<p>¿Tienes dudas? Escríbeme directamente y te las resuelvo: <a href="mailto:vicnavrob@gmail.com">vicnavrob@gmail.com</a></p>
+
+<h2>Recursos gratuitos relacionados</h2>
+<ul>
+  <li><a href="/blog/guia-emigrar-suiza-espanoles-2026">Guía completa para emigrar a Suiza en 2026</a></li>
+  <li><a href="/blog/cuanto-cuesta-vivir-suiza-presupuesto-real">¿Cuánto cuesta realmente vivir en Suiza?</a></li>
+  <li><a href="/trabajo">Encontrar trabajo en Suiza: guía completa</a></li>
+  <li><a href="/vivienda">Buscador de vivienda en Suiza</a></li>
+  <li><a href="/herramientas/salario-neto">Calculadora de salario neto suizo</a></li>
+</ul>
+    `
+  },
 ];
 
 // ── Índice completo (manuales + auto) ─────────────────────────────────────────
