@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-// Updated: 2026-11-17 - Force Vercel deployment
+// Updated: 2026-11-19 05:20 CET - Force production deployment (Suiza Starter Pack)
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
