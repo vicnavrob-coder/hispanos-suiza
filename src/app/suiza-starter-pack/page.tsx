@@ -3,6 +3,10 @@ import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
 import StarterPackForm from "@/components/StarterPackForm";
 
+// Force dynamic rendering to bypass Vercel cache
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata: Metadata = buildMetadata({
   title: "Suiza Starter Pack — Llega a Suiza con Todo Resuelto",
   description: "Tu primer mes en Suiza sin estrés: alojamiento garantizado 30 días + acompañamiento ETT + kit llegada completo. Solo 2.890 CHF todo incluido. Programa intensivo para españoles y latinos.",
