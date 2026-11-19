@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
-// Updated: 2026-11-19 05:20 CET - Force production deployment (Suiza Starter Pack)
+// Updated: 2026-11-19 06:05 CET - FORCE CACHE BYPASS (Critical deployment)
 const nextConfig: NextConfig = {
+  generateBuildId: async () => {
+    // Force unique build ID to bypass all caching
+    return `build-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+  },
   images: {
     remotePatterns: [
       {
