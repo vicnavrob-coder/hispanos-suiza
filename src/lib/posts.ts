@@ -3010,6 +3010,783 @@ Un cordial saludo,<br>
 </ul>
     `
   },
+
+  // ─────────────────────────────────────────────────────────────
+  // POSTS SEO 2026 — Keywords de Oro (Tier 1)
+  // ─────────────────────────────────────────────────────────────
+
+  {
+    slug: "cuanto-se-gana-en-suiza-2026-sueldos-reales",
+    titulo: "Cuánto se Gana en Suiza en 2026: Sueldos Reales por Profesión",
+    descripcion: "Tabla actualizada 2026 con sueldos reales en Suiza por profesión, sector y ciudad. Salarios brutos, netos, y cuánto te queda realmente cada mes.",
+    categoria: "trabajo",
+    fecha: "2026-11-19",
+    tiempoLectura: 10,
+    imagen: "https://images.unsplash.com/photo-1554224311-beee-770c-7eeb?w=1200&q=85&auto=format&fit=crop",
+    destacado: true,
+    palabrasClave: ["cuanto se gana en suiza", "sueldos en suiza", "salarios suiza 2026", "cuanto gana un en suiza", "salario promedio suiza", "cuanto pagan en suiza"],
+    faq: [
+      { pregunta: "¿Cuánto se gana en promedio en Suiza en 2026?", respuesta: "El salario medio en Suiza en 2026 es de aproximadamente 7.000 CHF brutos al mes (84.000 CHF al año). Sin embargo, varía enormemente según profesión, sector, cantón y experiencia. Un ingeniero puede ganar 90.000-120.000 CHF/año, mientras que en hostelería el rango es 45.000-60.000 CHF/año." },
+      { pregunta: "¿Cuánto queda de salario neto en Suiza después de impuestos?", respuesta: "Del salario bruto se descuentan aproximadamente un 15-25% entre seguridad social (AHV, ALV, etc.) e impuestos, dependiendo del cantón. Por ejemplo, de 6.500 CHF brutos quedan unos 5.200-5.400 CHF netos. Usa nuestra calculadora de salario neto para tu caso específico." },
+      { pregunta: "¿En qué ciudad de Suiza se gana más dinero?", respuesta: "Zúrich y Ginebra tienen los salarios más altos, seguidos de Basilea. Sin embargo, también tienen el coste de vida más alto. Cantones como Zug ofrecen salarios competitivos con impuestos mucho más bajos." },
+      { pregunta: "¿Cuánto gana un español trabajando en Suiza?", respuesta: "Los españoles en Suiza ganan lo mismo que un suizo en la misma posición — no hay discriminación salarial legal. Los salarios para profesionales cualificados rondan 70.000-90.000 CHF/año de inicio, con crecimiento según experiencia y sector." },
+    ],
+    contenido: `
+<h2>Los salarios en Suiza en 2026: ¿cuánto se gana realmente?</h2>
+<p>Suiza tiene los salarios más altos de Europa, pero también el coste de vida más elevado. La pregunta clave no es solo "¿cuánto se gana?" sino "¿cuánto me queda después de impuestos, alquiler y gastos básicos?"</p>
+<p>Esta guía te da los números reales actualizados a 2026, desglosados por profesión, sector y ciudad. Incluye tanto salarios brutos como netos, y te muestra exactamente cuánto dinero disponible tendrás cada mes.</p>
+
+<h2>Salario medio en Suiza: la cifra general</h2>
+<p>El <strong>salario medio en Suiza en 2026</strong> es de aproximadamente <strong>7.000 CHF brutos al mes</strong> (84.000 CHF al año). Pero esta cifra es solo una referencia — la realidad varía enormemente según:</p>
+<ul>
+  <li>Profesión y sector</li>
+  <li>Nivel de experiencia</li>
+  <li>Cantón y ciudad</li>
+  <li>Tamaño de la empresa</li>
+  <li>Nivel de formación</li>
+</ul>
+<p>Un ingeniero de software en Zúrich puede ganar 110.000 CHF/año, mientras que un camarero en Lucerna gana 50.000 CHF/año. Ambos viven en Suiza, pero sus realidades económicas son completamente distintas.</p>
+
+<h2>Tabla de salarios por profesión en Suiza (2026)</h2>
+<p>Estos son rangos salariales <strong>brutos anuales</strong> reales en Suiza para 2026, basados en datos de mercado actualizados:</p>
+
+<h3>🏥 Sanidad y Salud</h3>
+<ul>
+  <li><strong>Médico especialista:</strong> 120.000 - 250.000 CHF/año</li>
+  <li><strong>Médico general:</strong> 100.000 - 150.000 CHF/año</li>
+  <li><strong>Enfermero/a diplomado/a:</strong> 70.000 - 90.000 CHF/año</li>
+  <li><strong>Auxiliar de enfermería:</strong> 50.000 - 65.000 CHF/año</li>
+  <li><strong>Fisioterapeuta:</strong> 65.000 - 85.000 CHF/año</li>
+</ul>
+
+<h3>💻 Tecnología e IT</h3>
+<ul>
+  <li><strong>Ingeniero de software (senior):</strong> 100.000 - 140.000 CHF/año</li>
+  <li><strong>Ingeniero de software (junior):</strong> 70.000 - 95.000 CHF/año</li>
+  <li><strong>Data Scientist:</strong> 90.000 - 130.000 CHF/año</li>
+  <li><strong>DevOps Engineer:</strong> 95.000 - 125.000 CHF/año</li>
+  <li><strong>Project Manager IT:</strong> 90.000 - 120.000 CHF/año</li>
+  <li><strong>Soporte técnico:</strong> 60.000 - 75.000 CHF/año</li>
+</ul>
+
+<h3>🏦 Banca y Finanzas</h3>
+<ul>
+  <li><strong>Analista financiero senior:</strong> 110.000 - 160.000 CHF/año</li>
+  <li><strong>Analista financiero junior:</strong> 75.000 - 95.000 CHF/año</li>
+  <li><strong>Contable certificado:</strong> 70.000 - 95.000 CHF/año</li>
+  <li><strong>Asesor de banca privada:</strong> 85.000 - 150.000+ CHF/año (+ comisiones)</li>
+  <li><strong>Controller:</strong> 80.000 - 110.000 CHF/año</li>
+</ul>
+
+<h3>🏗️ Ingeniería y Construcción</h3>
+<ul>
+  <li><strong>Ingeniero civil senior:</strong> 95.000 - 130.000 CHF/año</li>
+  <li><strong>Ingeniero civil junior:</strong> 68.000 - 85.000 CHF/año</li>
+  <li><strong>Arquitecto:</strong> 70.000 - 100.000 CHF/año</li>
+  <li><strong>Jefe de obra:</strong> 75.000 - 95.000 CHF/año</li>
+  <li><strong>Electricista cualificado:</strong> 65.000 - 80.000 CHF/año</li>
+  <li><strong>Fontanero cualificado:</strong> 65.000 - 80.000 CHF/año</li>
+</ul>
+
+<h3>🍽️ Hostelería y Turismo</h3>
+<ul>
+  <li><strong>Chef de cocina:</strong> 60.000 - 85.000 CHF/año</li>
+  <li><strong>Cocinero:</strong> 48.000 - 62.000 CHF/año</li>
+  <li><strong>Camarero (con propinas):</strong> 45.000 - 60.000 CHF/año</li>
+  <li><strong>Recepcionista hotel:</strong> 50.000 - 65.000 CHF/año</li>
+  <li><strong>Housekeeping:</strong> 42.000 - 52.000 CHF/año</li>
+</ul>
+
+<h3>📚 Educación</h3>
+<ul>
+  <li><strong>Profesor universidad:</strong> 90.000 - 180.000 CHF/año</li>
+  <li><strong>Profesor secundaria:</strong> 75.000 - 110.000 CHF/año</li>
+  <li><strong>Profesor primaria:</strong> 70.000 - 95.000 CHF/año</li>
+</ul>
+
+<h3>🏭 Industria y Producción</h3>
+<ul>
+  <li><strong>Ingeniero mecánico:</strong> 80.000 - 110.000 CHF/año</li>
+  <li><strong>Técnico especializado:</strong> 65.000 - 85.000 CHF/año</li>
+  <li><strong>Operario cualificado:</strong> 55.000 - 70.000 CHF/año</li>
+  <li><strong>Logística y almacén:</strong> 50.000 - 65.000 CHF/año</li>
+</ul>
+
+<h3>🛒 Retail y Comercio</h3>
+<ul>
+  <li><strong>Gerente de tienda:</strong> 65.000 - 85.000 CHF/año</li>
+  <li><strong>Dependiente retail:</strong> 45.000 - 58.000 CHF/año</li>
+  <li><strong>Cajero/a:</strong> 42.000 - 52.000 CHF/año</li>
+</ul>
+
+<h2>De bruto a neto: ¿cuánto queda realmente?</h2>
+<p>Los salarios en Suiza se publican siempre en <strong>bruto</strong>. Del salario bruto se descuentan automáticamente:</p>
+<ul>
+  <li><strong>AHV/AVS (pensión):</strong> ~5.3%</li>
+  <li><strong>ALV/AC (desempleo):</strong> ~1.1%</li>
+  <li><strong>BVG/LPP (segundo pilar):</strong> ~7-14% (varía según edad)</li>
+  <li><strong>Impuestos en origen:</strong> varía enormemente por cantón (0-15%)</li>
+  <li><strong>Seguro de accidentes (obligatorio):</strong> ~1-2%</li>
+</ul>
+<p><strong>En total:</strong> del salario bruto queda aproximadamente <strong>75-85% como neto</strong>, dependiendo del cantón.</p>
+
+<p><strong>Ejemplo real:</strong> Salario de 6.500 CHF brutos/mes en Zúrich</p>
+<ul>
+  <li>AHV: -344 CHF</li>
+  <li>ALV: -71 CHF</li>
+  <li>BVG: -520 CHF (aprox.)</li>
+  <li>Impuesto en origen: -450 CHF (aprox.)</li>
+  <li><strong>Salario neto: ~5.115 CHF</strong></li>
+</ul>
+
+<p>Usa nuestra <a href="/herramientas/salario-neto"><strong>Calculadora de salario neto</strong></a> para ver cuánto te quedaría según tu salario bruto y cantón.</p>
+
+<h2>Salarios por ciudad en Suiza</h2>
+<p>Los salarios varían también por ubicación geográfica:</p>
+<ul>
+  <li><strong>Zúrich:</strong> Los salarios más altos de Suiza (+10-15% sobre la media nacional). Pero también el alquiler más caro.</li>
+  <li><strong>Ginebra:</strong> Salarios similares a Zúrich, especialmente en organizaciones internacionales y finanzas.</li>
+  <li><strong>Basilea:</strong> Salarios altos en farmacéutica (Roche, Novartis), ligeramente bajo la media en otros sectores.</li>
+  <li><strong>Berna:</strong> Salarios moderados, 5-10% bajo Zúrich/Ginebra. Coste de vida también más bajo.</li>
+  <li><strong>Lucerna:</strong> Salarios 10-15% bajo Zúrich. Equilibrio razonable calidad de vida vs coste.</li>
+</ul>
+
+<p>Usa nuestro <a href="/herramientas/comparador-ciudades"><strong>Comparador de ciudades</strong></a> para ver salario promedio, coste de vida y dinero disponible mes a mes en 11 ciudades suizas.</p>
+
+<h2>¿Cuánto dinero te queda realmente cada mes?</h2>
+<p>Esta es la pregunta que realmente importa. Aquí va un ejemplo real de <strong>presupuesto mensual en Zúrich</strong> para una persona sola:</p>
+
+<p><strong>Salario neto:</strong> 5.200 CHF</p>
+<p><strong>Gastos fijos:</strong></p>
+<ul>
+  <li>Alquiler (1 habitación, compartido): -900 CHF</li>
+  <li>Seguro médico básico: -350 CHF</li>
+  <li>Transporte (abono GA): -380 CHF</li>
+  <li>Móvil e internet: -80 CHF</li>
+  <li>Alimentación: -600 CHF</li>
+  <li>Otros (ropa, ocio, imprevistos): -400 CHF</li>
+</ul>
+<p><strong>Total gastos:</strong> ~2.710 CHF</p>
+<p><strong>Ahorro mensual:</strong> ~2.490 CHF</p>
+
+<p>Sí, puedes ahorrar casi la mitad de tu salario neto si controlas gastos. Por eso Suiza sigue siendo tan atractiva para profesionales.</p>
+
+<h2>Consejos para negociar tu salario en Suiza</h2>
+<ul>
+  <li><strong>Investiga antes:</strong> Usa portales como Lohnrechner.ch y Salarium.ch para saber el rango salarial de tu puesto.</li>
+  <li><strong>Pide siempre en bruto anual:</strong> En Suiza se negocia en salario bruto anual, no mensual.</li>
+  <li><strong>Incluye el 13º salario:</strong> Muchas empresas pagan 13 salarios al año. Verifica si está incluido en la oferta.</li>
+  <li><strong>No subestimes tu valor:</strong> Si vienes de España/Latinoamérica con experiencia cualificada, puedes pedir el rango medio-alto del mercado.</li>
+  <li><strong>Negocia beneficios:</strong> Días de vacaciones (mínimo legal: 20, negocia 25-28), abono transporte, formación continua.</li>
+</ul>
+
+<h2>¿Los salarios compensan el coste de vida?</h2>
+<p>Sí, y mucho. Incluso con el coste de vida alto de Suiza, el poder adquisitivo es superior al de España o cualquier país latinoamericano. Aquí va la comparación real:</p>
+
+<p><strong>España (Madrid):</strong></p>
+<ul>
+  <li>Salario medio: ~2.000 €/mes neto</li>
+  <li>Alquiler 1 hab: -800 €</li>
+  <li>Gastos básicos: -800 €</li>
+  <li><strong>Ahorro mensual: 400 € (~435 CHF)</strong></li>
+</ul>
+
+<p><strong>Suiza (Zúrich):</strong></p>
+<ul>
+  <li>Salario medio: ~5.200 CHF/mes neto</li>
+  <li>Alquiler 1 hab: -900 CHF</li>
+  <li>Gastos básicos: -1.800 CHF</li>
+  <li><strong>Ahorro mensual: 2.500 CHF</strong></li>
+</ul>
+
+<p>En Suiza ahorras <strong>5-6 veces más</strong> que en España con el mismo perfil profesional.</p>
+
+<h2>Factores que afectan tu salario en Suiza</h2>
+<ul>
+  <li><strong>Experiencia:</strong> Cada año de experiencia puede sumar 2.000-5.000 CHF al salario anual.</li>
+  <li><strong>Formación:</strong> Un máster puede añadir 10.000-15.000 CHF al salario de entrada.</li>
+  <li><strong>Idiomas:</strong> Hablar alemán + inglés + francés puede aumentar el salario un 10-20%.</li>
+  <li><strong>Certificaciones:</strong> Certificaciones técnicas (AWS, PMP, CFA, etc.) aumentan significativamente el valor de mercado.</li>
+  <li><strong>Tamaño empresa:</strong> Grandes corporaciones (Google, Roche, UBS) pagan 20-30% más que PYMEs.</li>
+</ul>
+
+<h2>Encuentra trabajo en Suiza con buen salario</h2>
+<p>Si quieres trabajar en Suiza y maximizar tu salario, usa nuestro <a href="/trabajo"><strong>Buscador de trabajo en Suiza</strong></a> — accede a todas las plataformas de empleo suizas con una sola búsqueda.</p>
+
+<p>También te recomendamos:</p>
+<ul>
+  <li><a href="/blog/requisitos-trabajar-suiza-2026-guia-completa">Requisitos para trabajar en Suiza: Guía completa 2026</a></li>
+  <li><a href="/blog/costo-vida-suiza-2026-presupuesto-real">Costo de vida en Suiza 2026: Presupuesto real mes a mes</a></li>
+  <li><a href="/herramientas/comparador-salarios">Comparador de salarios por sector y ciudad</a></li>
+  <li><a href="/starter-pack-vip">Suiza Starter Pack VIP: Acompañamiento personal primer mes</a></li>
+</ul>
+    `
+  },
+
+  {
+    slug: "requisitos-trabajar-suiza-2026-guia-completa",
+    titulo: "Requisitos para Trabajar en Suiza: Guía Completa 2026",
+    descripcion: "Todo lo que necesitas para trabajar en Suiza en 2026: permisos, documentos, proceso paso a paso para españoles y latinoamericanos. Guía actualizada y verificada.",
+    categoria: "trabajo",
+    fecha: "2026-11-19",
+    tiempoLectura: 11,
+    imagen: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=85&auto=format&fit=crop",
+    destacado: true,
+    palabrasClave: ["requisitos para trabajar en suiza", "como trabajar en suiza", "permiso trabajo suiza", "trabajar en suiza siendo español", "documentos para trabajar en suiza", "visa trabajo suiza"],
+    faq: [
+      { pregunta: "¿Qué necesito para trabajar en Suiza siendo español?", respuesta: "Como ciudadano español (UE/EEE), no necesitas visa de trabajo. Puedes entrar sin visado, buscar empleo durante 90 días, y al conseguir contrato obtienes automáticamente el permiso de residencia B. Solo necesitas: pasaporte o DNI válido, contrato de trabajo, y empadronarte en el ayuntamiento en los primeros 14 días." },
+      { pregunta: "¿Necesito hablar alemán para trabajar en Suiza?", respuesta: "Depende del sector y ciudad. En áreas como IT, finanzas e ingeniería en Zúrich/Ginebra, el inglés es suficiente. Para hostelería, retail, sanidad y la mayoría de trabajos en contacto con público, necesitas el idioma local (alemán, francés o italiano según cantón). El alemán aumenta significativamente tus opciones." },
+      { pregunta: "¿Qué permisos de trabajo existen en Suiza?", respuesta: "Los principales permisos son: Permiso L (estancia corta hasta 1 año, contratos temporales), Permiso B (residencia 1-5 años, el más común), Permiso C (residencia permanente tras 5-10 años), y Permiso G (fronterizos que viven fuera de Suiza pero trabajan dentro)." },
+      { pregunta: "¿Los latinoamericanos pueden trabajar en Suiza?", respuesta: "Sí, pero necesitan contrato de trabajo confirmado ANTES de viajar. El empleador suizo debe solicitar el permiso de trabajo desde Suiza, demostrando que no encontró candidatos suizos/UE. El proceso tarda 2-3 meses. Argentina, Chile y algunos países tienen acuerdos que facilitan el proceso." },
+    ],
+    contenido: `
+<h2>Trabajar en Suiza: requisitos según tu nacionalidad</h2>
+<p>Los requisitos para trabajar en Suiza dependen completamente de tu nacionalidad. Suiza tiene tres regímenes diferentes:</p>
+<ul>
+  <li><strong>Ciudadanos UE/AELC (España incluida):</strong> Libre circulación. Proceso simple.</li>
+  <li><strong>Ciudadanos de terceros países con acuerdos bilaterales:</strong> Proceso intermedio.</li>
+  <li><strong>Resto del mundo:</strong> Requiere patrocinio del empleador y cuotas limitadas.</li>
+</ul>
+
+<h2>Requisitos para españoles trabajando en Suiza</h2>
+<p>Si eres ciudadano español, tienes <strong>libre circulación</strong> gracias al Acuerdo de Libre Circulación entre Suiza y la UE/EEE. El proceso es directo:</p>
+
+<h3>✅ Lo que necesitas (españoles):</h3>
+<ul>
+  <li><strong>Pasaporte o DNI válido</strong> (mínimo 6 meses de validez)</li>
+  <li><strong>Contrato de trabajo</strong> firmado por un empleador suizo</li>
+  <li><strong>Seguro médico obligatorio</strong> (tienes 3 meses desde la llegada para contratarlo)</li>
+  <li><strong>Alojamiento en Suiza</strong> (contrato de alquiler o confirmación de dirección)</li>
+</ul>
+
+<h3>📋 Proceso paso a paso (españoles):</h3>
+<ol>
+  <li><strong>Busca trabajo desde España</strong> o viaja a Suiza para buscar (tienes 90 días sin visa)</li>
+  <li><strong>Firma el contrato de trabajo</strong> con el empleador suizo</li>
+  <li><strong>Viaja a Suiza</strong> con tu DNI/pasaporte</li>
+  <li><strong>Regístrate en el ayuntamiento</strong> (Einwohnerkontrolle/Contrôle des habitants) en los primeros 14 días tras tu llegada</li>
+  <li><strong>Obtén el permiso de residencia B</strong> automáticamente (duración: 5 años renovables)</li>
+  <li><strong>Contrata seguro médico obligatorio</strong> (tienes 3 meses, pero hazlo antes)</li>
+  <li><strong>Empieza a trabajar</strong> según fecha del contrato</li>
+</ol>
+
+<p><strong>¿Cuánto tarda?</strong> El permiso B se emite en 2-4 semanas tras el registro en el ayuntamiento. Puedes trabajar desde el día del registro sin esperar la tarjeta física.</p>
+
+<h2>Requisitos para latinoamericanos trabajando en Suiza</h2>
+<p>Si eres ciudadano de un país latinoamericano, el proceso es <strong>más complejo</strong> y requiere que tengas contrato ANTES de viajar:</p>
+
+<h3>✅ Lo que necesitas (latinoamericanos):</h3>
+<ul>
+  <li><strong>Contrato de trabajo firmado</strong> por empleador suizo</li>
+  <li><strong>Título profesional o experiencia comprobable</strong> (el puesto debe justificar contratar fuera de UE)</li>
+  <li><strong>Pasaporte válido</strong> (mínimo 6 meses de validez + páginas en blanco)</li>
+  <li><strong>Carta de motivación del empleador</strong> explicando por qué te contratan a ti y no a un candidato local/UE</li>
+  <li><strong>Certificados académicos y profesionales</strong> traducidos y apostillados</li>
+  <li><strong>Antecedentes penales</strong> del país de origen (apostillados)</li>
+</ul>
+
+<h3>📋 Proceso paso a paso (latinoamericanos):</h3>
+<ol>
+  <li><strong>Consigue oferta laboral</strong> desde tu país (a través de portales como jobs.ch, LinkedIn, contactos)</li>
+  <li><strong>El empleador solicita el permiso de trabajo</strong> en la oficina cantonal de migración suiza</li>
+  <li><strong>Autoridades suizas evalúan la solicitud</strong> (verifican que no haya candidatos suizos/UE disponibles)</li>
+  <li><strong>Si aprueban, recibes confirmación</strong> (proceso: 8-12 semanas)</li>
+  <li><strong>Solicitas visa tipo D</strong> en la embajada/consulado suizo de tu país</li>
+  <li><strong>Viajas a Suiza</strong> con la visa aprobada</li>
+  <li><strong>Te registras en el ayuntamiento</strong> en los primeros 14 días</li>
+  <li><strong>Recoges tu permiso de residencia B</strong> en la oficina de migración cantonal</li>
+</ol>
+
+<p><strong>¿Cuánto tarda?</strong> El proceso completo puede tardar <strong>2-4 meses</strong> desde la firma del contrato hasta tu llegada a Suiza.</p>
+
+<h3>⚠️ Importante para latinoamericanos:</h3>
+<p>Suiza tiene cuotas anuales limitadas para trabajadores de fuera de la UE/AELC. Las empresas deben demostrar que el candidato tiene habilidades difíciles de encontrar localmente. Sectores con más éxito:</p>
+<ul>
+  <li>IT y tecnología (programadores, data scientists, DevOps)</li>
+  <li>Finanzas especializadas</li>
+  <li>Ingeniería (civil, mecánica, eléctrica)</li>
+  <li>Sanidad (médicos, enfermeros con especialización)</li>
+  <li>Académico e investigación</li>
+</ul>
+
+<h2>Tipos de permisos de trabajo en Suiza</h2>
+<p>Suiza tiene varios tipos de permisos de residencia y trabajo:</p>
+
+<h3>🔵 Permiso L (Estancia corta)</h3>
+<ul>
+  <li><strong>Duración:</strong> Máximo 1 año (renovable hasta 2 años en casos específicos)</li>
+  <li><strong>Para quién:</strong> Contratos temporales, trabajos estacionales, prácticas</li>
+  <li><strong>Restricciones:</strong> Solo puedes trabajar para el empleador que patrocinó el permiso</li>
+  <li><strong>Renovación:</strong> No se renueva automáticamente, depende del contrato</li>
+</ul>
+
+<h3>🔵 Permiso B (Residencia)</h3>
+<ul>
+  <li><strong>Duración:</strong> 5 años (ciudadanos UE/AELC), 1 año renovable (terceros países)</li>
+  <li><strong>Para quién:</strong> Trabajadores con contrato indefinido o superior a 1 año</li>
+  <li><strong>Restricciones:</strong> Puedes cambiar de empleador libremente (UE/AELC). Terceros países necesitan autorización.</li>
+  <li><strong>Renovación:</strong> Automática si mantienes empleo estable</li>
+</ul>
+
+<h3>🔵 Permiso C (Residencia permanente)</h3>
+<ul>
+  <li><strong>Duración:</strong> Indefinida (permanente)</li>
+  <li><strong>Para quién:</strong> Tras 5 años con permiso B (UE/AELC) o 10 años (terceros países)</li>
+  <li><strong>Restricciones:</strong> Ninguna. Libertad total para trabajar, residir, cambiar de empleo</li>
+  <li><strong>Renovación:</strong> No requiere renovación. Pierdes el permiso solo si dejas Suiza por más de 6 meses consecutivos</li>
+</ul>
+
+<h3>🔵 Permiso G (Fronterizos)</h3>
+<ul>
+  <li><strong>Duración:</strong> 5 años (renovable)</li>
+  <li><strong>Para quién:</strong> Vives en país vecino (Francia, Alemania, Italia, Austria) pero trabajas en Suiza</li>
+  <li><strong>Restricciones:</strong> Debes volver a tu país de residencia al menos 1 vez por semana</li>
+  <li><strong>Impuestos:</strong> Pagas impuestos en origen en Suiza, declaras en tu país de residencia</li>
+</ul>
+
+<h2>¿Necesito hablar alemán para trabajar en Suiza?</h2>
+<p>Depende del sector, ciudad y tipo de trabajo:</p>
+
+<h3>✅ Trabajos donde el inglés es suficiente:</h3>
+<ul>
+  <li>IT y desarrollo de software (especialmente en Zúrich, Ginebra, Basilea)</li>
+  <li>Finanzas y banca internacional (Ginebra, Zúrich)</li>
+  <li>Ingeniería en grandes empresas (ABB, Siemens, etc.)</li>
+  <li>Organizaciones internacionales (ONU, Cruz Roja, etc. en Ginebra)</li>
+  <li>Académico e investigación</li>
+</ul>
+
+<h3>❌ Trabajos donde necesitas idioma local:</h3>
+<ul>
+  <li>Hostelería y restauración</li>
+  <li>Retail y comercio</li>
+  <li>Sanidad (médicos, enfermeros, cuidadores)</li>
+  <li>Educación</li>
+  <li>Administración pública</li>
+  <li>Atención al cliente</li>
+</ul>
+
+<p><strong>Recomendación:</strong> Aprende al menos nivel B1 de alemán (o francés en Suiza romanda). Aumenta tus opciones laborales un 300% y tu salario potencial un 10-20%.</p>
+
+<h2>Documentos que necesitas para trabajar en Suiza</h2>
+<p>Independientemente de tu nacionalidad, prepara estos documentos desde tu país de origen:</p>
+
+<h3>📄 Documentos básicos:</h3>
+<ul>
+  <li><strong>Pasaporte o DNI vigente</strong> (mínimo 6 meses de validez)</li>
+  <li><strong>CV formato europeo</strong> (con foto profesional)</li>
+  <li><strong>Títulos académicos</strong> (traducidos al alemán, francés o inglés)</li>
+  <li><strong>Certificados de experiencia laboral</strong> (cartas de recomendación de empleadores previos)</li>
+  <li><strong>Certificado de antecedentes penales</strong> (apostillado si vienes de fuera de UE)</li>
+  <li><strong>Certificado médico</strong> (solo para algunas profesiones: sanidad, educación)</li>
+</ul>
+
+<h3>📄 Documentos adicionales para el registro:</h3>
+<ul>
+  <li><strong>Contrato de trabajo firmado</strong></li>
+  <li><strong>Contrato de alquiler o confirmación de alojamiento</strong></li>
+  <li><strong>Fotos tipo pasaporte</strong> (tamaño suizo: 35x45mm)</li>
+  <li><strong>Formulario de registro</strong> del ayuntamiento (lo dan allí, pero puedes descargarlo antes)</li>
+</ul>
+
+<h2>Homologación de títulos: ¿es necesaria?</h2>
+<p>Depende de tu profesión:</p>
+
+<h3>✅ Homologación obligatoria:</h3>
+<ul>
+  <li>Médicos (proceso: MEBEKO, 6-12 meses)</li>
+  <li>Enfermeros y profesionales sanitarios (Cruz Roja Suiza, 3-6 meses)</li>
+  <li>Abogados (proceso cantonal, muy difícil)</li>
+  <li>Profesores (reconocimiento cantonal)</li>
+  <li>Arquitectos (REG A o REG B)</li>
+</ul>
+
+<h3>✅ Homologación recomendada pero no obligatoria:</h3>
+<ul>
+  <li>Ingenieros (reconocimiento por CRUS o FH)</li>
+  <li>Contables (reconocimiento por asociaciones profesionales)</li>
+</ul>
+
+<h3>✅ Sin homologación necesaria:</h3>
+<ul>
+  <li>IT y programación</li>
+  <li>Marketing y comunicación</li>
+  <li>Hostelería</li>
+  <li>Retail</li>
+  <li>La mayoría de oficios técnicos</li>
+</ul>
+
+<h2>Buscar trabajo en Suiza: mejores portales</h2>
+<p>Los principales portales de empleo en Suiza son:</p>
+<ul>
+  <li><strong>Jobs.ch</strong> — el portal #1 en Suiza alemana</li>
+  <li><strong>JobScout24.ch</strong> — segundo portal más grande</li>
+  <li><strong>Indeed.ch</strong> — agrega ofertas de múltiples fuentes</li>
+  <li><strong>LinkedIn</strong> — muy efectivo para perfiles cualificados</li>
+  <li><strong>Glassdoor.ch</strong> — ofertas + opiniones de empresas</li>
+</ul>
+
+<p>Usa nuestro <a href="/trabajo"><strong>Buscador de trabajo en Suiza</strong></a> para acceder a todos estos portales con una sola búsqueda.</p>
+
+<h2>ETT en Suiza: la forma más rápida de empezar</h2>
+<p>Las empresas de trabajo temporal (ETT) son el camino más rápido para conseguir tu primer empleo en Suiza. Las principales son:</p>
+<ul>
+  <li><strong>Adecco Suiza</strong> — la más grande, cubre todos los sectores</li>
+  <li><strong>Manpower Suiza</strong> — fuerte en industria, logística, IT</li>
+  <li><strong>Randstad Suiza</strong> — oficinas, administración, finanzas</li>
+  <li><strong>Kelly Services</strong> — IT, ingeniería, ciencia</li>
+</ul>
+
+<p>Las ETT te ayudan con:</p>
+<ul>
+  <li>Registro y permisos de trabajo (si eres UE/AELC)</li>
+  <li>Colocación en empresas en 1-2 semanas</li>
+  <li>Contratos iniciales (que luego pueden volverse indefinidos)</li>
+  <li>Formación específica según el sector</li>
+</ul>
+
+<p>Si necesitas <strong>acompañamiento personal</strong> a las ETT principales y ayuda completa en tu primer mes en Suiza, mira el <a href="/starter-pack-vip"><strong>Suiza Starter Pack VIP</strong></a>.</p>
+
+<h2>Salario y negociación: qué esperar</h2>
+<p>Los salarios en Suiza son los más altos de Europa. Como referencia (2026):</p>
+<ul>
+  <li><strong>Salario medio nacional:</strong> 7.000 CHF brutos/mes (~84.000 CHF/año)</li>
+  <li><strong>IT/Ingeniería:</strong> 85.000 - 130.000 CHF/año</li>
+  <li><strong>Finanzas:</strong> 80.000 - 150.000+ CHF/año</li>
+  <li><strong>Sanidad:</strong> 70.000 - 120.000 CHF/año</li>
+  <li><strong>Hostelería:</strong> 45.000 - 65.000 CHF/año</li>
+</ul>
+
+<p>Lee nuestra guía completa: <a href="/blog/cuanto-se-gana-en-suiza-2026-sueldos-reales"><strong>Cuánto se gana en Suiza en 2026: Sueldos reales por profesión</strong></a></p>
+
+<p>Calcula tu salario neto con nuestra <a href="/herramientas/salario-neto"><strong>Calculadora de salario neto</strong></a>.</p>
+
+<h2>Checklist completa para trabajar en Suiza</h2>
+<p>Antes de viajar:</p>
+<ul>
+  <li>✅ Contrato de trabajo firmado</li>
+  <li>✅ Pasaporte/DNI válido (6+ meses)</li>
+  <li>✅ Títulos traducidos y apostillados (si aplica)</li>
+  <li>✅ Cuenta Wise/Revolut abierta (los bancos suizos tardan semanas)</li>
+  <li>✅ 3.000-5.000 CHF de ahorro (depósito alquiler + gastos iniciales)</li>
+  <li>✅ Alojamiento temporal reservado (mínimo 1 mes)</li>
+</ul>
+
+<p>Primeros 14 días en Suiza:</p>
+<ul>
+  <li>✅ Registrarte en el ayuntamiento (obligatorio)</li>
+  <li>✅ Solicitar permiso de residencia B/L</li>
+  <li>✅ Buscar alojamiento permanente</li>
+  <li>✅ Abrir cuenta bancaria suiza</li>
+  <li>✅ Contratar seguro médico obligatorio (tienes 3 meses, pero hazlo antes)</li>
+  <li>✅ Registrarte en ETT (si aún no tienes trabajo fijo)</li>
+</ul>
+
+<h2>Recursos útiles para trabajar en Suiza</h2>
+<ul>
+  <li><a href="/trabajo">Buscador de trabajo en Suiza: todos los portales en una búsqueda</a></li>
+  <li><a href="/blog/cuanto-se-gana-en-suiza-2026-sueldos-reales">Cuánto se gana en Suiza: Sueldos reales por profesión 2026</a></li>
+  <li><a href="/blog/costo-vida-suiza-2026-presupuesto-real">Costo de vida en Suiza 2026: Presupuesto real</a></li>
+  <li><a href="/herramientas/salario-neto">Calculadora de salario neto suizo</a></li>
+  <li><a href="/blog/guia-emigrar-suiza-espanoles-2026">Guía completa para emigrar a Suiza 2026</a></li>
+  <li><a href="/starter-pack-vip">Suiza Starter Pack VIP: Acompañamiento personal primer mes</a></li>
+</ul>
+    `
+  },
+
+  {
+    slug: "costo-vida-suiza-2026-presupuesto-real",
+    titulo: "Costo de Vida en Suiza 2026: Presupuesto Real Mes a Mes",
+    descripcion: "Cuánto cuesta vivir en Suiza en 2026: alquiler, comida, transporte, seguros y todos los gastos reales mes a mes. Presupuestos detallados por ciudad y perfil.",
+    categoria: "vida-diaria",
+    fecha: "2026-11-19",
+    tiempoLectura: 12,
+    imagen: "https://images.unsplash.com/photo-1565214975484-3c37e6be323f?w=1200&q=85&auto=format&fit=crop",
+    destacado: true,
+    palabrasClave: ["costo de vida suiza", "cuanto cuesta vivir en suiza", "presupuesto suiza", "gastos suiza", "cuanto se necesita para vivir en suiza", "precio vida suiza"],
+    faq: [
+      { pregunta: "¿Cuánto dinero se necesita para vivir en Suiza al mes?", respuesta: "Para vivir solo en una ciudad como Zúrich necesitas mínimo 2.700-3.500 CHF/mes (alquiler habitación compartida, comida básica, transporte, seguro). Para un nivel de vida cómodo, calcula 4.000-5.000 CHF/mes. El alquiler es el gasto más grande: 900-1.800 CHF por habitación según ciudad." },
+      { pregunta: "¿Cuál es la ciudad más barata para vivir en Suiza?", respuesta: "Las ciudades más económicas son Friburgo, Neuchâtel, Biel/Bienne y ciudades pequeñas de los cantones de Jura, Valais y Graubünden. El coste de vida allí es 20-30% más bajo que en Zúrich o Ginebra. Sin embargo, también hay menos oportunidades laborales." },
+      { pregunta: "¿Es caro hacer la compra en Suiza?", respuesta: "Sí. Los supermercados suizos son 50-80% más caros que en España. Sin embargo, comprando en Lidl, Aldi y Migros Budget puedes controlar gastos. Presupuesto realista: 400-600 CHF/mes por persona comiendo en casa. Comer fuera: 20-35 CHF por comida en restaurante económico." },
+      { pregunta: "¿Compensa el alto coste de vida de Suiza?", respuesta: "Sí. Aunque el coste de vida es alto, los salarios compensan ampliamente. Un profesional medio puede ahorrar 2.000-3.000 CHF/mes después de gastos — 5-6 veces más que en España con el mismo perfil. El poder adquisitivo real es superior." },
+    ],
+    contenido: `
+<h2>¿Cuánto cuesta realmente vivir en Suiza en 2026?</h2>
+<p>Suiza es uno de los países más caros del mundo. Pero los salarios también son los más altos. La pregunta clave no es "¿cuánto cuesta?" sino <strong>"¿cuánto me quedará después de todos los gastos?"</strong></p>
+<p>Esta guía te da presupuestos reales mes a mes, desglosados por ciudad y perfil. Incluye alquiler, comida, transporte, seguros y todos los gastos ocultos que nadie cuenta.</p>
+
+<h2>Presupuesto mensual real en Zúrich (persona sola)</h2>
+<p>Zúrich es la ciudad más cara de Suiza. Este es un presupuesto realista para una persona que vive sola o en piso compartido:</p>
+
+<h3>🏠 Vivienda</h3>
+<ul>
+  <li><strong>Habitación en piso compartido (zona no céntrica):</strong> 900 - 1.200 CHF/mes</li>
+  <li><strong>Estudio (1 habitación, zona no céntrica):</strong> 1.600 - 2.200 CHF/mes</li>
+  <li><strong>Piso 2 habitaciones (zona no céntrica):</strong> 2.400 - 3.200 CHF/mes</li>
+  <li><strong>Depósito (una sola vez):</strong> 2-3 meses de alquiler (bloqueado en cuenta bancaria)</li>
+</ul>
+
+<h3>🏥 Seguro médico (obligatorio)</h3>
+<ul>
+  <li><strong>Seguro básico (KVG/LAMal):</strong> 320 - 400 CHF/mes</li>
+  <li><strong>Franquicia estándar:</strong> 300 CHF/año (la mínima)</li>
+  <li><strong>Seguro dental (opcional):</strong> 15 - 40 CHF/mes</li>
+  <li><strong>Seguro hogar (recomendado):</strong> 10 - 20 CHF/mes</li>
+</ul>
+
+<h3>🚆 Transporte</h3>
+<ul>
+  <li><strong>Abono mensual Zúrich (zona 110):</strong> 85 CHF/mes</li>
+  <li><strong>Abono anual Zúrich:</strong> 925 CHF/año (~77 CHF/mes)</li>
+  <li><strong>Abono GA (tren/bus todo Suiza):</strong> 3.860 CHF/año (~322 CHF/mes)</li>
+  <li><strong>Half-Fare Card (50% descuento trenes):</strong> 185 CHF/año (~15 CHF/mes)</li>
+  <li><strong>Bicicleta:</strong> Gratis (infraestructura excelente en Zúrich)</li>
+</ul>
+
+<h3>🍽️ Alimentación</h3>
+<ul>
+  <li><strong>Supermercado (comiendo en casa):</strong> 400 - 600 CHF/mes</li>
+  <li><strong>Almuerzo restaurante económico:</strong> 20 - 25 CHF</li>
+  <li><strong>Cena restaurante medio:</strong> 35 - 50 CHF</li>
+  <li><strong>Café en cafetería:</strong> 4.50 - 5.50 CHF</li>
+  <li><strong>Cerveza en bar:</strong> 7 - 9 CHF</li>
+</ul>
+
+<h3>📱 Comunicación</h3>
+<ul>
+  <li><strong>Móvil con datos (10-20 GB):</strong> 25 - 50 CHF/mes</li>
+  <li><strong>Internet hogar (fibra):</strong> 50 - 80 CHF/mes</li>
+  <li><strong>Combo móvil + internet:</strong> 60 - 100 CHF/mes</li>
+</ul>
+
+<h3>⚡ Otros gastos mensuales</h3>
+<ul>
+  <li><strong>Gimnasio:</strong> 60 - 120 CHF/mes</li>
+  <li><strong>Peluquería (hombre):</strong> 40 - 60 CHF</li>
+  <li><strong>Peluquería (mujer):</strong> 80 - 150 CHF</li>
+  <li><strong>Streaming (Netflix, Spotify, etc.):</strong> 15 - 40 CHF/mes</li>
+  <li><strong>Ropa y varios:</strong> 100 - 200 CHF/mes</li>
+  <li><strong>Ocio (cine, eventos, salidas):</strong> 150 - 300 CHF/mes</li>
+</ul>
+
+<h3>💰 Total mensual Zúrich (persona sola):</h3>
+<p><strong>Presupuesto básico:</strong> 2.700 - 3.500 CHF/mes</p>
+<p><strong>Presupuesto cómodo:</strong> 4.000 - 5.000 CHF/mes</p>
+<p><strong>Presupuesto holgado:</strong> 5.500+ CHF/mes</p>
+
+<h2>Presupuesto mensual en otras ciudades suizas</h2>
+<p>Los costes varían significativamente según la ciudad:</p>
+
+<h3>🏙️ Ginebra (similar a Zúrich):</h3>
+<ul>
+  <li><strong>Habitación compartida:</strong> 850 - 1.100 CHF/mes</li>
+  <li><strong>Estudio:</strong> 1.500 - 2.100 CHF/mes</li>
+  <li><strong>Seguro médico:</strong> 350 - 450 CHF/mes (Ginebra es ligeramente más caro)</li>
+  <li><strong>Presupuesto total:</strong> 2.800 - 3.600 CHF/mes (básico), 4.200 - 5.200 CHF/mes (cómodo)</li>
+</ul>
+
+<h3>🏙️ Basilea (-10% vs Zúrich):</h3>
+<ul>
+  <li><strong>Habitación compartida:</strong> 750 - 1.000 CHF/mes</li>
+  <li><strong>Estudio:</strong> 1.300 - 1.800 CHF/mes</li>
+  <li><strong>Seguro médico:</strong> 300 - 380 CHF/mes</li>
+  <li><strong>Presupuesto total:</strong> 2.400 - 3.100 CHF/mes (básico), 3.600 - 4.500 CHF/mes (cómodo)</li>
+</ul>
+
+<h3>🏙️ Berna (-15% vs Zúrich):</h3>
+<ul>
+  <li><strong>Habitación compartida:</strong> 700 - 950 CHF/mes</li>
+  <li><strong>Estudio:</strong> 1.200 - 1.700 CHF/mes</li>
+  <li><strong>Seguro médico:</strong> 290 - 360 CHF/mes</li>
+  <li><strong>Presupuesto total:</strong> 2.300 - 2.900 CHF/mes (básico), 3.400 - 4.300 CHF/mes (cómodo)</li>
+</ul>
+
+<h3>🏙️ Lucerna (-20% vs Zúrich):</h3>
+<ul>
+  <li><strong>Habitación compartida:</strong> 650 - 900 CHF/mes</li>
+  <li><strong>Estudio:</strong> 1.100 - 1.600 CHF/mes</li>
+  <li><strong>Seguro médico:</strong> 280 - 340 CHF/mes</li>
+  <li><strong>Presupuesto total:</strong> 2.100 - 2.700 CHF/mes (básico), 3.200 - 4.000 CHF/mes (cómodo)</li>
+</ul>
+
+<h3>🏙️ Lausana (-12% vs Zúrich):</h3>
+<ul>
+  <li><strong>Habitación compartida:</strong> 750 - 1.000 CHF/mes</li>
+  <li><strong>Estudio:</strong> 1.300 - 1.900 CHF/mes</li>
+  <li><strong>Seguro médico:</strong> 310 - 380 CHF/mes</li>
+  <li><strong>Presupuesto total:</strong> 2.400 - 3.000 CHF/mes (básico), 3.500 - 4.400 CHF/mes (cómodo)</li>
+</ul>
+
+<p>Usa nuestro <a href="/herramientas/comparador-ciudades"><strong>Comparador de ciudades</strong></a> para ver el coste de vida detallado en 11 ciudades suizas.</p>
+
+<h2>Desglose: alquiler en Suiza (el gasto más grande)</h2>
+<p>El alquiler representa entre el 30% y 45% de tu presupuesto mensual. Estos son precios reales 2026 para un estudio (1 habitación) en zona no céntrica:</p>
+<ul>
+  <li><strong>Zúrich:</strong> 1.600 - 2.200 CHF/mes</li>
+  <li><strong>Ginebra:</strong> 1.500 - 2.100 CHF/mes</li>
+  <li><strong>Basilea:</strong> 1.300 - 1.800 CHF/mes</li>
+  <li><strong>Berna:</strong> 1.200 - 1.700 CHF/mes</li>
+  <li><strong>Lucerna:</strong> 1.100 - 1.600 CHF/mes</li>
+  <li><strong>Lausana:</strong> 1.300 - 1.900 CHF/mes</li>
+  <li><strong>Lugano:</strong> 1.100 - 1.500 CHF/mes</li>
+  <li><strong>Friburgo:</strong> 1.000 - 1.400 CHF/mes</li>
+</ul>
+
+<p><strong>Consejo:</strong> Busca habitación en piso compartido (WG/colocation) para ahorrar 500-1.000 CHF/mes mientras te estableces.</p>
+
+<p>Lee nuestra guía completa: <a href="/blog/alquilar-piso-suiza-guia-hispanohablantes">Cómo alquilar un piso en Suiza: documentos y trucos</a></p>
+
+<h2>Desglose: supermercado en Suiza</h2>
+<p>Hacer la compra en Suiza es caro. Estos son precios reales 2026:</p>
+
+<h3>🛒 Productos básicos (supermercado medio como Coop/Migros):</h3>
+<ul>
+  <li><strong>Leche (1L):</strong> 1.70 CHF</li>
+  <li><strong>Pan blanco (500g):</strong> 2.50 CHF</li>
+  <li><strong>Huevos (12 unidades):</strong> 6.50 CHF</li>
+  <li><strong>Pollo (1kg):</strong> 18 CHF</li>
+  <li><strong>Pasta (500g):</strong> 2.00 CHF</li>
+  <li><strong>Arroz (1kg):</strong> 3.50 CHF</li>
+  <li><strong>Tomates (1kg):</strong> 4.50 CHF</li>
+  <li><strong>Manzanas (1kg):</strong> 3.80 CHF</li>
+  <li><strong>Cerveza (0.5L):</strong> 1.80 CHF</li>
+  <li><strong>Vino (botella media):</strong> 8 - 15 CHF</li>
+</ul>
+
+<h3>💡 Trucos para ahorrar en supermercado:</h3>
+<ul>
+  <li><strong>Compra en Lidl/Aldi:</strong> 30-40% más barato que Coop/Migros</li>
+  <li><strong>Productos Migros Budget / Prix Garantie:</strong> Marcas blancas 20-30% más baratas</li>
+  <li><strong>Compra en Alemania/Francia:</strong> Si vives cerca de la frontera, puedes ahorrar 40-50%</li>
+  <li><strong>Usa Too Good To Go:</strong> App para comprar comida de restaurantes/supermercados a 50-70% descuento al final del día</li>
+  <li><strong>Mercados de agricultores:</strong> Sábados en cada ciudad, productos frescos a mejor precio</li>
+</ul>
+
+<h2>Desglose: seguro médico en Suiza</h2>
+<p>El seguro médico básico (KVG/LAMal) es <strong>obligatorio</strong> para todos los residentes. No lo proporciona el empleador — debes contratarlo tú mismo.</p>
+
+<h3>💡 Factores que afectan el precio:</h3>
+<ul>
+  <li><strong>Cantón:</strong> Ginebra y Basilea-Stadt son los más caros. Appenzell y Jura los más baratos.</li>
+  <li><strong>Edad:</strong> Jóvenes (18-25 años) pagan ~25% menos. A partir de 26 años el precio sube.</li>
+  <li><strong>Franquicia:</strong> Mayor franquicia = menor prima mensual. Franquicia mínima: 300 CHF/año.</li>
+  <li><strong>Modelo de asegurador:</strong> Modelo estándar, médico de familia (HMO), Telmed. HMO ahorra 15-25%.</li>
+</ul>
+
+<h3>📊 Precios reales 2026 (adulto 26-35 años, franquicia 300 CHF):</h3>
+<ul>
+  <li><strong>Zúrich:</strong> 320 - 400 CHF/mes</li>
+  <li><strong>Ginebra:</strong> 400 - 500 CHF/mes (el más caro)</li>
+  <li><strong>Basilea-Stadt:</strong> 350 - 440 CHF/mes</li>
+  <li><strong>Berna:</strong> 290 - 360 CHF/mes</li>
+  <li><strong>Lucerna:</strong> 280 - 340 CHF/mes</li>
+  <li><strong>Vaud (Lausana):</strong> 330 - 410 CHF/mes</li>
+  <li><strong>Appenzell Inner-Rhodes:</strong> 220 - 280 CHF/mes (el más barato)</li>
+</ul>
+
+<p>Usa nuestra <a href="/seguros"><strong>calculadora de seguros médicos</strong></a> para comparar precios según tu cantón, edad y franquicia.</p>
+
+<h2>¿Cuánto cuesta comer fuera en Suiza?</h2>
+<p>Comer fuera en Suiza es caro. Precios reales 2026:</p>
+<ul>
+  <li><strong>Almuerzo menú del día (restaurante económico):</strong> 18 - 25 CHF</li>
+  <li><strong>Cena restaurante medio (plato principal):</strong> 25 - 35 CHF</li>
+  <li><strong>Restaurante gama alta (3 platos):</strong> 70 - 120 CHF/persona</li>
+  <li><strong>McDonald's (Big Mac Menú):</strong> 15 CHF</li>
+  <li><strong>Kebab/Doner:</strong> 12 - 15 CHF</li>
+  <li><strong>Pizza (restaurante):</strong> 18 - 24 CHF</li>
+  <li><strong>Café expreso:</strong> 4.00 - 4.80 CHF</li>
+  <li><strong>Cappuccino:</strong> 4.80 - 5.50 CHF</li>
+  <li><strong>Cerveza (0.5L en bar):</strong> 7 - 9 CHF</li>
+</ul>
+
+<p><strong>Recomendación:</strong> Cocina en casa y ahorra 400-600 CHF/mes. Comer fuera todos los días cuesta 600-900 CHF/mes solo en almuerzos.</p>
+
+<h2>¿Cuánto cuesta el transporte en Suiza?</h2>
+<p>Suiza tiene el mejor sistema de transporte público del mundo. También es caro:</p>
+
+<h3>🚆 Opciones de abonos:</h3>
+<ul>
+  <li><strong>Abono GA (General Abonnement):</strong> 3.860 CHF/año (~322 CHF/mes) — viajes ilimitados en tren, bus, tranvía, barco en toda Suiza. Ideal si viajas frecuentemente.</li>
+  <li><strong>Half-Fare Card:</strong> 185 CHF/año (~15 CHF/mes) — 50% descuento en todos los billetes. Ideal si no viajas tanto.</li>
+  <li><strong>Abonos locales (zona):</strong> 70 - 120 CHF/mes según ciudad. Cubre transporte dentro de la ciudad.</li>
+</ul>
+
+<h3>🚗 ¿Tener coche en Suiza?</h3>
+<p>No es necesario en ciudades grandes. Si lo tienes, calcula:</p>
+<ul>
+  <li><strong>Seguro coche obligatorio:</strong> 600 - 1.200 CHF/año</li>
+  <li><strong>Impuesto circulación:</strong> 150 - 400 CHF/año (varía por cantón)</li>
+  <li><strong>Gasolina:</strong> ~1.90 CHF/litro</li>
+  <li><strong>Parking en ciudad:</strong> 150 - 400 CHF/mes</li>
+  <li><strong>Revisión técnica anual:</strong> 50 - 100 CHF</li>
+  <li><strong>Viñeta autopistas:</strong> 40 CHF/año</li>
+</ul>
+<p><strong>Total coche:</strong> 400 - 800 CHF/mes. No compensa en ciudades.</p>
+
+<h2>Presupuesto primer mes en Suiza: gastos únicos</h2>
+<p>El primer mes es el más caro por los gastos únicos de instalación:</p>
+<ul>
+  <li><strong>Depósito alquiler:</strong> 2-3 meses de alquiler (1.800 - 6.000 CHF) — bloqueado en cuenta bancaria, recuperable al salir</li>
+  <li><strong>Primer mes de alquiler:</strong> 900 - 2.200 CHF</li>
+  <li><strong>Muebles básicos (si piso vacío):</strong> 1.000 - 3.000 CHF (cama, mesa, sillas, cocina básica)</li>
+  <li><strong>Ropa de cama y menaje:</strong> 300 - 600 CHF</li>
+  <li><strong>Seguro médico (1er mes):</strong> 300 - 450 CHF</li>
+  <li><strong>Abono transporte:</strong> 70 - 380 CHF</li>
+  <li><strong>Móvil (activación + 1er mes):</strong> 50 - 100 CHF</li>
+  <li><strong>Supermercado inicial:</strong> 200 - 400 CHF</li>
+  <li><strong>Trámites y documentos:</strong> 100 - 200 CHF</li>
+</ul>
+<p><strong>Total primer mes:</strong> 5.000 - 10.000 CHF (incluyendo depósito)</p>
+<p><strong>Recomendación:</strong> Llega con mínimo 5.000 CHF ahorrados para cubrir el primer mes sin estrés.</p>
+
+<h2>¿Los salarios compensan el coste de vida?</h2>
+<p><strong>Sí, ampliamente.</strong> Aquí va la comparación real:</p>
+
+<h3>España (Madrid) — Ingeniero software:</h3>
+<ul>
+  <li><strong>Salario neto:</strong> 2.500 €/mes</li>
+  <li><strong>Alquiler:</strong> -900 €</li>
+  <li><strong>Gastos básicos:</strong> -1.000 €</li>
+  <li><strong>Ahorro mensual:</strong> ~600 € (~650 CHF)</li>
+</ul>
+
+<h3>Suiza (Zúrich) — Ingeniero software:</h3>
+<ul>
+  <li><strong>Salario neto:</strong> 7.500 CHF/mes</li>
+  <li><strong>Alquiler:</strong> -1.200 CHF</li>
+  <li><strong>Gastos básicos:</strong> -2.300 CHF</li>
+  <li><strong>Ahorro mensual:</strong> ~4.000 CHF</li>
+</ul>
+
+<p><strong>Resultado:</strong> En Suiza ahorras <strong>6 veces más</strong> que en España con el mismo perfil profesional.</p>
+
+<p>Lee nuestra guía completa de salarios: <a href="/blog/cuanto-se-gana-en-suiza-2026-sueldos-reales"><strong>Cuánto se gana en Suiza en 2026: Sueldos reales por profesión</strong></a></p>
+
+<h2>Consejos para ahorrar viviendo en Suiza</h2>
+<ul>
+  <li>✅ <strong>Vive en piso compartido</strong> los primeros meses → ahorra 600-1.000 CHF/mes</li>
+  <li>✅ <strong>Compra en Lidl/Aldi/Denner</strong> → ahorra 200 CHF/mes vs Coop/Migros</li>
+  <li>✅ <strong>Cocina en casa</strong> → ahorra 400-600 CHF/mes vs comer fuera</li>
+  <li>✅ <strong>Elige franquicia alta en seguro médico</strong> (si eres joven y sano) → ahorra 100-150 CHF/mes</li>
+  <li>✅ <strong>Usa transporte público o bicicleta</strong> → no tengas coche → ahorra 400-800 CHF/mes</li>
+  <li>✅ <strong>Compra ropa en rebajas o segunda mano</strong> (Brockis, Ricardo.ch) → ahorra 100-200 CHF/mes</li>
+  <li>✅ <strong>Aprovecha actividades gratuitas</strong> (senderismo, lagos, eventos públicos) → ahorra 150-300 CHF/mes en ocio</li>
+</ul>
+
+<p><strong>Ahorro total aplicando estos consejos: 1.500 - 2.500 CHF/mes adicionales</strong></p>
+
+<h2>Calculadoras y herramientas útiles</h2>
+<ul>
+  <li><a href="/herramientas/comparador-ciudades"><strong>Comparador de ciudades suizas</strong></a> — Coste de vida en 11 ciudades</li>
+  <li><a href="/herramientas/salario-neto"><strong>Calculadora de salario neto</strong></a> — Cuánto te queda después de impuestos</li>
+  <li><a href="/seguros"><strong>Comparador de seguros médicos</strong></a> — Encuentra el seguro más barato de tu cantón</li>
+  <li><a href="/blog/cuanto-se-gana-en-suiza-2026-sueldos-reales">Cuánto se gana en Suiza: Sueldos reales 2026</a></li>
+  <li><a href="/blog/alquilar-piso-suiza-guia-hispanohablantes">Cómo alquilar piso en Suiza</a></li>
+  <li><a href="/blog/guia-emigrar-suiza-espanoles-2026">Guía completa para emigrar a Suiza 2026</a></li>
+</ul>
+    `
+  },
 ];
 
 // ── Índice completo (manuales + auto) ─────────────────────────────────────────

@@ -22,11 +22,11 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE_NAME} — La guía real para vivir en Suiza`,
+    default: "Emigrar a Suiza 2026: Guía Completa + Calculadoras Gratuitas",
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Emigra a Suiza con confianza: Guías paso a paso, calculadoras de salario/seguros, buscador empleo + vivienda. 142K+ hispanohablantes confían en nosotros. Gratis y actualizado 2026.",
+    "Emigra a Suiza sin perderte → Calculadora salario neto, buscador trabajo + vivienda, 50+ guías verificadas, comparador seguros. 100% gratis. Ahorra CHF 15.000/año ✓",
   keywords: [
     // Generales
     "vivir en suiza", "españoles en suiza", "emigrar a suiza", "latinoamericanos suiza",

@@ -7,8 +7,8 @@ import { posts, categorias, getDestacados } from "@/lib/posts";
 import { buildMetadata, organizationSchema, websiteSchema, localBusinessSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "HispanosEnSuiza — La guía real para vivir en Suiza",
-  description: "Emigra a Suiza sin perderte: 50+ guías verificadas, calculadora salario neto, buscador trabajo + vivienda, comparador seguros. 100% gratis para hispanohablantes. Ahorra CHF 15.000/año.",
+  title: "Emigrar a Suiza 2026: Guía Completa + Calculadoras Gratuitas",
+  description: "Emigra a Suiza sin perderte → Calculadora salario neto, buscador trabajo + vivienda, 50+ guías verificadas, comparador seguros. 100% gratis. Ahorra CHF 15.000/año ✓",
   path: "/",
   keywords: [
     // General
