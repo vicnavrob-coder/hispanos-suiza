@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSubscribers } from "@/lib/subscribers";
-import { getAuthSession } from "@/lib/auth";
 
 export const runtime = "nodejs";
+
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN || process.env.CRON_SECRET || "hispanos-admin-2026";
 
 interface AnalyticsData {
   subscribers: {
@@ -24,21 +25,11 @@ interface AnalyticsData {
 }
 
 export async function GET(req: NextRequest) {
-  // Check authentication
-  const session = await getAuthSession();
+  // Check admin token authentication
+  const token = req.nextUrl.searchParams.get("token");
 
-  if (!session || !session.user?.email) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  // Check if user is admin (you can add your admin emails here)
-  const ADMIN_EMAILS = [
-    process.env.ADMIN_EMAIL || "vic_nav@hotmail.com",
-    "vicnavrob@gmail.com",
-  ];
-
-  if (!ADMIN_EMAILS.includes(session.user.email)) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (token !== ADMIN_TOKEN) {
+    return NextResponse.json({ error: "Unauthorized - Invalid token" }, { status: 401 });
   }
 
   try {
