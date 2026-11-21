@@ -2,11 +2,16 @@
  * Subscriber storage backed by a private GitHub Gist.
  * Zero dependencies beyond fetch (built-in).
  * Works on Vercel serverless — no filesystem writes.
+ * Now with in-memory cache to reduce API calls and improve performance.
  */
+
+import { cache } from "./cache";
 
 const GIST_ID = "7313e3a55b8f6b3c74d19427fb1f30a2";
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? "";
 const FILE_NAME = "subscribers.json";
+const CACHE_KEY = "subscribers_list";
+const CACHE_TTL = 120; // 2 minutes
 
 export interface Subscriber {
   email: string;
@@ -20,14 +25,23 @@ export interface Subscriber {
 }
 
 /**
- * Read all subscribers from the Gist.
+ * Read all subscribers from the Gist (with cache).
  * Returns null on error (NOT empty array) so callers can distinguish
  * "no subscribers" from "read failed".
  */
-export async function getSubscribers(): Promise<Subscriber[] | null> {
+export async function getSubscribers(skipCache = false): Promise<Subscriber[] | null> {
   if (!GITHUB_TOKEN) {
     console.error("[subscribers] GITHUB_TOKEN not set");
     return null;
+  }
+
+  // Check cache first
+  if (!skipCache) {
+    const cached = cache.get<Subscriber[]>(CACHE_KEY);
+    if (cached !== null) {
+      console.log("[subscribers] Cache hit");
+      return cached;
+    }
   }
 
   try {
@@ -46,14 +60,20 @@ export async function getSubscribers(): Promise<Subscriber[] | null> {
 
     const gist = await res.json();
     const content = gist.files?.[FILE_NAME]?.content ?? "[]";
-    return JSON.parse(content) as Subscriber[];
+    const subscribers = JSON.parse(content) as Subscriber[];
+
+    // Update cache
+    cache.set(CACHE_KEY, subscribers, CACHE_TTL);
+    console.log("[subscribers] Cache updated");
+
+    return subscribers;
   } catch (e) {
     console.error("[subscribers] Gist read error:", e);
     return null;
   }
 }
 
-/** Write all subscribers back to the Gist */
+/** Write all subscribers back to the Gist and invalidate cache */
 export async function saveSubscribers(subs: Subscriber[]): Promise<boolean> {
   if (!GITHUB_TOKEN) return false;
 
@@ -78,6 +98,13 @@ export async function saveSubscribers(subs: Subscriber[]): Promise<boolean> {
       console.error("[subscribers] Failed to save gist:", res.status);
       return false;
     }
+
+    // Invalidate cache after successful write
+    cache.invalidate(CACHE_KEY);
+    // Update cache with new data
+    cache.set(CACHE_KEY, subs, CACHE_TTL);
+    console.log("[subscribers] Cache invalidated and updated");
+
     return true;
   } catch (e) {
     console.error("[subscribers] Gist write error:", e);

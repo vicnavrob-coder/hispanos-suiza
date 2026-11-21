@@ -224,6 +224,108 @@ export const EMAIL_TEMPLATES: Record<number, { subject: string; html: (nombre?: 
       p("<strong>Equipo HispanosEnSuiza</strong>"),
     ].join("")),
   },
+
+  // ── Email 6: Re-engagement (para usuarios inactivos) ──
+  6: {
+    subject: "¿Sigues pensando en Suiza? Aquí tienes lo más útil",
+    html: (nombre) => layout("Te echábamos de menos", [
+      p(`Hola${nombre ? ` ${nombre}` : ""},`),
+      p("Hace tiempo que no te pasas por HispanosEnSuiza. Puede que ya estés en Suiza (¡enhorabuena!), que lo hayas pospuesto, o simplemente que estés ocupado."),
+      p("Por si acaso, aquí te dejamos <strong>lo más útil</strong> de los últimos meses:"),
+      `<ul style="margin:0 0 14px;padding-left:20px;font-size:15px;line-height:1.8;color:#374151">
+        <li><a href="${SITE}/herramientas/salario-neto" style="color:${BRAND_COLOR}">Nueva calculadora de salario neto 2026</a> — actualizada con nuevos datos fiscales</li>
+        <li><a href="${SITE}/blog" style="color:${BRAND_COLOR}">Guías actualizadas de ciudades</a> — precios reales de alquiler, mercado laboral</li>
+        <li><a href="${SITE}/herramientas/generador-cv" style="color:${BRAND_COLOR}">Generador de CV suizo</a> — crea tu CV en formato estándar suizo</li>
+      </ul>`,
+      p("Si cambias de idea y ya no quieres recibir emails, simplemente responde con 'baja' y te eliminamos."),
+      p("Si hay algo específico en lo que podamos ayudarte, escríbenos."),
+      p("Un saludo,<br><strong>Equipo HispanosEnSuiza</strong>"),
+    ].join("")),
+  },
+
+  // ── Email 7: Promocional Premium ──
+  7: {
+    subject: "Ahorra 61% — Tu plan completo para emigrar a Suiza",
+    html: (nombre) => layout("Todo lo que necesitas para emigrar", [
+      p(`Hola${nombre ? ` ${nombre}` : ""},`),
+      p("Si estás considerando seriamente mudarte a Suiza, tenemos algo que va a ahorrarte <strong>cientos de horas de búsqueda</strong> y miles de francos en errores evitables."),
+      `<table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0">
+        <tr><td style="padding:20px;background:linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);border-radius:12px;border:2px solid #fcd34d">
+          <div style="text-align:center">
+            <div style="font-size:28px;font-weight:800;color:#92400e;margin-bottom:8px">Template: Emigrar a Suiza</div>
+            <div style="font-size:16px;color:#78350f;margin-bottom:16px">La guía completa que realmente funciona</div>
+            <div style="margin-bottom:16px">
+              <span style="text-decoration:line-through;color:#94a3b8;font-size:18px">49 CHF</span>
+              <span style="font-size:32px;font-weight:800;color:#C8102E;margin-left:12px">19 CHF</span>
+              <span style="background:#16a34a;color:white;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:700;margin-left:8px">-61%</span>
+            </div>
+            <div style="text-align:left;color:#78350f;font-size:14px;line-height:1.8;margin-bottom:16px">
+              <strong>✓</strong> Checklist completa: 50 pasos desde el comienzo hasta tu primer día<br>
+              <strong>✓</strong> 7 guías profesionales (1.975 líneas de contenido verificado)<br>
+              <strong>✓</strong> Calculadora de gastos con deducciones fiscales<br>
+              <strong>✓</strong> 50+ contactos verificados (embajadas, seguros, mudanzas)<br>
+              <strong>✓</strong> Te ahorra CHF 15.000-20.000 en tu primer año
+            </div>
+          </div>
+        </td></tr>
+      </table>`,
+      cta("Ver el template completo →", `${SITE}/productos/template-emigrar-suiza`),
+      p("<strong>Garantía:</strong> Si compras y en 30 días no te ha ahorrado al menos 10 veces su precio, te devolvemos el 100%."),
+      p("Un saludo,<br><strong>Equipo HispanosEnSuiza</strong>"),
+    ].join("")),
+  },
+
+  // ── Email 8: Testimonios y casos de éxito ──
+  8: {
+    subject: "\"Ojalá lo hubiera sabido antes de mudarme\" — 3 historias reales",
+    html: (nombre) => layout("Historias reales de hispanohablantes en Suiza", [
+      p(`Hola${nombre ? ` ${nombre}` : ""},`),
+      p("A veces la mejor forma de aprender es escuchando a quien ya pasó por ahí. Hoy te compartimos <strong>3 historias reales</strong> de hispanohablantes que se mudaron a Suiza:"),
+      `<table width="100%" cellpadding="0" cellspacing="0" style="margin:12px 0 20px">
+        <tr><td style="padding:14px;background:#fef2f2;border-radius:8px;border-left:4px solid #C8102E;margin-bottom:12px">
+          <strong style="color:#991b1b">María, enfermera en Zúrich</strong><br>
+          <span style="font-size:14px;color:#7f1d1d;font-style:italic">"Pensé que con mi nivel B1 de alemán no sería suficiente. Me equivoqué: en el hospital todos hablan inglés y me dieron clases gratis. Mi salario pasó de €1.800 a CHF 6.200/mes."</span>
+        </td></tr>
+        <tr><td style="height:12px"></td></tr>
+        <tr><td style="padding:14px;background:#eff6ff;border-radius:8px;border-left:4px solid #0032A0;margin-bottom:12px">
+          <strong style="color:#1e3a8a">Carlos, ingeniero en Basilea</strong><br>
+          <span style="font-size:14px;color:#1e40af;font-style:italic">"Lo que más me costó fue encontrar piso. Tardé 3 meses viviendo en Airbnb (error caro). Consejo: usa WG Zimmer y sé rápido respondiendo, en 2 horas ya no hay piso."</span>
+        </td></tr>
+        <tr><td style="height:12px"></td></tr>
+        <tr><td style="padding:14px;background:#f0fdf4;border-radius:8px;border-left:4px solid #16a34a">
+          <strong style="color:#166534">Ana, abogada en Ginebra</strong><br>
+          <span style="font-size:14px;color:#15803d;font-style:italic">"Negocié mi contrato sin saber cómo funcionaban los impuestos aquí. Me retuvieron un 20% de más el primer año. Lección: usa la calculadora de impuesto fuente ANTES de firmar."</span>
+        </td></tr>
+      </table>`,
+      cta("Leer más historias reales →", `${SITE}/historias-reales`),
+      p("¿Tienes tu propia historia? Responde a este email y la publicamos (anónima si quieres)."),
+      p("Un abrazo,<br><strong>Equipo HispanosEnSuiza</strong>"),
+    ].join("")),
+  },
+
+  // ── Email 9: Contenido viral / referral ──
+  9: {
+    subject: "Regala esta guía a un amigo que esté pensando en Suiza",
+    html: (nombre) => layout("Ayuda a alguien más", [
+      p(`Hola${nombre ? ` ${nombre}` : ""},`),
+      p("Si HispanosEnSuiza te ha sido útil, probablemente conozcas a alguien más que esté en la misma situación: <strong>pensando en mudarse a Suiza</strong>, buscando trabajo, o ya viviendo ahí pero con dudas."),
+      p("Reenviarle este email o compartir nuestra web puede ahorrarle semanas de búsqueda y miles de francos en errores evitables."),
+      `<table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0">
+        <tr><td style="padding:16px;background:#fef3c7;border-radius:8px;text-align:center">
+          <div style="font-size:16px;font-weight:700;color:#92400e;margin-bottom:12px">🎁 Comparte HispanosEnSuiza</div>
+          <a href="https://wa.me/?text=Si%20est%C3%A1s%20pensando%20en%20Suiza%2C%20esta%20web%20te%20va%20a%20ahorrar%20horas%3A%20https%3A%2F%2Fhispanosensuiza.ch" style="display:inline-block;background:#25D366;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;margin:4px">📱 Compartir por WhatsApp</a>
+        </td></tr>
+      </table>`,
+      p("Lo más útil que pueden encontrar:"),
+      `<ul style="margin:0 0 14px;padding-left:20px;font-size:15px;line-height:1.8;color:#374151">
+        <li><a href="${SITE}/herramientas/salario-neto" style="color:${BRAND_COLOR}">Calculadora de salario neto</a> — saber exactamente cuánto va a ganar</li>
+        <li><a href="${SITE}/herramientas/comparador-ciudades" style="color:${BRAND_COLOR}">Comparador de ciudades</a> — elegir dónde vivir con datos reales</li>
+        <li><a href="${SITE}/recursos/primer-mes" style="color:${BRAND_COLOR}">Checklist del primer mes</a> — no olvidar nada importante</li>
+      </ul>`,
+      p("Gracias por formar parte de nuestra comunidad."),
+      p("Un abrazo,<br><strong>Equipo HispanosEnSuiza</strong>"),
+    ].join("")),
+  },
 };
 
 // ─────────────────────────────────────────────────────────────

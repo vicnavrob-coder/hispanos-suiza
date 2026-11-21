@@ -6,6 +6,7 @@ export const runtime = "nodejs";
 import { addSubscriber, markEmailSent } from "@/lib/subscribers";
 import { EMAIL_TEMPLATES } from "@/lib/email-templates";
 import { SubscriberSchema, validateData, getValidationErrorMessage } from "@/lib/validation-schemas";
+import { rateLimiter, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 
 const GMAIL_USER = process.env.NEWSLETTER_GMAIL_USER ?? "";
 const GMAIL_PASS = process.env.NEWSLETTER_GMAIL_PASS ?? "";
@@ -19,6 +20,32 @@ function getTransporter() {
 
 export async function POST(req: NextRequest) {
   try {
+    // Rate limiting: 3 requests per hour per IP
+    const clientIp = getClientIp(req.headers);
+    const rateLimit = rateLimiter.check(
+      `newsletter:${clientIp}`,
+      RATE_LIMITS.NEWSLETTER.limit,
+      RATE_LIMITS.NEWSLETTER.windowMs
+    );
+
+    if (rateLimit.limited) {
+      return NextResponse.json(
+        {
+          error: "Demasiadas solicitudes. Por favor, inténtalo de nuevo más tarde.",
+          retryAfter: rateLimit.retryAfter,
+        },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(rateLimit.retryAfter),
+            "X-RateLimit-Limit": String(RATE_LIMITS.NEWSLETTER.limit),
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": String(Math.floor(rateLimit.resetAt / 1000)),
+          },
+        }
+      );
+    }
+
     const body = await req.json();
 
     // Validate with Zod
