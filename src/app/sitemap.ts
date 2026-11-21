@@ -12,6 +12,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily',
       priority: 1,
     },
+    // Landing page SEO principal
+    {
+      url: `${BASE_URL}/emigrar-suiza-2026`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
     {
       url: `${BASE_URL}/blog`,
       lastModified: new Date(),
