@@ -55,207 +55,176 @@ export const metadata: Metadata = buildMetadata({
   ],
 });
 
+// Schemas JSON-LD como constantes estáticas (build-time)
+const EVENT_LIST_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Eventos en Suiza',
+  description: 'Calendario completo de eventos, festivales y actividades en Suiza para hispanohablantes',
+  numberOfItems: 12,
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      item: {
+        '@type': 'Event',
+        name: 'Street Parade Zürich',
+        description: 'El festival de música electrónica más grande de Suiza',
+        startDate: '2027-08-14',
+        location: {
+          '@type': 'Place',
+          name: 'Zürich',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Zürich',
+            addressRegion: 'ZH',
+            addressCountry: 'CH'
+          }
+        },
+        image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=85',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'CHF'
+        }
+      }
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      item: {
+        '@type': 'Event',
+        name: 'Fasnacht de Basilea',
+        description: 'El carnaval más grande de Suiza',
+        startDate: '2027-02-21',
+        endDate: '2027-02-23',
+        location: {
+          '@type': 'Place',
+          name: 'Basilea',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Basel',
+            addressRegion: 'BS',
+            addressCountry: 'CH'
+          }
+        },
+        image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=85',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'CHF'
+        }
+      }
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      item: {
+        '@type': 'Event',
+        name: 'Montreux Jazz Festival',
+        description: 'Festival de jazz prestigioso junto al lago Lemán',
+        startDate: '2027-07-01',
+        endDate: '2027-07-16',
+        location: {
+          '@type': 'Place',
+          name: 'Montreux',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Montreux',
+            addressRegion: 'VD',
+            addressCountry: 'CH'
+          }
+        },
+        image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=85',
+        offers: {
+          '@type': 'AggregateOffer',
+          lowPrice: '50',
+          highPrice: '200',
+          priceCurrency: 'CHF'
+        }
+      }
+    },
+    {
+      '@type': 'ListItem',
+      position: 4,
+      item: {
+        '@type': 'Event',
+        name: 'Mercadillo Navideño de Zürich',
+        description: 'El mercadillo navideño más grande de interior de Europa',
+        startDate: '2026-12-01',
+        endDate: '2026-12-24',
+        location: {
+          '@type': 'Place',
+          name: 'Zürich',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Zürich',
+            addressRegion: 'ZH',
+            addressCountry: 'CH'
+          }
+        },
+        image: 'https://images.unsplash.com/photo-1512389098783-66b81f86e199?w=800&q=85',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'CHF'
+        }
+      }
+    }
+  ]
+};
+
+const BREADCRUMB_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Inicio',
+      item: 'https://hispanosensuiza.ch'
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Eventos',
+      item: 'https://hispanosensuiza.ch/eventos'
+    }
+  ]
+};
+
+const WEBPAGE_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Eventos en Suiza 2026-2027',
+  description: 'Calendario de eventos en 20 ciudades de Suiza',
+  url: 'https://hispanosensuiza.ch/eventos',
+  inLanguage: 'es',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'HispanosEnSuiza',
+    url: 'https://hispanosensuiza.ch'
+  }
+};
+
 export default function EventosLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // JSON-LD Schema para ItemList de eventos
-  const eventListSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    name: 'Eventos en Suiza',
-    description: 'Calendario completo de eventos, festivales y actividades en Suiza para hispanohablantes',
-    numberOfItems: 12,
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        item: {
-          '@type': 'Event',
-          name: 'Street Parade Zürich',
-          description: 'El festival de música electrónica más grande de Suiza con más de un millón de asistentes',
-          startDate: '2027-08-14',
-          location: {
-            '@type': 'Place',
-            name: 'Zürich',
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: 'Zürich',
-              addressRegion: 'ZH',
-              addressCountry: 'CH'
-            }
-          },
-          image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=85',
-          url: 'https://www.streetparade.com',
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'CHF',
-            availability: 'https://schema.org/InStock'
-          },
-          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-          eventStatus: 'https://schema.org/EventScheduled'
-        }
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        item: {
-          '@type': 'Event',
-          name: 'Fasnacht de Basilea',
-          description: 'El carnaval más grande de Suiza, Patrimonio Cultural Inmaterial de la UNESCO',
-          startDate: '2027-02-21',
-          endDate: '2027-02-23',
-          location: {
-            '@type': 'Place',
-            name: 'Basilea',
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: 'Basel',
-              addressRegion: 'BS',
-              addressCountry: 'CH'
-            }
-          },
-          image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=85',
-          url: 'https://www.fasnacht.ch',
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'CHF',
-            availability: 'https://schema.org/InStock'
-          },
-          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-          eventStatus: 'https://schema.org/EventScheduled'
-        }
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        item: {
-          '@type': 'Event',
-          name: 'Montreux Jazz Festival',
-          description: 'Uno de los festivales de jazz más prestigiosos del mundo junto al lago Lemán',
-          startDate: '2027-07-01',
-          endDate: '2027-07-16',
-          location: {
-            '@type': 'Place',
-            name: 'Montreux',
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: 'Montreux',
-              addressRegion: 'VD',
-              addressCountry: 'CH'
-            }
-          },
-          image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=85',
-          url: 'https://www.montreuxjazzfestival.com',
-          offers: {
-            '@type': 'AggregateOffer',
-            lowPrice: '50',
-            highPrice: '200',
-            priceCurrency: 'CHF',
-            availability: 'https://schema.org/InStock'
-          },
-          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-          eventStatus: 'https://schema.org/EventScheduled'
-        }
-      },
-      {
-        '@type': 'ListItem',
-        position: 4,
-        item: {
-          '@type': 'Event',
-          name: 'Mercadillo Navideño de Zürich',
-          description: 'El mercadillo navideño más grande de interior de Europa',
-          startDate: '2026-12-01',
-          endDate: '2026-12-24',
-          location: {
-            '@type': 'Place',
-            name: 'Zürich',
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: 'Zürich',
-              addressRegion: 'ZH',
-              addressCountry: 'CH'
-            }
-          },
-          image: 'https://images.unsplash.com/photo-1512389098783-66b81f86e199?w=800&q=85',
-          url: 'https://www.christkindlimarkt.ch',
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'CHF',
-            availability: 'https://schema.org/InStock'
-          },
-          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-          eventStatus: 'https://schema.org/EventScheduled'
-        }
-      }
-    ]
-  };
-
-  // Breadcrumb schema
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Inicio',
-        item: 'https://hispanosensuiza.ch'
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Eventos',
-        item: 'https://hispanosensuiza.ch/eventos'
-      }
-    ]
-  };
-
-  // WebPage schema
-  const webPageSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: 'Eventos en Suiza 2026-2027',
-    description: 'Calendario completo de eventos, festivales y actividades en 20 ciudades de Suiza',
-    url: 'https://hispanosensuiza.ch/eventos',
-    inLanguage: 'es',
-    about: {
-      '@type': 'Thing',
-      name: 'Eventos en Suiza',
-      description: 'Festivales, conciertos, mercados navideños y eventos culturales en Suiza'
-    },
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'HispanosEnSuiza',
-      url: 'https://hispanosensuiza.ch',
-      description: 'Guía completa para hispanohablantes que viven o quieren vivir en Suiza'
-    },
-    mainEntity: {
-      '@type': 'ItemList',
-      '@id': 'https://hispanosensuiza.ch/eventos#eventlist',
-      name: 'Lista de Eventos en Suiza',
-      numberOfItems: 12
-    }
-  };
-
   return (
     <>
-      {/* JSON-LD Schemas para SEO */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventListSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(EVENT_LIST_SCHEMA) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_SCHEMA) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBPAGE_SCHEMA) }}
       />
       {children}
     </>
