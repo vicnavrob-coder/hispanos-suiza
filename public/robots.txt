@@ -1,20 +1,86 @@
-# robots.txt para hispanossuiza.ch
+# robots.txt para hispanosensuiza.ch
+# Optimizado para SEO - HispanosEnSuiza
 
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://hispanossuiza.ch/sitemap.xml
+# Sitemap principal
+Sitemap: https://hispanosensuiza.ch/sitemap.xml
 
-# Páginas específicas que no queremos indexar
+# === PÁGINAS A NO INDEXAR ===
+
+# API y endpoints internos
+Disallow: /api/
+Disallow: /api/*
+
+# Admin y áreas protegidas
+Disallow: /admin/
+Disallow: /admin/*
+
+# Recursos internos de Next.js
+Disallow: /_next/static/
+Disallow: /_next/image/
+
+# Páginas de pago y confirmación
+Disallow: /productos/*/compra-exitosa
+Disallow: /productos/*/descargar/
+Disallow: /checkout/
+Disallow: /pago/
+
+# Páginas de autenticación
+Disallow: /login/
+Disallow: /registro/
+Disallow: /auth/
+
+# Parámetros de búsqueda/filtros (evitar contenido duplicado)
+Disallow: /*?*sort=
+Disallow: /*?*page=
+Disallow: /*?*filter=
+
+# === PERMITIR RECURSOS IMPORTANTES ===
+
+# Recursos estáticos públicos
+Allow: /downloads/
+Allow: /images/
+Allow: /data/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.webp$
+
+# Crawl-delay para ser respetuoso con el servidor
+Crawl-delay: 1
+
+# === REGLAS ESPECÍFICAS POR BOT ===
+
+# Google - permitir todo lo importante
+User-agent: Googlebot
+Allow: /
 Disallow: /api/
 Disallow: /admin/
-Disallow: /_next/
-Disallow: /productos/template-emigrar-suiza/compra-exitosa
-Disallow: /productos/template-emigrar-suiza/descargar/
 
-# Permitir crawling de recursos estáticos importantes
-Allow: /downloads/template-emigrar-suiza.zip
+# Googlebot Images - permitir imágenes
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.webp$
 
-# Crawl-delay para evitar sobrecarga
-Crawl-delay: 1
+# Bingbot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# Bloquear bots maliciosos conocidos
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

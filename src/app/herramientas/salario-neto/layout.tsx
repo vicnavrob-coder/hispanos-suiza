@@ -2,20 +2,47 @@ import type { Metadata } from "next";
 import { buildMetadata, BASE_URL, webAppSchema, breadcrumbSchema, faqSchema } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Calculadora de salario neto en Suiza 2026 — Cuánto cobrarás realmente",
+  title: "Calculadora Salario Neto Suiza 2026 | Sueldo Real con Impuestos",
   description:
-    "Calcula tu salario neto en Suiza. Deducciones de AVS, seguro de desempleo, pensión (BVG), impuestos por cantón y seguro médico. Descubre cuánto te quedará realmente de tu sueldo bruto.",
+    "🧮 Calcula tu salario NETO real en Suiza. ✅ AVS, BVG, impuestos por cantón, seguro médico. Descubre cuánto cobrarás realmente. Zug vs Ginebra: diferencias de +5.000 CHF/año.",
   path: "/herramientas/salario-neto",
   keywords: [
-    "salario neto suiza",
-    "calculadora sueldo suiza",
-    "impuestos suiza",
-    "deducciones suiza",
-    "avs suiza",
-    "bvg suiza",
-    "sueldo bruto neto suiza",
-    "cuanto se cobra en suiza",
-    "calculadora salario suiza 2026",
+    // === TIER 1: Alto volumen ===
+    "salario neto suiza", "calculadora salario suiza", "sueldo suiza",
+    "cuanto se gana en suiza", "sueldos suiza", "salario bruto neto suiza",
+
+    // === TIER 2: Específico calculadora ===
+    "calculadora sueldo neto suiza", "calcular salario suiza",
+    "calculadora impuestos suiza", "calculadora deducciones suiza",
+    "calculadora salario suiza 2026", "simulador sueldo suiza",
+
+    // === TIER 3: Deducciones específicas ===
+    "avs suiza", "ahv suiza", "bvg suiza", "pension suiza",
+    "segundo pilar suiza", "impuesto fuente suiza",
+    "seguro desempleo suiza", "deducciones suiza",
+
+    // === TIER 4: Por cantón (long-tail geográfico) ===
+    "salario neto zurich", "sueldo neto ginebra", "salario basilea",
+    "impuestos zurich", "impuestos ginebra", "impuestos zug",
+    "canton menos impuestos suiza", "zug impuestos",
+
+    // === TIER 5: Comparativos ===
+    "suiza vs españa salario", "cuanto queda de sueldo suiza",
+    "diferencia bruto neto suiza", "porcentaje impuestos suiza",
+    "cuanto se descuenta sueldo suiza",
+
+    // === TIER 6: Preguntas (featured snippets) ===
+    "cuanto se cobra en suiza neto", "cuanto descuentan en suiza",
+    "cuanto es salario neto suiza", "que porcentaje descuentan suiza",
+
+    // === TIER 7: Profesiones específicas ===
+    "salario ingeniero suiza neto", "sueldo programador suiza neto",
+    "salario enfermera suiza", "sueldo medico suiza neto",
+    "salario hosteleria suiza", "sueldo construccion suiza",
+
+    // === TIER 8: Hispanohablantes ===
+    "salario suiza para españoles", "cuanto gana un latino en suiza",
+    "sueldo minimo suiza españoles", "calculadora salario suiza español"
   ],
 });
 
