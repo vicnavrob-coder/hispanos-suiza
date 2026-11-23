@@ -45,24 +45,28 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
 export async function getEventos(): Promise<EventosData> {
   try {
     // Intentar desde Gist si está configurado
-    if (GIST_ID) {
-      const url = `https://api.github.com/gists/${GIST_ID}`;
-      const headers: HeadersInit = {};
+    if (GIST_ID && GIST_ID.length > 0) {
+      try {
+        const url = `https://api.github.com/gists/${GIST_ID}`;
+        const headers: HeadersInit = {};
 
-      if (GITHUB_TOKEN) {
-        headers['Authorization'] = `token ${GITHUB_TOKEN}`;
-      }
+        if (GITHUB_TOKEN && GITHUB_TOKEN.length > 0) {
+          headers['Authorization'] = `token ${GITHUB_TOKEN}`;
+        }
 
-      const response = await fetch(url, {
-        headers,
-        next: { revalidate: 3600 } // Cache por 1 hora
-      });
+        const response = await fetch(url, {
+          headers,
+          next: { revalidate: 3600 } // Cache por 1 hora
+        });
 
-      if (response.ok) {
-        const gist = await response.json();
-        const content = gist.files['eventos-suiza.json'].content;
-        const data: EventosData = JSON.parse(content);
-        return data;
+        if (response.ok) {
+          const gist = await response.json();
+          const content = gist.files['eventos-suiza.json'].content;
+          const data: EventosData = JSON.parse(content);
+          return data;
+        }
+      } catch (gistError) {
+        console.warn('Error fetching from Gist, falling back to local data:', gistError);
       }
     }
 
@@ -70,28 +74,56 @@ export async function getEventos(): Promise<EventosData> {
     // En server-side, usar fs; en client-side, usar fetch
     if (typeof window === 'undefined') {
       // Server-side: usar fs
-      const filePath = path.join(process.cwd(), 'public', 'data', 'eventos-ejemplo.json');
-      const fileContent = fs.readFileSync(filePath, 'utf-8');
-      const data: EventosData = JSON.parse(fileContent);
-      return data;
+      try {
+        const filePath = path.join(process.cwd(), 'public', 'data', 'eventos-ejemplo.json');
+        if (fs.existsSync(filePath)) {
+          const fileContent = fs.readFileSync(filePath, 'utf-8');
+          const data: EventosData = JSON.parse(fileContent);
+          return data;
+        }
+      } catch (fsError) {
+        console.warn('Error reading local file:', fsError);
+      }
     } else {
       // Client-side: usar fetch
-      const localResponse = await fetch('/data/eventos-ejemplo.json');
-      if (localResponse.ok) {
-        const data: EventosData = await localResponse.json();
-        return data;
+      try {
+        const localResponse = await fetch('/data/eventos-ejemplo.json');
+        if (localResponse.ok) {
+          const data: EventosData = await localResponse.json();
+          return data;
+        }
+      } catch (fetchError) {
+        console.warn('Error fetching local data:', fetchError);
       }
     }
 
-    throw new Error('No se pudo cargar eventos');
-
-  } catch (error) {
-    console.error('Error obteniendo eventos:', error);
-    // Devolver datos vacíos como último recurso
+    // Si todo falla, devolver estructura vacía pero válida
+    console.warn('No se pudo cargar eventos desde ninguna fuente');
     return {
       eventos: [],
       total: 0,
-      fecha_actualizacion: '',
+      fecha_actualizacion: new Date().toISOString(),
+      ciudades: [
+        {"nombre": "Zürich", "canton": "Zürich"},
+        {"nombre": "Ginebra", "canton": "Genève"},
+        {"nombre": "Basilea", "canton": "Basel-Stadt"},
+        {"nombre": "Berna", "canton": "Bern"},
+        {"nombre": "Lausana", "canton": "Vaud"},
+        {"nombre": "Lucerna", "canton": "Luzern"},
+        {"nombre": "Lugano", "canton": "Ticino"},
+        {"nombre": "St. Gallen", "canton": "St. Gallen"},
+        {"nombre": "Winterthur", "canton": "Zürich"},
+        {"nombre": "Biel/Bienne", "canton": "Bern"}
+      ]
+    };
+
+  } catch (error) {
+    console.error('Error crítico obteniendo eventos:', error);
+    // Devolver datos vacíos como último recurso absoluto
+    return {
+      eventos: [],
+      total: 0,
+      fecha_actualizacion: new Date().toISOString(),
       ciudades: []
     };
   }
