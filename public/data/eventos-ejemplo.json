@@ -1,0 +1,87 @@
+{
+  "eventos": [
+    {
+      "id": "event_ejemplo_001",
+      "titulo": "Mercadillo Navideño de Zürich",
+      "titulo_original": "Zürcher Weihnachtsmarkt",
+      "descripcion": "El mercadillo navideño más grande de interior de Europa. Disfruta de artesanías, comida tradicional y un ambiente festivo único.",
+      "descripcion_original": "Europas grösster Weihnachtsmarkt im Inneren. Geniessen Sie Handwerk, traditionelles Essen und eine einzigartige festliche Atmosphäre.",
+      "fecha": "2026-12-01",
+      "fecha_texto": "1 Diciembre - 24 Diciembre 2026",
+      "ciudad": "Zürich",
+      "canton": "Zürich",
+      "categoria": "christmas",
+      "categoria_nombre": "🎄 Mercadillos Navideños",
+      "idioma_original": "alemán",
+      "link": "https://www.christkindlimarkt.ch",
+      "imagen": "https://www.myswitzerland.com/contentprovider/images/christmas-market-zurich.jpg",
+      "fuente": "MySwitzerland",
+      "fecha_scraping": "2026-11-23T12:00:00",
+      "precio": "Gratis",
+      "ubicacion": {
+        "ciudad": "Zürich",
+        "canton": "Zürich"
+      }
+    },
+    {
+      "id": "event_ejemplo_002",
+      "titulo": "Festival de Jazz de Montreux",
+      "titulo_original": "Montreux Jazz Festival",
+      "descripcion": "Uno de los festivales de jazz más prestigiosos del mundo. Artistas internacionales y conciertos gratuitos junto al lago Lemán.",
+      "descripcion_original": "L'un des festivals de jazz les plus prestigieux au monde. Artistes internationaux et concerts gratuits au bord du Lac Léman.",
+      "fecha": "2027-07-01",
+      "fecha_texto": "1-16 Julio 2027",
+      "ciudad": "Ginebra",
+      "canton": "Genève",
+      "categoria": "music",
+      "categoria_nombre": "🎵 Música y Conciertos",
+      "idioma_original": "francés",
+      "link": "https://www.montreuxjazzfestival.com",
+      "imagen": "https://www.myswitzerland.com/contentprovider/images/montreux-jazz.jpg",
+      "fuente": "MySwitzerland",
+      "fecha_scraping": "2026-11-23T12:00:00",
+      "precio": "Variable",
+      "ubicacion": {
+        "ciudad": "Ginebra",
+        "canton": "Genève"
+      }
+    },
+    {
+      "id": "event_ejemplo_003",
+      "titulo": "Fasnacht de Basilea",
+      "titulo_original": "Basler Fasnacht",
+      "descripcion": "El carnaval más grande de Suiza. Tres días de desfiles, música y tradición. Patrimonio Cultural Inmaterial de la UNESCO.",
+      "descripcion_original": "Der grösste Karneval der Schweiz. Drei Tage Umzüge, Musik und Tradition. UNESCO Immaterielles Kulturerbe.",
+      "fecha": "2027-02-21",
+      "fecha_texto": "21-23 Febrero 2027",
+      "ciudad": "Basilea",
+      "canton": "Basel-Stadt",
+      "categoria": "festival",
+      "categoria_nombre": "🎊 Festivales",
+      "idioma_original": "alemán",
+      "link": "https://www.fasnacht.ch",
+      "imagen": "https://www.myswitzerland.com/contentprovider/images/basel-fasnacht.jpg",
+      "fuente": "MySwitzerland",
+      "fecha_scraping": "2026-11-23T12:00:00",
+      "precio": "Gratis",
+      "ubicacion": {
+        "ciudad": "Basilea",
+        "canton": "Basel-Stadt"
+      }
+    }
+  ],
+  "total": 3,
+  "fecha_actualizacion": "2026-11-23T12:00:00",
+  "ciudades": [
+    {"nombre": "Zürich", "canton": "Zürich"},
+    {"nombre": "Ginebra", "canton": "Genève"},
+    {"nombre": "Basilea", "canton": "Basel-Stadt"},
+    {"nombre": "Berna", "canton": "Bern"},
+    {"nombre": "Lausana", "canton": "Vaud"},
+    {"nombre": "Lucerna", "canton": "Luzern"},
+    {"nombre": "Lugano", "canton": "Ticino"},
+    {"nombre": "St. Gallen", "canton": "St. Gallen"},
+    {"nombre": "Winterthur", "canton": "Zürich"},
+    {"nombre": "Biel/Bienne", "canton": "Bern"}
+  ]
+}

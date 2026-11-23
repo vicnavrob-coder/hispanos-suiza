@@ -1,0 +1,41 @@
+name: Scrape Eventos Suiza
+
+on:
+  schedule:
+    # Ejecutar cada lunes a las 2:00 AM CET (1:00 AM UTC en invierno, 0:00 AM UTC en verano)
+    - cron: '0 1 * * 1'
+  workflow_dispatch: # Permitir ejecución manual
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          cd scripts/eventos
+          pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIST_ID_EVENTOS: ${{ secrets.GIST_ID_EVENTOS }}
+        run: |
+          cd scripts/eventos
+          python scrape_events.py
+
+      - name: Notify completion
+        run: echo "✅ Eventos actualizados exitosamente"
+
+      - name: Notify on failure
+        if: failure()
+        run: echo "❌ Error actualizando eventos"
