@@ -22,7 +22,12 @@ const CATEGORIAS_DISPLAY: Record<string, string> = {
   'festival': '🎊 Festivales',
   'family': '👨‍👩‍👧 Familia y Niños',
   'outdoor': '🌳 Aire Libre',
-  'other': '🎉 Otros Eventos'
+  'wine': '🍷 Vino y Gastronomía',
+  'winter': '⛷️ Deportes de Invierno',
+  'tech': '💻 Tecnología e Innovación',
+  'art': '🎨 Arte y Exposiciones',
+  'nightlife': '🎉 Vida Nocturna',
+  'other': '🎪 Otros Eventos'
 };
 
 export default function FiltrosEventos({

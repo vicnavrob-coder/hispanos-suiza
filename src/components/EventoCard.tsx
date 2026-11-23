@@ -17,7 +17,12 @@ const CATEGORIAS_DISPLAY: Record<string, { emoji: string; nombre: string; color:
   'festival': { emoji: '🎊', nombre: 'Festival', color: '#C8102E' },
   'family': { emoji: '👨‍👩‍👧', nombre: 'Familia', color: '#0891b2' },
   'outdoor': { emoji: '🌳', nombre: 'Aire Libre', color: '#16a34a' },
-  'other': { emoji: '🎉', nombre: 'Otros', color: '#6b7280' }
+  'wine': { emoji: '🍷', nombre: 'Vino', color: '#7c2d12' },
+  'winter': { emoji: '⛷️', nombre: 'Invierno', color: '#0ea5e9' },
+  'tech': { emoji: '💻', nombre: 'Tecnología', color: '#6366f1' },
+  'art': { emoji: '🎨', nombre: 'Arte', color: '#ec4899' },
+  'nightlife': { emoji: '🎉', nombre: 'Vida Nocturna', color: '#8b5cf6' },
+  'other': { emoji: '🎪', nombre: 'Otros', color: '#6b7280' }
 };
 
 export default function EventoCard({ evento }: EventoCardProps) {
