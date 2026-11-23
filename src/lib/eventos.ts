@@ -2,6 +2,9 @@
  * Librería para gestionar eventos en Suiza
  */
 
+import fs from 'fs';
+import path from 'path';
+
 export interface Evento {
   id: string;
   titulo: string;
@@ -64,13 +67,20 @@ export async function getEventos(): Promise<EventosData> {
     }
 
     // Fallback: leer desde archivo local de ejemplo
-    const localResponse = await fetch('/data/eventos-ejemplo.json', {
-      next: { revalidate: 3600 }
-    });
-
-    if (localResponse.ok) {
-      const data: EventosData = await localResponse.json();
+    // En server-side, usar fs; en client-side, usar fetch
+    if (typeof window === 'undefined') {
+      // Server-side: usar fs
+      const filePath = path.join(process.cwd(), 'public', 'data', 'eventos-ejemplo.json');
+      const fileContent = fs.readFileSync(filePath, 'utf-8');
+      const data: EventosData = JSON.parse(fileContent);
       return data;
+    } else {
+      // Client-side: usar fetch
+      const localResponse = await fetch('/data/eventos-ejemplo.json');
+      if (localResponse.ok) {
+        const data: EventosData = await localResponse.json();
+        return data;
+      }
     }
 
     throw new Error('No se pudo cargar eventos');

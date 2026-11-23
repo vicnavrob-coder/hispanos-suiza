@@ -30,8 +30,8 @@ export default function EventosPage() {
         setEventosFiltrados(data.eventos || []);
 
         // Extraer ciudades y categorías únicas
-        const ciudadesUnicas = [...new Set(data.eventos.map((e: Evento) => e.ciudad))];
-        const categoriasUnicas = [...new Set(data.eventos.map((e: Evento) => e.categoria))];
+        const ciudadesUnicas = [...new Set(data.eventos.map((e: Evento) => e.ciudad))] as string[];
+        const categoriasUnicas = [...new Set(data.eventos.map((e: Evento) => e.categoria))] as string[];
 
         setCiudades(ciudadesUnicas);
         setCategorias(categoriasUnicas);
