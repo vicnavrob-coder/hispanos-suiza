@@ -13,7 +13,10 @@ export default function EventosPage() {
   const [filtros, setFiltros] = useState({
     ciudad: 'all',
     categoria: 'all',
-    fecha: 'all'
+    fecha: 'all',
+    busqueda: '',
+    precio: 'all',
+    ordenar: 'fecha'
   });
 
   const [ciudades, setCiudades] = useState<string[]>([]);
@@ -50,6 +53,16 @@ export default function EventosPage() {
   useEffect(() => {
     let filtered = [...eventos];
 
+    // Filtrar por búsqueda de texto
+    if (filtros.busqueda !== '') {
+      const busquedaLower = filtros.busqueda.toLowerCase();
+      filtered = filtered.filter(e =>
+        e.titulo.toLowerCase().includes(busquedaLower) ||
+        (e.descripcion && e.descripcion.toLowerCase().includes(busquedaLower)) ||
+        e.ciudad.toLowerCase().includes(busquedaLower)
+      );
+    }
+
     // Filtrar por ciudad
     if (filtros.ciudad !== 'all') {
       filtered = filtered.filter(e => e.ciudad === filtros.ciudad);
@@ -63,13 +76,39 @@ export default function EventosPage() {
     // Filtrar por fecha
     if (filtros.fecha !== 'all') {
       const hoy = new Date();
+      hoy.setHours(0, 0, 0, 0);
 
       switch (filtros.fecha) {
         case 'hoy':
           filtered = filtered.filter(e => {
             if (e.fecha === 'Por confirmar') return false;
             const fechaEvento = new Date(e.fecha);
-            return fechaEvento.toDateString() === hoy.toDateString();
+            fechaEvento.setHours(0, 0, 0, 0);
+            return fechaEvento.getTime() === hoy.getTime();
+          });
+          break;
+
+        case 'manana':
+          const manana = new Date(hoy.getTime() + 24 * 60 * 60 * 1000);
+          filtered = filtered.filter(e => {
+            if (e.fecha === 'Por confirmar') return false;
+            const fechaEvento = new Date(e.fecha);
+            fechaEvento.setHours(0, 0, 0, 0);
+            return fechaEvento.getTime() === manana.getTime();
+          });
+          break;
+
+        case 'fin-semana':
+          // Encontrar el próximo sábado y domingo
+          const diaSemana = hoy.getDay();
+          const diasHastaSabado = diaSemana === 0 ? 6 : 6 - diaSemana;
+          const sabado = new Date(hoy.getTime() + diasHastaSabado * 24 * 60 * 60 * 1000);
+          const domingo = new Date(sabado.getTime() + 24 * 60 * 60 * 1000);
+          filtered = filtered.filter(e => {
+            if (e.fecha === 'Por confirmar') return false;
+            const fechaEvento = new Date(e.fecha);
+            fechaEvento.setHours(0, 0, 0, 0);
+            return fechaEvento.getTime() >= sabado.getTime() && fechaEvento.getTime() <= domingo.getTime();
           });
           break;
 
@@ -82,6 +121,15 @@ export default function EventosPage() {
           });
           break;
 
+        case '15-dias':
+          const quinceDias = new Date(hoy.getTime() + 15 * 24 * 60 * 60 * 1000);
+          filtered = filtered.filter(e => {
+            if (e.fecha === 'Por confirmar') return false;
+            const fechaEvento = new Date(e.fecha);
+            return fechaEvento >= hoy && fechaEvento <= quinceDias;
+          });
+          break;
+
         case 'mes':
           const unMes = new Date(hoy.getTime() + 30 * 24 * 60 * 60 * 1000);
           filtered = filtered.filter(e => {
@@ -90,7 +138,67 @@ export default function EventosPage() {
             return fechaEvento >= hoy && fechaEvento <= unMes;
           });
           break;
+
+        case 'proximo-mes':
+          const inicioProximoMes = new Date(hoy.getFullYear(), hoy.getMonth() + 1, 1);
+          const finProximoMes = new Date(hoy.getFullYear(), hoy.getMonth() + 2, 0);
+          filtered = filtered.filter(e => {
+            if (e.fecha === 'Por confirmar') return false;
+            const fechaEvento = new Date(e.fecha);
+            return fechaEvento >= inicioProximoMes && fechaEvento <= finProximoMes;
+          });
+          break;
+
+        case '3-meses':
+          const tresMeses = new Date(hoy.getTime() + 90 * 24 * 60 * 60 * 1000);
+          filtered = filtered.filter(e => {
+            if (e.fecha === 'Por confirmar') return false;
+            const fechaEvento = new Date(e.fecha);
+            return fechaEvento >= hoy && fechaEvento <= tresMeses;
+          });
+          break;
       }
+    }
+
+    // Filtrar por precio
+    if (filtros.precio !== 'all') {
+      if (filtros.precio === 'gratis') {
+        filtered = filtered.filter(e => e.precio && e.precio.toLowerCase().includes('gratis'));
+      } else if (filtros.precio === 'pago') {
+        filtered = filtered.filter(e => e.precio && !e.precio.toLowerCase().includes('gratis'));
+      }
+    }
+
+    // Ordenar resultados
+    switch (filtros.ordenar) {
+      case 'alfabetico':
+        filtered.sort((a, b) => a.titulo.localeCompare(b.titulo));
+        break;
+
+      case 'relevancia':
+        // Ordenar por categorías populares primero, luego por fecha
+        const categoriasPopulares = ['christmas', 'festival', 'music', 'culture'];
+        filtered.sort((a, b) => {
+          const aPopular = categoriasPopulares.includes(a.categoria) ? 0 : 1;
+          const bPopular = categoriasPopulares.includes(b.categoria) ? 0 : 1;
+          if (aPopular !== bPopular) return aPopular - bPopular;
+
+          // Si ambos son igual de populares, ordenar por fecha
+          if (a.fecha === 'Por confirmar') return 1;
+          if (b.fecha === 'Por confirmar') return -1;
+          return new Date(a.fecha).getTime() - new Date(b.fecha).getTime();
+        });
+        break;
+
+      case 'fecha':
+      default:
+        // Ordenar por fecha (más próximos primero)
+        filtered.sort((a, b) => {
+          if (a.fecha === 'Por confirmar') return 1;
+          if (b.fecha === 'Por confirmar') return -1;
+          return new Date(a.fecha).getTime() - new Date(b.fecha).getTime();
+        });
+        break;
     }
 
     setEventosFiltrados(filtered);
@@ -266,30 +374,74 @@ export default function EventosPage() {
           categorias={categorias}
         />
 
-        {/* Contador de resultados */}
-        <div className="mb-6">
-          <p
-            style={{
-              fontFamily: 'var(--font-dm-sans), system-ui, sans-serif',
-              color: '#6B7280',
-              fontSize: '0.875rem'
-            }}
-          >
-            {eventosFiltrados.length === 0 ? (
-              'No se encontraron eventos con los filtros seleccionados'
-            ) : (
-              <>
-                Mostrando{' '}
-                <span
-                  className="font-bold"
-                  style={{ color: '#C8102E' }}
+        {/* Contador de resultados mejorado */}
+        <div
+          className="mb-6 p-4 rounded-xl flex items-center justify-between"
+          style={{
+            background: '#ffffff',
+            border: '1px solid #E8E5E0'
+          }}
+        >
+          <div className="flex items-center gap-3">
+            <div
+              className="w-10 h-10 rounded-lg flex items-center justify-center"
+              style={{ background: '#FFF1F3' }}
+            >
+              <Calendar className="h-5 w-5" style={{ color: '#C8102E' }} />
+            </div>
+            <div>
+              <p
+                className="text-sm font-semibold"
+                style={{
+                  fontFamily: 'var(--font-dm-sans), system-ui, sans-serif',
+                  color: '#374151'
+                }}
+              >
+                {eventosFiltrados.length === 0 ? (
+                  'No se encontraron eventos'
+                ) : (
+                  <>
+                    <span
+                      className="text-xl font-black"
+                      style={{
+                        color: '#C8102E',
+                        fontFamily: 'var(--font-playfair), Georgia, serif'
+                      }}
+                    >
+                      {eventosFiltrados.length}
+                    </span>
+                    {' evento'}
+                    {eventosFiltrados.length !== 1 ? 's' : ''}
+                    {' encontrado'}
+                    {eventosFiltrados.length !== 1 ? 's' : ''}
+                  </>
+                )}
+              </p>
+              {eventosFiltrados.length > 0 && (
+                <p
+                  className="text-xs"
+                  style={{
+                    fontFamily: 'var(--font-dm-sans), system-ui, sans-serif',
+                    color: '#9CA3AF'
+                  }}
                 >
-                  {eventosFiltrados.length}
-                </span>
-                {' '}evento{eventosFiltrados.length !== 1 ? 's' : ''}
-              </>
-            )}
-          </p>
+                  de {eventos.length} eventos totales
+                </p>
+              )}
+            </div>
+          </div>
+
+          {eventosFiltrados.length === 0 && (
+            <p
+              className="text-xs"
+              style={{
+                fontFamily: 'var(--font-dm-sans), system-ui, sans-serif',
+                color: '#9CA3AF'
+              }}
+            >
+              Prueba con otros filtros
+            </p>
+          )}
         </div>
 
         {/* Grid de Eventos */}
