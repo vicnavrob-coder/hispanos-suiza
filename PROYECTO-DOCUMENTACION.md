@@ -1,8 +1,98 @@
-# Sistema de Eventos - HispanosEnSuiza
+# HispanosEnSuiza - Documentación del Proyecto
 
-**Fecha de implementación:** 23 Noviembre 2026
-**Última actualización:** 23 Noviembre 2026 (v1.1.0 - Búsqueda Avanzada)
-**Estado:** ✅ Completado y en producción
+**Fecha de inicio:** 23 Noviembre 2026
+**Última actualización:** 24 Noviembre 2026 (v1.3.0 - Comida Hispana + SEO)
+**Estado:** ✅ En producción
+
+---
+
+## 🍽️ NUEVA SECCIÓN: Comida Hispana (v1.3.0)
+
+**URL:** https://hispanosensuiza.ch/comida-hispana
+**Fecha:** 24 Noviembre 2026
+
+### Descripción
+
+Directorio completo de restaurantes españoles y latinoamericanos en Suiza con sistema de búsqueda, filtros y reservas.
+
+### Archivos Creados
+
+| Archivo | Descripción |
+|---------|-------------|
+| `public/data/restaurantes-hispanos.json` | Base de datos con 12 restaurantes |
+| `src/lib/restaurantes.ts` | Librería con funciones de filtrado |
+| `src/app/comida-hispana/layout.tsx` | SEO con 120+ keywords y 10 FAQs |
+| `src/app/comida-hispana/page.tsx` | Página principal con filtros y modal |
+
+### Restaurantes Incluidos (12)
+
+| Restaurante | Ciudad | Tipo | Rating |
+|-------------|--------|------|--------|
+| Asador Vasco | Zürich | Vasco | 4.9 |
+| El Gaucho | Lausanne | Argentino | 4.8 |
+| Churros Factory | Ginebra | Churrería | 4.8 |
+| Casa Peru | Winterthur | Peruano | 4.7 |
+| La Mancha | Basel | Tapas | 4.7 |
+| Casa Aurelio | Zürich | Español | 4.6 |
+| Bodega Española | St. Gallen | Vinos/Tapas | 4.6 |
+| Cantina Mexicana | Berna | Mexicano | 4.5 |
+| La Colombiana | Zürich | Colombiano | 4.5 |
+| Taquería Los Amigos | Lucerna | Tacos | 4.4 |
+| El Toro | Ginebra | Español | 4.4 |
+| Havana Club | Zürich | Cubano | 4.3 |
+
+### Funcionalidades
+
+- **Búsqueda por texto** en tiempo real
+- **6 búsquedas populares** con emojis (Tapas, Paella, Tacos, Asado, Churros, Ceviche)
+- **Filtros:** Ciudad, Tipo cocina, Precio, Abierto ahora
+- **Ordenamiento:** Rating, Reviews, Precio, Nombre
+- **Tarjetas con:**
+  - Fotos de Unsplash por tipo de cocina
+  - Indicador Abierto/Cerrado en tiempo real
+  - Rating y número de reviews
+  - Indicador de precio ($-$$$$)
+  - Platos destacados
+  - Botón Llamar directo
+  - Botón Ver más → Modal
+- **Modal detallado con:**
+  - Horario completo (día actual resaltado)
+  - Enlace Google Maps
+  - Botones Llamar, Reservar, Web
+
+### SEO Implementado
+
+**Keywords:** 120+ organizadas en 10 tiers
+- Tier 1: restaurantes españoles suiza, tapas suiza
+- Tier 2: Por tipo cocina (mexicana, argentina, peruana...)
+- Tier 3-5: Por ciudad (Zürich, Ginebra, Basel, Berna...)
+- Tier 6: Platos específicos (paella, ceviche, churros...)
+- Tier 7-10: Long-tail y preguntas
+
+**Schemas JSON-LD (5):**
+1. BreadcrumbList
+2. CollectionPage
+3. ItemList con Restaurant (top 5)
+4. LocalBusiness
+5. FAQPage (10 preguntas)
+
+**FAQs para Featured Snippets (10):**
+- ¿Dónde encontrar restaurantes españoles en Suiza?
+- ¿Cuánto cuesta comer en un restaurante español en Suiza?
+- ¿Hay comida mexicana auténtica en Suiza?
+- ¿Cuál es el mejor restaurante español en Zürich?
+- ¿Dónde comer paella en Suiza?
+- Y 5 más...
+
+### Navegación
+
+- Enlace "Comer" añadido en header desktop
+- Enlace "🍽️ Comida Hispana" en menú móvil
+- Página incluida en sitemap.xml (prioridad 0.9)
+
+---
+
+# Sistema de Eventos - HispanosEnSuiza
 
 ---
 
@@ -831,8 +921,48 @@ curl https://hispanosensuiza.ch/api/health | jq
 - ✅ Deploy en Vercel completado
 - ✅ Documentación completa
 
+### Versión 1.3.0 - 24 Noviembre 2026 (Comida Hispana)
+
+**Nueva Sección: Restaurantes Hispanos en Suiza**
+
+#### Funcionalidades Añadidas
+- ✅ Nueva página `/comida-hispana` con directorio de restaurantes
+- ✅ 12 restaurantes españoles y latinoamericanos
+- ✅ Sistema de búsqueda y filtrado avanzado
+- ✅ Modal detallado con horarios y ubicación
+- ✅ Integración Google Maps
+- ✅ Fotos de Unsplash por tipo de cocina
+- ✅ Indicador "Abierto ahora" en tiempo real
+- ✅ Botones de llamar y reservar
+
+#### SEO Implementado
+- ✅ 120+ keywords en 10 tiers
+- ✅ 10 FAQs para featured snippets
+- ✅ 5 schemas JSON-LD (Restaurant, ItemList, FAQPage, etc.)
+- ✅ Página añadida al sitemap (prioridad 0.9)
+- ✅ Meta description optimizada para CTR
+
+#### Archivos Creados
+- `public/data/restaurantes-hispanos.json` (12 restaurantes)
+- `src/lib/restaurantes.ts` (funciones de filtrado)
+- `src/app/comida-hispana/layout.tsx` (SEO)
+- `src/app/comida-hispana/page.tsx` (página + modal)
+
+#### Navegación
+- ✅ Enlace "Comer" en header desktop
+- ✅ Enlace "🍽️ Comida Hispana" en menú móvil
+
+### Versión 1.2.0 - 24 Noviembre 2026 (SEO Global)
+
+**Mejoras SEO en toda la web**
+
+- ✅ robots.txt: Corregido dominio y añadidas reglas por bot
+- ✅ eventos/layout.tsx: 130+ keywords, FAQPage schema
+- ✅ salario-neto/layout.tsx: Keywords expandidas
+- ✅ Bloqueo de bots maliciosos (AhrefsBot, MJ12bot, DotBot)
+
 ---
 
-**Última actualización:** 23 Noviembre 2026 23:30 CET
-**Versión:** 1.1.0
-**Estado:** ✅ En producción con búsqueda avanzada
+**Última actualización:** 24 Noviembre 2026 19:15 CET
+**Versión:** 1.3.0
+**Estado:** ✅ En producción con Eventos + Comida Hispana
