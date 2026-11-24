@@ -49,6 +49,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily',
       priority: 0.9,
     },
+    // Comida Hispana - Restaurantes
+    {
+      url: `${BASE_URL}/comida-hispana`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
     {
       url: `${BASE_URL}/seguros`,
       lastModified: new Date(),
